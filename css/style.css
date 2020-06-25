@@ -1,0 +1,15 @@
+body,
+html {
+  height: 100%;
+  overflow-y: visible;
+}
+
+@media (max-width: 991px) {
+  .sidebar-wrapper {
+    position: static;
+    width: 100%;
+    height: 750px;
+    padding-right: 55px;
+    padding-left: 55px;
+  }
+}
