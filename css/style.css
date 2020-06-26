@@ -4,6 +4,7 @@ body,
 html {
   height: 100%;
   font-family: 'Muli', sans-serif;
+  min-width: 300px;
 }
 
 .w-button {
@@ -31,6 +32,10 @@ a:hover {
   font-family: 'Playfair Display', serif;
 }
 
+.content-wrapper.col {
+  padding: 0;
+}
+
 .about {
   -webkit-animation: fading 500ms ease-in;
   -moz-animation: fading 500ms ease-in;
@@ -47,6 +52,13 @@ a:hover {
 }
 
 .social {
+  -webkit-animation: fading 500ms ease-in;
+  -moz-animation: fading 500ms ease-in;
+  -o-animation: fading 500ms ease-in;
+  animation: fading 500ms ease-in;
+}
+
+.text-slide-2 {
   -webkit-animation: fading 500ms ease-in;
   -moz-animation: fading 500ms ease-in;
   -o-animation: fading 500ms ease-in;
@@ -176,6 +188,71 @@ a:hover {
   background-image: url('https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb8bb9d6ee1a1e6ac5_medium%20hover.png');
   background-size: 25px;
   opacity: 1;
+}
+
+.content-wrapper {
+  color: #fff;
+}
+
+.overcapture {
+  width: 100%;
+  height: auto;
+  padding: 65px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f4b93d), to(#f4b93d));
+  background-image: linear-gradient(180deg, #f4b93d, #f4b93d);
+}
+
+.w-clearfix:before,
+.w-clearfix:after {
+  content: " ";
+  display: table;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-column-end: 2;
+  grid-row-end: 2;
+}
+
+.image-3 {
+  width: 50%;
+  margin-left: 28%;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0;
+}
+
+.title_sub {
+  margin-top: -50px;
+  margin-left: 0px;
+  float: none;
+  clear: none;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.title {
+  margin-top: 5px;
+  margin-left: 0px;
+  float: left;
+}
+
+.gp_watch_dribbble {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  padding: 0px;
+  float: right;
+  background-color: transparent;
+  background-image: url('https://img.icons8.com/fluent/48/000000/github.png');
+  background-position: 0px 0px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
 }
 
 @media (max-width: 991px) {
