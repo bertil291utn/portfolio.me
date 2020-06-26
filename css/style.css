@@ -6,10 +6,22 @@ html {
   font-family: 'Muli', sans-serif;
 }
 
+.w-button {
+  display: inline-block;
+  padding: 9px 15px;
+  background-color: #3898ec;
+  color: white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
 a:hover {
-  opacity: 0.66;
   text-decoration: none;
   outline: 0;
+  color: unset;
 }
 
 .side-wrapper {
@@ -41,16 +53,21 @@ a:hover {
   animation: fading 500ms ease-in;
 }
 
-.w-button {
-  display: inline-block;
-  padding: 9px 15px;
-  background-color: #3898ec;
-  color: white;
-  border: 0;
-  line-height: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 0;
+.contact_btn {
+  padding: 15px 65px;
+  border-radius: 100px;
+  background-color: #3b80fe;
+  -webkit-animation: fading 1s ease-in;
+  -moz-animation: fading 1s ease-in;
+  -o-animation: fading 1s ease-in;
+  animation: fading 1s ease-in;
+  font-size: 16px;
+}
+
+.contact_btn:hover {
+  background-color: #1660e7;
+  box-shadow: 0 16px 32px -6px rgba(0, 0, 0, .2);
+  color: #fff;
 }
 
 .github_button {
@@ -74,8 +91,6 @@ a:hover {
   background-attachment: scroll;
   opacity: 1;
 }
-
-
 
 .spotify_button {
   width: 27px;
@@ -163,7 +178,6 @@ a:hover {
   opacity: 1;
 }
 
-
 @media (max-width: 991px) {
   .sidebar-wrapper {
     position: static;
@@ -171,6 +185,11 @@ a:hover {
     height: 750px;
     padding-right: 55px;
     padding-left: 55px;
+  }
+
+  .about_container {
+    position: static;
+    width: 65%;
   }
 }
 
