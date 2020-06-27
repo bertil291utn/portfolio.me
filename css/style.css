@@ -206,6 +206,24 @@ a:hover {
   background-image: linear-gradient(180deg, #f4b93d, #f4b93d);
 }
 
+.quikstories {
+  width: 100%;
+  height: auto;
+  padding: 65px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#005ba9), to(#005ba9));
+  background-image: linear-gradient(180deg, #005ba9, #005ba9);
+}
+
+.dw_img {
+  margin-left: 0px;
+}
+
+.image {
+  width: 65%;
+  margin-bottom: 35px;
+  margin-left: 28%;
+}
+
 .w-clearfix:before,
 .w-clearfix:after {
   content: " ";
@@ -225,7 +243,7 @@ a:hover {
   display: block;
   width: 75%;
   height: 75%;
-  margin: 45px auto -60px;
+  margin: 0 auto -60px;
 }
 
 img {
