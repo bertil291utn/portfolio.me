@@ -246,6 +246,13 @@ a:hover {
   margin: 0 auto -60px;
 }
 
+.keyboard-laptop {
+  display: block;
+  width: 75%;
+  height: 75%;
+  margin: 0 auto 80px;
+}
+
 img {
   max-width: 100%;
   vertical-align: middle;
