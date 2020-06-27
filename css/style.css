@@ -19,6 +19,10 @@ html {
   border-radius: 0;
 }
 
+.content-wrapper a {
+  color: unset;
+}
+
 a:hover {
   text-decoration: none;
   outline: 0;
@@ -110,7 +114,7 @@ a:hover {
   margin-right: 20px;
   padding: 0px;
   background-color: transparent;
-  background-image: url('https://img.icons8.com/carbon-copy/144/000000/spotify.png');
+  background-image: url('https://img.icons8.com/metro/52/000000/spotify.png');
   background-position: 0px 0px;
   background-size: 27px;
   background-repeat: no-repeat;
@@ -122,7 +126,7 @@ a:hover {
 }
 
 .spotify_button:hover {
-  background-image: url('https://img.icons8.com/plasticine/100/000000/spotify.png');
+  background-image: url('/assets/icons/spotify.svg');
   background-size: 27px;
   background-attachment: scroll;
   opacity: 1;
@@ -155,7 +159,7 @@ a:hover {
   margin-right: 25px;
   padding: 0px;
   background-color: transparent;
-  background-image: url("https://img.icons8.com/fluent/48/000000/linkedin.png");
+  background-image: url("https://img.icons8.com/ios-filled/96/000000/linkedin.png");
   background-position: 0px 0px;
   background-size: 27px;
   background-repeat: no-repeat;
@@ -165,7 +169,7 @@ a:hover {
 }
 
 .linkedin_button:hover {
-  background-image: url('https://img.icons8.com/color/48/000000/linkedin.png');
+  background-image: url('/assets/icons/linkedin.svg');
   background-size: 27px;
   opacity: 1;
 }
@@ -217,6 +221,13 @@ a:hover {
   margin-left: 28%;
 }
 
+.quik_img {
+  display: block;
+  width: 75%;
+  height: 75%;
+  margin: 45px auto -60px;
+}
+
 img {
   max-width: 100%;
   vertical-align: middle;
@@ -236,7 +247,8 @@ img {
 .title {
   margin-top: 5px;
   margin-left: 0px;
-  float: left;
+  float: none;
+  font-weight: 600;
 }
 
 .gp_watch_github {
