@@ -286,6 +286,46 @@ img {
   transition: all 300ms ease;
 }
 
+.pros_app {
+  width: 100%;
+  height: auto;
+  padding: 45px 65px;
+  clear: none;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#54e7c7), to(#54e7c7));
+  background-image: linear-gradient(180deg, #54e7c7, #54e7c7);
+}
+
+.pros_img {
+  display: block;
+  width: 50%;
+  margin-top: 45px;
+  margin-bottom: 0px;
+  margin-left: 28%;
+}
+
+.jibjab {
+  height: auto;
+  padding: 45px 65px;
+  background-color: #4a4a4a;
+}
+
+.quik {
+  height: auto;
+  padding: 45px 65px;
+  background-color: #eabad8;
+}
+
+.footer_wrapper {
+  height: 80px;
+  padding: 32px 65px 25px;
+  background-color: #222;
+}
+
+.footer-p {
+  color: #999;
+  text-align: center;
+}
+
 @media (max-width: 991px) {
   .sidebar-wrapper {
     position: static;
