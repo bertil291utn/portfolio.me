@@ -65,112 +65,91 @@ a:hover {
   color: #fff;
 }
 
+.social-icons {
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  background-color: transparent;
+  background-position: 0 0;
+  background-size: 27px;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.social-icons:hover {
+  background-size: 27px;
+  background-attachment: scroll;
+  opacity: 1;
+}
+
 .github_button {
-  width: 27px;
-  height: 27px;
   margin-right: 20px;
-  padding: 0;
-  background-color: transparent;
   background-image: url('https://img.icons8.com/fluent/48/000000/github.png');
-  background-position: 0 0;
-  background-size: 27px;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  opacity: 0.5;
-  -webkit-transition: all 500ms ease-in;
-  transition: all 500ms ease-in;
-  cursor: pointer;
+  -webkit-animation: fading 500ms ease-in;
+  -moz-animation: fading 500ms ease-in;
+  -o-animation: fading 500ms ease-in;
+  animation: fading 500ms ease-in;
 }
 
-.github_button:hover {
-  background-attachment: scroll;
-  opacity: 1;
+.linkedin_button {
+  margin-right: 25px;
+  background-image: url("https://img.icons8.com/ios-filled/96/000000/linkedin.png");
+  -webkit-animation: fading 600ms ease-in;
+  -moz-animation: fading 600ms ease-in;
+  -o-animation: fading 600ms ease-in;
+  animation: fading 600ms ease-in;
 }
 
-.spotify_button {
-  width: 27px;
-  height: 27px;
-  margin-right: 20px;
-  padding: 0;
-  background-color: transparent;
-  background-image: url('https://img.icons8.com/metro/52/000000/spotify.png');
-  background-position: 0 0;
-  background-size: 27px;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  opacity: 0.5;
-  -webkit-transition: all 500ms ease-in;
-  transition: all 500ms ease-in;
-  cursor: pointer;
-}
-
-.spotify_button:hover {
-  background-image: url('/assets/icons/spotify.svg');
-  background-size: 27px;
-  background-attachment: scroll;
-  opacity: 1;
+.linkedin_button:hover {
+  background-image: url('/assets/icons/linkedin.svg');
 }
 
 .twitter_button {
   width: 24px;
   height: 24px;
   margin-right: 25px;
-  padding: 0;
-  background-color: transparent;
   background-image: url("https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb8bb9d6ee1a1e6ac4_twitter.png");
-  background-position: 0 0;
   background-size: 24px;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  -webkit-transition: all 900ms ease-out;
-  transition: all 900ms ease-out;
+  -webkit-animation: fading 700ms ease-in;
+  -moz-animation: fading 700ms ease-in;
+  -o-animation: fading 700ms ease-in;
+  animation: fading 700ms ease-in;
 }
 
 .twitter_button:hover {
   background-image: url('https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb6ca51954384a7b98_twitter%20hover.png');
-  background-size: 25px;
-  opacity: 1;
-}
-
-.linkedin_button {
-  width: 27px;
-  height: 27px;
-  margin-right: 25px;
-  padding: 0;
-  background-color: transparent;
-  background-image: url("https://img.icons8.com/ios-filled/96/000000/linkedin.png");
-  background-position: 0 0;
-  background-size: 27px;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  -webkit-transition: all 900ms ease-out;
-  transition: all 900ms ease-out;
-}
-
-.linkedin_button:hover {
-  background-image: url('/assets/icons/linkedin.svg');
-  background-size: 27px;
-  opacity: 1;
+  background-size: 24px;
 }
 
 .medium_button {
   width: 25px;
   height: 25px;
-  padding: 0;
-  background-color: transparent;
+  margin-right: 20px;
   background-image: url("https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafbad17c7800714e37c_medium.png");
-  background-position: 0 0;
   background-size: 25px;
-  background-repeat: no-repeat;
-  opacity: 1;
-  -webkit-transition: all 300ms ease;
-  transition: all 300ms ease;
+  -webkit-animation: fading 800ms ease-in;
+  -moz-animation: fading 800ms ease-in;
+  -o-animation: fading 800ms ease-in;
+  animation: fading 800ms ease-in;
 }
 
 .medium_button:hover {
   background-image: url('https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb8bb9d6ee1a1e6ac5_medium%20hover.png');
   background-size: 25px;
-  opacity: 1;
+}
+
+.spotify_button {
+  background-image: url('https://img.icons8.com/metro/52/000000/spotify.png');
+  -webkit-animation: fading 900ms ease-in;
+  -moz-animation: fading 900ms ease-in;
+  -o-animation: fading 900ms ease-in;
+  animation: fading 900ms ease-in;
+}
+
+.spotify_button:hover {
+  background-image: url('/assets/icons/spotify.svg');
 }
 
 .content-wrapper {
@@ -325,12 +304,6 @@ img {
     position: static;
   }
 }
-
-/* @media (max-width: 768px) and (min-width: 424px) {
-  .about_container {
-    width: 65%;
-  }
-} */
 
 @-webkit-keyframes fading {
   0% {
