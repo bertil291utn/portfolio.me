@@ -219,7 +219,7 @@ a:hover {
   display: block;
   width: 75%;
   height: 75%;
-  margin: 0 auto -60px;
+  margin: 0 auto;
 }
 
 .keyboard-laptop {
@@ -281,7 +281,7 @@ img {
   display: block;
   width: 50%;
   margin-top: 45px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   margin-left: 28%;
 }
 
