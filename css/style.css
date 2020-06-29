@@ -37,12 +37,14 @@ a:hover {
   outline: 0;
 }
 
-.about-copy a {
-  color: var(--primary-color);
+.about-copy a,
+.community a {
+  color: var(--hover-text);
 }
 
-.about-copy a:hover {
-  color: var(--hover-text);
+.about-copy a:hover,
+.community a:hover {
+  color: var(--primary-color);
 }
 
 .titles-family {
@@ -291,6 +293,28 @@ img {
 .quik {
   height: auto;
   background-color: #eabad8;
+}
+
+.community {
+  height: auto;
+  background-color: #f4f3f3;
+  color: #333;
+}
+
+.speaking_wrapper {
+  margin-bottom: 45px;
+}
+
+.devider {
+  height: 10px;
+  margin-top: 0;
+  margin-bottom: 45px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74, 74, 74, 0.08)), to(rgba(74, 74, 74, 0.08)));
+  background-image: linear-gradient(180deg, rgba(74, 74, 74, 0.08), rgba(131, 100, 100, 0.08));
+}
+
+.speaking_event {
+  margin-bottom: 20px;
 }
 
 .footer_wrapper {
