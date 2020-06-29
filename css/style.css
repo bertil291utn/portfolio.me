@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&family=Playfair+Display:wght@900&display=swap');
 
+:root {
+  --primary-color: #ffe63d;
+  --hover-text: #f5b700;
+}
+
+.text-primary-color {
+  color: var(--primary-color) !important;
+}
+
 body,
 html {
   height: 100%;
@@ -10,7 +19,7 @@ html {
 .w-button {
   display: inline-block;
   padding: 9px 15px;
-  background-color: #3898ec;
+  background-color: var(--primary-color);
   color: white;
   border: 0;
   line-height: inherit;
@@ -26,7 +35,14 @@ html {
 a:hover {
   text-decoration: none;
   outline: 0;
-  color: unset;
+}
+
+.about-copy a {
+  color: var(--primary-color);
+}
+
+.about-copy a:hover {
+  color: var(--hover-text);
 }
 
 .titles-family {
@@ -49,9 +65,10 @@ a:hover {
 }
 
 .contact_btn {
+  color: #212529;
   padding: 15px 65px;
   border-radius: 100px;
-  background-color: #3b80fe;
+  background-color: var(--primary-color);
   -webkit-animation: fading 1s ease-in;
   -moz-animation: fading 1s ease-in;
   -o-animation: fading 1s ease-in;
@@ -60,9 +77,9 @@ a:hover {
 }
 
 .contact_btn:hover {
-  background-color: #1660e7;
+  background-color: var(--hover-text);
   box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  color: black;
 }
 
 .social-icons {
@@ -160,15 +177,15 @@ a:hover {
   width: 100%;
   height: auto;
   padding: 65px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f4b93d), to(#f4b93d));
-  background-image: linear-gradient(180deg, #f4b93d, #f4b93d);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#005ba9), to(#005ba9));
+  background-image: linear-gradient(180deg, #005ba9, #005ba9);
 }
 
 .quikstories {
   width: 100%;
   height: auto;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#005ba9), to(#005ba9));
-  background-image: linear-gradient(180deg, #005ba9, #005ba9);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--hover-text)), to(var(--hover-text)));
+  background-image: linear-gradient(180deg, var(--hover-text), var(--hover-text));
 }
 
 .dw_img {
@@ -277,7 +294,7 @@ img {
 }
 
 .footer_wrapper {
-  height: 80px;
+  height: 150px;
   padding: 32px 65px 25px;
   background-color: #222;
 }
