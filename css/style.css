@@ -191,13 +191,12 @@ a:hover {
 }
 
 .dw_img {
-  margin-left: 0;
+  text-align: center;
 }
 
 .image {
   width: 65%;
-  margin-bottom: 35px;
-  margin-left: 28%;
+  margin: 0 auto 80px;
 }
 
 .w-clearfix::before,
@@ -219,7 +218,7 @@ a:hover {
   display: block;
   width: 75%;
   height: 75%;
-  margin: 0 auto;
+  margin: 0 auto 40px;
 }
 
 .keyboard-laptop {
@@ -280,9 +279,7 @@ img {
 .pros_img {
   display: block;
   width: 50%;
-  margin-top: 45px;
-  margin-bottom: 20px;
-  margin-left: 28%;
+  margin: 0 auto 40px;
 }
 
 .jibjab {
