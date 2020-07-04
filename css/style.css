@@ -42,6 +42,20 @@ a:hover {
   color: var(--hover-text);
 }
 
+.links-projects {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.links-projects a {
+  width: 75%;
+  margin-right: 30px;
+}
+
+.links-projects-titles {
+  text-transform: capitalize;
+}
+
 .about-copy a:hover,
 .community a:hover {
   color: var(--primary-color);
@@ -196,7 +210,10 @@ a:hover {
 
 .image {
   width: 65%;
-  margin: 0 auto 80px;
+}
+
+.w-clearfix::after {
+  clear: both;
 }
 
 .w-clearfix::before,
@@ -225,7 +242,7 @@ a:hover {
   display: block;
   width: 75%;
   height: 75%;
-  margin: 0 auto 80px;
+  margin: 0 auto 40px;
 }
 
 img {
@@ -236,7 +253,6 @@ img {
 }
 
 .title_sub {
-  margin-top: -50px;
   margin-left: 0;
   float: none;
   clear: none;
@@ -249,23 +265,6 @@ img {
   margin-left: 0;
   float: none;
   font-weight: 600;
-}
-
-.gp_watch_github {
-  width: 60px;
-  height: 60px;
-  margin-top: -50px;
-  margin-right: 10px;
-  padding: 0;
-  float: right;
-  background-color: transparent;
-  background-image: url('https://img.icons8.com/fluent/48/000000/github.png');
-  background-position: 0 0;
-  background-size: 60px;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-  -webkit-transition: all 300ms ease;
-  transition: all 300ms ease;
 }
 
 .pros_app {
@@ -339,6 +338,51 @@ img {
 
   .about_container {
     position: static;
+  }
+}
+
+@media (min-width: 526px) {
+  .links-projects-titles {
+    display: none;
+  }
+
+  .gp_watch.github {
+    background-image: url('/assets/icons/github_white.svg');
+  }
+
+  .gp_watch.live-demo {
+    background-image: url('/assets/icons/live_white.svg');
+  }
+
+  .links-projects {
+    display: block;
+  }
+
+  .links-projects a {
+    width: 0;
+    padding: 9px 15px;
+    margin: 10px;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .gp_watch {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 0;
+    float: right;
+    background-color: transparent;
+    background-position: 0 0;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+  }
+
+  .image {
+    margin: 0 auto 40px;
   }
 }
 
