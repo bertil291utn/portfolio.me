@@ -384,6 +384,10 @@ img {
   .image {
     margin: 0 auto 40px;
   }
+
+  .quikstories .title_sub {
+    margin-top: -50px;
+  }
 }
 
 @-webkit-keyframes fading {
