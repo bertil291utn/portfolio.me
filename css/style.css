@@ -160,7 +160,7 @@ a:hover {
   width: 25px;
   height: 25px;
   margin-right: 20px;
-  background-image: url("https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafbad17c7800714e37c_medium.png");
+  background-image: url("https://img.icons8.com/ios-filled/100/000000/comments.png");
   background-size: 25px;
   -webkit-animation: fading 800ms ease-in;
   -moz-animation: fading 800ms ease-in;
@@ -168,8 +168,8 @@ a:hover {
   animation: fading 800ms ease-in;
 }
 
-.medium_button:hover {
-  background-image: url('https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb8bb9d6ee1a1e6ac5_medium%20hover.png');
+.medium_button:hover { 
+  background-image: url('/assets/icons/blog-icon.svg');
   background-size: 25px;
 }
 
