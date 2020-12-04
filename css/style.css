@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&family=Playfair+Display:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Muli:wght@300&family=Playfair+Display:wght@900&display=swap");
 
 :root {
   --primary-color: #ffe63d;
   --hover-text: #f5b700;
+  --dark-text: #333;
+  --light-text: #fff;
 }
 
 .text-primary-color {
@@ -12,7 +14,7 @@
 body,
 html {
   height: 100%;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   min-width: 300px;
 }
 
@@ -20,7 +22,7 @@ html {
   display: inline-block;
   padding: 9px 15px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--light-text);
   border: 0;
   line-height: inherit;
   text-decoration: none;
@@ -62,7 +64,7 @@ a:hover {
 }
 
 .titles-family {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .content-wrapper.col {
@@ -119,7 +121,7 @@ a:hover {
 
 .github_button {
   margin-right: 20px;
-  background-image: url('https://img.icons8.com/fluent/48/000000/github.png');
+  background-image: url("https://img.icons8.com/fluent/48/000000/github.png");
   -webkit-animation: fading 500ms ease-in;
   -moz-animation: fading 500ms ease-in;
   -o-animation: fading 500ms ease-in;
@@ -136,7 +138,7 @@ a:hover {
 }
 
 .linkedin_button:hover {
-  background-image: url('/assets/icons/linkedin.svg');
+  background-image: url("/assets/icons/linkedin.svg");
 }
 
 .twitter_button {
@@ -152,7 +154,7 @@ a:hover {
 }
 
 .twitter_button:hover {
-  background-image: url('https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb6ca51954384a7b98_twitter%20hover.png');
+  background-image: url("https://uploads-ssl.webflow.com/57c5dd245cc3aa553acf1266/57c9eafb6ca51954384a7b98_twitter%20hover.png");
   background-size: 24px;
 }
 
@@ -168,13 +170,13 @@ a:hover {
   animation: fading 800ms ease-in;
 }
 
-.medium_button:hover { 
-  background-image: url('/assets/icons/blog-icon.svg');
+.medium_button:hover {
+  background-image: url("/assets/icons/blog-icon.svg");
   background-size: 25px;
 }
 
 .spotify_button {
-  background-image: url('https://img.icons8.com/metro/52/000000/spotify.png');
+  background-image: url("https://img.icons8.com/metro/52/000000/spotify.png");
   -webkit-animation: fading 900ms ease-in;
   -moz-animation: fading 900ms ease-in;
   -o-animation: fading 900ms ease-in;
@@ -182,7 +184,7 @@ a:hover {
 }
 
 .spotify_button:hover {
-  background-image: url('/assets/icons/spotify.svg');
+  background-image: url("/assets/icons/spotify.svg");
 }
 
 .content-wrapper {
@@ -253,18 +255,18 @@ img {
 }
 
 .title_sub {
-  margin-left: 0;
-  float: none;
   clear: none;
+  float: none;
   font-size: 12px;
   line-height: 12px;
+  margin-left: 0;
 }
 
 .title {
-  margin-top: 15px;
-  margin-left: 0;
   float: none;
   font-weight: 600;
+  margin-top: 15px;
+  margin-left: 0;
 }
 
 .pros_app {
@@ -294,7 +296,7 @@ img {
 .community {
   height: auto;
   background-color: #f4f3f3;
-  color: #333;
+  color: var(--dark-text);
 }
 
 .speaking_wrapper {
@@ -305,7 +307,13 @@ img {
   height: 10px;
   margin-top: 0;
   margin-bottom: 45px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74, 74, 74, 0.08)), to(rgba(74, 74, 74, 0.08)));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(74, 74, 74, 0.08)),
+    to(rgba(74, 74, 74, 0.08))
+  );
   background-image: linear-gradient(180deg, rgba(74, 74, 74, 0.08), rgba(131, 100, 100, 0.08));
 }
 
@@ -322,6 +330,16 @@ img {
   color: #999;
   text-align: center;
 }
+
+.light-card-project {
+  color: var(--light-text);
+}
+
+.dark-card-project {
+  color: var(--dark-text);
+}
+
+
 
 @media (min-width: 576px) {
   .p-sm-7 {
@@ -347,11 +365,19 @@ img {
   }
 
   .gp_watch.github {
-    background-image: url('/assets/icons/github_white.svg');
+    background-image: url("/assets/icons/github_white.svg");
   }
 
   .gp_watch.live-demo {
-    background-image: url('/assets/icons/live_white.svg');
+    background-image: url("/assets/icons/live_white.svg");
+  }
+
+  .dark-card-project .github {
+    background-image: url("/assets/icons/github_dark.svg");
+  }
+  
+  .dark-card-project .live-demo {
+    background-image: url("/assets/icons/live_dark.svg");
   }
 
   .links-projects {
