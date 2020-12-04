@@ -382,6 +382,9 @@ img {
 
   .links-projects {
     display: block;
+    position: absolute; 
+    top: 3vw;
+    right: 50px;
   }
 
   .links-projects a {
