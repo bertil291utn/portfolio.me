@@ -1,0 +1,19 @@
+{
+  "name": "portfolio.me",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bertil291utn/portfolio.me.git",
+  "author": "Bertil Tandayamo <bertilt4@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^12.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
