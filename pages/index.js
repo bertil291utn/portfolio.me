@@ -1,5 +1,7 @@
-function HomePage() {
-  return <div>Welcome to Next.js!</div>
+import HomePage from '../components/HomePage.content';
+
+function HomeContent() {
+  return <HomePage />;
 }
 
-export default HomePage
+export default HomeContent;
