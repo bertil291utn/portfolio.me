@@ -1,6 +1,11 @@
+import styles from './Body.module.scss';
 
 const BodyComponent = () => {
-  return ( <div className='title' style={{fontSize:'5rem'}}>Bertil Tandayamo</div> );
-}
- 
+  return (
+    <div className={`${styles['container']}`}>
+      <span>Bertil Tandayamo</span>
+    </div>
+  );
+};
+
 export default BodyComponent;
