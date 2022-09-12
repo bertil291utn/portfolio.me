@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Just Sunday';
+  src: url('/fonts/Just-Sunday.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title {
+  font-family: Just Sunday, sans-serif;
+}

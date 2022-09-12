@@ -1,5 +1,6 @@
+
 const BodyComponent = () => {
-  return ( <div>Welcome to Next.js!</div> );
+  return ( <div className='title' style={{fontSize:'5rem'}}>Bertil Tandayamo</div> );
 }
  
 export default BodyComponent;
