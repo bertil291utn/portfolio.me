@@ -1,4 +1,4 @@
-import HomePage from '../components/HomePage.content';
+import HomePage from '../layouts/HomePage.content';
 
 function HomeContent() {
   return <HomePage />;
