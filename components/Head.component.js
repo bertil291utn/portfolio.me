@@ -1,5 +1,5 @@
 import Head from 'next/head';
-const author='Bertil Tandayamo'
+const author = 'Bertil Tandayamo';
 
 const HeadComponent = ({
   canonicalURL,
@@ -55,7 +55,7 @@ HeadComponent.defaultProps = {
   metaImage: '/assets/images/og_imageok.png',
   description: 'Tech nerdy, music enthusiast conquering the world',
   keywords:
-    'bertil, Bertil, BERTIL, TANDAYAMO, Tandayamo, tandayamo, Bertil Tandayamo, BERTIL TANDAYAMO,bertil tandayamo, Full Stack Developer Ecuador, Ecuador developer, cayambe developer, CAYAMBE desarrollador',
+    'bertil, bertil alberto tandayamo lanchimba, bertil alberto tandayamo, Bertil, BERTIL, TANDAYAMO, Tandayamo, tandayamo, Bertil Tandayamo, BERTIL TANDAYAMO,bertil tandayamo, Full Stack Developer Ecuador, Ecuador developer, cayambe developer, CAYAMBE desarrollador',
   title: author,
   favIcon: '/assets/icons/favicon.svg',
   twitterUsername: '@btandayamo',
