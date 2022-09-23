@@ -1,4 +1,5 @@
 import styles from './Body.module.scss';
+import ToggleComponent from './common/Toggle.component';
 
 const BodyComponent = () => {
   return (
@@ -7,7 +8,9 @@ const BodyComponent = () => {
         <span className={styles['title']}>Bertil Tandayamo</span>
         <span className={styles['subtitle']}>Full Stack Developer</span>
       </section>
-      <section className={styles['description']}></section>
+      <section className={styles['description']}>
+        <ToggleComponent />
+      </section>
     </div>
   );
 };
