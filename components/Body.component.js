@@ -9,7 +9,10 @@ const BodyComponent = () => {
         <span className={styles['subtitle']}>Full Stack Developer</span>
       </section>
       <section className={styles['description']}>
-        <ToggleComponent />
+        <div className={styles['description__toggle']}>
+          <ToggleComponent available />
+          <span>Available</span>
+        </div>
       </section>
     </div>
   );
