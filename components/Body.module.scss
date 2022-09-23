@@ -1,7 +1,17 @@
 .container {
   span {
     display: block;
-    font-family: Just Sunday, sans-serif;
-    font-size: 5rem;
+    &.title {
+      font-family: Just Sunday, sans-serif;
+      font-size: 5rem;
+    }
+  }
+
+  .logo {
+    .subtitle {
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0.75rem 0;
+    }
   }
 }

@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div>
       <HeadComponent />
-      <NavbarComponent />
+      {/* <NavbarComponent /> */}
       <BodyComponent />
       <FooterComponent />
 
