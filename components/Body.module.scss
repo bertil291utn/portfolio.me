@@ -21,5 +21,30 @@
       gap: 1.5rem;
       margin: 4rem 0;
     }
+
+    &__about-me {
+      width: 65%;
+      line-height: 1.5rem;
+    }
+  }
+
+  .contacts {
+    width: 20%;
+    float: right;
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+
+    .social-networks {
+      display: flex;
+      gap: 1rem;
+      img {
+        height: 2rem;
+        width: 2rem;
+        cursor: pointer;
+      }
+    }
   }
 }

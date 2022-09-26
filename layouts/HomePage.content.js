@@ -10,7 +10,7 @@ function HomePage() {
       <HeadComponent />
       {/* <NavbarComponent /> */}
       <BodyComponent />
-      <FooterComponent />
+      {/* <FooterComponent /> */}
 
       <ScriptComponent />
     </div>

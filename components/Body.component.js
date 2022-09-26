@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './Body.module.scss';
 import ToggleComponent from './common/Toggle.component';
 
@@ -8,11 +9,39 @@ const BodyComponent = () => {
         <span className={styles['title']}>Bertil Tandayamo</span>
         <span className={styles['subtitle']}>Full Stack Developer</span>
       </section>
+
+      <aside className={styles['contacts']}>
+        <Link href='mailto:letstalk@bertiltandayamo.me'>
+          <span className='hand' title='Send email'>
+            letstalk@bertiltandayamo.me
+          </span>
+        </Link>
+        <span>Quito, Ecuador</span>
+        <div className={styles['social-networks']}>
+          <img
+            src='/assets/icons/v2/linkedin.svg'
+            alt='linkedin'
+            title='linkedin'
+          />
+          <img
+            src='/assets/icons/v2/github-sign.svg'
+            alt='github'
+            title='github'
+          />
+        </div>
+      </aside>
+
       <section className={styles['description']}>
         <div className={styles['description__toggle']}>
           <ToggleComponent available />
           <span>Available</span>
         </div>
+        <span className={styles['description__about-me']}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+          autem enim, nihil consequatur animi nemo odit quam quas, repellendus
+          alias nobis dolore assumenda nostrum consectetur sit labore facere,
+          sed odio?
+        </span>
       </section>
     </div>
   );
