@@ -48,6 +48,20 @@ const BodyComponent = () => {
         </span>
       </section>
 
+      <aside className={styles['education']}>
+        <h2>Education</h2>
+        <div className={styles['education__content']}>
+          <span className={styles['work-experience__title']}>
+            Interface Design: Web & Mobile
+          </span>
+          <span>
+            Belarusian State University of Informatics and Radioelectronics,
+          </span>
+          <span>2011 - 2015</span>
+          <span>Bachelor’s degree</span>
+        </div>
+      </aside>
+
       <section className={styles['work-experience']}>
         <h2>Work Experience</h2>
         <div className={styles['work-experience__content']}>
