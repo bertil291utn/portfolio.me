@@ -58,6 +58,7 @@
     margin-top: 72px;
     &__content {
       margin-top: 40px;
+      margin-bottom: 32px;
       & > * {
         &:not(:last-child) {
           margin-bottom: 12px;
@@ -98,6 +99,7 @@
     line-height: 1.5rem;
     &__content {
       margin-top: 50px;
+      margin-bottom: 32px;
       & > * {
         &:not(:last-child) {
           margin-bottom: 9px;

@@ -60,10 +60,42 @@ const BodyComponent = () => {
           <span>2011 - 2015</span>
           <span>Bachelor’s degree</span>
         </div>
+        {/* 2 */}
+        <div className={styles['education__content']}>
+          <span className={styles['work-experience__title']}>
+            Interface Design: Web & Mobile
+          </span>
+          <span>
+            Belarusian State University of Informatics and Radioelectronics,
+          </span>
+          <span>2011 - 2015</span>
+          <span>Bachelor’s degree</span>
+        </div>
       </aside>
 
       <section className={styles['work-experience']}>
         <h2>Work Experience</h2>
+        <div className={styles['work-experience__content']}>
+          <span className={styles['work-experience__date']}>
+            Jul 2019 - present
+          </span>
+          <span className={styles['work-experience__title']}>
+            Freelancer Designer
+          </span>
+          <p className={styles['work-experience__place']}>
+            <span>J Creative Solutions</span>
+            <span>Netherlands, Worldwide</span>
+          </p>
+          <span className={styles['work-experience__description']}>
+            Created visuals for digital marketing channels such as social media,
+            promo web and online ads. Developed visual language from scratch or
+            following the branding guidelines. Designed presentations for
+            clients and indoor purposes.
+          </span>
+        </div>
+
+        {/* 2 */}
+
         <div className={styles['work-experience__content']}>
           <span className={styles['work-experience__date']}>
             Jul 2019 - present
