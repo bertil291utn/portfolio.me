@@ -1,3 +1,5 @@
+@import 'css/variables.scss';
+
 .container {
   span {
     display: block;
@@ -63,7 +65,7 @@
       }
     }
     &__date {
-      color: #828282;
+      color: $gray;
       font-weight: 200;
     }
     &__title {
