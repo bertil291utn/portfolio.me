@@ -18,11 +18,15 @@ const BodyComponent = () => {
         </Link>
         <span>Quito, Ecuador</span>
         <div className={styles['social-networks']}>
-          <img
-            src='/assets/icons/v2/linkedin.svg'
-            alt='linkedin'
-            title='linkedin'
-          />
+          <Link href={`https://www.linkedin.com/in/bertiltandayamo/`}>
+            <a target='_blank' rel='noopener noreferrer'>
+              <img
+                src='/assets/icons/v2/linkedin.svg'
+                alt='linkedin'
+                title='linkedin'
+              />
+            </a>
+          </Link>
           <img
             src='/assets/icons/v2/github-sign.svg'
             alt='github'
