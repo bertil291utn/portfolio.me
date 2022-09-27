@@ -115,6 +115,56 @@ const BodyComponent = () => {
           </span>
         </div>
       </section>
+
+      <section className={styles['skills']}>
+        <h2>Skills</h2>
+        <div className={styles['skills__content']}>
+          <div className={styles['skills__items']}>
+            <span className={styles['skills__title']}>
+              Adobe Creative Suite
+            </span>
+            <span className={styles['skills__description']}>
+              Photoshop, Illustrator, InDesign, XD, After Effects
+            </span>
+          </div>
+          {/* 2 */}
+          <div>
+            <span className={styles['skills__title']}>
+              Adobe Creative Suite
+            </span>
+            <span className={styles['skills__description']}>
+              Photoshop, Illustrator, InDesign, XD, After Effects
+            </span>
+          </div>
+          {/* 2 */}
+          <div>
+            <span className={styles['skills__title']}>
+              Adobe Creative Suite
+            </span>
+            <span className={styles['skills__description']}>
+              Photoshop, Illustrator, InDesign, XD, After Effects
+            </span>
+          </div>
+          {/* 2 */}
+          <div>
+            <span className={styles['skills__title']}>
+              Adobe Creative Suite
+            </span>
+            <span className={styles['skills__description']}>
+              Photoshop, Illustrator, InDesign, XD, After Effects
+            </span>
+          </div>
+          {/* 2 */}
+          <div>
+            <span className={styles['skills__title']}>
+              Adobe Creative Suite
+            </span>
+            <span className={styles['skills__description']}>
+              Photoshop, Illustrator, InDesign, XD, After Effects
+            </span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
