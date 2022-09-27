@@ -5,9 +5,10 @@ const NavbarComponent = ({ navbarElements }) => {
   const router = useRouter();
   return (
     <ul className={styles['navbar']}>
-      {Object.entries(navbarElements)?.map(([navbarName, pathName]) => (
+      {Object.entries(navbarElements)?.map(([navbarName, pathName], index) => (
         <li
           className={router.pathname == pathName ? `${styles['active']}` : ''}
+          key={`navbar-${index}`}
         >
           <Link href={pathName}>{navbarName}</Link>
         </li>
