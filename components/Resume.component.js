@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import styles from './Body.module.scss';
+import styles from './Resume.module.scss';
 import ToggleComponent from './common/Toggle.component';
 
-const BodyComponent = () => {
+const ResumeComponent = () => {
   return (
     <div className={`${styles['container']}`}>
       <section className={styles['logo']}>
@@ -169,4 +169,4 @@ const BodyComponent = () => {
   );
 };
 
-export default BodyComponent;
+export default ResumeComponent;

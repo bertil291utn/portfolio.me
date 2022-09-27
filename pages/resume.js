@@ -1,7 +1,7 @@
-import ResumeContent from '../layouts/Resume.content';
+import ResumeComponent from '../components/Resume.component';
 
 const ResumePage = () => {
-  return <ResumeContent />;
+  return <ResumeComponent />;
 };
 
 export default ResumePage;

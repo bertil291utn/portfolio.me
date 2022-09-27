@@ -1,4 +1,4 @@
-import BodyComponent from '../components/Body.component';
+import BodyComponent from '../components/Resume.component';
 import FooterComponent from '../components/Footer.component';
 import ScriptComponent from '../components/Script.component';
 
