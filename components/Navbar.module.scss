@@ -7,8 +7,16 @@ ul {
     justify-content: flex-end;
     font-weight: 700;
     font-size: 18px;
+    a {
+      color: unset;
+      text-decoration: none;
+    }
     & > * {
       cursor: pointer;
     }
   }
+}
+
+.active {
+  color: red;
 }
