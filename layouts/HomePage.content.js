@@ -7,8 +7,8 @@ import ScriptComponent from '../components/Script.component';
 function HomePage() {
   return (
     <div>
+      <NavbarComponent />
       <HeadComponent />
-      {/* <NavbarComponent /> */}
       <BodyComponent />
       {/* <FooterComponent /> */}
 

@@ -1,0 +1,14 @@
+ul {
+  &.navbar {
+    margin-top: 5rem;
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+    font-weight: 700;
+    font-size: 18px;
+    & > * {
+      cursor: pointer;
+    }
+  }
+}
