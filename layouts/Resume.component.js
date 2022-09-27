@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
-import ToggleComponent from './common/Toggle.component';
+import ToggleComponent from '../components/common/Toggle.component';
 
 const ResumeComponent = () => {
   return (

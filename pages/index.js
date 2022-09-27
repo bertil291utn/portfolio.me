@@ -1,7 +1,7 @@
-import HomePage from '../layouts/HomePage.content';
+import PortfolioComponent from '../layouts/Portfolio.component';
 
 function HomeContent() {
-  return <HomePage />;
+  return <PortfolioComponent />;
 }
 
 export default HomeContent;
