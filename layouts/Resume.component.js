@@ -1,12 +1,15 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '../components/common/Toggle.component';
+import resumeFile from '../data/resume.json';
 
 const ResumeComponent = () => {
+  console.log('first', resumeFile);
+
   return (
     <div className={`${styles['container']}`}>
       <section className={styles['logo']}>
-        <span className={styles['title']}>Bertil Tandayamo</span>
+        <span className={styles['title']}>{resumeFile.name}</span>
         <span className={styles['subtitle']}>Full Stack Developer</span>
       </section>
 
