@@ -1,3 +1,5 @@
+@import 'css/variables.scss';
+
 ul {
   &.navbar {
     margin-top: 5rem;
@@ -17,6 +19,19 @@ ul {
   }
 }
 
-.active {
-  color: red;
+li {
+  &.active {
+    position: relative;
+    &::before {
+      transform: translateX(-50%);
+      border-radius: 100%;
+      position: absolute;
+      background: $primary;
+      bottom: -10px;
+      height: 8px;
+      content: '';
+      width: 8px;
+      left: 50%;
+    }
+  }
 }
