@@ -12,6 +12,7 @@ const HeadComponent = ({
   title,
   favIcon,
   twitterUsername,
+  themeColor,
 }) => {
   return (
     <Head>
@@ -20,6 +21,7 @@ const HeadComponent = ({
       <link rel='canonical' href={canonicalURL} />
       <meta name='author' content={author} />
       <link rel='manifest' href={manifest} />
+      <meta name='theme-color' content={themeColor} />
       <meta name='title' content={metaTitle} />
       <meta name='description' content={description} />
       <meta name='keywords' content={keywords} />
@@ -59,6 +61,7 @@ HeadComponent.defaultProps = {
   title: author,
   favIcon: '/assets/icons/favicon.svg',
   twitterUsername: '@btandayamo',
+  themeColor: '#fcded1',
 };
 
 export default HeadComponent;

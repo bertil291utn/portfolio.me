@@ -16,7 +16,6 @@ const ResumeComponent = () => {
     education,
     skills,
   } = resumeFile;
-  console.log('first', resumeFile);
 
   return (
     <div className={`${styles['container']}`}>
@@ -33,8 +32,8 @@ const ResumeComponent = () => {
         </Link>
         <span>{location}</span>
         <div className={styles['social-networks']}>
-          {Object.entries(socialNetwork).map(([socialNetwork, link]) => (
-            <Link href={link}>
+          {Object.entries(socialNetwork).map(([socialNetwork, link], index) => (
+            <Link href={link} key={`social-network-${index}`}>
               <a target='_blank' rel='noopener noreferrer'>
                 <img
                   src={`/assets/icons/v2/${socialNetwork}.svg`}
@@ -57,8 +56,11 @@ const ResumeComponent = () => {
 
       <aside className={styles['education']}>
         <h2>Education</h2>
-        {education.map(({ title, institution, date, degree }) => (
-          <div className={styles['education__content']}>
+        {education.map(({ title, institution, date, degree }, index) => (
+          <div
+            className={styles['education__content']}
+            key={`education-${index}`}
+          >
             <span className={styles['work-experience__title']}>{title}</span>
             <span>{institution}</span>
             <span>{`${date[0]} - ${date[1]}`}</span>
@@ -70,8 +72,11 @@ const ResumeComponent = () => {
       <section className={styles['work-experience']}>
         <h2>Work Experience</h2>
         {workExperience.map(
-          ({ date, title, company, location, description }) => (
-            <div className={styles['work-experience__content']}>
+          ({ date, title, company, location, description }, index) => (
+            <div
+              className={styles['work-experience__content']}
+              key={`work-experience-${index}`}
+            >
               <span className={styles['work-experience__date']}>
                 {`${date[0]} - ${date[1]}`}
               </span>
@@ -91,8 +96,8 @@ const ResumeComponent = () => {
       <section className={styles['skills']}>
         <h2>Skills</h2>
         <div className={styles['skills__content']}>
-          {skills.map(({ name, items }) => (
-            <div className={styles['skills__items']}>
+          {skills.map(({ name, items }, index) => (
+            <div className={styles['skills__items']} key={`skills-${index}`}>
               <span className={styles['skills__title']}>{name}</span>
               <span className={styles['skills__description']}>{items}</span>
             </div>
