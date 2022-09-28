@@ -2,7 +2,7 @@
   "name": "Bertil Tandayamo",
   "title": "Full Stack Developer",
   "isAvailable": true,
-  "description": "Developer, Entrepreneur, Music enthusiast. Currently working as a freelance developer with Ruby on Rails and React Stack.Looking for remote opportunities in the music industry. Follow my work, words, and my tastes below. ",
+  "description": "Developer, Entrepreneur, Music enthusiast. Currently working as a freelance developer with Ruby on Rails and React Stack. Looking for remote opportunities in the music industry. Follow my work, words, and my tastes below. ",
   "email": "letstalk@bertiltandayamo.me",
   "location": "Quito, Ecuador",
   "socialNetwork": {
@@ -14,21 +14,21 @@
       "date": ["May 2021", "present"],
       "title": "Fullstack Developer",
       "company": "Garage Soft",
-      "place": "Quito, Ecuador",
+      "location": "Quito, Ecuador",
       "description": "Built a NFT marketplace for independent artist. This is an MVP therefore is in beta, getting customers feedback"
     },
     {
       "date": ["Jul 2021", "Sept 2022"],
       "title": "Fullstack Developer",
       "company": "Way Too Digital",
-      "place": "Remote, Argentina",
+      "location": "Remote, Argentina",
       "description": "Built a white label NFT marketplace with primary & secondary market offer as B2B"
     },
     {
       "date": ["Dec 2020", "July 2021"],
       "title": "Front End Developer",
       "company": "Rumzer.com",
-      "place": "Remote, Ohio",
+      "location": "Remote, Ohio",
       "description": "Improved the marketing website SEO by 90% using SSR technology. Built a communication service with smtp protocol in a compliance management web application, increased communication response time by 80%"
     }
   ],
@@ -61,7 +61,7 @@
     },
     {
       "name": "Web3 Tools",
-      "items": "Hardhat, Ether.js, Ethereum, EVM"
+      "items": "Hardhat, Ether.js, Ethereum, EVM, Alchemy, Infura, Metamask"
     },
     {
       "name": "Languages",
