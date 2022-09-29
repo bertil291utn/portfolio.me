@@ -16,3 +16,7 @@
 .hand {
   cursor: pointer;
 }
+
+[data-theme='dark'] {
+  background: #15202b;
+}
