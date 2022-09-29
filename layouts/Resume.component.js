@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '../components/common/Toggle.component';
+import { useTheme } from 'next-themes';
 import resumeFile from '../data/resume.json';
 
 const ResumeComponent = () => {
+  const { resolvedTheme } = useTheme();
   const {
     name,
     title,
@@ -36,7 +38,9 @@ const ResumeComponent = () => {
             <Link href={link} key={`social-network-${index}`}>
               <a target='_blank' rel='noopener noreferrer'>
                 <img
-                  src={`/assets/icons/v2/${socialNetwork}.svg`}
+                  src={`/assets/icons/v2/${socialNetwork}${
+                    resolvedTheme === 'dark' ? '-dark' : ''
+                  }.svg`}
                   alt={socialNetwork}
                   title={socialNetwork}
                 />
