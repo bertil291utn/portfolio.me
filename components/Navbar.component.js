@@ -10,7 +10,15 @@ const NavbarComponent = ({ navbarElements }) => {
           className={router.pathname == pathName ? `${styles['active']}` : ''}
           key={`navbar-${index}`}
         >
-          <Link href={pathName}>{navbarName}</Link>
+          {new RegExp(['https', 'http'].join('|')).test(pathName) ? (
+            <Link href={pathName}>
+              <a target='_blank' rel='noopener noreferrer'>
+                {navbarName}
+              </a>
+            </Link>
+          ) : (
+            <Link href={pathName}>{navbarName}</Link>
+          )}
         </li>
       ))}
     </ul>
