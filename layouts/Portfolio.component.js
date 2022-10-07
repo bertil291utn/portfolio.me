@@ -1,8 +1,9 @@
+import PortfolioCards from '../components/PortfolioCards.component';
 import styles from './Portfolio.module.scss';
 const PortfolioComponent = () => {
   return (
     <div className={styles['portfolio']}>
-      <span className={styles['portfolio__title']}>Building In Progress</span>
+      <PortfolioCards />
     </div>
   );
 };
