@@ -1,0 +1,13 @@
+.portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  &__title {
+    @media screen and (max-width: 768px) {
+      font-size: 1.75rem;
+    }
+    font-size: 3rem;
+  }
+}
