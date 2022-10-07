@@ -119,10 +119,13 @@
       width: unset;
       text-align: unset;
       order: 2;
+      margin-top: 2.75rem;
+    }
+    h2 {
+      margin: 0;
     }
     float: right;
     width: 20%;
-    margin-top: 2.75rem;
     text-align: center;
     line-height: 1.5rem;
     &__content {
