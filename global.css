@@ -12,6 +12,11 @@
   margin: 0 auto;
   font-family: 'Muli', sans-serif;
 }
+@media screen and (max-width: 768px) {
+  :root {
+    padding: 0 10px;
+  }
+}
 
 .hand {
   cursor: pointer;

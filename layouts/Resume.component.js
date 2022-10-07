@@ -57,46 +57,48 @@ const ResumeComponent = () => {
         </div>
         <span className={styles['description__about-me']}>{description}</span>
       </section>
-
-      <aside className={styles['education']}>
-        <h2>Education</h2>
-        {education.map(({ title, institution, date, degree }, index) => (
-          <div
-            className={styles['education__content']}
-            key={`education-${index}`}
-          >
-            <span className={styles['work-experience__title']}>{title}</span>
-            <span>{institution}</span>
-            <span>{`${date[0]} - ${date[1]}`}</span>
-            <span>{degree}</span>
-          </div>
-        ))}
-      </aside>
-
-      <section className={styles['work-experience']}>
-        <h2>Work Experience</h2>
-        {workExperience.map(
-          ({ date, title, company, location, description }, index) => (
+      <div className={styles['order-education-work-exp']}>
+        <aside className={styles['education']}>
+          <h2>Education</h2>
+          {education.map(({ title, institution, date, degree }, index) => (
             <div
-              className={styles['work-experience__content']}
-              key={`work-experience-${index}`}
+              className={styles['education__content']}
+              key={`education-${index}`}
             >
-              <span className={styles['work-experience__date']}>
-                {`${date[0]} - ${date[1]}`}
-              </span>
               <span className={styles['work-experience__title']}>{title}</span>
-              <p className={styles['work-experience__place']}>
-                <span>{company}</span>
-                <span>{location}</span>
-              </p>
-              <span className={styles['work-experience__description']}>
-                {description}
-              </span>
+              <span>{institution}</span>
+              <span>{`${date[0]} - ${date[1]}`}</span>
+              <span>{degree}</span>
             </div>
-          )
-        )}
-      </section>
+          ))}
+        </aside>
 
+        <section className={styles['work-experience']}>
+          <h2>Work Experience</h2>
+          {workExperience.map(
+            ({ date, title, company, location, description }, index) => (
+              <div
+                className={styles['work-experience__content']}
+                key={`work-experience-${index}`}
+              >
+                <span className={styles['work-experience__date']}>
+                  {`${date[0]} - ${date[1]}`}
+                </span>
+                <span className={styles['work-experience__title']}>
+                  {title}
+                </span>
+                <p className={styles['work-experience__place']}>
+                  <span>{company}</span>
+                  <span>{location}</span>
+                </p>
+                <span className={styles['work-experience__description']}>
+                  {description}
+                </span>
+              </div>
+            )
+          )}
+        </section>
+      </div>
       <section className={styles['skills']}>
         <h2>Skills</h2>
         <div className={styles['skills__content']}>
