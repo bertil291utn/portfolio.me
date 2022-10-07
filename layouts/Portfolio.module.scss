@@ -1,13 +1,11 @@
 .portfolio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
+  margin: 5rem 0;
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr 1fr 1fr;
 
   &__title {
     @media screen and (max-width: 768px) {
-      font-size: 1.75rem;
     }
-    font-size: 3rem;
   }
 }

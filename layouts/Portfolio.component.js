@@ -4,6 +4,9 @@ const PortfolioComponent = () => {
   return (
     <div className={styles['portfolio']}>
       <PortfolioCards />
+      <PortfolioCards />
+      <PortfolioCards />
+      <PortfolioCards />
     </div>
   );
 };
