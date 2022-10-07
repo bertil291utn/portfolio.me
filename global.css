@@ -11,8 +11,9 @@
   max-width: 900px;
   margin: 0 auto;
   font-family: 'Muli', sans-serif;
+  background-color: #edf5ff;
 }
-@media screen and (max-width: 768px) {
+\ @media screen and (max-width: 768px) {
   :root {
     padding: 0 10px;
   }
@@ -23,6 +24,6 @@
 }
 
 [data-theme='dark'] {
-  background: #15202b;
+  background: #252e48;
   color: #f6f9f9;
 }
