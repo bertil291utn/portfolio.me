@@ -1,13 +1,17 @@
 @import 'css/variables.scss';
 
 .card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   span {
     display: block;
   }
-  background-color: #1e2732;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #1e2732;
+  &__dark {
+    background-color: #1e2732;
+    border: unset;
+  }
   padding: 2rem;
   border-radius: 3px;
   &__tech {
