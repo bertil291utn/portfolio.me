@@ -5,9 +5,13 @@ import { AiFillGithub, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 const PortfolioCard = ({ type, description, projectName }) => {
   return (
     <div className={styles['card-content']}>
-      <span className={styles['card-content__tech']}>{type}</span>
-      <span className={styles['card-content__project']}>{projectName}</span>
-      <span className={styles['card-content__description']}>{description}</span>
+      <div>
+        <span className={styles['card-content__tech']}>{type}</span>
+        <span className={styles['card-content__project']}>{projectName}</span>
+        <span className={styles['card-content__description']}>
+          {description}
+        </span>
+      </div>
       <div className={styles['card-content__icons']}>
         <TbWorld className={styles['icon-size']} title='Online version' />
         <AiFillGithub

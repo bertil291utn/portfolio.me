@@ -1,6 +1,9 @@
 @import 'css/variables.scss';
 
 .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   span {
     display: block;
   }
