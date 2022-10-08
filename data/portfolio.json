@@ -1,27 +1,32 @@
 [
   {
     "id": 1,
-    "type": "Next js",
-    "description": "Built a white label NFT marketplace with primary & secondary market offer as B2B",
+    "type": "Next js, javascript, solidity",
+    "description": "White label NFT marketplace with primary & secondary market offer as B2B",
     "projectName": "White-label NFT marketplace",
     "overview": "https://nft-marketplace-dev.waytoodigital.com/"
   },
   {
     "id": 2,
-    "type": "next js",
-    "description": "this is alpaca something description",
-    "projectName": "alpaca something.js 122222"
+    "type": "next js, javascript, solidity, polygon",
+    "description": "An NFT marketplace for independent artist. This is an MVP therefore is in beta, getting customers feedback",
+    "projectName": "DistroFank",
+    "overview": "https://digital-marketplace-inky.vercel.app/",
+    "github": "https://github.com/bertil291utn/digital-marketplace"
   },
   {
     "id": 3,
-    "type": "next js122",
-    "description": "this is alpaca something description jejdjdjje jejeje",
-    "projectName": "alpaca .js"
+    "type": "Gatsby, React js",
+    "description": "Landing  marketing website SEO by 90% using SSR technology",
+    "projectName": "Rumzer Landing page",
+    "overview": "https://www.rumzer.com/"
   },
   {
     "id": 4,
-    "type": "next js122",
-    "description": "this is alpaca something description jejdjdjje jejeje",
-    "projectName": "alpaca something.js444444"
+    "type": "Angular, javascript",
+    "description": "An e-commerce web application that allows Muebleria Hogar customers to buy any home appliances product. Built with Angular 6 and Ruby on Rails",
+    "projectName": "Muebleria Hogar",
+    "overview": "https://github.com/bertil291utn/mb-hogar",
+    "github": "https://github.com/bertil291utn/mb-hogar"
   }
 ]
