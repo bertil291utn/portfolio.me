@@ -11,6 +11,8 @@ const PortfolioComponent = () => {
           type={data.type}
           description={data.description}
           projectName={data.projectName}
+          overview={data.overview}
+          github={data.github}
         />
       ))}
     </div>

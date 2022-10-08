@@ -1,9 +1,10 @@
 [
   {
     "id": 1,
-    "type": "javascript",
-    "description": "this is money description",
-    "projectName": "money.js"
+    "type": "Next js",
+    "description": "Built a white label NFT marketplace with primary & secondary market offer as B2B",
+    "projectName": "White-label NFT marketplace",
+    "overview": "https://nft-marketplace-dev.waytoodigital.com/"
   },
   {
     "id": 2,

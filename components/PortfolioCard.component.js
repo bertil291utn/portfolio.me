@@ -2,8 +2,15 @@ import styles from './PortfolioCard.module.scss';
 import { TbWorld } from 'react-icons/tb';
 import { AiFillGithub, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 
-const PortfolioCard = ({ type, description, projectName }) => {
+const PortfolioCard = ({
+  type,
+  description,
+  projectName,
+  overview,
+  github,
+}) => {
   const { resolvedTheme } = useTheme();
   return (
     <div
@@ -19,11 +26,25 @@ const PortfolioCard = ({ type, description, projectName }) => {
         </span>
       </div>
       <div className={styles['card-content__icons']}>
-        <TbWorld className={styles['icon-size']} title='Online version' />
-        <AiFillGithub
-          className={styles['icon-size']}
-          title='Github repository'
-        />
+        {overview && (
+          <Link href={overview}>
+            <a target='_blank' rel='noopener noreferrer'>
+              <TbWorld className={styles['icon-size']} title='Online version' />
+            </a>
+          </Link>
+        )}
+
+        {github && (
+          <Link href={github}>
+            <a target='_blank' rel='noopener noreferrer'>
+              <AiFillGithub
+                className={styles['icon-size']}
+                title='Github repository'
+              />
+            </a>
+          </Link>
+        )}
+
         <AiFillStar className={styles['icon-size']} title='Rate this project' />
       </div>
     </div>
