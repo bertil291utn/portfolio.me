@@ -3,6 +3,7 @@ import { TbWorld } from 'react-icons/tb';
 import { AiFillGithub, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const PortfolioCard = ({
   type,
@@ -12,6 +13,17 @@ const PortfolioCard = ({
   github,
 }) => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    localStorage.removeItem('theme');
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div
       className={`${styles['card-content']} ${
