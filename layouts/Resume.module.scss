@@ -53,6 +53,10 @@
     .social-networks {
       display: flex;
       gap: 1rem;
+      font-size: 1.75rem;
+      a {
+        color: unset;
+      }
       img {
         height: 2rem;
         width: 2rem;

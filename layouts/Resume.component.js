@@ -3,8 +3,15 @@ import styles from './Resume.module.scss';
 import ToggleComponent from '../components/common/Toggle.component';
 import { useTheme } from 'next-themes';
 import resumeFile from '../data/resume.json';
+import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
 
 const ResumeComponent = () => {
+  const ICON = {
+    linkedin: <BsLinkedin />,
+    github: <BsGithub />,
+    telegram: <BsTelegram />,
+  };
+
   const { resolvedTheme } = useTheme();
   const {
     name,
@@ -34,16 +41,14 @@ const ResumeComponent = () => {
         </Link>
         <span>{location}</span>
         <div className={styles['social-networks']}>
-          {Object.entries(socialNetwork).map(([socialNetwork, link], index) => (
-            <Link href={link} key={`social-network-${index}`}>
-              <a target='_blank' rel='noopener noreferrer'>
-                <img
-                  src={`/assets/icons/v2/${socialNetwork}${
-                    resolvedTheme === 'dark' ? '-dark' : ''
-                  }.svg`}
-                  alt={socialNetwork}
-                  title={socialNetwork}
-                />
+          {Object.entries(socialNetwork).map(([socialNetwork, URL], index) => (
+            <Link href={URL} key={`social-network-${index}`}>
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                title={socialNetwork}
+              >
+                {ICON[socialNetwork]}
               </a>
             </Link>
           ))}
