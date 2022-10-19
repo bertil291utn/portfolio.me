@@ -12,9 +12,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "next": "^12.3.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "sass": "^1.54.9",
     "sitemap": "^7.1.1"
