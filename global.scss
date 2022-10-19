@@ -1,3 +1,4 @@
+@import 'css/variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@100,200,300,500,600,700,800,900&display=swap');
 
 @font-face {
@@ -8,10 +9,10 @@
 }
 
 :root {
-  max-width: 900px;
+  max-width: $max-width;
   margin: 0 auto;
   font-family: 'Muli', sans-serif;
-  background-color: #edf5ff;
+  background-color: $light-bg;
 }
 @media screen and (max-width: 768px) {
   :root {
@@ -24,6 +25,6 @@
 }
 
 [data-theme='dark'] {
-  background: #252e48;
-  color: #f6f9f9;
+  background: $dark-bg;
+  color: $dark-color-text;
 }

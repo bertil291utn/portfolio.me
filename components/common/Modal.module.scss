@@ -21,8 +21,8 @@
 
 .modal-content {
   border-radius: 1rem;
-  background-color: white;
-  color: #000;
+  background-color: $light-bg;
+  color: $light-color-text;
   &__dark {
     background-color: $card-bg-color;
     color: $dark-color-text;
@@ -30,11 +30,15 @@
   margin: auto;
   padding: 20px;
   width: 50%;
+  max-width: $max-width;
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 }
 
 .close {
   text-transform: capitalize;
-  color: #aaaaaa;
+  color: $gray;
   float: right;
   font-size: 0.85rem;
   font-weight: bold;

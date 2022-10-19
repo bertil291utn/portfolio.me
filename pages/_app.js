@@ -4,7 +4,7 @@ import ScriptComponent from '../components/Script.component';
 import FooterComponent from '../components/Footer.component';
 import { navbarElements } from '../placeholders/navbar.placeholders';
 import { ThemeProvider } from 'next-themes';
-import '../global.css';
+import '../global.scss';
 
 export default function MyApp({ Component, pageProps }) {
   return (
