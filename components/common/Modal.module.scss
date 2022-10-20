@@ -67,3 +67,27 @@
   }
   margin: 1.5rem 0;
 }
+
+.footer {
+  span {
+    font-size: 1rem;
+    font-weight: bold;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  button {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: unset;
+    border-radius: 0.75rem;
+    &.primary-button {
+      background-color: $primary;
+      color: $card-bg-color;
+    }
+    &.secondary-button {
+      background-color: unset;
+      border: 1px solid $light-bg;
+    }
+  }
+}
