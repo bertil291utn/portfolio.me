@@ -1,4 +1,5 @@
 import { useTheme } from 'next-themes';
+import { useRef } from 'react';
 import { ModalText } from '../../placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 
