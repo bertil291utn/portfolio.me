@@ -30,15 +30,17 @@ const ModalComponent = ({ show, setShow, title, children }) => {
         <span className={styles['close']} onClick={handleClose}>
           {ModalText.closeLabel}
         </span>
-        {title && <span className={styles['title']}>{title}</span>}
-        {children && <span className={styles['children']}>{children}</span>}
-        <div className={styles['footer']}>
-          <button className={styles['primary-button']}>
-            <span>ok</span>
-          </button>
-          <button className={styles['secondary-button']}>
-            <span>cancel</span>
-          </button>
+        <div className={styles['body-content']}>
+          {title && <span className={styles['title']}>{title}</span>}
+          {children && <span className={styles['children']}>{children}</span>}
+          <div className={styles['footer']}>
+            <button className={styles['primary-button']}>
+              <span>ok</span>
+            </button>
+            <button className={styles['secondary-button']}>
+              <span>cancel</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -31,15 +31,22 @@
   width: 30%;
   max-width: $max-width;
   @media screen and (max-width: 768px) {
-    width: 85%;
+    width: 75%;
   }
   span {
     display: block;
+  }
+
+  .body-content {
+    margin-top: 3rem;
   }
 }
 
 .close {
   margin-top: -1rem;
+  @media screen and (max-width: 768px) {
+    margin-right: -1rem;
+  }
   &::first-letter {
     text-transform: uppercase;
   }
