@@ -4,7 +4,14 @@ import { ModalText } from '@placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 import useOutsideElement from '@hooks/useOutsideElement';
 
-const ModalComponent = ({ show, setShow, title, children }) => {
+const ModalComponent = ({
+  show,
+  setShow,
+  title,
+  children,
+  acceptLabel,
+  cancelLabel,
+}) => {
   const handleClose = () => setShow(false);
   const modalRef = useRef(null);
   const [IsOutsideElement] = useOutsideElement(modalRef);
@@ -33,14 +40,16 @@ const ModalComponent = ({ show, setShow, title, children }) => {
         <div className={styles['body-content']}>
           {title && <span className={styles['title']}>{title}</span>}
           {children && <span className={styles['children']}>{children}</span>}
-          <div className={styles['footer']}>
-            <button className={styles['primary-button']}>
-              <span>ok</span>
-            </button>
-            <button className={styles['secondary-button']}>
-              <span>cancel</span>
-            </button>
-          </div>
+          {acceptLabel && (
+            <div className={styles['footer']}>
+              <button className={styles['primary-button']}>
+                <span>{acceptLabel}</span>
+              </button>
+              <button className={styles['secondary-button']}>
+                <span>{cancelLabel || ModalText.defaultCancelLabel}</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

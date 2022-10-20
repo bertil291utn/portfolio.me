@@ -1,5 +1,8 @@
 export const ModalText = {
   closeLabel: 'close',
   description:
-    'I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user I want start as web3 user',
+    'I know how to use a wallet and I am pretty sure how to dive into web3 ecosystem',
+  defaultCancelLabel: 'cancel',
+  acceptLabel: 'LFG',
+  cancelLabel: 'I am not sure',
 };

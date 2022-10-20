@@ -23,7 +23,7 @@
   background-color: $light-bg;
   color: $light-color-text;
   &__dark {
-    background-color: $card-bg-color;
+    background-color: $dark-bg;
     color: $dark-color-text;
   }
   margin: auto;
@@ -73,9 +73,14 @@
     text-transform: uppercase;
   }
   margin: 1.5rem 0;
+  line-height: 1.5rem;
 }
 
 .footer {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   span {
     font-size: 1rem;
     font-weight: bold;
@@ -85,16 +90,16 @@
   }
   button {
     cursor: pointer;
-    padding: 0.5rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     border: unset;
     border-radius: 0.75rem;
     &.primary-button {
       background-color: $primary;
       color: $card-bg-color;
+      box-shadow: 5px 4px 8px 0px $card-bg-color;
     }
     &.secondary-button {
       background-color: unset;
-      border: 1px solid $light-bg;
     }
   }
 }

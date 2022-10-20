@@ -11,7 +11,8 @@ function HomeContent() {
       <ModalComponent
         show={show}
         setShow={setShow}
-        title={'session as web3 user'}
+        acceptLabel={ModalText.acceptLabel}
+        cancelLabel={ModalText.cancelLabel}
       >
         {ModalText.description}
       </ModalComponent>
