@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ModalComponent from '../components/common/Modal.component';
-import PortfolioComponent from '../layouts/Portfolio.component';
-import { ModalText } from '../placeholders/modal.placeholders';
+import ModalComponent from '@components/common/Modal.component';
+import PortfolioComponent from '@layouts/Portfolio.component';
+import { ModalText } from '@placeholders/modal.placeholders';
 
 function HomeContent() {
   const [show, setShow] = useState(true);

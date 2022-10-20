@@ -1,4 +1,4 @@
-import ResumeComponent from '../layouts/Resume.component';
+import ResumeComponent from '@layouts/Resume.component';
 
 const ResumePage = () => {
   return <ResumeComponent />;

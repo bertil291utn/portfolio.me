@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
-import ToggleComponent from '../components/common/Toggle.component';
+import ToggleComponent from '@components/common/Toggle.component';
 import { useTheme } from 'next-themes';
-import resumeFile from '../data/resume.json';
+import resumeFile from '@data/resume.json';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
 
 const ResumeComponent = () => {

@@ -1,5 +1,5 @@
-import PortfolioCard from '../components/PortfolioCard.component';
-import PortfolioData from '../data/portfolio.json';
+import PortfolioCard from '@components/PortfolioCard.component';
+import PortfolioData from '@data/portfolio.json';
 import styles from './Portfolio.module.scss';
 
 const PortfolioComponent = () => {
