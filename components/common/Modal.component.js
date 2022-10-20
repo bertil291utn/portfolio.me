@@ -1,7 +1,8 @@
 import { useTheme } from 'next-themes';
+import { ModalText } from '../../placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 
-const ModalComponent = ({ show, setShow }) => {
+const ModalComponent = ({ show, setShow, title, description }) => {
   const handleClose = () => setShow(false);
   const { resolvedTheme } = useTheme();
   return (
@@ -17,9 +18,12 @@ const ModalComponent = ({ show, setShow }) => {
         }`}
       >
         <span className={styles['close']} onClick={handleClose}>
-          close
+          {ModalText.closeLabel}
         </span>
-        <p>Some text in the Modal..</p>
+        {title && <span className={styles['title']}>{title}</span>}
+        {description && (
+          <span className={styles['description']}>{description}</span>
+        )}
       </div>
     </div>
   );
