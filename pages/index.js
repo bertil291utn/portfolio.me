@@ -11,9 +11,10 @@ function HomeContent() {
       <ModalComponent
         show={show}
         setShow={setShow}
-        description={ModalText.description}
-        title={'my title '}
-      />
+        title={'session as web3 user'}
+      >
+        {ModalText.description}
+      </ModalComponent>
     </>
   );
 }

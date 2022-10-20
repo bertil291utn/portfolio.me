@@ -2,7 +2,7 @@ import { useTheme } from 'next-themes';
 import { ModalText } from '../../placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 
-const ModalComponent = ({ show, setShow, title, description }) => {
+const ModalComponent = ({ show, setShow, title, children }) => {
   const handleClose = () => setShow(false);
   const { resolvedTheme } = useTheme();
   return (
@@ -21,9 +21,7 @@ const ModalComponent = ({ show, setShow, title, description }) => {
           {ModalText.closeLabel}
         </span>
         {title && <span className={styles['title']}>{title}</span>}
-        {description && (
-          <span className={styles['description']}>{description}</span>
-        )}
+        {children && <span className={styles['children']}>{children}</span>}
       </div>
     </div>
   );

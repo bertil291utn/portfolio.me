@@ -2,14 +2,13 @@
 
 .modal {
   &__show {
-    display: block;
+    display: flex;
   }
   &__hide {
     display: none;
   }
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 25vw; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -41,7 +40,9 @@
 
 .close {
   margin-top: -1rem;
-  text-transform: capitalize;
+  &::first-letter {
+    text-transform: uppercase;
+  }
   color: $gray;
   float: right;
   font-size: 0.85rem;
@@ -56,7 +57,13 @@
 .title {
   font-size: 1.5rem;
   font-weight: bold;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
-.description {
+.children {
+  &::first-letter {
+    text-transform: uppercase;
+  }
   margin: 1.5rem 0;
 }
