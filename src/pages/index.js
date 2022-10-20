@@ -5,6 +5,7 @@ import { ModalText } from '@placeholders/modal.placeholders';
 
 function HomeContent() {
   const [show, setShow] = useState(true);
+  //TODO: show modal only when there's no local storage display modal value
   return (
     <>
       <PortfolioComponent />

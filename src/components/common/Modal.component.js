@@ -45,7 +45,7 @@ const ModalComponent = ({
               <button className={styles['primary-button']}>
                 <span>{acceptLabel}</span>
               </button>
-              <button className={styles['secondary-button']}>
+              <button className={styles['tertiary-button']}>
                 <span>{cancelLabel || ModalText.defaultCancelLabel}</span>
               </button>
             </div>
