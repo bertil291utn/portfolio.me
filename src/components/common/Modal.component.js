@@ -11,12 +11,14 @@ const ModalComponent = ({
   children,
   acceptLabel,
   cancelLabel,
+  backButton = true,
+  closeButton = true,
 }) => {
   const handleClose = () => setShow(false);
   const modalRef = useRef(null);
   const [IsOutsideElement] = useOutsideElement(modalRef);
   useEffect(() => {
-    if (IsOutsideElement) {
+    if (IsOutsideElement && backButton) {
       handleClose();
     }
   }, [IsOutsideElement]);
@@ -34,9 +36,11 @@ const ModalComponent = ({
         }`}
         ref={modalRef}
       >
-        <span className={styles['close']} onClick={handleClose}>
-          {ModalText.closeLabel}
-        </span>
+        {closeButton && (
+          <span className={styles['close']} onClick={handleClose}>
+            {ModalText.closeLabel}
+          </span>
+        )}
         <div className={styles['body-content']}>
           {title && <span className={styles['title']}>{title}</span>}
           {children && <span className={styles['children']}>{children}</span>}

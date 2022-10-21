@@ -20,6 +20,8 @@ function HomeContent() {
           setShow={setShow}
           acceptLabel={ModalText.acceptLabel}
           cancelLabel={ModalText.cancelLabel}
+          backButton={false}
+          closeButton={false}
         >
           {ModalText.description}
         </ModalComponent>
