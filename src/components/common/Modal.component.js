@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { ModalText } from '@placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 import useOutsideElement from '@hooks/useOutsideElement';
+import { localStorageKeys } from '@keys/localStorage';
 
 const ModalComponent = ({
   show,
@@ -22,6 +23,21 @@ const ModalComponent = ({
       handleClose();
     }
   }, [IsOutsideElement]);
+
+  const setFirstTimeFalse = () => {
+    window.localStorage.setItem(localStorageKeys.isFirstTime, false);
+  };
+
+  const acceptBtnAction = () => {
+    setFirstTimeFalse();
+    window.localStorage.setItem(localStorageKeys.web3User, true);
+    handleClose();
+  };
+
+  const cancelBtnAction = () => {
+    setFirstTimeFalse();
+    handleClose();
+  };
 
   const { resolvedTheme } = useTheme();
   return (
@@ -46,10 +62,16 @@ const ModalComponent = ({
           {children && <span className={styles['children']}>{children}</span>}
           {acceptLabel && (
             <div className={styles['footer']}>
-              <button className={styles['primary-button']}>
+              <button
+                className={styles['primary-button']}
+                onClick={acceptBtnAction}
+              >
                 <span>{acceptLabel}</span>
               </button>
-              <button className={styles['tertiary-button']}>
+              <button
+                className={styles['tertiary-button']}
+                onClick={cancelBtnAction}
+              >
                 <span>{cancelLabel || ModalText.defaultCancelLabel}</span>
               </button>
             </div>
