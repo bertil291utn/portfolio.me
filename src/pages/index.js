@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalComponent from '@components/common/Modal.component';
 import PortfolioComponent from '@layouts/Portfolio.component';
 import { ModalText } from '@placeholders/modal.placeholders';
+import { localStorageKeys } from '@keys/localStorage';
 
 function HomeContent() {
   const [show, setShow] = useState(true);
-  //TODO: show modal only when there's no local storage display modal value
+  const [isFirstTime, setIsFirstTime] = useState();
+  useEffect(() => {
+    setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
+  }, []);
+
   return (
     <>
       <PortfolioComponent />
-      <ModalComponent
-        show={show}
-        setShow={setShow}
-        acceptLabel={ModalText.acceptLabel}
-        cancelLabel={ModalText.cancelLabel}
-      >
-        {ModalText.description}
-      </ModalComponent>
+      {isFirstTime && (
+        <ModalComponent
+          show={show}
+          setShow={setShow}
+          acceptLabel={ModalText.acceptLabel}
+          cancelLabel={ModalText.cancelLabel}
+        >
+          {ModalText.description}
+        </ModalComponent>
+      )}
     </>
   );
 }
