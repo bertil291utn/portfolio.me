@@ -1,4 +1,4 @@
 export const localStorageKeys = {
-  web3User: 'web3User',
+  isWeb3User: 'isWeb3User',
   isFirstTime: 'isFirstTime',
 };

@@ -30,7 +30,7 @@ const ModalComponent = ({
 
   const acceptBtnAction = () => {
     setFirstTimeFalse();
-    window.localStorage.setItem(localStorageKeys.web3User, true);
+    window.localStorage.setItem(localStorageKeys.isWeb3User, true);
     handleClose();
   };
 
