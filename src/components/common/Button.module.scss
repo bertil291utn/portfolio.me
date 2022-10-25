@@ -1,0 +1,23 @@
+@import 'src/css/variables.scss';
+
+.button {
+  span {
+    font-size: 1rem;
+    font-weight: bold;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  border: unset;
+  border-radius: 0.5rem;
+  &.primary {
+    background-color: $primary;
+    color: $card-bg-color;
+    box-shadow: 5px 4px 8px 0px $card-bg-color;
+  }
+  &.tertiary {
+    background-color: unset;
+  }
+}

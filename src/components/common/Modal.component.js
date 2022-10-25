@@ -4,6 +4,7 @@ import { ModalText } from '@placeholders/modal.placeholders';
 import styles from './Modal.module.scss';
 import useOutsideElement from '@hooks/useOutsideElement';
 import { localStorageKeys } from '@keys/localStorage';
+import ButtonComponent from '@components/common/Button.component';
 
 const ModalComponent = ({
   show,
@@ -62,18 +63,16 @@ const ModalComponent = ({
           {children && <span className={styles['children']}>{children}</span>}
           {acceptLabel && (
             <div className={styles['footer']}>
-              <button
-                className={styles['primary-button']}
+              <ButtonComponent
+                buttonType='primary'
+                btnLabel={acceptLabel}
                 onClick={acceptBtnAction}
-              >
-                <span>{acceptLabel}</span>
-              </button>
-              <button
-                className={styles['tertiary-button']}
+              />
+              <ButtonComponent
+                buttonType='tertiary'
+                btnLabel={cancelLabel || ModalText.defaultCancelLabel}
                 onClick={cancelBtnAction}
-              >
-                <span>{cancelLabel || ModalText.defaultCancelLabel}</span>
-              </button>
+              />
             </div>
           )}
         </div>

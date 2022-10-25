@@ -19,7 +19,7 @@
 }
 
 .modal-content {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   background-color: $light-bg;
   color: $light-color-text;
   &__dark {
@@ -86,20 +86,6 @@
     font-weight: bold;
     &::first-letter {
       text-transform: uppercase;
-    }
-  }
-  button {
-    cursor: pointer;
-    padding: 0.8rem 1.5rem;
-    border: unset;
-    border-radius: 0.75rem;
-    &.primary-button {
-      background-color: $primary;
-      color: $card-bg-color;
-      box-shadow: 5px 4px 8px 0px $card-bg-color;
-    }
-    &.tertiary-button {
-      background-color: unset;
     }
   }
 }
