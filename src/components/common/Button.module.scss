@@ -27,6 +27,26 @@
   }
 }
 
+.fav-button {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 1rem;
+  background-color: $primary;
+  box-shadow: 5px 4px 8px 0px $card-bg-color;
+  border: none;
+  .left-icon {
+    font-size: 2rem;
+  }
+  color: $card-bg-color;
+
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  @media screen and (max-width: 768px) {
+    bottom: 5rem;
+  }
+}
+
 .left-icon {
   font-size: 1.25rem;
 }
