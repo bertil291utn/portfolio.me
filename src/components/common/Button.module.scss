@@ -27,24 +27,26 @@
   }
 }
 
-.fav-button {
+.fab-button {
   cursor: pointer;
   border-radius: 50%;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: $primary;
   box-shadow: 5px 4px 8px 0px $card-bg-color;
   border: none;
   .left-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   color: $card-bg-color;
 
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  width: 50px;
+  height: 50px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
   @media screen and (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
+    margin: 10px 10px;
   }
 }
 

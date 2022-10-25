@@ -23,7 +23,7 @@ const PortfolioComponent = () => {
         />
       ))}
       <ButtonComponent
-        buttonType='fav-button'
+        buttonType='fab-button'
         onClick={getTokensAction}
         leftIcon={BsCoin}
         title={PortfolioLabel.freeTokensBtn}

@@ -8,7 +8,7 @@ const ButtonComponent = ({
   title,
 }) => {
   const LeftIcon = leftIcon;
-  if (buttonType !== 'fav-button') {
+  if (buttonType !== 'fab-button') {
     return (
       <button
         className={`${styles['button']} ${styles[buttonType]}`}
@@ -20,7 +20,7 @@ const ButtonComponent = ({
       </button>
     );
   }
-  if (buttonType === 'fav-button') {
+  if (buttonType === 'fab-button') {
     return (
       <button
         className={`${styles[buttonType]}`}
