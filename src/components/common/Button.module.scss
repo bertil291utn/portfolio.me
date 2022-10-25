@@ -1,6 +1,11 @@
 @import 'src/css/variables.scss';
 
 .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   span {
     font-size: 1rem;
     font-weight: bold;
@@ -20,4 +25,8 @@
   &.tertiary {
     background-color: unset;
   }
+}
+
+.left-icon {
+  font-size: 1.25rem;
 }
