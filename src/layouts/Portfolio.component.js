@@ -3,6 +3,7 @@ import PortfolioCard from '@components/PortfolioCard.component';
 import PortfolioData from '@data/portfolio.json';
 import styles from './Portfolio.module.scss';
 import { BsCoin } from 'react-icons/bs';
+import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 
 const PortfolioComponent = () => {
   const getTokensAction = () => {
@@ -25,6 +26,7 @@ const PortfolioComponent = () => {
         buttonType='fav-button'
         onClick={getTokensAction}
         leftIcon={BsCoin}
+        title={PortfolioLabel.freeTokensBtn}
       />
     </div>
   );
