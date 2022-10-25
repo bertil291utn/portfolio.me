@@ -10,28 +10,23 @@ const PortfolioComponent = () => {
   };
 
   return (
-    <>
-      <div className={styles['portfolio']}>
-        {PortfolioData.map((data) => (
-          <PortfolioCard
-            key={`portfolio-card-${data.id}`}
-            type={data.type}
-            description={data.description}
-            projectName={data.projectName}
-            overview={data.overview}
-            github={data.github}
-          />
-        ))}
-      </div>
-      <div className={styles['float-button']}>
-        <ButtonComponent
-          buttonType='primary'
-          btnLabel={'Claim free tokens'}
-          onClick={getTokensAction}
-          leftIcon={BsCoin}
+    <div className={styles['portfolio']}>
+      {PortfolioData.map((data) => (
+        <PortfolioCard
+          key={`portfolio-card-${data.id}`}
+          type={data.type}
+          description={data.description}
+          projectName={data.projectName}
+          overview={data.overview}
+          github={data.github}
         />
-      </div>
-    </>
+      ))}
+      <ButtonComponent
+        buttonType='fav-button'
+        onClick={getTokensAction}
+        leftIcon={BsCoin}
+      />
+    </div>
   );
 };
 
