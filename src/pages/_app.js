@@ -11,7 +11,9 @@ export default function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <HeadComponent />
       <NavbarComponent navbarElements={navbarElements} />
-      <Component {...pageProps} />
+      <div className='content'>
+        <Component {...pageProps} />
+      </div>
       <FooterComponent />
       <ScriptComponent />
     </ThemeProvider>

@@ -10,9 +10,6 @@
   }
 
   .logo {
-    @media screen and (max-width: 768px) {
-      margin-top: 3rem;
-    }
     .subtitle {
       font-weight: 700;
       font-size: 2rem;
@@ -144,7 +141,7 @@
   }
 
   .skills {
-    margin: 90px 0;
+    margin-top: 90px;
     line-height: 1.5rem;
     &__items {
       margin-bottom: 1.5rem;

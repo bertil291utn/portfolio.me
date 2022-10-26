@@ -6,6 +6,9 @@ ul {
     list-style: none;
     display: flex;
     gap: 40px;
+    @media screen and (max-width: 768px) {
+      gap: 20px;
+    }
     justify-content: flex-end;
     font-weight: 700;
     font-size: 18px;
