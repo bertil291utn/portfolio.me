@@ -1,2 +1,24 @@
 .content {
+  width: 50%;
+  height: 50vh;
+  @media screen and (max-width: 768px) {
+    width: unset;
+  }
+  margin: 0 auto;
+  text-align: center;
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .description {
+    margin: 3rem 0;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ModalComponent from '@components/common/Modal.component';
 import PortfolioComponent from '@layouts/Portfolio.component';
-import { ModalText } from '@placeholders/modal.placeholders';
+import { newUserModalLabels } from '@placeholders/modal.placeholders';
 import { localStorageKeys } from '@keys/localStorage';
 
 function HomeContent() {
@@ -18,12 +18,12 @@ function HomeContent() {
         <ModalComponent
           show={show}
           setShow={setShow}
-          acceptLabel={ModalText.acceptLabel}
-          cancelLabel={ModalText.cancelLabel}
+          acceptLabel={newUserModalLabels.acceptLabel}
+          cancelLabel={newUserModalLabels.cancelLabel}
           backButton={false}
           closeButton={false}
         >
-          {ModalText.description}
+          {newUserModalLabels.description}
         </ModalComponent>
       )}
     </>

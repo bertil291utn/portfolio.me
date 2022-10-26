@@ -4,10 +4,12 @@ import PortfolioData from '@data/portfolio.json';
 import styles from './Portfolio.module.scss';
 import { BsCoin } from 'react-icons/bs';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
+import { useRouter } from 'next/router';
 
 const PortfolioComponent = () => {
+  const router = useRouter();
   const getTokensAction = () => {
-    console.log('get tokens');
+    router.push('/tokens');
   };
 
   return (
@@ -23,6 +25,7 @@ const PortfolioComponent = () => {
         />
       ))}
       {/* claim free tokens button */}
+      {/* TODO: show only when the user has no claim his tokens */}
       <ButtonComponent
         buttonType='fab-button'
         onClick={getTokensAction}
