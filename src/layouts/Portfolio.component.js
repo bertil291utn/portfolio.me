@@ -22,6 +22,7 @@ const PortfolioComponent = () => {
           github={data.github}
         />
       ))}
+      {/* claim free tokens button */}
       <ButtonComponent
         buttonType='fab-button'
         onClick={getTokensAction}

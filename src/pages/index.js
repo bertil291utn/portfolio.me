@@ -10,7 +10,6 @@ function HomeContent() {
   useEffect(() => {
     setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
   }, []);
-  //TODO: add claim free tokens button
 
   return (
     <>
