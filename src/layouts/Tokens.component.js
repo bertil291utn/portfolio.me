@@ -2,15 +2,15 @@ import ButtonComponent from '@components/common/Button.component';
 import { localStorageKeys } from '@keys/localStorage';
 import { tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
 import styles from './Token.module.scss';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
+  const { isConnected } = useAccount();
   useEffect(() => {
-    setIsWalletConnected(
-      window.localStorage.getItem(localStorageKeys.walletConnected)
-    );
+    setIsWalletConnected(isConnected);
   });
 
   const getTokensAction = () => {
@@ -24,7 +24,7 @@ const TokensComponent = () => {
         dangerouslySetInnerHTML={{ __html: tokenPageLabel.description }}
       ></p>
       <div className={styles['button']}>
-        <ConnectButton />
+        <ConnectButton showBalance={false} />
         {isWalletConnected && (
           <ButtonComponent
             className={styles['button__content']}
