@@ -18,7 +18,6 @@ const PortfolioCard = ({
 
   useEffect(() => {
     setMounted(true);
-    localStorage.removeItem('theme');
   }, []);
 
   if (!mounted) {

@@ -5,8 +5,13 @@ import FooterComponent from '@components/Footer.component';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { ThemeProvider } from 'next-themes';
 import '../css/global.scss';
+import { useEffect } from 'react';
 
 export default function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    window.localStorage.removeItem('theme');
+  }, []);
+
   return (
     <ThemeProvider>
       <HeadComponent />
