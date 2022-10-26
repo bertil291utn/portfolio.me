@@ -6,12 +6,15 @@ const ButtonComponent = ({
   onClick,
   leftIcon,
   title,
+  className,
 }) => {
   const LeftIcon = leftIcon;
   if (buttonType !== 'fab-button') {
     return (
       <button
-        className={`${styles['button']} ${styles[buttonType]}`}
+        className={`${className ? className : ''} ${styles['button']} ${
+          styles[buttonType]
+        }`}
         onClick={onClick}
         title={title}
       >
@@ -23,7 +26,7 @@ const ButtonComponent = ({
   if (buttonType === 'fab-button') {
     return (
       <button
-        className={`${styles[buttonType]}`}
+        className={`${className ? className : ''} ${styles[buttonType]}`}
         onClick={onClick}
         title={title}
       >

@@ -21,7 +21,13 @@
 
   .button {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    &__content {
+      margin-top: 3rem;
+      width: 60%;
+    }
   }
 
   b {
