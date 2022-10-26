@@ -1,2 +1,1 @@
-export const BertilTokenContractAdd =
-  process.env.NEXT_PUBLIC_BERTIL_TOKENS_UUPS;
+export const ERC20TokenContractAdd = process.env.NEXT_PUBLIC_ERC20_TOKENS_UUPS;

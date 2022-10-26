@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
-import { BertilTokenContractAdd } from 'src/config/contratcs';
-import BertilTokenABI from '@web3/ABI/BertilToken.json';
+import { ERC20TokenContractAdd } from 'src/config/contratcs';
+import UpgradeableERC20ABI from '@web3/ABI/UpgradeableERC20.json';
 
 export const getContractFactory = ({ address, ABI, provider }) => {
   return new ethers.Contract(address, ABI, provider);
@@ -8,8 +8,8 @@ export const getContractFactory = ({ address, ABI, provider }) => {
 
 export const getTokenFactory = ({ provider }) => {
   return getContractFactory({
-    address: BertilTokenContractAdd,
-    ABI: BertilTokenABI,
+    address: ERC20TokenContractAdd,
+    ABI: UpgradeableERC20ABI,
     provider,
   });
 };
