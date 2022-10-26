@@ -23,6 +23,12 @@
       "@keys/*": [
         "src/keys/*"
       ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@web3/*": [
+        "web3/*"
+      ],
     }
   }
 }
