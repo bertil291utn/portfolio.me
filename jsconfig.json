@@ -26,6 +26,9 @@
       "@utils/*": [
         "src/utils/*"
       ],
+      "@context/*": [
+        "src/context/*"
+      ],
       "@web3/*": [
         "web3/*"
       ],

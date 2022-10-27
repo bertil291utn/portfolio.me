@@ -4,37 +4,17 @@ import PortfolioData from '@data/portfolio.json';
 import styles from './Portfolio.module.scss';
 import { BsCoin } from 'react-icons/bs';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
-import { getTokenFactory } from '@utils/web3';
+
 import { useRouter } from 'next/router';
-import { ethers } from 'ethers';
-import { useEffect } from 'react';
-import { useProvider, useAccount } from 'wagmi';
+import { useWalletContext } from '@context/WalletProvider';
 
 const PortfolioComponent = () => {
   const router = useRouter();
-  const { address } = useAccount();
-  const provider = useProvider();
+  const { userCustomTokenBalance } = useWalletContext();
+
   const getTokensAction = () => {
     router.push('/tokens');
   };
-
-  const getTotalSUpply = async () => {
-    const tokenContract = getTokenFactory({ provider });
-    const userTokenAmount = await tokenContract.balanceOf(address);
-    const totalSupply = await tokenContract.totalSupply();
-    console.log(
-      '🚀 ~ file: Portfolio.component.js ~ line 25 ~ getTotalSUpply ~ totalSupply',
-      totalSupply.toString()
-    );
-    console.log(
-      '🚀 ~ file: Portfolio.component.js ~ line 23 ~ getTotalSUpply ~ userTokenAmount',
-      userTokenAmount.toString()
-    );
-  };
-
-  useEffect(() => {
-    getTotalSUpply();
-  }, []);
 
   return (
     <div className={styles['portfolio']}>
@@ -48,14 +28,14 @@ const PortfolioComponent = () => {
           github={data.github}
         />
       ))}
-      {/* claim free tokens button */}
-      {/* TODO: show only when the user has no claim his tokens */}
-      <ButtonComponent
-        buttonType='fab-button'
-        onClick={getTokensAction}
-        leftIcon={BsCoin}
-        title={PortfolioLabel.freeTokensBtn}
-      />
+      {userCustomTokenBalance <= 0 && (
+        <ButtonComponent
+          buttonType='fab-button'
+          onClick={getTokensAction}
+          leftIcon={BsCoin}
+          title={PortfolioLabel.freeTokensBtn}
+        />
+      )}
     </div>
   );
 };

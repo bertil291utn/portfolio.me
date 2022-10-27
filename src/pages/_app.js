@@ -9,6 +9,7 @@ import FooterComponent from '@components/Footer.component';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { ThemeProvider } from 'next-themes';
 import { chainProv, client } from '@utils/web3';
+import WalletProvider from 'src/context/WalletProvider';
 import '../css/global.scss';
 
 export default function MyApp({ Component, pageProps }) {
@@ -17,18 +18,20 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <WagmiConfig client={client}>
-      <RainbowKitProvider chains={chainProv}>
-        <ThemeProvider>
-          <HeadComponent />
-          <NavbarComponent navbarElements={navbarElements} />
-          <div className='content'>
-            <Component {...pageProps} />
-          </div>
-          <FooterComponent />
-          <ScriptComponent />
-        </ThemeProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <WalletProvider>
+      <WagmiConfig client={client}>
+        <RainbowKitProvider chains={chainProv}>
+          <ThemeProvider>
+            <HeadComponent />
+            <NavbarComponent navbarElements={navbarElements} />
+            <div className='content'>
+              <Component {...pageProps} />
+            </div>
+            <FooterComponent />
+            <ScriptComponent />
+          </ThemeProvider>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </WalletProvider>
   );
 }
