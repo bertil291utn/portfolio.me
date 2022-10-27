@@ -13,13 +13,12 @@ export default function WalletProvider({ children }) {
   const getUserCustomTokenBalance = async ({ provider, address }) => {
     const tokenContract = getTokenFactory({ provider });
     const userTokenAmount = await tokenContract.balanceOf(address);
-    const totalSupply = await tokenContract.totalSupply();
-    setUserCustomTokenBalance(parseFloat(userTokenAmount.toString()));
+    setUserCustomTokenBalance(userTokenAmount);
   };
 
   useEffect(() => {
     isConnected && getUserCustomTokenBalance({ provider, address });
-  }, []);
+  }, [address]);
 
   return (
     <WalletContext.Provider

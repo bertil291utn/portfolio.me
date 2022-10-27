@@ -6,15 +6,15 @@ import { chain, configureChains, createClient } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
-export const getContractFactory = ({ address, ABI, provider }) => {
-  return new ethers.Contract(address, ABI, provider);
+export const getContractFactory = ({ address, ABI, signer }) => {
+  return new ethers.Contract(address, ABI, signer);
 };
 
-export const getTokenFactory = ({ provider }) => {
+export const getTokenFactory = ({ provider, signer }) => {
   return getContractFactory({
     address: ERC20TokenContractAdd,
     ABI: UpgradeableERC20ABI,
-    provider,
+    signer: signer || provider,
   });
 };
 

@@ -1,20 +1,40 @@
 import ButtonComponent from '@components/common/Button.component';
-import { localStorageKeys } from '@keys/localStorage';
 import { tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
+import { getTokenFactory } from '@utils/web3';
+import { ethers } from 'ethers';
+import { useAccount, useSigner } from 'wagmi';
 import styles from './Token.module.scss';
+import { useWalletContext } from 'src/context/WalletProvider';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
-  const { isConnected } = useAccount();
+  const { data: signer } = useSigner();
+  const { address, isConnected } = useAccount();
+  const { userCustomTokenBalance } = useWalletContext();
   useEffect(() => {
     setIsWalletConnected(isConnected);
   });
+  //TODO: display smart contract error try/catch
+  //TODO: add a waiting or loading modal after each wait tx
+  const getTokensAction = async () => {
+    const tokenContract = getTokenFactory({ signer });
+    let tx = await tokenContract.approve(
+      address,
+      // ethers.utils.parseUnits((100).toString())
+      100
+    );
+    await tx.wait();
+    tx = await tokenContract.transfer(
+      // '0xA0E5DD804aBC46858c2f6Af9abE9c949f4f40DF6',
+      address,
+      ethers.BigNumber.from('100000000000000000000')
+      // ethers.utils.parseUnits((100).toString())
 
-  const getTokensAction = () => {
-    console.log('get tokens');
+      // 10000
+    );
+    await tx.wait();
   };
   return (
     <div className={styles['content']}>
@@ -24,7 +44,9 @@ const TokensComponent = () => {
         dangerouslySetInnerHTML={{ __html: tokenPageLabel.description }}
       ></p>
       <div className={styles['button']}>
-        <ConnectButton showBalance={false} />
+        <div className={styles['user-connected-btn']}>
+          <ConnectButton showBalance={false} />
+        </div>
         {isWalletConnected && (
           <ButtonComponent
             className={styles['button__content']}

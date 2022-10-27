@@ -4,6 +4,7 @@ import PortfolioData from '@data/portfolio.json';
 import styles from './Portfolio.module.scss';
 import { BsCoin } from 'react-icons/bs';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
+import { ethers } from 'ethers';
 
 import { useRouter } from 'next/router';
 import { useWalletContext } from '@context/WalletProvider';
@@ -28,7 +29,8 @@ const PortfolioComponent = () => {
           github={data.github}
         />
       ))}
-      {!userCustomTokenBalance && (
+      {(!userCustomTokenBalance ||
+        ethers.utils.formatEther(userCustomTokenBalance.toString()) <= 0) && (
         <ButtonComponent
           buttonType='fab-button'
           onClick={getTokensAction}
