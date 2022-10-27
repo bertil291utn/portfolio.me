@@ -26,7 +26,7 @@ const TokensComponent = () => {
       100
     );
     await tx.wait();
-    tx = await tokenContract.transfer(
+    tx = await tokenContract.transferFrom(
       // '0xA0E5DD804aBC46858c2f6Af9abE9c949f4f40DF6',
       address,
       ethers.BigNumber.from('100000000000000000000')
@@ -34,6 +34,10 @@ const TokensComponent = () => {
 
       // 10000
     );
+
+    //use tranferfrom
+    //apporve the same quantity
+    // check remix example
     await tx.wait();
   };
   return (
