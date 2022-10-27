@@ -28,7 +28,7 @@ const PortfolioComponent = () => {
           github={data.github}
         />
       ))}
-      {userCustomTokenBalance <= 0 && (
+      {!userCustomTokenBalance && (
         <ButtonComponent
           buttonType='fab-button'
           onClick={getTokensAction}

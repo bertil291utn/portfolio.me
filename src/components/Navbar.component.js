@@ -9,7 +9,7 @@ const NavbarComponent = ({ navbarElements }) => {
   return (
     <ul className={styles['navbar']}>
       {Object.entries(navbarElements)?.map(([navbarName, pathName], index) => {
-        if (navbarName === 'tokens' && userCustomTokenBalance > 0) {
+        if (navbarName === 'tokens' && userCustomTokenBalance) {
           return null;
         }
         return (
