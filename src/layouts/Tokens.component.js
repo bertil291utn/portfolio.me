@@ -2,11 +2,12 @@ import ButtonComponent from '@components/common/Button.component';
 import { tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
-import { getTokenFactory } from '@utils/web3';
+import { getClaimableFactory, getTokenFactory } from '@utils/web3';
 import { ethers } from 'ethers';
 import { useAccount, useSigner } from 'wagmi';
 import styles from './Token.module.scss';
 import { useWalletContext } from 'src/context/WalletProvider';
+import { ERC20TokenContractAdd } from 'src/config/contratcs';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
@@ -16,29 +17,19 @@ const TokensComponent = () => {
   useEffect(() => {
     setIsWalletConnected(isConnected);
   });
-  //TODO: display smart contract error try/catch
   //TODO: add a waiting or loading modal after each wait tx
+  //TODO: add link to display tokens on metamask
+  //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
+
   const getTokensAction = async () => {
-    const tokenContract = getTokenFactory({ signer });
-    let tx = await tokenContract.approve(
-      address,
-      // ethers.utils.parseUnits((100).toString())
-      100
-    );
-    await tx.wait();
-    tx = await tokenContract.transferFrom(
-      // '0xA0E5DD804aBC46858c2f6Af9abE9c949f4f40DF6',
-      address,
-      ethers.BigNumber.from('100000000000000000000')
-      // ethers.utils.parseUnits((100).toString())
-
-      // 10000
-    );
-
-    //use tranferfrom
-    //apporve the same quantity
-    // check remix example
-    await tx.wait();
+    try {
+      const tokenContract = getClaimableFactory({ signer });
+      let tx = await tokenContract.claim(ERC20TokenContractAdd);
+      await tx.wait();
+      //TODO: once pass all checks, return to home and refresh tokens
+    } catch (error) {
+      console.log(err.reason);
+    }
   };
   return (
     <div className={styles['content']}>
