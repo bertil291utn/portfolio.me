@@ -2,20 +2,18 @@ import ButtonComponent from '@components/common/Button.component';
 import { tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
-import { getClaimableFactory, getTokenFactory } from '@utils/web3';
-import { ethers } from 'ethers';
 import { useAccount, useSigner } from 'wagmi';
 import styles from './Token.module.scss';
-import { useWalletContext } from 'src/context/WalletProvider';
 import { ERC20TokenContractAdd } from 'src/config/contratcs';
 import ToastComponent from '@components/common/Toast.component';
+import { getClaimableFactory } from '@utils/web3';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
-  const [showToast, setShowToast] = useState(true);
+  const [showToast, setShowToast] = useState();
+  const [toastVariant, setToastVariant] = useState();
   const { data: signer } = useSigner();
   const { address, isConnected } = useAccount();
-  const { userCustomTokenBalance } = useWalletContext();
   useEffect(() => {
     setIsWalletConnected(isConnected);
   });
@@ -30,8 +28,8 @@ const TokensComponent = () => {
       await tx.wait();
       //TODO: once pass all checks, return to home and refresh tokens
     } catch (error) {
-      //TODO: display error messages
-      console.log(error.reason.replace('execution reverted:', ''));
+      setShowToast(error.reason?.replace('execution reverted:', ''));
+      setToastVariant('error');
     }
   };
   return (
@@ -57,12 +55,11 @@ const TokensComponent = () => {
         </div>
       </div>
       <ToastComponent
-        variant={'success'}
-        closeable
+        variant={toastVariant}
         show={showToast}
         setShow={setShowToast}
       >
-        {'this is my message'}
+        {showToast}
       </ToastComponent>
     </>
   );
