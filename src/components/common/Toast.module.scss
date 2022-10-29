@@ -1,0 +1,32 @@
+@import 'src/css/variables';
+.toast {
+  position: fixed;
+  top: 1rem;
+  right: 3%;
+  width: 20%;
+  margin: 0 auto;
+  padding: 0.65rem;
+  border-radius: 0.5rem;
+  &__show {
+    display: block;
+  }
+  &__hide {
+    display: none;
+  }
+  .close {
+    float: right;
+  }
+  &__error {
+    background-color: $error;
+  }
+  &__warning {
+    background-color: $warning;
+  }
+  &__success {
+    background-color: $success;
+  }
+  &__content {
+    padding: 0.6rem 1rem;
+    font-weight: bold;
+  }
+}
