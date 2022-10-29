@@ -4,6 +4,9 @@
   top: 1rem;
   right: 3%;
   width: 20%;
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
   margin: 0 auto;
   padding: 0.65rem;
   border-radius: 0.5rem;
