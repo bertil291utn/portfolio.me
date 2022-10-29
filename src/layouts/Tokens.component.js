@@ -28,7 +28,8 @@ const TokensComponent = () => {
       await tx.wait();
       //TODO: once pass all checks, return to home and refresh tokens
     } catch (error) {
-      console.log(err.reason);
+      //TODO: display error messages
+      console.log(error.reason.replace('execution reverted:', ''));
     }
   };
   return (
