@@ -1,13 +1,13 @@
 import ButtonComponent from '@components/common/Button.component';
-import { tokenPageLabel } from '@placeholders/tokens.placeholder';
+import { tokenModal, tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
 import { useAccount, useSigner } from 'wagmi';
-import styles from './Token.module.scss';
 import { ERC20TokenContractAdd } from 'src/config/contratcs';
 import ToastComponent from '@components/common/Toast.component';
 import { getClaimableFactory } from '@utils/web3';
 import ModalComponent from '@components/common/Modal.component';
+import styles from './Token.module.scss';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
@@ -61,7 +61,7 @@ const TokensComponent = () => {
           </>
         ) : (
           <div className={styles['claimingTokens']}>
-            <p className={styles['title']}>Claiming tokens...</p>
+            <p className={styles['title']}>{tokenModal.claiming}</p>
           </div>
         )}
       </div>
@@ -73,7 +73,7 @@ const TokensComponent = () => {
         {showToast}
       </ToastComponent>
       <ModalComponent show={showModal} setShow={setShowModal}>
-        {'Your transaction has just started. Wait until is finished'}
+        {tokenModal.description}
       </ModalComponent>
     </>
   );
