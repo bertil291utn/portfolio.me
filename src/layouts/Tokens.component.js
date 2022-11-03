@@ -46,6 +46,7 @@ const TokensComponent = () => {
     );
     setHasActiveHash(!!activeHash);
     isFinishedTransferTx({ provider });
+    //TODO-WIP: return to home if user want to redirect to /token path when user has already tokens
   }, []);
 
   //TODO: add link to display tokens on metamask

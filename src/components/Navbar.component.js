@@ -7,7 +7,7 @@ import styles from './Navbar.module.scss';
 const NavbarComponent = ({ navbarElements }) => {
   const router = useRouter();
   const { userCustomTokenBalance } = useWalletContext();
-  //TODO: return to home if user want to redirect to /token path when user has already tokens
+
   return (
     <ul className={styles['navbar']}>
       {/* temporal maybe */}
