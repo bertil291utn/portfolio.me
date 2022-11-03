@@ -13,6 +13,7 @@ import ModalComponent from '@components/common/Modal.component';
 import { localStorageKeys } from '@keys/localStorage';
 import { useRouter } from 'next/router';
 import { useProvider } from 'wagmi';
+import { useWalletContext } from '@context/WalletProvider';
 import styles from './Token.module.scss';
 
 const TokensComponent = () => {
@@ -22,6 +23,7 @@ const TokensComponent = () => {
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const { data: signer } = useSigner();
+  const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected } = useAccount();
 
@@ -41,12 +43,15 @@ const TokensComponent = () => {
   };
 
   useEffect(() => {
+    userCustomTokenBalance?.toString() > 0 && router.push('/');
+  }, [userCustomTokenBalance]);
+
+  useEffect(() => {
     const activeHash = window.localStorage.getItem(
       localStorageKeys.activeTxHash
     );
     setHasActiveHash(!!activeHash);
     isFinishedTransferTx({ provider });
-    //TODO-WIP: return to home if user want to redirect to /token path when user has already tokens
   }, []);
 
   //TODO: add link to display tokens on metamask

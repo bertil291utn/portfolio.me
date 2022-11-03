@@ -10,7 +10,7 @@ const NavbarComponent = ({ navbarElements }) => {
 
   return (
     <ul className={styles['navbar']}>
-      {/* temporal maybe */}
+      {/* TODO-WIP: display on dashboard after is connected. if it is metamask use its documentation */}
       {userCustomTokenBalance?.toString() > 0 && (
         <li>{`${ethers.utils.formatEther(userCustomTokenBalance)} $BATL`}</li>
       )}
