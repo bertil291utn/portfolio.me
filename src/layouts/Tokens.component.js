@@ -3,34 +3,74 @@ import { tokenModal, tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
 import { useAccount, useSigner } from 'wagmi';
-import { ERC20TokenContractAdd } from 'src/config/contratcs';
+import {
+  ClaimableContractAdd,
+  ERC20TokenContractAdd,
+} from 'src/config/contratcs';
 import ToastComponent from '@components/common/Toast.component';
-import { getClaimableFactory } from '@utils/web3';
+import { getClaimableFactory, getTokenFactory } from '@utils/web3';
 import ModalComponent from '@components/common/Modal.component';
+import { localStorageKeys } from '@keys/localStorage';
+import { useRouter } from 'next/router';
+import { useProvider } from 'wagmi';
 import styles from './Token.module.scss';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
+  const [hasActiveHash, setHasActiveHash] = useState();
   const [showModal, setShowModal] = useState(true);
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const { data: signer } = useSigner();
+  const provider = useProvider();
   const { address, isConnected } = useAccount();
+
+  const router = useRouter();
   useEffect(() => {
     setIsWalletConnected(isConnected);
   });
-  //TODO: add a waiting or loading modal after each wait tx
+
+  const isFinishedTransferTx = async ({ provider }) => {
+    const tokenContract = getTokenFactory({ provider });
+    //TODO: listen transfer event not just in token component, but also all over the app _app file
+    tokenContract.on('Transfer', async (from, to) => {
+      if (from == ClaimableContractAdd && to == address) {
+        await finishTx();
+      }
+    });
+  };
+
+  useEffect(() => {
+    const activeHash = window.localStorage.getItem(
+      localStorageKeys.activeTxHash
+    );
+    setHasActiveHash(!!activeHash);
+    isFinishedTransferTx({ provider });
+  }, []);
+
   //TODO: add link to display tokens on metamask
   //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
 
+  const setCloseCurrentTx = () => {
+    window.localStorage.removeItem(localStorageKeys.activeTxHash);
+  };
+
+  const finishTx = async () => {
+    setCloseCurrentTx();
+    router.push('/');
+    await new Promise((r) => setTimeout(r, 2000));
+    window.location.reload(true);
+  };
+
   const getTokensAction = async () => {
     try {
-      const tokenContract = getClaimableFactory({ signer });
-      let tx = await tokenContract.claim(ERC20TokenContractAdd);
+      const claimableContract = getClaimableFactory({ signer });
+      let tx = await claimableContract.claim(ERC20TokenContractAdd);
+      window.localStorage.setItem(localStorageKeys.activeTxHash, tx.hash);
+      setHasActiveHash(tx.hash);
       await tx.wait();
-      //TODO: enable storing in local storage current status tx
-      //TODO: once pass all checks, return to home and refresh tokens
     } catch (error) {
+      setCloseCurrentTx();
       setShowToast(error.reason?.replace('execution reverted:', ''));
       setToastVariant('error');
     }
@@ -38,7 +78,7 @@ const TokensComponent = () => {
   return (
     <>
       <div className={styles['content']}>
-        {false ? (
+        {!hasActiveHash ? (
           <>
             <span className={styles['title']}>{tokenPageLabel.title}</span>
             <p
@@ -72,9 +112,11 @@ const TokensComponent = () => {
       >
         {showToast}
       </ToastComponent>
-      <ModalComponent show={showModal} setShow={setShowModal}>
-        {tokenModal.description}
-      </ModalComponent>
+      {hasActiveHash && (
+        <ModalComponent show={showModal} setShow={setShowModal}>
+          {tokenModal.description}
+        </ModalComponent>
+      )}
     </>
   );
 };

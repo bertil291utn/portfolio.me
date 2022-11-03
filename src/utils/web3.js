@@ -31,10 +31,7 @@ export const getClaimableFactory = ({ provider, signer }) => {
 
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [
-    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
-    publicProvider(),
-  ]
+  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID })]
 );
 
 export const chainProv = chains;

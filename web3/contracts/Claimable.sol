@@ -7,11 +7,11 @@ contract Claimable {
     uint256 internal claimableAmount = 10 * 10e18;
 
     function claim(IERC20 _tokenAddress) external {
+        require(msg.sender != address(0), "Invalid address");
         require(
             _tokenAddress.balanceOf(msg.sender) <= 0,
-            "Token already claimed"
+            "Tokens already claimed"
         );
-        require(msg.sender != address(0), "Invalid address");
         _tokenAddress.transfer(msg.sender, claimableAmount);
     }
 }
