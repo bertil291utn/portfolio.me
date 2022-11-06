@@ -6,7 +6,7 @@ import { useAccount, useSigner } from 'wagmi';
 import {
   ClaimableContractAdd,
   ERC20TokenContractAdd,
-} from 'src/config/contratcs';
+} from 'src/config/contracts';
 import ToastComponent from '@components/common/Toast.component';
 import { getClaimableFactory, getTokenFactory } from '@utils/web3';
 import ModalComponent from '@components/common/Modal.component';

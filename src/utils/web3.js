@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import {
   ClaimableContractAdd,
   ERC20TokenContractAdd,
-} from 'src/config/contratcs';
+} from 'src/config/contracts';
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, erc20ABI } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
