@@ -1,4 +1,26 @@
 @import 'src/css/variables.scss';
 
 .content {
+  span {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .connect-btn {
+    & > div {
+      //height:x;
+      @media screen and (max-width: 768px) {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  .profile {
+    margin: 2rem 0;
+  }
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: $gray;
 }

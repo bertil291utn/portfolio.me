@@ -11,9 +11,7 @@ const NavbarComponent = ({ navbarElements }) => {
   return (
     <ul className={styles['navbar']}>
       {/* TODO-WIP: display on dashboard after is connected. if it is metamask use its documentation */}
-      {/* {userCustomTokenBalance?.toString() > 0 && (
-        <li>{`${ethers.utils.formatEther(userCustomTokenBalance)} $BATL`}</li>
-      )} */}
+
       {Object.entries(navbarElements)?.map(
         ([navbarName, { path, icon: Icon }], index) => {
           if (
