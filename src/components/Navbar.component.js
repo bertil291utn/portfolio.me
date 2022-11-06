@@ -11,34 +11,42 @@ const NavbarComponent = ({ navbarElements }) => {
   return (
     <ul className={styles['navbar']}>
       {/* TODO-WIP: display on dashboard after is connected. if it is metamask use its documentation */}
-      {userCustomTokenBalance?.toString() > 0 && (
+      {/* {userCustomTokenBalance?.toString() > 0 && (
         <li>{`${ethers.utils.formatEther(userCustomTokenBalance)} $BATL`}</li>
-      )}
-      {Object.entries(navbarElements)?.map(([navbarName, pathName], index) => {
-        if (
-          userCustomTokenBalance &&
-          navbarName === 'tokens' &&
-          ethers.utils.formatEther(userCustomTokenBalance.toString()) > 0
-        ) {
-          return null;
-        }
-        return (
-          <li
-            className={router.pathname == pathName ? `${styles['active']}` : ''}
-            key={`navbar-${index}`}
-          >
-            {new RegExp(['https', 'http'].join('|')).test(pathName) ? (
-              <Link href={pathName}>
-                <a target='_blank' rel='noopener noreferrer'>
-                  {navbarName}
+      )} */}
+      {Object.entries(navbarElements)?.map(
+        ([navbarName, { path, icon: Icon }], index) => {
+          if (
+            navbarName === 'tokens' &&
+            ethers.utils.formatEther(userCustomTokenBalance?.toString() || 0) >
+              0
+          ) {
+            return null;
+          }
+          return (
+            <li
+              className={`${styles['list']} ${
+                router.pathname == path ? `${styles['active']}` : ''
+              }`}
+              key={`navbar-${index}`}
+            >
+              <Link href={path}>
+                <a
+                  target={`${navbarName == 'blog' ? '_blank' : undefined}`}
+                  rel='noopener noreferrer'
+                >
+                  <span className={`${styles['navbar__content']}`}>
+                    {navbarName}
+                  </span>
+                  <span className={`${styles['navbar__icon']}`}>
+                    <Icon />
+                  </span>
                 </a>
               </Link>
-            ) : (
-              <Link href={pathName}>{navbarName}</Link>
-            )}
-          </li>
-        );
-      })}
+            </li>
+          );
+        }
+      )}
     </ul>
   );
 };

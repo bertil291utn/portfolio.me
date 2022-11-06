@@ -6,9 +6,6 @@ ul {
     list-style: none;
     display: flex;
     gap: 40px;
-    @media screen and (max-width: 768px) {
-      gap: 20px;
-    }
     justify-content: flex-end;
     font-weight: 700;
     font-size: 18px;
@@ -20,9 +17,31 @@ ul {
       cursor: pointer;
     }
   }
+  .navbar__content {
+    display: block;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  .navbar__icon {
+    display: none;
+    svg {
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 600px) {
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
 }
 
 li {
+  &.list {
+    padding-bottom: 0.5rem;
+  }
+
   &.active {
     position: relative;
     &::before {
