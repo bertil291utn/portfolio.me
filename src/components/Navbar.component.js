@@ -29,10 +29,7 @@ const NavbarComponent = ({ navbarElements }) => {
               key={`navbar-${index}`}
             >
               <Link href={path}>
-                <a
-                  target={`${navbarName == 'blog' ? '_blank' : undefined}`}
-                  rel='noopener noreferrer'
-                >
+                <a target={navbarName == 'blog' ? '_blank' : undefined}>
                   <span className={`${styles['navbar__content']}`}>
                     {navbarName}
                   </span>

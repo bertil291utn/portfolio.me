@@ -1,4 +1,3 @@
-import { isCrowdsaleWallet } from '@ethersproject/json-wallets';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
@@ -21,7 +20,7 @@ const ProfileContent = () => {
       </div>
       {isWalletConnected && (
         <div className={styles['profile']}>
-          <span className={styles['subtitle']}>Available tokens</span>
+          <span className={`subtitle`}>Available tokens</span>
           {userCustomTokenBalance && (
             <span>
               {`${ethers.utils.formatEther(userCustomTokenBalance)} $BATL`}
