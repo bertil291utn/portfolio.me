@@ -11,6 +11,21 @@ function HomeContent() {
     setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
   }, []);
 
+  const setFirstTimeFalse = () => {
+    window.localStorage.setItem(localStorageKeys.isFirstTime, false);
+  };
+
+  const acceptBtnAction = () => {
+    setFirstTimeFalse();
+    window.localStorage.setItem(localStorageKeys.isWeb3User, true);
+    setShow(false);
+  };
+
+  const cancelBtnAction = () => {
+    setFirstTimeFalse();
+    setShow(false);
+  };
+
   return (
     <>
       <PortfolioComponent />
@@ -22,6 +37,8 @@ function HomeContent() {
           cancelLabel={newUserModalLabels.cancelLabel}
           backButton={false}
           closeButton={false}
+          acceptBtnAction={acceptBtnAction}
+          cancelBtnAction={cancelBtnAction}
         >
           {newUserModalLabels.description}
         </ModalComponent>

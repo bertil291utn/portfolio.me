@@ -13,6 +13,8 @@ const ModalComponent = ({
   children,
   acceptLabel,
   cancelLabel,
+  acceptBtnAction,
+  cancelBtnAction,
   backButton = true,
   closeButton = true,
 }) => {
@@ -24,21 +26,6 @@ const ModalComponent = ({
       handleClose();
     }
   }, [IsOutsideElement]);
-
-  const setFirstTimeFalse = () => {
-    window.localStorage.setItem(localStorageKeys.isFirstTime, false);
-  };
-
-  const acceptBtnAction = () => {
-    setFirstTimeFalse();
-    window.localStorage.setItem(localStorageKeys.isWeb3User, true);
-    handleClose();
-  };
-
-  const cancelBtnAction = () => {
-    setFirstTimeFalse();
-    handleClose();
-  };
 
   const { resolvedTheme } = useTheme();
   return (

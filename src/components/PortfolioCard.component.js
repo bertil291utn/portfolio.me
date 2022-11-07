@@ -5,6 +5,8 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { localStorageKeys } from '@keys/localStorage';
+import ModalComponent from '@components/common/Modal.component';
+import { useWalletContext } from '@context/WalletProvider';
 
 const PortfolioCard = ({
   type,
@@ -13,6 +15,8 @@ const PortfolioCard = ({
   overview,
   github,
 }) => {
+  const { userCustomTokenBalance } = useWalletContext();
+  const [claimTokensModal, setClaimTokensModal] = useState(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -26,13 +30,14 @@ const PortfolioCard = ({
 
   const openURL = (URL) => () => {
     if (
-      window.localStorage.getItem(
-        localStorageKeys.isWeb3User
-      ) /*and doesn't have tokens*/
+      window.localStorage.getItem(localStorageKeys.isWeb3User) &&
+      userCustomTokenBalance?.toString() == 0
     ) {
-      alert('claim free tokens');
+      setClaimTokensModal(true);
       return;
     }
+    // TODO-WIP:if has tokens but hasn't deposit on smart contract
+
     window.open(URL, '_blank');
   };
 
@@ -76,6 +81,9 @@ const PortfolioCard = ({
           onClick={rateProject}
         />
       </div>
+      <ModalComponent show={claimTokensModal} setShow={setClaimTokensModal}>
+        {'Claim $BATL free tokens first, then interact with app '}
+      </ModalComponent>
     </div>
   );
 };
