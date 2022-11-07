@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { ethers } from 'ethers';
 import { useWalletContext } from '@context/WalletProvider';
+import { ProfileLabel } from '@placeholders/profile.placeholder';
+import ButtonComponent from '@components/common/Button.component';
+import { navbarElements } from '@placeholders/navbar.placeholders';
+import { useRouter } from 'next/router';
 import styles from './ProfileContent.module.scss';
-import Link from 'next/link';
 
 const ProfileContent = () => {
+  const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
   const { userCustomTokenBalance } = useWalletContext();
   const { address, isConnected } = useAccount();
@@ -20,18 +24,22 @@ const ProfileContent = () => {
       </div>
       {isWalletConnected && (
         <div className={styles['profile']}>
-          <span className={`subtitle`}>Available tokens</span>
+          <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
           {userCustomTokenBalance && (
             <span>
-              {`${ethers.utils.formatEther(userCustomTokenBalance)} $BATL`}
+              {`${ethers.utils.formatEther(userCustomTokenBalance)} $${
+                ProfileLabel.tokenName
+              }`}
             </span>
           )}
           {userCustomTokenBalance?.toString() == 0 && (
-            <Link href='/tokens'>
-              <p>
-                <u className='hand'>Claim tokens</u>
-              </p>
-            </Link>
+            <div className={styles['claim-btn']}>
+              <ButtonComponent
+                onClick={() => router.push(`/${navbarElements.tokens.label}`)}
+                buttonType='primary'
+                btnLabel={ProfileLabel.claimTokens}
+              />
+            </div>
           )}
         </div>
       )}
