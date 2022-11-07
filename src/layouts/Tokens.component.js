@@ -54,9 +54,6 @@ const TokensComponent = () => {
     isFinishedTransferTx({ provider });
   }, []);
 
-  //TODO: add link to display tokens on metamask
-  //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
-
   const setCloseCurrentTx = () => {
     window.localStorage.removeItem(localStorageKeys.activeTxHash);
   };

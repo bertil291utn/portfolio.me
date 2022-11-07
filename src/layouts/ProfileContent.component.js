@@ -10,6 +10,9 @@ import { useRouter } from 'next/router';
 import styles from './ProfileContent.module.scss';
 
 const ProfileContent = () => {
+  //TODO: add link to display tokens on metamask
+  //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
+
   const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
   const { userCustomTokenBalance } = useWalletContext();
