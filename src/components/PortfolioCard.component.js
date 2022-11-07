@@ -8,6 +8,7 @@ import ModalComponent from '@components/common/Modal.component';
 import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
+import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 
 const PortfolioCard = ({
   type,
@@ -72,7 +73,7 @@ const PortfolioCard = ({
         {overview && (
           <TbWorld
             className={styles['icon-size']}
-            title='Online version'
+            title={PortfolioLabel.onlineVersionTitle}
             onClick={openURL(overview)}
           />
         )}
@@ -80,24 +81,24 @@ const PortfolioCard = ({
         {github && (
           <AiFillGithub
             className={styles['icon-size']}
-            title='Github repository'
+            title={PortfolioLabel.githubRepoTitle}
             onClick={openURL(github)}
           />
         )}
 
         <AiFillStar
           className={styles['icon-size']}
-          title='Rate this project'
+          title={PortfolioLabel.rateProjectTitle}
           onClick={rateProject}
         />
       </div>
       <ModalComponent
         show={claimTokensModal}
         setShow={setClaimTokensModal}
-        acceptLabel={'Claim tokens'}
+        acceptLabel={PortfolioLabel.freeTokensBtn}
         acceptBtnAction={acceptBtnAction}
       >
-        {'Claim $BATL free tokens first, then interact with app '}
+        {PortfolioLabel.modalDesc}
       </ModalComponent>
     </div>
   );
