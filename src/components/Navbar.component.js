@@ -29,7 +29,7 @@ const NavbarComponent = ({ navbarElements }) => {
               <Link href={path}>
                 <a
                   target={
-                    label == navbarElements.tokens.blog ? '_blank' : undefined
+                    label == navbarElements.blog.label ? '_blank' : undefined
                   }
                 >
                   <span className={`${styles['navbar__content']}`}>
