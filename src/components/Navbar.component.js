@@ -12,10 +12,10 @@ const NavbarComponent = ({ navbarElements }) => {
     <ul className={styles['navbar']}>
       {/* TODO-WIP: display on dashboard after is connected. if it is metamask use its documentation */}
 
-      {Object.entries(navbarElements)?.map(
-        ([navbarName, { path, icon: Icon }], index) => {
+      {Object.values(navbarElements)?.map(
+        ({ label, path, icon: Icon }, index) => {
           if (
-            navbarName === 'tokens' &&
+            label === navbarElements.tokens.label &&
             ethers.utils.formatEther(userCustomTokenBalance?.toString() || 0) >
               0
           ) {
@@ -29,9 +29,13 @@ const NavbarComponent = ({ navbarElements }) => {
               key={`navbar-${index}`}
             >
               <Link href={path}>
-                <a target={navbarName == 'blog' ? '_blank' : undefined}>
+                <a
+                  target={
+                    label == navbarElements.tokens.blog ? '_blank' : undefined
+                  }
+                >
                   <span className={`${styles['navbar__content']}`}>
-                    {navbarName}
+                    {label}
                   </span>
                   <span className={`${styles['navbar__icon']}`}>
                     <Icon />
