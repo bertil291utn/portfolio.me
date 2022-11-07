@@ -27,6 +27,16 @@ const ModalComponent = ({
     }
   }, [IsOutsideElement]);
 
+  const _acceptBtnAction = () => {
+    acceptBtnAction();
+    handleClose();
+  };
+
+  const _cancelBtnAction = () => {
+    cancelBtnAction();
+    handleClose();
+  };
+
   const { resolvedTheme } = useTheme();
   return (
     <div
@@ -53,12 +63,12 @@ const ModalComponent = ({
               <ButtonComponent
                 buttonType='primary'
                 btnLabel={acceptLabel}
-                onClick={acceptBtnAction}
+                onClick={_acceptBtnAction}
               />
               <ButtonComponent
                 buttonType='tertiary'
                 btnLabel={cancelLabel || ModalText.defaultCancelLabel}
-                onClick={cancelBtnAction}
+                onClick={_cancelBtnAction}
               />
             </div>
           )}

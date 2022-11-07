@@ -18,12 +18,10 @@ function HomeContent() {
   const acceptBtnAction = () => {
     setFirstTimeFalse();
     window.localStorage.setItem(localStorageKeys.isWeb3User, true);
-    setShow(false);
   };
 
   const cancelBtnAction = () => {
     setFirstTimeFalse();
-    setShow(false);
   };
 
   return (
