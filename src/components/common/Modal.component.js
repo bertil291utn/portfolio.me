@@ -28,12 +28,12 @@ const ModalComponent = ({
   }, [IsOutsideElement]);
 
   const _acceptBtnAction = () => {
-    acceptBtnAction();
+    acceptBtnAction && acceptBtnAction();
     handleClose();
   };
 
   const _cancelBtnAction = () => {
-    cancelBtnAction();
+    cancelBtnAction && cancelBtnAction();
     handleClose();
   };
 

@@ -2,11 +2,12 @@ import styles from './PortfolioCard.module.scss';
 import { TbWorld } from 'react-icons/tb';
 import { AiFillGithub, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { localStorageKeys } from '@keys/localStorage';
 import ModalComponent from '@components/common/Modal.component';
 import { useWalletContext } from '@context/WalletProvider';
+import { navbarElements } from '@placeholders/navbar.placeholders';
+import { useRouter } from 'next/router';
 
 const PortfolioCard = ({
   type,
@@ -19,6 +20,7 @@ const PortfolioCard = ({
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -28,21 +30,29 @@ const PortfolioCard = ({
     return null;
   }
 
-  const openURL = (URL) => () => {
+  const checkTokens = () => {
     if (
       window.localStorage.getItem(localStorageKeys.isWeb3User) &&
       userCustomTokenBalance?.toString() == 0
     ) {
       setClaimTokensModal(true);
-      return;
+      return false;
     }
     // TODO-WIP:if has tokens but hasn't deposit on smart contract
+    return true;
+  };
 
-    window.open(URL, '_blank');
+  const openURL = (URL) => () => {
+    const isCheckToken = checkTokens();
+    isCheckToken && window.open(URL, '_blank');
   };
 
   const rateProject = () => {
-    alert('rate project');
+    const isCheckToken = checkTokens();
+  };
+
+  const acceptBtnAction = () => {
+    router.push(`/${navbarElements.tokens.label}`);
   };
 
   return (
@@ -81,7 +91,12 @@ const PortfolioCard = ({
           onClick={rateProject}
         />
       </div>
-      <ModalComponent show={claimTokensModal} setShow={setClaimTokensModal}>
+      <ModalComponent
+        show={claimTokensModal}
+        setShow={setClaimTokensModal}
+        acceptLabel={'Claim tokens'}
+        acceptBtnAction={acceptBtnAction}
+      >
         {'Claim $BATL free tokens first, then interact with app '}
       </ModalComponent>
     </div>
