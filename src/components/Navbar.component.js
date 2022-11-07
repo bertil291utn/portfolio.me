@@ -10,8 +10,6 @@ const NavbarComponent = ({ navbarElements }) => {
 
   return (
     <ul className={styles['navbar']}>
-      {/* TODO-WIP: display on dashboard after is connected. if it is metamask use its documentation */}
-
       {Object.values(navbarElements)?.map(
         ({ label, path, icon: Icon }, index) => {
           if (

@@ -13,7 +13,6 @@ import WalletProvider from 'src/context/WalletProvider';
 import '../css/global.scss';
 
 export default function MyApp({ Component, pageProps }) {
-  //TODO-WIP: add a user dashboard display tokens and stuff
   //TODO: add button option to import BATL tokens only in  metamask wallet
   useEffect(() => {
     window.localStorage.removeItem('theme');
