@@ -8,6 +8,7 @@ import ButtonComponent from '@components/common/Button.component';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
 import styles from './ProfileContent.module.scss';
+import SectionPanel from '@components/common/SectionPanel.component';
 
 const ProfileContent = () => {
   //TODO: add link to display tokens on metamask
@@ -22,30 +23,42 @@ const ProfileContent = () => {
   }, [address]);
   return (
     <div className={styles['content']}>
-      <div className={styles['connect-btn']}>
-        <ConnectButton showBalance={false} />
-      </div>
-      {isWalletConnected && (
-        <div className={styles['profile']}>
-          <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
-          {userCustomTokenBalance && (
-            <span>
-              {`${ethers.utils.formatEther(userCustomTokenBalance)} $${
-                ProfileLabel.tokenName
-              }`}
-            </span>
-          )}
-          {userCustomTokenBalance?.toString() == 0 && (
-            <div className={styles['claim-btn']}>
-              <ButtonComponent
-                onClick={() => router.push(`/${navbarElements.tokens.label}`)}
-                buttonType='primary'
-                btnLabel={ProfileLabel.claimTokens}
-              />
-            </div>
-          )}
+      <SectionPanel
+        title={'Wallet info'}
+        subtitle={'Connection button and available tokens'}
+      >
+        <div className={styles['connect-btn']}>
+          <ConnectButton showBalance={false} />
         </div>
-      )}
+        {isWalletConnected && (
+          <div className={styles['profile']}>
+            <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
+            {userCustomTokenBalance && (
+              <span>
+                {`${ethers.utils.formatEther(userCustomTokenBalance)} $${
+                  ProfileLabel.tokenName
+                }`}
+              </span>
+            )}
+            {userCustomTokenBalance?.toString() == 0 && (
+              <div className={styles['claim-btn']}>
+                <ButtonComponent
+                  onClick={() => router.push(`/${navbarElements.tokens.label}`)}
+                  buttonType='primary'
+                  btnLabel={ProfileLabel.claimTokens}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </SectionPanel>
+
+      <SectionPanel
+        title={'Staking'}
+        subtitle={'Stake $BATL tokens to rate, view and be part of our DAO'}
+      >
+        here staking
+      </SectionPanel>
     </div>
   );
 };

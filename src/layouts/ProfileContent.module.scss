@@ -1,7 +1,9 @@
 @import 'src/css/variables.scss';
 
 .content {
-  height: 50vh;
+  > div {
+    margin: 3rem 0;
+  }
   span {
     display: block;
     margin: 0.5rem 0;
