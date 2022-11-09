@@ -35,10 +35,11 @@ const PortfolioCard = ({
   }
 
   const checkTokens = () => {
-    if (
-      window.localStorage.getItem(localStorageKeys.isWeb3User) &&
-      userCustomTokenBalance?.toString() == 0
-    ) {
+    if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
+      return true;
+    }
+
+    if (userCustomTokenBalance?.toString() == 0) {
       setClaimTokensModal(true);
       return false;
     }
