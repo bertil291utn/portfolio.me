@@ -19,12 +19,15 @@ const PortfolioCard = ({
 }) => {
   const { userCustomTokenBalance } = useWalletContext();
   const [claimTokensModal, setClaimTokensModal] = useState(false);
+  const [stakeTokensModal, setStakeTokensModal] = useState(false);
+  const [isStakeHolder, setIsStakeHolder] = useState(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
+    setIsStakeHolder(false);
   }, []);
 
   if (!mounted) {
@@ -39,21 +42,28 @@ const PortfolioCard = ({
       setClaimTokensModal(true);
       return false;
     }
-    // TODO-WIP:if has tokens but hasn't deposit on smart contract
+    if (!isStakeHolder) {
+      setStakeTokensModal(true);
+      return false;
+    }
     return true;
   };
 
   const openURL = (URL) => () => {
-    const isCheckToken = checkTokens();
-    isCheckToken && window.open(URL, '_blank');
+    const isTokenCheckPassed = checkTokens();
+    isTokenCheckPassed && window.open(URL, '_blank');
   };
 
   const rateProject = () => {
     const isCheckToken = checkTokens();
   };
 
-  const acceptBtnAction = () => {
+  const claimAcceptBtnAction = () => {
     router.push(`/${navbarElements.tokens.label}`);
+  };
+
+  const stakeAcceptBtnAction = () => {
+    router.push(`/${navbarElements.profile.label}`);
   };
 
   return (
@@ -96,9 +106,17 @@ const PortfolioCard = ({
         show={claimTokensModal}
         setShow={setClaimTokensModal}
         acceptLabel={PortfolioLabel.freeTokensBtn}
-        acceptBtnAction={acceptBtnAction}
+        acceptBtnAction={claimAcceptBtnAction}
       >
-        {PortfolioLabel.modalDesc}
+        {PortfolioLabel.modalClaimDesc}
+      </ModalComponent>
+      <ModalComponent
+        show={stakeTokensModal}
+        setShow={setStakeTokensModal}
+        acceptLabel={PortfolioLabel.stakeTokensBtn}
+        acceptBtnAction={stakeAcceptBtnAction}
+      >
+        {PortfolioLabel.modalStakeDesc}
       </ModalComponent>
     </div>
   );
