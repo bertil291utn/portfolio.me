@@ -1,0 +1,19 @@
+@import 'src/css/variables.scss';
+
+.container {
+  border-bottom: 1px solid $gray;
+  span {
+    display: block;
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+  .subtitle {
+    margin-top: 0.8rem;
+    color: $gray;
+  }
+
+  .content {
+    margin: 3rem 0;
+  }
+}
