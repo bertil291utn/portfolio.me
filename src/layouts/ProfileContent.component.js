@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { ethers } from 'ethers';
 import { useWalletContext } from '@context/WalletProvider';
-import { ProfileLabel } from '@placeholders/profile.placeholder';
+import { IdContent, ProfileLabel } from '@placeholders/profile.placeholder';
 import ButtonComponent from '@components/common/Button.component';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
@@ -24,6 +24,7 @@ const ProfileContent = () => {
   return (
     <div className={styles['content']}>
       <SectionPanel
+        id={IdContent.walletInfo}
         title={'Wallet info'}
         subtitle={'Connection button and available tokens'}
       >
@@ -54,6 +55,7 @@ const ProfileContent = () => {
       </SectionPanel>
 
       <SectionPanel
+        id={IdContent.staking}
         title={'Staking'}
         subtitle={'Stake $BATL tokens to rate, view and be part of our DAO'}
       >

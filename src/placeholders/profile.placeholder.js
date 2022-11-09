@@ -3,3 +3,8 @@ export const ProfileLabel = {
   tokenName: 'BATL',
   claimTokens: 'Claim tokens',
 };
+
+export const IdContent = {
+  walletInfo: 'wallet-info',
+  staking: 'staking',
+};

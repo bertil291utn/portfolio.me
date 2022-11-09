@@ -9,6 +9,7 @@ import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
+import { IdContent } from '@placeholders/profile.placeholder';
 
 const PortfolioCard = ({
   type,
@@ -65,7 +66,7 @@ const PortfolioCard = ({
   };
 
   const stakeAcceptBtnAction = () => {
-    router.push(`/${navbarElements.profile.label}`);
+    router.push(`/${navbarElements.profile.label}#${IdContent.staking}`);
   };
 
   return (
