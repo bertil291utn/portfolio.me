@@ -7,8 +7,6 @@ contract BertilTokens is ERC20 {
     uint256 internal fullAmountTokens = 10000 * 10**decimals();
 
     constructor(address _claimableToken) ERC20("BertilTokens", "BATL") {
-        _mint(msg.sender, fullAmountTokens);
-        approve(_claimableToken, fullAmountTokens);
-        transfer(_claimableToken, fullAmountTokens);
+        _mint(_claimableToken, fullAmountTokens);
     }
 }
