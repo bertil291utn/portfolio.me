@@ -34,7 +34,7 @@ const PortfolioCard = ({
     return null;
   }
 
-  const checkTokens = () => {
+  const isTokenCheckPassed = () => {
     if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
       return true;
     }
@@ -51,12 +51,13 @@ const PortfolioCard = ({
   };
 
   const openURL = (URL) => () => {
-    const isTokenCheckPassed = checkTokens();
-    isTokenCheckPassed && window.open(URL, '_blank');
+    const _isTokenCheckPassed = isTokenCheckPassed();
+    _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
   const rateProject = () => {
-    const isCheckToken = checkTokens();
+    const _isTokenCheckPassed = isTokenCheckPassed();
+    //  _isTokenCheckPassed && /*open rate modal or something*/
   };
 
   const claimAcceptBtnAction = () => {
