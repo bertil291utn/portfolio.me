@@ -6,7 +6,6 @@ import {
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, erc20ABI } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
 import ClaimableABI from '@web3/ABI/Claimable.json';
 
 export const getContractFactory = ({ address, ABI, signer }) => {
