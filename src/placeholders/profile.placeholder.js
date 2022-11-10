@@ -14,5 +14,5 @@ export const ProfileSections = {
   walletInfoSubtitle: 'Connection button and available tokens',
   stakingSectionTitle: 'Staking',
   stakingSectionSubtitle:
-    'Stake $BATL tokens to rate, view and be part of our DAO',
+    'Stake $BATL tokens to rate, view and be part of our DAO. Min 1 max 100',
 };

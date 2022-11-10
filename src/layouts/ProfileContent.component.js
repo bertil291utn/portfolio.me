@@ -1,6 +1,6 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useSigner } from 'wagmi';
 import { ethers } from 'ethers';
 import { useWalletContext } from '@context/WalletProvider';
 import {
@@ -13,8 +13,13 @@ import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
 import styles from './ProfileContent.module.scss';
 import SectionPanel from '@components/common/SectionPanel.component';
-import { minStakingAmount } from '@constants/common';
+import { defaultStakingAmount, minStakingAmount } from '@constants/common';
 import InputComponent from '@components/common/Input.component';
+import { getStakingFactory, getTokenFactory } from '@utils/web3';
+import {
+  ERC20TokenContractAdd,
+  StakingContractAdd,
+} from 'src/config/contracts';
 
 const ProfileContent = () => {
   //TODO: add link to display tokens on metamask
@@ -25,14 +30,47 @@ const ProfileContent = () => {
   const [tokenAmount, setTokenAmount] = useState(minStakingAmount);
   const { userCustomTokenBalance } = useWalletContext();
   const { address, isConnected } = useAccount();
+  const { data: signer } = useSigner();
 
   useEffect(() => {
     setIsWalletConnected(isConnected);
   }, [address]);
 
-  const stakingAction = (e) => {
+  const isFormValid = ({ stakingAmount }) => {
+    if (!stakingAmount) return false;
+    if (stakingAmount <= 0) return false;
+    //TODO: check stakingAmount is not greater than default staking amount
+    //rn there's an input min and max
+    return true;
+  };
+
+  const stakeAction = async () => {
+    const stakingContract = getStakingFactory({ signer });
+    const tokenContract = getTokenFactory({ signer });
+    const allowanceAmount = await tokenContract.allowance(
+      address,
+      StakingContractAdd
+    );
+    let tx;
+    if (allowanceAmount?.toString() <= 0) {
+      tx = await tokenContract.approve(
+        StakingContractAdd,
+        ethers.utils.parseEther(defaultStakingAmount.toString())
+      );
+      await tx.wait();
+    }
+
+    tx = await stakingContract.stake(
+      ethers.utils.parseEther(tokenAmount.toString()),
+      ERC20TokenContractAdd
+    );
+    await tx.wait();
+  };
+
+  const stakingAction = async (e) => {
     e.preventDefault();
-    console.log('staking 10 batl');
+    const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
+    _isFormValid && stakeAction();
   };
 
   return (
