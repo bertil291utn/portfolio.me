@@ -19,6 +19,22 @@
   .profile {
     margin: 2rem 0;
   }
+
+  .form {
+    display: flex;
+    width: 25%;
+    @media screen and (max-width: 768px) {
+      width: unset;
+    }
+
+    .input {
+      font-size: 1rem;
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+    .button {
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+  }
 }
 
 .claim-btn {

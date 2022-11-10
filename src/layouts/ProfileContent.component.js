@@ -3,12 +3,18 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { ethers } from 'ethers';
 import { useWalletContext } from '@context/WalletProvider';
-import { IdContent, ProfileLabel } from '@placeholders/profile.placeholder';
+import {
+  IdContent,
+  ProfileLabel,
+  ProfileSections,
+} from '@placeholders/profile.placeholder';
 import ButtonComponent from '@components/common/Button.component';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
 import styles from './ProfileContent.module.scss';
 import SectionPanel from '@components/common/SectionPanel.component';
+import { minStakingAmount } from '@constants/common';
+import InputComponent from '@components/common/Input.component';
 
 const ProfileContent = () => {
   //TODO: add link to display tokens on metamask
@@ -16,17 +22,25 @@ const ProfileContent = () => {
 
   const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
+  const [tokenAmount, setTokenAmount] = useState(minStakingAmount);
   const { userCustomTokenBalance } = useWalletContext();
   const { address, isConnected } = useAccount();
+
   useEffect(() => {
     setIsWalletConnected(isConnected);
   }, [address]);
+
+  const stakingAction = (e) => {
+    e.preventDefault();
+    console.log('staking 10 batl');
+  };
+
   return (
     <div className={styles['content']}>
       <SectionPanel
         id={IdContent.walletInfo}
-        title={'Wallet info'}
-        subtitle={'Connection button and available tokens'}
+        title={ProfileSections.walletInfoTitle}
+        subtitle={ProfileSections.walletInfoSubtitle}
       >
         <div className={styles['connect-btn']}>
           <ConnectButton showBalance={false} />
@@ -56,10 +70,28 @@ const ProfileContent = () => {
 
       <SectionPanel
         id={IdContent.staking}
-        title={'Staking'}
-        subtitle={'Stake $BATL tokens to rate, view and be part of our DAO'}
+        title={ProfileSections.stakingSectionTitle}
+        subtitle={ProfileSections.stakingSectionSubtitle}
       >
-        here staking
+        <div className={styles['staking']}>
+          <form onSubmit={stakingAction} className={styles['form']}>
+            <InputComponent
+              className={styles['input']}
+              type='number'
+              name='tokenAmount'
+              value={tokenAmount}
+              onChange={(e) => setTokenAmount(e.target.value)}
+              min={'1'}
+              max={'100'}
+            />
+            <ButtonComponent
+              className={styles['button']}
+              type={'submit'}
+              buttonType={'primary'}
+              btnLabel={'Stake'}
+            />
+          </form>
+        </div>
       </SectionPanel>
     </div>
   );
