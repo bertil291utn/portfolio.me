@@ -32,6 +32,9 @@
       "@web3/*": [
         "web3/*"
       ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
     }
   }
 }
