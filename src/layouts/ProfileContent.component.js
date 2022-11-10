@@ -43,6 +43,8 @@ const ProfileContent = () => {
     //rn there's an input min and max
     return true;
   };
+  //TODO-WIP: if user has already stake, hide stake option and show unstake option
+  //TODO-WIP: display a legend amount of tokens being staked
 
   const stakeAction = async () => {
     const stakingContract = getStakingFactory({ signer });
@@ -52,7 +54,10 @@ const ProfileContent = () => {
       StakingContractAdd
     );
     let tx;
+    //TODO: it might not be necessary this check bc the staking tx is gonna be done just once
     if (allowanceAmount?.toString() <= 0) {
+      //TODO-WIP: set hash and display staking status
+      //TODO-WIP: if there's no hash just display approving
       tx = await tokenContract.approve(
         StakingContractAdd,
         ethers.utils.parseEther(defaultStakingAmount.toString())
@@ -60,6 +65,7 @@ const ProfileContent = () => {
       await tx.wait();
     }
 
+    //TODO-WIP: if page apporving is displayed, also display staking
     tx = await stakingContract.stake(
       ethers.utils.parseEther(tokenAmount.toString()),
       ERC20TokenContractAdd
