@@ -10,6 +10,8 @@ import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
+import { useAccount, useSigner } from 'wagmi';
+import { getStakingFactory } from '@utils/web3';
 
 const PortfolioCard = ({
   type,
@@ -23,12 +25,20 @@ const PortfolioCard = ({
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
   const { resolvedTheme } = useTheme();
+  const { data: signer } = useSigner();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const { address } = useAccount();
+
+  const checkIsStakeHolder = async () => {
+    const stakingContract = getStakingFactory({ signer });
+    const balance = await stakingContract.balanceOf(address);
+    setIsStakeHolder(balance?.toString() > 0);
+  };
 
   useEffect(() => {
     setMounted(true);
-    setIsStakeHolder(false);
+    checkIsStakeHolder();
   }, []);
 
   if (!mounted) {
