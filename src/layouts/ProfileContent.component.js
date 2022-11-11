@@ -27,10 +27,18 @@ const ProfileContent = () => {
 
   const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
-  const [tokenAmount, setTokenAmount] = useState(minStakingAmount);
-  const { userCustomTokenBalance } = useWalletContext();
+  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
+  const [tokenAmount, setTokenAmount] = useState();
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
+  useEffect(() => {
+    const _tokenInputVal =
+      userStakedAmount?.toString() <= 0
+        ? minStakingAmount
+        : userStakedAmount &&
+          ethers.utils.formatEther(userStakedAmount?.toString());
+    setTokenAmount(_tokenInputVal);
+  }, [userStakedAmount]);
 
   useEffect(() => {
     setIsWalletConnected(isConnected);
@@ -73,6 +81,7 @@ const ProfileContent = () => {
     await tx.wait();
   };
 
+  const unStakeAction = async (e) => {};
   const stakingAction = async (e) => {
     e.preventDefault();
     const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
@@ -112,31 +121,36 @@ const ProfileContent = () => {
         )}
       </SectionPanel>
 
-      <SectionPanel
-        id={IdContent.staking}
-        title={ProfileSections.stakingSectionTitle}
-        subtitle={ProfileSections.stakingSectionSubtitle}
-      >
-        <div className={styles['staking']}>
-          <form onSubmit={stakingAction} className={styles['form']}>
-            <InputComponent
-              className={styles['input']}
-              type='number'
-              name='tokenAmount'
-              value={tokenAmount}
-              onChange={(e) => setTokenAmount(e.target.value)}
-              min={'1'}
-              max={'100'}
-            />
-            <ButtonComponent
-              className={styles['button']}
-              type={'submit'}
-              buttonType={'primary'}
-              btnLabel={'Stake'}
-            />
-          </form>
-        </div>
-      </SectionPanel>
+      {userCustomTokenBalance?.toString() > 0 && (
+        <SectionPanel
+          id={IdContent.staking}
+          title={ProfileSections.stakingSectionTitle}
+          subtitle={ProfileSections.stakingSectionSubtitle}
+        >
+          <div className={styles['staking']}>
+            {/* todo-wip: add ternary to stake & unstake submit */}
+            <form onSubmit={stakingAction} className={styles['form']}>
+              <InputComponent
+                className={styles['input']}
+                type='number'
+                name='tokenAmount'
+                value={tokenAmount}
+                onChange={(e) => setTokenAmount(e.target.value)}
+                min={'1'}
+                max={'100'}
+              />
+              <ButtonComponent
+                className={styles['button']}
+                type={'submit'}
+                buttonType={'primary'}
+                btnLabel={
+                  userStakedAmount?.toString() > 0 ? 'Unstake' : 'Stake'
+                }
+              />
+            </form>
+          </div>
+        </SectionPanel>
+      )}
     </div>
   );
 };
