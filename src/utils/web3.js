@@ -7,6 +7,7 @@ import {
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, erc20ABI } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 import ClaimableABI from '@web3/ABI/Claimable.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
 
@@ -40,7 +41,14 @@ export const getStakingFactory = ({ provider, signer }) => {
 //TODO-WIP: check to call alchemy provider just once not all the time
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID })]
+  [
+    alchemyProvider({
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+      stallTimeout: 1_000,
+      priority: 1,
+    }),
+    publicProvider({ priority: 0, stallTimeout: 5_000 }),
+  ]
 );
 
 export const chainProv = chains;
