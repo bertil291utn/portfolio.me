@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &.full-height {
+    height: 45vh;
+    @media screen and (max-width: 768px) {
+      height: 35vh;
+    }
+  }
+  .description {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+}
