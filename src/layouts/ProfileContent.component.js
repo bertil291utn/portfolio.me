@@ -1,11 +1,12 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
-import { useAccount, useSigner } from 'wagmi';
+import { useAccount, useProvider, useSigner } from 'wagmi';
 import { ethers } from 'ethers';
 import { useWalletContext } from '@context/WalletProvider';
 import {
   IdContent,
   ProfileLabel,
+  profileLoading,
   ProfileSections,
 } from '@placeholders/profile.placeholder';
 import ButtonComponent from '@components/common/Button.component';
@@ -20,17 +21,49 @@ import {
   ERC20TokenContractAdd,
   StakingContractAdd,
 } from 'src/config/contracts';
+import LoadingComponent from '@components/common/Loading.component';
+import { localStorageKeys } from '@keys/localStorage';
+import ToastComponent from '@components/common/Toast.component';
 
 const ProfileContent = () => {
-  //TODO: add link to display tokens on metamask
-  //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
-
   const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
+  const [showToast, setShowToast] = useState();
+  const [toastVariant, setToastVariant] = useState();
+  const [activeApprovingHash, setActiveApprovingHash] = useState();
+  const [activeStakingHash, setActiveStakingHash] = useState();
   const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
   const [tokenAmount, setTokenAmount] = useState();
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
+  const provider = useProvider();
+  const stakingContract = getStakingFactory({ provider });
+  const tokenContract = getTokenFactory({ provider });
+
+  //LISTENERS
+
+  //TODO: listen transfer event not just in token component, but also all over the app _app file
+  tokenContract.on('Approval', async (owner, spender) => {
+    if (owner == address && spender == StakingContractAdd) {
+      await finishTx({
+        txHashKeyName: localStorageKeys.approveStakingTxHash,
+        path: navbarElements.profile.label,
+      });
+    }
+  });
+
+  stakingContract.on('Staked', async (from) => {
+    if (from == address) {
+      await finishTx({
+        txHashKeyName: localStorageKeys.stakingTxHash,
+        path: navbarElements.profile.label,
+        reload: true,
+      });
+    }
+  });
+  //TODO: add link to display tokens on metamask
+  //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
+
   useEffect(() => {
     const _tokenInputVal =
       userStakedAmount?.toString() <= 0
@@ -53,6 +86,26 @@ const ProfileContent = () => {
     return true;
   };
 
+  const removeLocalStorageItem = (txHashKeyName) => {
+    window.localStorage.removeItem(txHashKeyName);
+  };
+
+  const handleError = ({ error, txHashKeyName }) => {
+    removeLocalStorageItem(txHashKeyName);
+    setShowToast(error.reason?.replace('execution reverted:', ''));
+    setToastVariant('error');
+    txHashKeyName == localStorageKeys.approveStakingTxHash &&
+      setActiveApprovingHash();
+    txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
+  };
+
+  const finishTx = async ({ txHashKeyName, path, reload = false }) => {
+    removeLocalStorageItem(txHashKeyName);
+    router.push(`/${path}`);
+    await new Promise((r) => setTimeout(r, 2000));
+    reload && window.location.reload();
+  };
+
   const stakeAction = async () => {
     const stakingContract = getStakingFactory({ signer });
     const tokenContract = getTokenFactory({ signer });
@@ -60,24 +113,44 @@ const ProfileContent = () => {
       address,
       StakingContractAdd
     );
+
     let tx;
     //TODO: it might not be necessary this check bc the staking tx is gonna be done just once
     if (allowanceAmount?.toString() <= 0) {
-      //TODO-WIP: set hash and display staking status
-      //TODO-WIP: if there's no hash just display approving
-      tx = await tokenContract.approve(
-        StakingContractAdd,
-        ethers.utils.parseEther(defaultStakingAmount.toString())
-      );
-      await tx.wait();
+      try {
+        tx = await tokenContract.approve(
+          StakingContractAdd,
+          ethers.utils.parseEther(defaultStakingAmount.toString())
+        );
+        window.localStorage.setItem(
+          localStorageKeys.approveStakingTxHash,
+          tx.hash
+        );
+        await tx.wait();
+        setActiveApprovingHash(tx.hash);
+      } catch (error) {
+        handleError({
+          error,
+          txHashKeyName: localStorageKeys.approveStakingTxHash,
+        });
+        return;
+      }
     }
 
-    //TODO-WIP: if page apporving is displayed, also display staking
-    tx = await stakingContract.stake(
-      ethers.utils.parseEther(tokenAmount.toString()),
-      ERC20TokenContractAdd
-    );
-    await tx.wait();
+    try {
+      tx = await stakingContract.stake(
+        ethers.utils.parseEther(tokenAmount.toString()),
+        ERC20TokenContractAdd
+      );
+      window.localStorage.setItem(localStorageKeys.stakingTxHash, tx.hash);
+      setActiveStakingHash(tx.hash);
+      await tx.wait();
+    } catch (error) {
+      handleError({
+        error,
+        txHashKeyName: localStorageKeys.stakingTxHash,
+      });
+    }
   };
 
   const unStakingAction = (e) => {
@@ -86,92 +159,120 @@ const ProfileContent = () => {
 
   const stakingAction = (e) => {
     e.preventDefault();
-    // const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
-    // _isFormValid && stakeAction();
+    const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
+    _isFormValid && stakeAction();
   };
 
   return (
-    <div className={styles['content']}>
-      <SectionPanel
-        id={IdContent.walletInfo}
-        title={ProfileSections.walletInfoTitle}
-        subtitle={ProfileSections.walletInfoSubtitle}
-      >
-        <div className={styles['connect-btn']}>
-          <ConnectButton showBalance={false} />
-        </div>
-        {isWalletConnected && (
-          <div className={styles['profile']}>
-            <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
-            <span>
-              {`${ethers.utils.formatEther(userCustomTokenBalance || 0)} $${
-                ProfileLabel.tokenName
-              }`}
-            </span>
-            {userCustomTokenBalance?.toString() == 0 && (
-              <div className={styles['claim-btn']}>
-                <ButtonComponent
-                  onClick={() => router.push(`/${navbarElements.tokens.label}`)}
-                  buttonType='primary'
-                  btnLabel={ProfileLabel.claimTokens}
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </SectionPanel>
-
-      {userCustomTokenBalance?.toString() > 0 && (
+    <>
+      <div className={styles['content']}>
         <SectionPanel
-          id={IdContent.staking}
-          title={ProfileSections.stakingSectionTitle}
-          subtitle={ProfileSections.stakingSectionSubtitle}
+          id={IdContent.walletInfo}
+          title={ProfileSections.walletInfoTitle}
+          subtitle={ProfileSections.walletInfoSubtitle}
         >
-          <div className={styles['staking']}>
-            <form
-              onSubmit={
-                userStakedAmount?.toString() > 0
-                  ? unStakingAction
-                  : stakingAction
-              }
-              className={styles['form']}
-            >
-              <InputComponent
-                className={styles['input']}
-                type='number'
-                name='tokenAmount'
-                value={tokenAmount || ''}
-                onChange={(e) => setTokenAmount(e.target.value)}
-                min={'1'}
-                max={
-                  userStakedAmount?.toString() > 0
-                    ? ethers.utils.formatEther(userStakedAmount || 0)
-                    : '100'
-                }
-              />
-              <ButtonComponent
-                className={styles['button']}
-                type={'submit'}
-                buttonType={'primary'}
-                btnLabel={
-                  userStakedAmount?.toString() > 0 ? 'Unstake' : 'Stake'
-                }
-              />
-            </form>
-            {userStakedAmount?.toString() > 0 && (
-              <div>
-                <span className={`subtitle`}>{ProfileLabel.stakedTokens}</span>
-                <span>
-                  {`${ethers.utils.formatEther(userStakedAmount)} $${
-                    ProfileLabel.tokenName
-                  }`}
-                </span>
+          <div className={styles['connect-btn']}>
+            <ConnectButton showBalance={false} />
+          </div>
+          {isWalletConnected && (
+            <div className={styles['profile']}>
+              <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
+              <span>
+                {`${ethers.utils.formatEther(userCustomTokenBalance || 0)} $${
+                  ProfileLabel.tokenName
+                }`}
+              </span>
+              {userCustomTokenBalance?.toString() == 0 && (
+                <div className={styles['claim-btn']}>
+                  <ButtonComponent
+                    onClick={() =>
+                      router.push(`/${navbarElements.tokens.label}`)
+                    }
+                    buttonType='primary'
+                    btnLabel={ProfileLabel.claimTokens}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+        </SectionPanel>
+
+        {userCustomTokenBalance?.toString() > 0 && (
+          <SectionPanel
+            id={IdContent.staking}
+            title={ProfileSections.stakingSectionTitle}
+            subtitle={ProfileSections.stakingSectionSubtitle}
+          >
+            {!activeApprovingHash && !activeStakingHash && (
+              <div className={styles['staking']}>
+                <form
+                  onSubmit={
+                    userStakedAmount?.toString() > 0
+                      ? unStakingAction
+                      : stakingAction
+                  }
+                  className={styles['form']}
+                >
+                  <InputComponent
+                    className={styles['input']}
+                    type='number'
+                    name='tokenAmount'
+                    value={tokenAmount || ''}
+                    onChange={(e) => setTokenAmount(e.target.value)}
+                    min={'1'}
+                    max={
+                      userStakedAmount?.toString() > 0
+                        ? ethers.utils.formatEther(userStakedAmount || 0)
+                        : '100'
+                    }
+                  />
+                  <ButtonComponent
+                    className={styles['button']}
+                    type={'submit'}
+                    buttonType={'primary'}
+                    btnLabel={
+                      userStakedAmount?.toString() > 0 ? 'Unstake' : 'Stake'
+                    }
+                  />
+                </form>
+                {userStakedAmount?.toString() > 0 && (
+                  <div>
+                    <span className={`subtitle`}>
+                      {ProfileLabel.stakedTokens}
+                    </span>
+                    <span>
+                      {`${ethers.utils.formatEther(userStakedAmount)} $${
+                        ProfileLabel.tokenName
+                      }`}
+                    </span>
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        </SectionPanel>
-      )}
-    </div>
+            {
+              <>
+                {activeApprovingHash && (
+                  <LoadingComponent
+                    title={profileLoading.approving}
+                    description={profileLoading.approvingDescription}
+                  />
+                )}
+                {activeStakingHash && (
+                  <LoadingComponent title={profileLoading.staking} />
+                )}
+              </>
+            }
+          </SectionPanel>
+        )}
+      </div>
+      <ToastComponent
+        variant={toastVariant}
+        show={showToast}
+        setShow={setShowToast}
+      >
+        {showToast}
+      </ToastComponent>
+    </>
   );
 };
 
