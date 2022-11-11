@@ -3,6 +3,7 @@ export const localStorageKeys = {
   isFirstTime: 'isFirstTime',
   walletConnected: 'wagmi.connected',
   claimingTxHash: 'claimingTxHash',
+  approveStakingTxHash: 'approveStakingTxHash',
   stakingTxHash: 'stakingTxHash',
   unStakingTxHash: 'unStakingTxHash',
 };
