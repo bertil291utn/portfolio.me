@@ -38,55 +38,62 @@ const ProfileContent = () => {
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
   const provider = useProvider();
-  const stakingContract = getStakingFactory({ provider });
-  const tokenContract = getTokenFactory({ provider });
 
-  //LISTENERS
+  const setCurrentTxState = {
+    [localStorageKeys.approveStakingTxHash]: setActiveApprovingHash,
+    [localStorageKeys.stakingTxHash]: setActiveStakingHash,
+    [localStorageKeys.unStakingTxHash]: setActiveUnStakingHash,
+  };
 
-  //TODO: listen transfer event not just in token component, but also all over the app _app file
-  tokenContract.on('Approval', async (owner, spender) => {
-    if (owner == address && spender == StakingContractAdd) {
-      await finishTx({
-        txHashKeyName: localStorageKeys.approveStakingTxHash,
-        path: navbarElements.profile.label,
-      });
-    }
-  });
+  const listenEvents = ({ provider }) => {
+    const stakingContract = getStakingFactory({ provider });
+    const tokenContract = getTokenFactory({ provider });
+    //LISTENERS
 
-  stakingContract.on('Staked', async (user) => {
-    if (user == address) {
-      await finishTx({
-        txHashKeyName: localStorageKeys.stakingTxHash,
-        path: navbarElements.profile.label,
-        reload: true,
-      });
-    }
-  });
+    //TODO: listen transfer event not just in token component, but also all over the app _app file
+    tokenContract.on('Approval', async (owner, spender) => {
+      if (owner == address && spender == StakingContractAdd) {
+        await finishTx({
+          txHashKeyName: localStorageKeys.approveStakingTxHash,
+          path: navbarElements.profile.label,
+        });
+      }
+    });
 
-  stakingContract.on('Unstake', async (user) => {
-    if (user == address) {
-      await finishTx({
-        txHashKeyName: localStorageKeys.unStakingTxHash,
-        path: navbarElements.profile.label,
-        reload: true,
-      });
-    }
-  });
+    stakingContract.on('Staked', async (user) => {
+      if (user == address) {
+        await finishTx({
+          txHashKeyName: localStorageKeys.stakingTxHash,
+          path: navbarElements.profile.label,
+          reload: true,
+        });
+      }
+    });
+
+    stakingContract.on('Unstake', async (user) => {
+      if (user == address) {
+        await finishTx({
+          txHashKeyName: localStorageKeys.unStakingTxHash,
+          path: navbarElements.profile.label,
+          reload: true,
+        });
+      }
+    });
+  };
   //TODO: add link to display tokens on metamask
   //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
   useEffect(() => {
-    const activeApprovingHash = window.localStorage.getItem(
-      localStorageKeys.approveStakingTxHash
+    setActiveApprovingHash(
+      !!window.localStorage.getItem(localStorageKeys.approveStakingTxHash)
     );
-    const activeStakingHash = window.localStorage.getItem(
-      localStorageKeys.stakingTxHash
+    setActiveStakingHash(
+      !!window.localStorage.getItem(localStorageKeys.stakingTxHash)
     );
-    setActiveApprovingHash(!!activeApprovingHash);
-    setActiveStakingHash(!!activeStakingHash);
-    const activeUnStakingHash = window.localStorage.getItem(
-      localStorageKeys.unStakingTxHash
+    setActiveUnStakingHash(
+      !!window.localStorage.getItem(localStorageKeys.unStakingTxHash)
     );
-    setActiveUnStakingHash(!!activeUnStakingHash);
+
+    listenEvents({ provider });
   }, []);
 
   useEffect(() => {
@@ -105,7 +112,6 @@ const ProfileContent = () => {
   const isFormValid = ({ stakingAmount }) => {
     if (!stakingAmount) return false;
     if (stakingAmount <= 0) return false;
-    //TODO-WIP: for unstake check is not greater than current staked amount
     //TODO: check stakingAmount is not greater than default staking amount
     //rn there's an input min and max
     return true;
@@ -120,20 +126,12 @@ const ProfileContent = () => {
     removeLocalStorageItem(txHashKeyName);
     setShowToast(error.reason?.replace('execution reverted:', ''));
     setToastVariant('error');
-    txHashKeyName == localStorageKeys.approveStakingTxHash &&
-      setActiveApprovingHash();
-    txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
-    txHashKeyName == localStorageKeys.unStakingTxHash &&
-      setActiveUnStakingHash();
+    setCurrentTxState[txHashKeyName]();
   };
 
   const finishTx = async ({ txHashKeyName, path, reload = false }) => {
     removeLocalStorageItem(txHashKeyName);
-    txHashKeyName == localStorageKeys.approveStakingTxHash &&
-      setActiveApprovingHash();
-    txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
-    txHashKeyName == localStorageKeys.unStakingTxHash &&
-      setActiveUnStakingHash();
+    setCurrentTxState[txHashKeyName]();
     router.push(`/${path}`);
     await new Promise((r) => setTimeout(r, 2000));
     reload && window.location.reload();
@@ -171,11 +169,11 @@ const ProfileContent = () => {
     }
 
     try {
-      setActiveStakingHash(tx.hash);
       tx = await stakingContract.stake(
         ethers.utils.parseEther(tokenAmount.toString()),
         ERC20TokenContractAdd
       );
+      setActiveStakingHash(tx.hash);
       window.localStorage.setItem(localStorageKeys.stakingTxHash, tx.hash);
       await tx.wait();
     } catch (error) {

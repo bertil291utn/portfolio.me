@@ -50,10 +50,9 @@ const TokensComponent = () => {
   }, [userCustomTokenBalance]);
 
   useEffect(() => {
-    const activeHash = window.localStorage.getItem(
-      localStorageKeys.claimingTxHash
+    setHasActiveHash(
+      !!window.localStorage.getItem(localStorageKeys.claimingTxHash)
     );
-    setHasActiveHash(!!activeHash);
     isFinishedTransferTx({ provider });
   }, []);
 
