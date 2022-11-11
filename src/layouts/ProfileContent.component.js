@@ -151,12 +151,12 @@ const ProfileContent = () => {
     }
 
     try {
+      setActiveStakingHash(tx.hash);
       tx = await stakingContract.stake(
         ethers.utils.parseEther(tokenAmount.toString()),
         ERC20TokenContractAdd
       );
       window.localStorage.setItem(localStorageKeys.stakingTxHash, tx.hash);
-      setActiveStakingHash(tx.hash);
       await tx.wait();
     } catch (error) {
       handleError({
