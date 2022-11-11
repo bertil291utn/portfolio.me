@@ -63,6 +63,16 @@ const ProfileContent = () => {
   });
   //TODO: add link to display tokens on metamask
   //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
+  useEffect(() => {
+    const activeApprovingHash = window.localStorage.getItem(
+      localStorageKeys.approveStakingTxHash
+    );
+    const activeStakingHash = window.localStorage.getItem(
+      localStorageKeys.stakingTxHash
+    );
+    setActiveApprovingHash(!!activeApprovingHash);
+    setActiveStakingHash(!!activeStakingHash);
+  }, []);
 
   useEffect(() => {
     const _tokenInputVal =
@@ -101,6 +111,9 @@ const ProfileContent = () => {
 
   const finishTx = async ({ txHashKeyName, path, reload = false }) => {
     removeLocalStorageItem(txHashKeyName);
+    txHashKeyName == localStorageKeys.approveStakingTxHash &&
+      setActiveApprovingHash();
+    txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
     router.push(`/${path}`);
     await new Promise((r) => setTimeout(r, 2000));
     reload && window.location.reload();
@@ -126,8 +139,8 @@ const ProfileContent = () => {
           localStorageKeys.approveStakingTxHash,
           tx.hash
         );
-        await tx.wait();
         setActiveApprovingHash(tx.hash);
+        await tx.wait();
       } catch (error) {
         handleError({
           error,

@@ -21,7 +21,7 @@ export const ProfileSections = {
 export const profileLoading = {
   approving: 'Approving...',
   approvingDescription:
-    'This is approving transaction; wait until wallet pops up again to finalize staking transaction',
+    'This transaction needs to be approved, wait until wallet pops up again to finalize staking transaction',
   staking: 'Staking...',
   unStaking: 'Unstaking...',
 };
