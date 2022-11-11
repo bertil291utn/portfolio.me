@@ -29,8 +29,7 @@ const PortfolioComponent = () => {
           github={data.github}
         />
       ))}
-      {(!userCustomTokenBalance ||
-        ethers.utils.formatEther(userCustomTokenBalance.toString()) <= 0) && (
+      {(!userCustomTokenBalance || userCustomTokenBalance.toString() <= 0) && (
         <ButtonComponent
           buttonType='fab-button'
           onClick={getTokensAction}

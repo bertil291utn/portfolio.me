@@ -14,8 +14,7 @@ const NavbarComponent = ({ navbarElements }) => {
         ({ label, path, icon: Icon }, index) => {
           if (
             label === navbarElements.tokens.label &&
-            ethers.utils.formatEther(userCustomTokenBalance?.toString() || 0) >
-              0
+            userCustomTokenBalance?.toString() > 0
           ) {
             return null;
           }

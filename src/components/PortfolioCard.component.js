@@ -20,7 +20,7 @@ const PortfolioCard = ({
   overview,
   github,
 }) => {
-  const { userCustomTokenBalance } = useWalletContext();
+  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
@@ -30,15 +30,9 @@ const PortfolioCard = ({
   const router = useRouter();
   const { address } = useAccount();
 
-  const checkIsStakeHolder = async () => {
-    const stakingContract = getStakingFactory({ signer });
-    const balance = await stakingContract.balanceOf(address);
-    setIsStakeHolder(balance?.toString() > 0);
-  };
-
   useEffect(() => {
     setMounted(true);
-    checkIsStakeHolder();
+    setIsStakeHolder(userStakedAmount?.toString() > 0);
   }, []);
 
   if (!mounted) {

@@ -14,6 +14,7 @@ import { localStorageKeys } from '@keys/localStorage';
 import { useRouter } from 'next/router';
 import { useProvider } from 'wagmi';
 import { useWalletContext } from '@context/WalletProvider';
+import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
 
 const TokensComponent = () => {
@@ -43,7 +44,8 @@ const TokensComponent = () => {
   };
 
   useEffect(() => {
-    userCustomTokenBalance?.toString() > 0 && router.push('/');
+    userCustomTokenBalance?.toString() > 0 &&
+      router.push(`/${navbarElements.profile.label}`);
   }, [userCustomTokenBalance]);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const TokensComponent = () => {
 
   const finishTx = async () => {
     setCloseCurrentTx();
-    router.push('/');
+    router.push(`/${navbarElements.profile.label}`);
     await new Promise((r) => setTimeout(r, 2000));
     window.location.reload(true);
   };
