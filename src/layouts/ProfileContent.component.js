@@ -51,7 +51,6 @@ const ProfileContent = () => {
     //rn there's an input min and max
     return true;
   };
-  //TODO-WIP: if user has already stake, hide stake option and show unstake option
   //TODO-WIP: display a legend amount of tokens being staked
 
   const stakeAction = async () => {
@@ -134,7 +133,7 @@ const ProfileContent = () => {
                 className={styles['input']}
                 type='number'
                 name='tokenAmount'
-                value={tokenAmount}
+                value={tokenAmount || ''}
                 onChange={(e) => setTokenAmount(e.target.value)}
                 min={'1'}
                 max={'100'}
