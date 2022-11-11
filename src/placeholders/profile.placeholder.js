@@ -1,5 +1,6 @@
 export const ProfileLabel = {
   availableTokens: 'Available tokens',
+  stakedTokens: 'Staked tokens',
   tokenName: 'BATL',
   claimTokens: 'Claim tokens',
 };

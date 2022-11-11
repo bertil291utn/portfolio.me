@@ -47,11 +47,11 @@ const ProfileContent = () => {
   const isFormValid = ({ stakingAmount }) => {
     if (!stakingAmount) return false;
     if (stakingAmount <= 0) return false;
+    //TODO-WIP: for unstake check is not greater than current staked amount
     //TODO: check stakingAmount is not greater than default staking amount
     //rn there's an input min and max
     return true;
   };
-  //TODO-WIP: display a legend amount of tokens being staked
 
   const stakeAction = async () => {
     const stakingContract = getStakingFactory({ signer });
@@ -128,6 +128,7 @@ const ProfileContent = () => {
         >
           <div className={styles['staking']}>
             {/* todo-wip: add ternary to stake & unstake submit */}
+
             <form onSubmit={stakingAction} className={styles['form']}>
               <InputComponent
                 className={styles['input']}
@@ -147,6 +148,18 @@ const ProfileContent = () => {
                 }
               />
             </form>
+            {userStakedAmount?.toString() > 0 && (
+              <div>
+                <span className={`subtitle`}>{ProfileLabel.stakedTokens}</span>
+                {userStakedAmount && (
+                  <span>
+                    {`${ethers.utils.formatEther(
+                      userStakedAmount?.toString()
+                    )} $${ProfileLabel.tokenName}`}
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </SectionPanel>
       )}
