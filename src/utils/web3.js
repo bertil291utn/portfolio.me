@@ -47,7 +47,7 @@ const { chains, provider } = configureChains(
       stallTimeout: 1_000,
       priority: 1,
     }),
-    publicProvider({ priority: 0, stallTimeout: 5_000 }),
+    publicProvider({ priority: 0, stallTimeout: 2_000 }),
   ]
 );
 

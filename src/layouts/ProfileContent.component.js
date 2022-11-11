@@ -32,6 +32,7 @@ const ProfileContent = () => {
   const [toastVariant, setToastVariant] = useState();
   const [activeApprovingHash, setActiveApprovingHash] = useState();
   const [activeStakingHash, setActiveStakingHash] = useState();
+  const [activeUnStakingHash, setActiveUnStakingHash] = useState();
   const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
   const [tokenAmount, setTokenAmount] = useState();
   const { address, isConnected } = useAccount();
@@ -52,10 +53,20 @@ const ProfileContent = () => {
     }
   });
 
-  stakingContract.on('Staked', async (from) => {
-    if (from == address) {
+  stakingContract.on('Staked', async (user) => {
+    if (user == address) {
       await finishTx({
         txHashKeyName: localStorageKeys.stakingTxHash,
+        path: navbarElements.profile.label,
+        reload: true,
+      });
+    }
+  });
+
+  stakingContract.on('Unstake', async (user) => {
+    if (user == address) {
+      await finishTx({
+        txHashKeyName: localStorageKeys.unStakingTxHash,
         path: navbarElements.profile.label,
         reload: true,
       });
@@ -72,6 +83,10 @@ const ProfileContent = () => {
     );
     setActiveApprovingHash(!!activeApprovingHash);
     setActiveStakingHash(!!activeStakingHash);
+    const activeUnStakingHash = window.localStorage.getItem(
+      localStorageKeys.unStakingTxHash
+    );
+    setActiveUnStakingHash(!!activeUnStakingHash);
   }, []);
 
   useEffect(() => {
@@ -101,12 +116,15 @@ const ProfileContent = () => {
   };
 
   const handleError = ({ error, txHashKeyName }) => {
+    //TODO-WIP: add an object to get just object[txHashKeyName], instead os use comparison
     removeLocalStorageItem(txHashKeyName);
     setShowToast(error.reason?.replace('execution reverted:', ''));
     setToastVariant('error');
     txHashKeyName == localStorageKeys.approveStakingTxHash &&
       setActiveApprovingHash();
     txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
+    txHashKeyName == localStorageKeys.unStakingTxHash &&
+      setActiveUnStakingHash();
   };
 
   const finishTx = async ({ txHashKeyName, path, reload = false }) => {
@@ -114,6 +132,8 @@ const ProfileContent = () => {
     txHashKeyName == localStorageKeys.approveStakingTxHash &&
       setActiveApprovingHash();
     txHashKeyName == localStorageKeys.stakingTxHash && setActiveStakingHash();
+    txHashKeyName == localStorageKeys.unStakingTxHash &&
+      setActiveUnStakingHash();
     router.push(`/${path}`);
     await new Promise((r) => setTimeout(r, 2000));
     reload && window.location.reload();
@@ -166,8 +186,29 @@ const ProfileContent = () => {
     }
   };
 
+  const unStakeAction = async () => {
+    const stakingContract = getStakingFactory({ signer });
+    let tx;
+    try {
+      tx = await stakingContract.unstake(
+        ethers.utils.parseEther(tokenAmount.toString()),
+        ERC20TokenContractAdd
+      );
+      window.localStorage.setItem(localStorageKeys.unStakingTxHash, tx.hash);
+      setActiveUnStakingHash(tx.hash);
+      await tx.wait();
+    } catch (error) {
+      handleError({
+        error,
+        txHashKeyName: localStorageKeys.unStakingTxHash,
+      });
+    }
+  };
+
   const unStakingAction = (e) => {
     e.preventDefault();
+    const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
+    _isFormValid && unStakeAction();
   };
 
   const stakingAction = (e) => {
@@ -216,52 +257,54 @@ const ProfileContent = () => {
             title={ProfileSections.stakingSectionTitle}
             subtitle={ProfileSections.stakingSectionSubtitle}
           >
-            {!activeApprovingHash && !activeStakingHash && (
-              <div className={styles['staking']}>
-                <form
-                  onSubmit={
-                    userStakedAmount?.toString() > 0
-                      ? unStakingAction
-                      : stakingAction
-                  }
-                  className={styles['form']}
-                >
-                  <InputComponent
-                    className={styles['input']}
-                    type='number'
-                    name='tokenAmount'
-                    value={tokenAmount || ''}
-                    onChange={(e) => setTokenAmount(e.target.value)}
-                    min={'1'}
-                    max={
+            {!activeApprovingHash &&
+              !activeStakingHash &&
+              !activeUnStakingHash && (
+                <div className={styles['staking']}>
+                  <form
+                    onSubmit={
                       userStakedAmount?.toString() > 0
-                        ? ethers.utils.formatEther(userStakedAmount || 0)
-                        : '100'
+                        ? unStakingAction
+                        : stakingAction
                     }
-                  />
-                  <ButtonComponent
-                    className={styles['button']}
-                    type={'submit'}
-                    buttonType={'primary'}
-                    btnLabel={
-                      userStakedAmount?.toString() > 0 ? 'Unstake' : 'Stake'
-                    }
-                  />
-                </form>
-                {userStakedAmount?.toString() > 0 && (
-                  <div>
-                    <span className={`subtitle`}>
-                      {ProfileLabel.stakedTokens}
-                    </span>
-                    <span>
-                      {`${ethers.utils.formatEther(userStakedAmount)} $${
-                        ProfileLabel.tokenName
-                      }`}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                    className={styles['form']}
+                  >
+                    <InputComponent
+                      className={styles['input']}
+                      type='number'
+                      name='tokenAmount'
+                      value={tokenAmount || ''}
+                      onChange={(e) => setTokenAmount(e.target.value)}
+                      min={'1'}
+                      max={
+                        userStakedAmount?.toString() > 0
+                          ? ethers.utils.formatEther(userStakedAmount || 0)
+                          : '100'
+                      }
+                    />
+                    <ButtonComponent
+                      className={styles['button']}
+                      type={'submit'}
+                      buttonType={'primary'}
+                      btnLabel={
+                        userStakedAmount?.toString() > 0 ? 'Unstake' : 'Stake'
+                      }
+                    />
+                  </form>
+                  {userStakedAmount?.toString() > 0 && (
+                    <div>
+                      <span className={`subtitle`}>
+                        {ProfileLabel.stakedTokens}
+                      </span>
+                      <span>
+                        {`${ethers.utils.formatEther(userStakedAmount)} $${
+                          ProfileLabel.tokenName
+                        }`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             {
               <>
                 {activeApprovingHash && (
@@ -272,6 +315,9 @@ const ProfileContent = () => {
                 )}
                 {activeStakingHash && (
                   <LoadingComponent title={profileLoading.staking} />
+                )}
+                {activeUnStakingHash && (
+                  <LoadingComponent title={profileLoading.unStaking} />
                 )}
               </>
             }
