@@ -106,7 +106,11 @@ const TokensComponent = () => {
             </div>
           </>
         ) : (
-          <LoadingComponent descriptionLabel={tokenModal.claiming} fullHeight />
+          <LoadingComponent
+            title={tokenModal.claiming}
+            description={tokenModal.description}
+            fullHeight
+          />
         )}
       </div>
       <ToastComponent
@@ -116,11 +120,11 @@ const TokensComponent = () => {
       >
         {showToast}
       </ToastComponent>
-      {hasActiveHash && (
+      {/* {hasActiveHash && (
         <ModalComponent show={showModal} setShow={setShowModal}>
           {tokenModal.description}
         </ModalComponent>
-      )}
+      )} */}
     </>
   );
 };

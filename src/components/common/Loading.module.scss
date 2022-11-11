@@ -1,3 +1,5 @@
+@import 'src/css/variables.scss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -9,7 +11,12 @@
       height: 35vh;
     }
   }
-  .description {
+  .subtitle {
+    color: $gray;
+    font-size: 0.9rem;
+  }
+  .title {
+    margin-bottom: 1rem;
     font-size: 3rem;
     font-weight: bold;
   }
