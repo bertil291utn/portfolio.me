@@ -37,7 +37,7 @@ export const getStakingFactory = ({ provider, signer }) => {
     signer: signer || provider,
   });
 };
-
+//TODO-WIP: check to call alchemy provider just once not all the time
 const { chains, provider } = configureChains(
   [chain.goerli],
   [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID })]
