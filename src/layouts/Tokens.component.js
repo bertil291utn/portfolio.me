@@ -16,6 +16,7 @@ import { useProvider } from 'wagmi';
 import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
+import LoadingComponent from '@components/common/Loading.component';
 
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
@@ -50,14 +51,14 @@ const TokensComponent = () => {
 
   useEffect(() => {
     const activeHash = window.localStorage.getItem(
-      localStorageKeys.activeTxHash
+      localStorageKeys.claimingTxHash
     );
     setHasActiveHash(!!activeHash);
     isFinishedTransferTx({ provider });
   }, []);
 
   const setCloseCurrentTx = () => {
-    window.localStorage.removeItem(localStorageKeys.activeTxHash);
+    window.localStorage.removeItem(localStorageKeys.claimingTxHash);
   };
 
   const finishTx = async () => {
@@ -71,7 +72,7 @@ const TokensComponent = () => {
     try {
       const claimableContract = getClaimableFactory({ signer });
       let tx = await claimableContract.claim(ERC20TokenContractAdd);
-      window.localStorage.setItem(localStorageKeys.activeTxHash, tx.hash);
+      window.localStorage.setItem(localStorageKeys.claimingTxHash, tx.hash);
       setHasActiveHash(tx.hash);
       await tx.wait();
     } catch (error) {
@@ -105,9 +106,7 @@ const TokensComponent = () => {
             </div>
           </>
         ) : (
-          <div className={styles['claimingTokens']}>
-            <p className={styles['title']}>{tokenModal.claiming}</p>
-          </div>
+          <LoadingComponent descriptionLabel={tokenModal.claiming} fullHeight />
         )}
       </div>
       <ToastComponent

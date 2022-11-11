@@ -17,3 +17,8 @@ export const ProfileSections = {
   stakingSectionSubtitle:
     'Stake $BATL tokens to rate, view and be part of our DAO. Min 1 max 100',
 };
+
+export const profileLoading = {
+  staking: 'Staking...',
+  unStaking: 'Unstaking...',
+};
