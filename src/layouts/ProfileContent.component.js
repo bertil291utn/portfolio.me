@@ -80,11 +80,14 @@ const ProfileContent = () => {
     await tx.wait();
   };
 
-  const unStakeAction = async (e) => {};
-  const stakingAction = async (e) => {
+  const unStakingAction = (e) => {
     e.preventDefault();
-    const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
-    _isFormValid && stakeAction();
+  };
+
+  const stakingAction = (e) => {
+    e.preventDefault();
+    // const _isFormValid = isFormValid({ stakingAmount: tokenAmount });
+    // _isFormValid && stakeAction();
   };
 
   return (
@@ -100,13 +103,11 @@ const ProfileContent = () => {
         {isWalletConnected && (
           <div className={styles['profile']}>
             <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
-            {userCustomTokenBalance && (
-              <span>
-                {`${ethers.utils.formatEther(userCustomTokenBalance)} $${
-                  ProfileLabel.tokenName
-                }`}
-              </span>
-            )}
+            <span>
+              {`${ethers.utils.formatEther(userCustomTokenBalance || 0)} $${
+                ProfileLabel.tokenName
+              }`}
+            </span>
             {userCustomTokenBalance?.toString() == 0 && (
               <div className={styles['claim-btn']}>
                 <ButtonComponent
@@ -127,9 +128,14 @@ const ProfileContent = () => {
           subtitle={ProfileSections.stakingSectionSubtitle}
         >
           <div className={styles['staking']}>
-            {/* todo-wip: add ternary to stake & unstake submit */}
-
-            <form onSubmit={stakingAction} className={styles['form']}>
+            <form
+              onSubmit={
+                userStakedAmount?.toString() > 0
+                  ? unStakingAction
+                  : stakingAction
+              }
+              className={styles['form']}
+            >
               <InputComponent
                 className={styles['input']}
                 type='number'
@@ -137,7 +143,11 @@ const ProfileContent = () => {
                 value={tokenAmount || ''}
                 onChange={(e) => setTokenAmount(e.target.value)}
                 min={'1'}
-                max={'100'}
+                max={
+                  userStakedAmount?.toString() > 0
+                    ? ethers.utils.formatEther(userStakedAmount || 0)
+                    : '100'
+                }
               />
               <ButtonComponent
                 className={styles['button']}
@@ -151,13 +161,11 @@ const ProfileContent = () => {
             {userStakedAmount?.toString() > 0 && (
               <div>
                 <span className={`subtitle`}>{ProfileLabel.stakedTokens}</span>
-                {userStakedAmount && (
-                  <span>
-                    {`${ethers.utils.formatEther(
-                      userStakedAmount?.toString()
-                    )} $${ProfileLabel.tokenName}`}
-                  </span>
-                )}
+                <span>
+                  {`${ethers.utils.formatEther(userStakedAmount)} $${
+                    ProfileLabel.tokenName
+                  }`}
+                </span>
               </div>
             )}
           </div>
