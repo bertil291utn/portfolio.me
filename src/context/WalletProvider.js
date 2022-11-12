@@ -10,7 +10,6 @@ export default function WalletProvider({ children }) {
   const [userStakedAmount, setUserStakedAmount] = useState();
   const { address, isConnected } = useAccount();
   const provider = useProvider();
-  //TODO-WIP:throw with catch error
   const getUserCustomTokenBalance = async ({ provider, address }) => {
     const tokenContract = getTokenFactory({ provider });
     const userTokenAmount = await tokenContract.balanceOf(address);

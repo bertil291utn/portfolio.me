@@ -122,7 +122,6 @@ const ProfileContent = () => {
   };
 
   const handleError = ({ error, txHashKeyName }) => {
-    //TODO-WIP: add an object to get just object[txHashKeyName], instead os use comparison
     removeLocalStorageItem(txHashKeyName);
     setShowToast(error.reason?.replace('execution reverted:', ''));
     setToastVariant('error');
