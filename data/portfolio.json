@@ -26,7 +26,7 @@
     "type": "Angular, javascript",
     "description": "An e-commerce web application that allows Muebleria Hogar customers to buy any home appliances product. Built with Angular 6 and Ruby on Rails",
     "projectName": "Muebleria Hogar",
-    "overview": "https://github.com/bertil291utn/mb-hogar",
+    "overview": "https://muebleriahogar.netlify.app/",
     "github": "https://github.com/bertil291utn/mb-hogar"
   }
 ]
