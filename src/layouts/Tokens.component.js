@@ -2,14 +2,13 @@ import ButtonComponent from '@components/common/Button.component';
 import { tokenModal, tokenPageLabel } from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
-import { useAccount, useSigner } from 'wagmi';
+import { useAccount, useBalance, useSigner } from 'wagmi';
 import {
   ClaimableContractAdd,
   ERC20TokenContractAdd,
 } from 'src/config/contracts';
 import ToastComponent from '@components/common/Toast.component';
 import { getClaimableFactory, getTokenFactory } from '@utils/web3';
-import ModalComponent from '@components/common/Modal.component';
 import { localStorageKeys } from '@keys/localStorage';
 import { useRouter } from 'next/router';
 import { useProvider } from 'wagmi';
@@ -21,13 +20,15 @@ import LoadingComponent from '@components/common/Loading.component';
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
   const [hasActiveHash, setHasActiveHash] = useState();
-  const [showModal, setShowModal] = useState(true);
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const { data: signer } = useSigner();
   const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected } = useAccount();
+  const { data: userBalance } = useBalance({
+    address,
+  });
 
   const router = useRouter();
   useEffect(() => {
@@ -67,6 +68,10 @@ const TokensComponent = () => {
     window.location.reload(true);
   };
 
+  const getEths = (URL) => () => {
+    URL && window.open(URL, '_tab');
+  };
+
   const getTokensAction = async () => {
     try {
       const claimableContract = getClaimableFactory({ signer });
@@ -95,12 +100,23 @@ const TokensComponent = () => {
                 <ConnectButton showBalance={false} />
               </div>
               {isWalletConnected && (
-                <ButtonComponent
-                  className={styles['button__content']}
-                  buttonType='primary'
-                  btnLabel={tokenPageLabel.buttonLabel}
-                  onClick={getTokensAction}
-                />
+                <>
+                  <ButtonComponent
+                    className={styles['button__content']}
+                    buttonType='primary'
+                    btnLabel={tokenPageLabel.buttonLabel}
+                    onClick={getTokensAction}
+                  />
+
+                  {userBalance?.formatted <= 0 && (
+                    <ButtonComponent
+                      className={styles['get-eth']}
+                      buttonType='tertiary'
+                      btnLabel={'Get Eth'}
+                      onClick={getEths('https://goerlifaucet.com/')}
+                    />
+                  )}
+                </>
               )}
             </div>
           </>
@@ -119,11 +135,6 @@ const TokensComponent = () => {
       >
         {showToast}
       </ToastComponent>
-      {/* {hasActiveHash && (
-        <ModalComponent show={showModal} setShow={setShowModal}>
-          {tokenModal.description}
-        </ModalComponent>
-      )} */}
     </>
   );
 };
