@@ -9,3 +9,8 @@ export const tokenModal = {
   description: 'Your transaction has just started. Wait until is finished',
   claiming: 'Claiming tokens...',
 };
+
+export const getEth = {
+  buttonLabel: 'Get Eth',
+  URL: 'https://goerlifaucet.com/',
+};

@@ -1,5 +1,9 @@
 import ButtonComponent from '@components/common/Button.component';
-import { tokenModal, tokenPageLabel } from '@placeholders/tokens.placeholder';
+import {
+  getEth,
+  tokenModal,
+  tokenPageLabel,
+} from '@placeholders/tokens.placeholder';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
 import { useAccount, useBalance, useSigner } from 'wagmi';
@@ -108,12 +112,12 @@ const TokensComponent = () => {
                     onClick={getTokensAction}
                   />
 
-                  {userBalance?.formatted <= 0 && (
+                  {userBalance?.formatted <= 0.05 && (
                     <ButtonComponent
                       className={styles['get-eth']}
                       buttonType='tertiary'
-                      btnLabel={'Get Eth'}
-                      onClick={getEths('https://goerlifaucet.com/')}
+                      btnLabel={getEth.buttonLabel}
+                      onClick={getEths(getEth.URL)}
                     />
                   )}
                 </>
