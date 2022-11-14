@@ -53,7 +53,7 @@ const configProvProd = [
 ];
 const { chains, provider } = configureChains(
   [chain.goerli],
-  process.env.NEXT_PUBLIC_ENV.toLocaleLowerCase() == 'dev'
+  process.env.NEXT_PUBLIC_ENV?.toLocaleLowerCase() == 'dev'
     ? configProvDev
     : configProvProd
 );
