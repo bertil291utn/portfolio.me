@@ -38,17 +38,24 @@ export const getStakingFactory = ({ provider, signer }) => {
     signer: signer || provider,
   });
 };
-//TODO-WIP: downgrade public provider in prod environment
+const configProvDev = [
+  alchemyProvider({
+    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+    stallTimeout: 1_000,
+    priority: 1,
+  }),
+  publicProvider({ priority: 0, stallTimeout: 2_000 }),
+];
+const configProvProd = [
+  alchemyProvider({
+    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+  }),
+];
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [
-    alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-      stallTimeout: 1_000,
-      priority: 1,
-    }),
-    publicProvider({ priority: 0, stallTimeout: 2_000 }),
-  ]
+  process.env.NEXT_PUBLIC_ENV.toLocaleLowerCase() == 'dev'
+    ? configProvDev
+    : configProvProd
 );
 
 export const chainProv = chains;
