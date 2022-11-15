@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
 import { useAccount, useSigner } from 'wagmi';
-import { getStakingFactory } from '@utils/web3';
 
 const PortfolioCard = ({
   type,
@@ -62,7 +61,7 @@ const PortfolioCard = ({
 
   const rateProject = () => {
     const _isTokenCheckPassed = isTokenCheckPassed();
-    //  _isTokenCheckPassed && /*open rate modal or something*/
+    _isTokenCheckPassed; /*&& rate portfolio*/
   };
 
   const claimAcceptBtnAction = () => {
@@ -104,7 +103,7 @@ const PortfolioCard = ({
         )}
 
         <AiFillStar
-          className={styles['icon-size']}
+          className={`${styles['icon-size']} ${styles['rated-star']}`}
           title={PortfolioLabel.rateProjectTitle}
           onClick={rateProject}
         />

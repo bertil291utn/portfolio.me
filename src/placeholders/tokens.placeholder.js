@@ -11,6 +11,6 @@ export const tokenModal = {
 };
 
 export const getEth = {
-  buttonLabel: 'Get Eth',
+  buttonLabel: 'Get GoerliETH',
   URL: 'https://goerlifaucet.com/',
 };
