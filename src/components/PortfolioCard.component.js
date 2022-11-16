@@ -18,6 +18,7 @@ const PortfolioCard = ({
   projectName,
   overview,
   github,
+  isRated,
 }) => {
   const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
   const [claimTokensModal, setClaimTokensModal] = useState(false);
@@ -103,7 +104,9 @@ const PortfolioCard = ({
         )}
 
         <AiFillStar
-          className={`${styles['icon-size']} ${styles['rated-star']}`}
+          className={`${styles['icon-size']} ${
+            isRated ? styles['rated-star'] : ''
+          }`}
           title={PortfolioLabel.rateProjectTitle}
           onClick={rateProject}
         />
