@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import {
   ClaimableContractAdd,
   ERC20TokenContractAdd,
+  RateContractAdd,
   StakingContractAdd,
 } from 'src/config/contracts';
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
@@ -10,6 +11,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import ClaimableABI from '@web3/ABI/Claimable.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
+import RateABI from '@web3/ABI/Rate.json';
 
 export const getContractFactory = ({ address, ABI, signer }) => {
   return new ethers.Contract(address, ABI, signer);
@@ -38,6 +40,15 @@ export const getStakingFactory = ({ provider, signer }) => {
     signer: signer || provider,
   });
 };
+
+export const getRatingFactory = ({ provider, signer }) => {
+  return getContractFactory({
+    address: RateContractAdd,
+    ABI: RateABI,
+    signer: signer || provider,
+  });
+};
+
 const configProvDev = [
   alchemyProvider({
     apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
