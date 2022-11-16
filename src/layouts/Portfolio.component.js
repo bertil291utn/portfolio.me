@@ -33,8 +33,8 @@ const PortfolioComponent = () => {
   };
 
   useEffect(() => {
-    getPortfolioData(portfolioDataSet);
-  }, []);
+    signer && getPortfolioData(portfolioDataSet);
+  }, [signer]);
 
   const getTokensAction = () => {
     router.push('/tokens');
@@ -45,6 +45,7 @@ const PortfolioComponent = () => {
       {portfolioDataSet?.map((data) => (
         <PortfolioCard
           key={`portfolio-card-${data.id}`}
+          projectId={data.id}
           type={data.type}
           description={data.description}
           projectName={data.projectName}

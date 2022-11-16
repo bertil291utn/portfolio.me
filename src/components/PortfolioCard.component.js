@@ -11,8 +11,10 @@ import { useRouter } from 'next/router';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
 import { useAccount, useSigner } from 'wagmi';
+import { getRatingFactory } from '@utils/web3';
 
 const PortfolioCard = ({
+  projectId,
   type,
   description,
   projectName,
@@ -60,9 +62,16 @@ const PortfolioCard = ({
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
-  const rateProject = () => {
+  const rateProject = async () => {
+    const rateContract = getRatingFactory({ signer });
     const _isTokenCheckPassed = isTokenCheckPassed();
-    _isTokenCheckPassed; /*&& rate portfolio*/
+    let tx;
+    if (_isTokenCheckPassed) {
+      tx = await rateContract.rateProject(projectId, !isRated);
+      //TODO-WIP: open a modal rating and block disabled star icon button
+      //use try catch
+      await tx.wait();
+    }
   };
 
   const claimAcceptBtnAction = () => {
