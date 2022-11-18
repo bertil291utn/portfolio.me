@@ -8,10 +8,15 @@ import ModalComponent from '@components/common/Modal.component';
 import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { useRouter } from 'next/router';
-import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
+import {
+  PortfolioCardLabel,
+  PortfolioLabel,
+} from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
-import { useAccount, useSigner } from 'wagmi';
+import { useAccount, useProvider, useSigner } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
+import ToastComponent from '@components/common/Toast.component';
+import LoadingComponent from '@components/common/Loading.component';
 
 const PortfolioCard = ({
   projectId,
@@ -26,15 +31,60 @@ const PortfolioCard = ({
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
+  const [toastVariant, setToastVariant] = useState();
+  const [showToast, setShowToast] = useState();
+  const [activeRatingHash, setActiveRatingHash] = useState();
+  const [activeUnRatingHash, setActiveUnRatingHash] = useState();
+
   const { resolvedTheme } = useTheme();
   const { data: signer } = useSigner();
+  const provider = useProvider();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { address } = useAccount();
 
+  const listenEvents = ({ provider }) => {
+    const ratingContract = getRatingFactory({ provider });
+    //TODO: listen transfer event not just in rating component, but also all over the app _app file
+    ratingContract.on('RatedProject', async (from, rated) => {
+      if (from == address) {
+        await finishTx({
+          txHashKeyName: rated
+            ? localStorageKeys.ratingTxHash
+            : localStorageKeys.unRatingTxHash,
+          path: '',
+          reload: true,
+        });
+      }
+    });
+  };
+
+  const removeLocalStorageItem = (txHashKeyName) => {
+    window.localStorage.removeItem(txHashKeyName);
+  };
+
+  const finishTx = async ({ txHashKeyName, path, reload = false }) => {
+    removeLocalStorageItem(txHashKeyName);
+    setActiveRatingHash();
+    setActiveRatingHash();
+    router.push(`/${path}`);
+    await new Promise((r) => setTimeout(r, 2000));
+    reload && window.location.reload();
+  };
+
   useEffect(() => {
     setMounted(true);
     setIsStakeHolder(userStakedAmount?.toString() > 0);
+
+    !isRated &&
+      setActiveRatingHash(
+        !!window.localStorage.getItem(localStorageKeys.ratingTxHash)
+      );
+    isRated &&
+      setActiveUnRatingHash(
+        !!window.localStorage.getItem(localStorageKeys.unRatingTxHash)
+      );
+    listenEvents({ provider });
   }, []);
 
   if (!mounted) {
@@ -62,15 +112,39 @@ const PortfolioCard = ({
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
+  const handleError = ({ error, txHashKeyName }) => {
+    removeLocalStorageItem(txHashKeyName);
+    setShowToast(error.reason?.replace('execution reverted:', ''));
+    setToastVariant('error');
+    !isRated && setActiveRatingHash();
+    isRated && setActiveUnRatingHash();
+  };
+
   const rateProject = async () => {
+    if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
+      setClaimTokensModal(true);
+      return;
+    }
     const rateContract = getRatingFactory({ signer });
-    const _isTokenCheckPassed = isTokenCheckPassed();
     let tx;
+    const _isTokenCheckPassed = isTokenCheckPassed();
     if (_isTokenCheckPassed) {
-      tx = await rateContract.rateProject(projectId, !isRated);
-      //TODO-WIP: open a modal rating and block disabled star icon button
-      //use try catch
-      await tx.wait();
+      try {
+        tx = await rateContract.rateProject(projectId, !isRated);
+        !isRated && setActiveRatingHash(tx.hash);
+        isRated && setActiveUnRatingHash(tx.hash);
+        !isRated &&
+          window.localStorage.setItem(localStorageKeys.ratingTxHash, tx.hash);
+        isRated &&
+          window.localStorage.setItem(localStorageKeys.unRatingTxHash, tx.hash);
+
+        await tx.wait();
+      } catch (error) {
+        handleError({
+          error,
+          txHashKeyName: localStorageKeys.ratingTxHash,
+        });
+      }
     }
   };
 
@@ -83,42 +157,64 @@ const PortfolioCard = ({
   };
 
   return (
-    <div
-      className={`${styles['card-content']} ${
-        resolvedTheme === 'dark' ? styles['card-content__dark'] : ''
-      }`}
-    >
-      <div>
-        <span className={styles['card-content__tech']}>{type}</span>
-        <span className={styles['card-content__project']}>{projectName}</span>
-        <span className={styles['card-content__description']}>
-          {description}
-        </span>
-      </div>
-      <div className={styles['card-content__icons']}>
-        {overview && (
-          <TbWorld
-            className={styles['icon-size']}
-            title={PortfolioLabel.onlineVersionTitle}
-            onClick={openURL(overview)}
-          />
+    <>
+      <div
+        className={`${styles['card-content']} ${
+          resolvedTheme === 'dark' ? styles['card-content__dark'] : ''
+        }`}
+      >
+        {!activeRatingHash && !activeUnRatingHash && (
+          <>
+            <div>
+              <span className={styles['card-content__tech']}>{type}</span>
+              <span className={styles['card-content__project']}>
+                {projectName}
+              </span>
+              <span className={styles['card-content__description']}>
+                {description}
+              </span>
+            </div>
+            <div className={styles['card-content__icons']}>
+              {overview && (
+                <TbWorld
+                  className={styles['icon-size']}
+                  title={PortfolioLabel.onlineVersionTitle}
+                  onClick={openURL(overview)}
+                />
+              )}
+
+              {github && (
+                <AiFillGithub
+                  className={styles['icon-size']}
+                  title={PortfolioLabel.githubRepoTitle}
+                  onClick={openURL(github)}
+                />
+              )}
+
+              <AiFillStar
+                className={`${styles['icon-size']} ${
+                  isRated ? styles['rated-star'] : ''
+                }`}
+                title={
+                  isRated
+                    ? PortfolioLabel.unStarProjectTitle
+                    : PortfolioLabel.rateProjectTitle
+                }
+                onClick={rateProject}
+              />
+            </div>
+          </>
         )}
 
-        {github && (
-          <AiFillGithub
-            className={styles['icon-size']}
-            title={PortfolioLabel.githubRepoTitle}
-            onClick={openURL(github)}
+        {(activeRatingHash || activeUnRatingHash) && (
+          <LoadingComponent
+            title={
+              activeRatingHash
+                ? PortfolioCardLabel.rating
+                : PortfolioCardLabel.unRating
+            }
           />
         )}
-
-        <AiFillStar
-          className={`${styles['icon-size']} ${
-            isRated ? styles['rated-star'] : ''
-          }`}
-          title={PortfolioLabel.rateProjectTitle}
-          onClick={rateProject}
-        />
       </div>
       <ModalComponent
         show={claimTokensModal}
@@ -136,7 +232,14 @@ const PortfolioCard = ({
       >
         {PortfolioLabel.modalStakeDesc}
       </ModalComponent>
-    </div>
+      <ToastComponent
+        variant={toastVariant}
+        show={showToast}
+        setShow={setShowToast}
+      >
+        {showToast}
+      </ToastComponent>
+    </>
   );
 };
 

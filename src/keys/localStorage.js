@@ -6,4 +6,6 @@ export const localStorageKeys = {
   approveStakingTxHash: 'approveStakingTxHash',
   stakingTxHash: 'stakingTxHash',
   unStakingTxHash: 'unStakingTxHash',
+  ratingTxHash: 'ratingTxHash',
+  unRatingTxHash: 'unRatingTxHash',
 };
