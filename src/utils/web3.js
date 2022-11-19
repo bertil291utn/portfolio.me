@@ -59,13 +59,13 @@ const configProvDev = [
   publicProvider({ priority: 0, stallTimeout: 2_000 }),
 ];
 const configProvProd = [
-  // alchemyProvider({
-  //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-  //   priority: 0,
-  // }),
+  alchemyProvider({
+    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+    priority: 0,
+  }),
   infuraProvider({
     apiKey: process.env.NEXT_PUBLIC_GOERLI_API_KEY,
-    priority: 0,
+    priority: 1,
   }),
 ];
 const { chains, provider } = configureChains(

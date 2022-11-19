@@ -19,46 +19,30 @@ import { useProvider } from 'wagmi';
 import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
+import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
 
 const TokensComponent = () => {
-  // const [isWalletConnected, setIsWalletConnected] = useState();
   const [hasActiveHash, setHasActiveHash] = useState();
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const [ethUserBalance, setEthUserBalance] = useState();
-  console.log(
-    '🚀 ~ file: Tokens.component.js ~ line 30 ~ TokensComponent ~ ethUserBalance',
-    ethUserBalance
-  );
   const { data: signer } = useSigner();
   const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected } = useAccount();
-  console.log(
-    '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ address',
-    address
-  );
-  console.log(
-    '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ isConnected',
-    isConnected
-  );
-  const { data } = useBalance({
-    address,
-  });
-  console.log(
-    '🚀 ~ file: Tokens.component.js ~ line 49 ~ TokensComponent ~ _userBalance',
-    data
-  );
+
+  const getBalance = async ({ provider, address }) => {
+    const userBalance = await provider.getBalance(address);
+    const _balance = ethers.utils.formatEther(userBalance?.toString());
+    setEthUserBalance((+_balance).toFixed(4));
+  };
 
   useEffect(() => {
-    setEthUserBalance(data?.formatted);
-  }, [data]);
+    getBalance({ provider, address });
+  }, [address]);
 
   const router = useRouter();
-  // useEffect(() => {
-  //   setIsWalletConnected(isConnected);
-  // });
 
   const isFinishedTransferTx = async ({ provider }) => {
     const tokenContract = getTokenFactory({ provider });
@@ -125,26 +109,22 @@ const TokensComponent = () => {
               <div className={styles['user-connected-btn']}>
                 <ConnectButton showBalance={false} />
               </div>
-              {/* {isWalletConnected && ( */}
-              <>
-                {ethUserBalance > 0 && (
-                  <ButtonComponent
-                    className={styles['button__content']}
-                    buttonType='primary'
-                    btnLabel={tokenPageLabel.buttonLabel}
-                    onClick={getTokensAction}
-                  />
-                )}
-                {ethUserBalance <= 0.005 && (
-                  <ButtonComponent
-                    className={styles['get-eth']}
-                    buttonType='tertiary'
-                    btnLabel={getEth.buttonLabel}
-                    onClick={getEths(getEth.URL)}
-                  />
-                )}
-              </>
-              {/* )} */}
+              {ethUserBalance > 0 && (
+                <ButtonComponent
+                  className={styles['button__content']}
+                  buttonType='primary'
+                  btnLabel={tokenPageLabel.buttonLabel}
+                  onClick={getTokensAction}
+                />
+              )}
+              {ethUserBalance <= 0.005 && (
+                <ButtonComponent
+                  className={styles['get-eth']}
+                  buttonType='tertiary'
+                  btnLabel={getEth.buttonLabel}
+                  onClick={getEths(getEth.URL)}
+                />
+              )}
             </div>
           </>
         ) : (
