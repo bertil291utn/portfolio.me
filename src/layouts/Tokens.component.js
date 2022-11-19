@@ -43,17 +43,17 @@ const TokensComponent = () => {
     '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ isConnected',
     isConnected
   );
-  const { data: userBalance } = useBalance({
+  const { data } = useBalance({
     address,
   });
   console.log(
-    '🚀 ~ file: Tokens.component.js ~ line 45 ~ TokensComponent ~ userBalance',
-    userBalance
+    '🚀 ~ file: Tokens.component.js ~ line 49 ~ TokensComponent ~ _userBalance',
+    data
   );
 
   useEffect(() => {
-    setEthUserBalance(userBalance?.formatted);
-  }, [userBalance]);
+    setEthUserBalance(data?.formatted);
+  }, [data]);
 
   const router = useRouter();
   // useEffect(() => {
