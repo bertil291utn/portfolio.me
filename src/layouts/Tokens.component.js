@@ -20,12 +20,13 @@ import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
 import LoadingComponent from '@components/common/Loading.component';
-// TODO-WIP:enable local storage set web 3 users after claims
+
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
   const [hasActiveHash, setHasActiveHash] = useState();
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
+  const [ethUserBalance, setEthUserBalance] = useState();
   const { data: signer } = useSigner();
   const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
@@ -33,6 +34,10 @@ const TokensComponent = () => {
   const { data: userBalance } = useBalance({
     address,
   });
+
+  useEffect(() => {
+    setEthUserBalance(userBalance?.formatted);
+  }, [userBalance]);
 
   const router = useRouter();
   useEffect(() => {
@@ -106,7 +111,7 @@ const TokensComponent = () => {
               </div>
               {isWalletConnected && (
                 <>
-                  {userBalance?.formatted > 0 && (
+                  {ethUserBalance > 0 && (
                     <ButtonComponent
                       className={styles['button__content']}
                       buttonType='primary'
@@ -114,7 +119,7 @@ const TokensComponent = () => {
                       onClick={getTokensAction}
                     />
                   )}
-                  {userBalance?.formatted <= 0.005 && (
+                  {ethUserBalance <= 0.005 && (
                     <ButtonComponent
                       className={styles['get-eth']}
                       buttonType='tertiary'
