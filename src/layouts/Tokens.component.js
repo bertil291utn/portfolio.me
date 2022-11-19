@@ -22,15 +22,23 @@ import styles from './Token.module.scss';
 import LoadingComponent from '@components/common/Loading.component';
 
 const TokensComponent = () => {
-  const [isWalletConnected, setIsWalletConnected] = useState();
+  // const [isWalletConnected, setIsWalletConnected] = useState();
   const [hasActiveHash, setHasActiveHash] = useState();
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const [ethUserBalance, setEthUserBalance] = useState();
+  console.log(
+    '🚀 ~ file: Tokens.component.js ~ line 30 ~ TokensComponent ~ ethUserBalance',
+    ethUserBalance
+  );
   const { data: signer } = useSigner();
   const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected } = useAccount();
+  console.log(
+    '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ isConnected',
+    isConnected
+  );
   const { data: userBalance } = useBalance({
     address,
   });
@@ -40,9 +48,9 @@ const TokensComponent = () => {
   }, [userBalance]);
 
   const router = useRouter();
-  useEffect(() => {
-    setIsWalletConnected(isConnected);
-  });
+  // useEffect(() => {
+  //   setIsWalletConnected(isConnected);
+  // });
 
   const isFinishedTransferTx = async ({ provider }) => {
     const tokenContract = getTokenFactory({ provider });
@@ -109,26 +117,26 @@ const TokensComponent = () => {
               <div className={styles['user-connected-btn']}>
                 <ConnectButton showBalance={false} />
               </div>
-              {isWalletConnected && (
-                <>
-                  {ethUserBalance > 0 && (
-                    <ButtonComponent
-                      className={styles['button__content']}
-                      buttonType='primary'
-                      btnLabel={tokenPageLabel.buttonLabel}
-                      onClick={getTokensAction}
-                    />
-                  )}
-                  {ethUserBalance <= 0.005 && (
-                    <ButtonComponent
-                      className={styles['get-eth']}
-                      buttonType='tertiary'
-                      btnLabel={getEth.buttonLabel}
-                      onClick={getEths(getEth.URL)}
-                    />
-                  )}
-                </>
-              )}
+              {/* {isWalletConnected && ( */}
+              <>
+                {ethUserBalance > 0 && (
+                  <ButtonComponent
+                    className={styles['button__content']}
+                    buttonType='primary'
+                    btnLabel={tokenPageLabel.buttonLabel}
+                    onClick={getTokensAction}
+                  />
+                )}
+                {ethUserBalance <= 0.005 && (
+                  <ButtonComponent
+                    className={styles['get-eth']}
+                    buttonType='tertiary'
+                    btnLabel={getEth.buttonLabel}
+                    onClick={getEths(getEth.URL)}
+                  />
+                )}
+              </>
+              {/* )} */}
             </div>
           </>
         ) : (
