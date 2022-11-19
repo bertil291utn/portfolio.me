@@ -36,6 +36,10 @@ const TokensComponent = () => {
   const provider = useProvider();
   const { address, isConnected } = useAccount();
   console.log(
+    '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ address',
+    address
+  );
+  console.log(
     '🚀 ~ file: Tokens.component.js ~ line 38 ~ TokensComponent ~ isConnected',
     isConnected
   );
