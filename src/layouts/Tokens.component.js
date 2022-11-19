@@ -44,6 +44,7 @@ const TokensComponent = () => {
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Transfer', async (from, to) => {
       if (from == ClaimableContractAdd && to == address) {
+        window.localStorage.setItem(localStorageKeys.isWeb3User, true);
         await finishTx();
       }
     });
