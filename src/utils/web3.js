@@ -8,6 +8,7 @@ import {
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, erc20ABI } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 import ClaimableABI from '@web3/ABI/Claimable.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
@@ -58,8 +59,13 @@ const configProvDev = [
   publicProvider({ priority: 0, stallTimeout: 2_000 }),
 ];
 const configProvProd = [
-  alchemyProvider({
-    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+  // alchemyProvider({
+  //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+  //   priority: 0,
+  // }),
+  infuraProvider({
+    apiKey: process.env.NEXT_PUBLIC_GOERLI_API_KEY,
+    priority: 0,
   }),
 ];
 const { chains, provider } = configureChains(
