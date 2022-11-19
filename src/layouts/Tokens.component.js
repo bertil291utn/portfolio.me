@@ -42,6 +42,10 @@ const TokensComponent = () => {
   const { data: userBalance } = useBalance({
     address,
   });
+  console.log(
+    '🚀 ~ file: Tokens.component.js ~ line 45 ~ TokensComponent ~ userBalance',
+    userBalance
+  );
 
   useEffect(() => {
     setEthUserBalance(userBalance?.formatted);
