@@ -74,7 +74,6 @@ const PortfolioCard = ({
 
   useEffect(() => {
     setMounted(true);
-    setIsStakeHolder(userStakedAmount?.toString() > 0);
 
     !isRated &&
       setActiveRatingHash(
@@ -86,6 +85,10 @@ const PortfolioCard = ({
       );
     listenEvents({ provider });
   }, []);
+
+  useEffect(() => {
+    setIsStakeHolder(userStakedAmount?.toString() > 0);
+  }, [userStakedAmount]);
 
   if (!mounted) {
     return null;
