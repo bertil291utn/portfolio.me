@@ -4,7 +4,7 @@ import ToggleComponent from '@components/common/Toggle.component';
 import { useTheme } from 'next-themes';
 import resumeFile from '@data/resume.json';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
-
+// TODO-WIP: same as portfolio, enable button actions only whe user has staked
 const ResumeComponent = () => {
   const ICON = {
     linkedin: <BsLinkedin />,

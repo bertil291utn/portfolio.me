@@ -20,8 +20,7 @@ import { useWalletContext } from '@context/WalletProvider';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
 import LoadingComponent from '@components/common/Loading.component';
-// TODO-WIP: check conditions for non web3 users
-// enable local storage set wb 3 users after claims
+// TODO-WIP:enable local storage set web 3 users after claims
 const TokensComponent = () => {
   const [isWalletConnected, setIsWalletConnected] = useState();
   const [hasActiveHash, setHasActiveHash] = useState();
@@ -106,14 +105,15 @@ const TokensComponent = () => {
               </div>
               {isWalletConnected && (
                 <>
-                  <ButtonComponent
-                    className={styles['button__content']}
-                    buttonType='primary'
-                    btnLabel={tokenPageLabel.buttonLabel}
-                    onClick={getTokensAction}
-                  />
-                  {/* TODO-WIP: first get eth then interact with app */}
-                  {userBalance?.formatted <= 0.05 && (
+                  {userBalance?.formatted > 0 && (
+                    <ButtonComponent
+                      className={styles['button__content']}
+                      buttonType='primary'
+                      btnLabel={tokenPageLabel.buttonLabel}
+                      onClick={getTokensAction}
+                    />
+                  )}
+                  {userBalance?.formatted <= 0.005 && (
                     <ButtonComponent
                       className={styles['get-eth']}
                       buttonType='tertiary'
