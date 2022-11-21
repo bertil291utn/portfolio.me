@@ -8,8 +8,10 @@ const WalletContext = createContext();
 export default function WalletProvider({ children }) {
   const [userCustomTokenBalance, setUserCustomTokenBalance] = useState();
   const [userStakedAmount, setUserStakedAmount] = useState();
+  const [tokenSymbol, setTokenSymbol] = useState();
   const { address, isConnected } = useAccount();
   const provider = useProvider();
+
   const getUserCustomTokenBalance = async ({ provider, address }) => {
     const tokenContract = getTokenFactory({ provider });
     const userTokenAmount = await tokenContract.balanceOf(address);
@@ -22,9 +24,16 @@ export default function WalletProvider({ children }) {
     setUserStakedAmount(userStakedAmount);
   };
 
+  const getTokenSymbol = async ({ provider }) => {
+    const tokenContract = getTokenFactory({ provider });
+    const tokenSymbol = await tokenContract.symbol();
+    setTokenSymbol(tokenSymbol);
+  };
+
   useEffect(() => {
     isConnected && getUserCustomTokenBalance({ provider, address });
     isConnected && getUserStakedAmount({ provider, address });
+    isConnected && getTokenSymbol({ provider });
   }, [address]);
 
   return (
@@ -32,6 +41,7 @@ export default function WalletProvider({ children }) {
       value={{
         userCustomTokenBalance,
         userStakedAmount,
+        tokenSymbol,
       }}
     >
       {children}

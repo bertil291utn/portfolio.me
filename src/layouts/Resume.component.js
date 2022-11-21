@@ -17,7 +17,8 @@ import { navbarElements } from '@placeholders/navbar.placeholders';
 const ResumeComponent = () => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
-  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
+  const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
+    useWalletContext();
   const [isStakeHolder, setIsStakeHolder] = useState(false);
   const router = useRouter();
 
@@ -157,7 +158,7 @@ const ResumeComponent = () => {
         acceptLabel={PortfolioLabel.freeTokensBtn}
         acceptBtnAction={claimAcceptBtnAction}
       >
-        {PortfolioLabel.modalClaimDesc}
+        {PortfolioLabel.modalClaimDesc(tokenSymbol)}
       </ModalComponent>
       <ModalComponent
         show={stakeTokensModal}
@@ -165,7 +166,7 @@ const ResumeComponent = () => {
         acceptLabel={PortfolioLabel.stakeTokensBtn}
         acceptBtnAction={stakeAcceptBtnAction}
       >
-        {PortfolioLabel.modalStakeDesc}
+        {PortfolioLabel.modalStakeDesc(tokenSymbol)}
       </ModalComponent>
     </div>
   );

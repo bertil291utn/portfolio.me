@@ -33,7 +33,8 @@ const ProfileContent = () => {
   const [activeApprovingHash, setActiveApprovingHash] = useState();
   const [activeStakingHash, setActiveStakingHash] = useState();
   const [activeUnStakingHash, setActiveUnStakingHash] = useState();
-  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
+  const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
+    useWalletContext();
   const [tokenAmount, setTokenAmount] = useState();
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
@@ -229,9 +230,9 @@ const ProfileContent = () => {
             <div className={styles['profile']}>
               <span className={`subtitle`}>{ProfileLabel.availableTokens}</span>
               <span>
-                {`${ethers.utils.formatEther(userCustomTokenBalance || 0)} $${
-                  ProfileLabel.tokenName
-                }`}
+                {`${ethers.utils.formatEther(
+                  userCustomTokenBalance || 0
+                )} $${tokenSymbol}`}
               </span>
               {userCustomTokenBalance?.toString() == 0 && (
                 <div className={styles['claim-btn']}>
@@ -252,7 +253,7 @@ const ProfileContent = () => {
           <SectionPanel
             id={IdContent.staking}
             title={ProfileSections.stakingSectionTitle}
-            subtitle={ProfileSections.stakingSectionSubtitle}
+            subtitle={ProfileSections.stakingSectionSubtitle(tokenSymbol)}
           >
             {!activeApprovingHash &&
               !activeStakingHash &&
@@ -294,9 +295,9 @@ const ProfileContent = () => {
                         {ProfileLabel.stakedTokens}
                       </span>
                       <span>
-                        {`${ethers.utils.formatEther(userStakedAmount)} $${
-                          ProfileLabel.tokenName
-                        }`}
+                        {`${ethers.utils.formatEther(
+                          userStakedAmount
+                        )} $${tokenSymbol}`}
                       </span>
                     </div>
                   )}

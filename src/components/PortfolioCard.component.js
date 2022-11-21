@@ -28,7 +28,8 @@ const PortfolioCard = ({
   github,
   isRated,
 }) => {
-  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
+  const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
+    useWalletContext();
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
@@ -220,7 +221,7 @@ const PortfolioCard = ({
         acceptLabel={PortfolioLabel.freeTokensBtn}
         acceptBtnAction={claimAcceptBtnAction}
       >
-        {PortfolioLabel.modalClaimDesc}
+        {PortfolioLabel.modalClaimDesc(tokenSymbol)}
       </ModalComponent>
       <ModalComponent
         show={stakeTokensModal}
@@ -228,7 +229,7 @@ const PortfolioCard = ({
         acceptLabel={PortfolioLabel.stakeTokensBtn}
         acceptBtnAction={stakeAcceptBtnAction}
       >
-        {PortfolioLabel.modalStakeDesc}
+        {PortfolioLabel.modalStakeDesc(tokenSymbol)}
       </ModalComponent>
       <ToastComponent
         variant={toastVariant}

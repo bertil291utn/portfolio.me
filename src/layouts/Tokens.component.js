@@ -32,7 +32,7 @@ const TokensComponent = () => {
   const [toastVariant, setToastVariant] = useState();
   const [ethUserBalance, setEthUserBalance] = useState();
   const { data: signer } = useSigner();
-  const { userCustomTokenBalance } = useWalletContext();
+  const { userCustomTokenBalance, tokenSymbol } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected } = useAccount();
 
@@ -105,7 +105,7 @@ const TokensComponent = () => {
                 <p
                   className={styles['description']}
                   dangerouslySetInnerHTML={{
-                    __html: tokenPageLabel.description,
+                    __html: tokenPageLabel.description(tokenSymbol),
                   }}
                 ></p>
                 <div className={styles['button']}>
@@ -131,7 +131,12 @@ const TokensComponent = () => {
                 </div>
               </>
             )}
-            {userCustomTokenBalance?.toString() > 0 && <>NFT</>}
+            {userCustomTokenBalance?.toString() > 0 && (
+              <>
+                <span className={styles['title']}>{NFTPage.title}</span>
+                <p className={styles['description']}>{NFTPage.description}</p>
+              </>
+            )}
           </>
         ) : (
           <LoadingComponent

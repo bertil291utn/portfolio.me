@@ -4,10 +4,11 @@ export const PortfolioLabel = {
   githubRepoTitle: 'Github repository',
   rateProjectTitle: 'Star project',
   unStarProjectTitle: 'Unstar project',
-  modalClaimDesc: 'Claim $BATL free tokens first, then interact with app',
+  modalClaimDesc: (tokenSymbol) =>
+    `Claim $${tokenSymbol} free tokens first, then interact with app`,
   stakeTokensBtn: 'Stake tokens',
-  modalStakeDesc:
-    "To rate, view repositories and live version or participate in our DAO you're going to stake $BATL tokens",
+  modalStakeDesc: (tokenSymbol) =>
+    `To rate, view repositories and live version or participate in our DAO you're going to stake $${tokenSymbol} tokens`,
 };
 
 export const PortfolioCardLabel = {
