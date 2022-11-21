@@ -134,7 +134,9 @@ const TokensComponent = () => {
             {userCustomTokenBalance?.toString() > 0 && (
               <>
                 <span className={styles['title']}>{NFTPage.title}</span>
-                <p className={styles['description']}>{NFTPage.description}</p>
+                <p className={styles['description']}>
+                  {NFTPage.description(tokenSymbol)}
+                </p>
               </>
             )}
           </>
