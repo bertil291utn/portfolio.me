@@ -12,12 +12,6 @@ const NavbarComponent = ({ navbarElements }) => {
     <ul className={styles['navbar']}>
       {Object.values(navbarElements)?.map(
         ({ label, path, icon: Icon }, index) => {
-          if (
-            label === navbarElements.tokens.label &&
-            userCustomTokenBalance?.toString() > 0
-          ) {
-            return null;
-          }
           return (
             <li
               className={`${styles['list']} ${

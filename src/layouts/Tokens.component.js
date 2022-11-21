@@ -1,6 +1,7 @@
 import ButtonComponent from '@components/common/Button.component';
 import {
   getEth,
+  NFTPage,
   tokenModal,
   tokenPageLabel,
 } from '@placeholders/tokens.placeholder';
@@ -22,8 +23,11 @@ import styles from './Token.module.scss';
 import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
 
+// TODO-WIP:add nfts section
+//enable nft section after claimed tokens
 const TokensComponent = () => {
-  const [hasActiveHash, setHasActiveHash] = useState();
+  const [activeTknClaimHash, setActiveTknClaimHash] = useState();
+  const [activeNFTHash, setActiveNFTHash] = useState();
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const [ethUserBalance, setEthUserBalance] = useState();
@@ -56,12 +60,7 @@ const TokensComponent = () => {
   };
 
   useEffect(() => {
-    userCustomTokenBalance?.toString() > 0 &&
-      router.push(`/${navbarElements.profile.label}`);
-  }, [userCustomTokenBalance]);
-
-  useEffect(() => {
-    setHasActiveHash(
+    setActiveTknClaimHash(
       !!window.localStorage.getItem(localStorageKeys.claimingTxHash)
     );
     isFinishedTransferTx({ provider });
@@ -87,7 +86,7 @@ const TokensComponent = () => {
       const claimableContract = getClaimableFactory({ signer });
       let tx = await claimableContract.claim(ERC20TokenContractAdd);
       window.localStorage.setItem(localStorageKeys.claimingTxHash, tx.hash);
-      setHasActiveHash(tx.hash);
+      setActiveTknClaimHash(tx.hash);
       await tx.wait();
     } catch (error) {
       setCloseCurrentTx();
@@ -98,38 +97,47 @@ const TokensComponent = () => {
   return (
     <>
       <div className={styles['content']}>
-        {!hasActiveHash ? (
+        {!activeTknClaimHash && !activeNFTHash ? (
           <>
-            <span className={styles['title']}>{tokenPageLabel.title}</span>
-            <p
-              className={styles['description']}
-              dangerouslySetInnerHTML={{ __html: tokenPageLabel.description }}
-            ></p>
-            <div className={styles['button']}>
-              <div className={styles['user-connected-btn']}>
-                <ConnectButton showBalance={false} />
-              </div>
-              {ethUserBalance > 0 && (
-                <ButtonComponent
-                  className={styles['button__content']}
-                  buttonType='primary'
-                  btnLabel={tokenPageLabel.buttonLabel}
-                  onClick={getTokensAction}
-                />
-              )}
-              {ethUserBalance <= 0.005 && (
-                <ButtonComponent
-                  className={styles['get-eth']}
-                  buttonType='tertiary'
-                  btnLabel={getEth.buttonLabel}
-                  onClick={getEths(getEth.URL)}
-                />
-              )}
-            </div>
+            {userCustomTokenBalance?.toString() <= 0 && (
+              <>
+                <span className={styles['title']}>{tokenPageLabel.title}</span>
+                <p
+                  className={styles['description']}
+                  dangerouslySetInnerHTML={{
+                    __html: tokenPageLabel.description,
+                  }}
+                ></p>
+                <div className={styles['button']}>
+                  <div className={styles['user-connected-btn']}>
+                    <ConnectButton showBalance={false} />
+                  </div>
+                  {ethUserBalance > 0 && (
+                    <ButtonComponent
+                      className={styles['button__content']}
+                      buttonType='primary'
+                      btnLabel={tokenPageLabel.buttonLabel}
+                      onClick={getTokensAction}
+                    />
+                  )}
+                  {ethUserBalance <= 0.005 && (
+                    <ButtonComponent
+                      className={styles['get-eth']}
+                      buttonType='tertiary'
+                      btnLabel={getEth.buttonLabel}
+                      onClick={getEths(getEth.URL)}
+                    />
+                  )}
+                </div>
+              </>
+            )}
+            {userCustomTokenBalance?.toString() > 0 && <>NFT</>}
           </>
         ) : (
           <LoadingComponent
-            title={tokenModal.claiming}
+            title={
+              activeTknClaimHash ? tokenModal.claiming : NFTPage.transferringNFT
+            }
             description={tokenModal.description}
             fullHeight
           />
