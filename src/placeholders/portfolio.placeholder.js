@@ -11,6 +11,6 @@ export const PortfolioLabel = {
 };
 
 export const PortfolioCardLabel = {
-  rating: 'Starring...',
-  unRating: 'Unstarring...',
+  rating: 'Starring ...',
+  unRating: 'Unstarring ...',
 };

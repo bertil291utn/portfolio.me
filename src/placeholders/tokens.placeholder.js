@@ -7,10 +7,16 @@ export const tokenPageLabel = {
 
 export const tokenModal = {
   description: 'Your transaction has just started. Wait until is finished',
-  claiming: 'Claiming tokens...',
+  claiming: 'Claiming tokens ...',
 };
 
 export const getEth = {
   buttonLabel: 'Get GoerliETH',
   URL: 'https://goerlifaucet.com/',
+};
+
+export const NFTPage = {
+  title: 'nft',
+  description: 'nft description',
+  transferringNFT: 'Transferring NFT ...',
 };
