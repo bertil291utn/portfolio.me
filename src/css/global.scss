@@ -1,18 +1,18 @@
 @import 'src/css/variables.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Muli:wght@100,200,300,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=swap');
 
 @font-face {
   font-family: 'Just Sunday';
   src: url('/fonts/Just-Sunday.ttf');
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 
 :root {
   max-width: $max-width;
   margin: 0 auto;
-  font-family: 'Muli', sans-serif;
+  font-family: 'Mulish', sans-serif;
   background-color: $light-bg;
 }
 @media screen and (max-width: 768px) {
