@@ -17,6 +17,7 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
 import ToastComponent from '@components/common/Toast.component';
 import LoadingComponent from '@components/common/Loading.component';
+import { isTokenCheckPassed } from '@utils/common';
 
 const PortfolioCard = ({
   projectId,
@@ -94,24 +95,13 @@ const PortfolioCard = ({
     return null;
   }
 
-  const isTokenCheckPassed = () => {
-    if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
-      return true;
-    }
-
-    if (userCustomTokenBalance?.toString() == 0) {
-      setClaimTokensModal(true);
-      return false;
-    }
-    if (!isStakeHolder) {
-      setStakeTokensModal(true);
-      return false;
-    }
-    return true;
-  };
-
   const openURL = (URL) => () => {
-    const _isTokenCheckPassed = isTokenCheckPassed();
+    const _isTokenCheckPassed = isTokenCheckPassed({
+      setClaimTokensModal,
+      setStakeTokensModal,
+      userCustomTokenBalance,
+      isStakeHolder,
+    });
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
@@ -130,7 +120,12 @@ const PortfolioCard = ({
     }
     const rateContract = getRatingFactory({ signer });
     let tx;
-    const _isTokenCheckPassed = isTokenCheckPassed();
+    const _isTokenCheckPassed = isTokenCheckPassed({
+      setClaimTokensModal,
+      setStakeTokensModal,
+      userCustomTokenBalance,
+      isStakeHolder,
+    });
     if (_isTokenCheckPassed) {
       try {
         tx = await rateContract.rateProject(projectId, !isRated);

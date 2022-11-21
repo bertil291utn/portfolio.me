@@ -4,8 +4,27 @@ import ToggleComponent from '@components/common/Toggle.component';
 import { useTheme } from 'next-themes';
 import resumeFile from '@data/resume.json';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
-// TODO-WIP: same as portfolio, enable button actions only whe user has staked
+import { PageLabel } from '@placeholders/resume.placeholder';
+import { isTokenCheckPassed } from '@utils/common';
+import { useEffect, useState } from 'react';
+import { useWalletContext } from '@context/WalletProvider';
+import ModalComponent from '@components/common/Modal.component';
+import ToastComponent from '@components/common/Toast.component';
+import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
+import { useRouter } from 'next/router';
+import { navbarElements } from '@placeholders/navbar.placeholders';
+
 const ResumeComponent = () => {
+  const [claimTokensModal, setClaimTokensModal] = useState(false);
+  const [stakeTokensModal, setStakeTokensModal] = useState(false);
+  const { userCustomTokenBalance, userStakedAmount } = useWalletContext();
+  const [isStakeHolder, setIsStakeHolder] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsStakeHolder(userStakedAmount?.toString() > 0);
+  }, [userStakedAmount]);
+
   const ICON = {
     linkedin: <BsLinkedin />,
     github: <BsGithub />,
@@ -26,6 +45,24 @@ const ResumeComponent = () => {
     skills,
   } = resumeFile;
 
+  const openURL = (URL) => () => {
+    const _isTokenCheckPassed = isTokenCheckPassed({
+      setClaimTokensModal,
+      setStakeTokensModal,
+      userCustomTokenBalance,
+      isStakeHolder,
+    });
+    _isTokenCheckPassed && window.open(URL, '_blank');
+  };
+
+  const claimAcceptBtnAction = () => {
+    router.push(`/${navbarElements.tokens.label}`);
+  };
+
+  const stakeAcceptBtnAction = () => {
+    router.push(`/${navbarElements.profile.label}#${IdContent.staking}`);
+  };
+
   return (
     <div className={`${styles['container']}`}>
       <section className={styles['logo']}>
@@ -42,15 +79,14 @@ const ResumeComponent = () => {
         <span>{location}</span>
         <div className={styles['social-networks']}>
           {Object.entries(socialNetwork).map(([socialNetwork, URL], index) => (
-            <Link href={URL} key={`social-network-${index}`}>
-              <a
-                target='_blank'
-                rel='noopener noreferrer'
-                title={socialNetwork}
-              >
-                {ICON[socialNetwork]}
-              </a>
-            </Link>
+            <div
+              key={`social-network-${index}`}
+              title={socialNetwork}
+              className={`hand`}
+              onClick={openURL(URL)}
+            >
+              {ICON[socialNetwork]}
+            </div>
           ))}
         </div>
       </aside>
@@ -58,7 +94,7 @@ const ResumeComponent = () => {
       <section className={styles['description']}>
         <div className={styles['description__toggle']}>
           <ToggleComponent available={isAvailable} />
-          <span>Available</span>
+          <span>{PageLabel.available}</span>
         </div>
         <span className={styles['description__about-me']}>{description}</span>
       </section>
@@ -115,6 +151,22 @@ const ResumeComponent = () => {
           ))}
         </div>
       </section>
+      <ModalComponent
+        show={claimTokensModal}
+        setShow={setClaimTokensModal}
+        acceptLabel={PortfolioLabel.freeTokensBtn}
+        acceptBtnAction={claimAcceptBtnAction}
+      >
+        {PortfolioLabel.modalClaimDesc}
+      </ModalComponent>
+      <ModalComponent
+        show={stakeTokensModal}
+        setShow={setStakeTokensModal}
+        acceptLabel={PortfolioLabel.stakeTokensBtn}
+        acceptBtnAction={stakeAcceptBtnAction}
+      >
+        {PortfolioLabel.modalStakeDesc}
+      </ModalComponent>
     </div>
   );
 };
