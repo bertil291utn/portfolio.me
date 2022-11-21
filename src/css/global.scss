@@ -14,9 +14,7 @@
   margin: 0 auto;
   font-family: 'Mulish', sans-serif;
   background-color: $light-bg;
-}
-@media screen and (max-width: 768px) {
-  :root {
+  @media screen and (max-width: 768px) {
     padding: 0 10px;
   }
 }
