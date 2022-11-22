@@ -12,7 +12,7 @@ const NFTContent = () => {
             className={styles['card-item']}
             key={`card-${++index}`}
             srcImage={
-              'https://i.seadn.io/gae/ydaSGbXHpxBG8Fn7nolIYFIABPbmbWwD2fRrwXMs4mfHlGIWfivQjfONt2dDQxjpWfhwprqDBoO75b-w4EX6DRHpe5Hiy37nTY1Y89Y?auto=format&w=750'
+              'https://i.seadn.io/gae/VNvGxgfw5j1oMl5UOOv82xrXZdkrbWn1-KV7jSLFTijQ4f7wGE2DsLEdV46PnqRzY-KAZ8_lo5Yu9lsCIl0q2zKUlz882OUZO5GdXFU?auto=format&w=750'
             }
             name={'Clay friends'}
             price={`0.100 ${tokenSymbol}`}
