@@ -1,7 +1,6 @@
 {
   "name": "portfolio.me",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/bertil291utn/portfolio.me.git",
   "author": "Bertil Tandayamo <bertilt4@gmail.com>",
   "license": "MIT",
