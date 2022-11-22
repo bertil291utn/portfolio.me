@@ -40,7 +40,7 @@ const PortfolioComponent = () => {
   };
 
   useEffect(() => {
-    signer && getPortfolioData(portfolioDataSet);
+    signer && portfolioDataSet && getPortfolioData(portfolioDataSet);
   }, [signer]);
 
   const getTokensAction = () => {
