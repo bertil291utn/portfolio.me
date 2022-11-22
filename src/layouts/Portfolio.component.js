@@ -23,29 +23,18 @@ const PortfolioComponent = () => {
     resp = await resp.json();
     const newObject = await Promise.all(
       resp.map(async (elem) => {
-        const isRated = await rateContract.isRatedProject(elem.id);
-        return { ...elem, isRated };
+        return {
+          ...elem,
+          isRated: await rateContract.isRatedProject(elem.id),
+        };
       })
     );
     setPortfolioDataSet(newObject);
   };
 
   useEffect(() => {
-    getPortfolioJSON(portfolioDataURL);
-  }, []);
-
-  const getPortfolioData = async (prevPortfolioData) => {
-    const rateContract = getRatingFactory({ signer });
-
-    const _prevPortfolioData = [...prevPortfolioData];
-    const newObject = await Promise.all(
-      _prevPortfolioData.map(async (elem) => {
-        const isRated = await rateContract.isRatedProject(elem.id);
-        return { ...elem, isRated };
-      })
-    );
-    setPortfolioDataSet(newObject);
-  };
+    signer && getPortfolioJSON(portfolioDataURL);
+  }, [signer]);
 
   const getTokensAction = () => {
     router.push('/tokens');
