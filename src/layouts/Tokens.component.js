@@ -43,7 +43,7 @@ const TokensComponent = () => {
   };
 
   useEffect(() => {
-    getBalance({ provider, address });
+    isConnected && getBalance({ provider, address });
   }, [address]);
 
   const router = useRouter();
@@ -94,6 +94,7 @@ const TokensComponent = () => {
       setToastVariant('error');
     }
   };
+  // todo-wip: check transition page between tokens and nft page
   return (
     <>
       <div className={styles['content']}>
@@ -112,7 +113,7 @@ const TokensComponent = () => {
                   <div className={styles['user-connected-btn']}>
                     <ConnectButton showBalance={false} />
                   </div>
-                  {ethUserBalance > 0 && (
+                  {isConnected && ethUserBalance > 0 && (
                     <ButtonComponent
                       className={styles['button__content']}
                       buttonType='primary'
@@ -120,7 +121,7 @@ const TokensComponent = () => {
                       onClick={getTokensAction}
                     />
                   )}
-                  {ethUserBalance <= 0.005 && (
+                  {isConnected && ethUserBalance <= 0.005 && (
                     <ButtonComponent
                       className={styles['get-eth']}
                       buttonType='tertiary'

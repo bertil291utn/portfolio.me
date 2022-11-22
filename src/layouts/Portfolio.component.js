@@ -14,18 +14,12 @@ const PortfolioComponent = () => {
   const router = useRouter();
   const [portfolioDataSet, setPortfolioDataSet] = useState();
   const { userCustomTokenBalance } = useWalletContext();
-  const { address } = useAccount();
-  const { data: signer } = useSigner();
   const provider = useProvider();
 
   const getPortfolioJSON = async (URL) => {
     const rateContract = getRatingFactory({ provider });
     let resp = await fetch(URL);
     resp = await resp.json();
-    console.log(
-      '🚀 ~ file: Portfolio.component.js ~ line 24 ~ getPortfolioJSON ~ resp',
-      resp
-    );
     const newObject = await Promise.all(
       resp.map(async (elem) => {
         return {
