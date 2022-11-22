@@ -6,7 +6,7 @@ import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { useRouter } from 'next/router';
 import { useWalletContext } from '@context/WalletProvider';
 import { useEffect, useState } from 'react';
-import { useAccount, useSigner } from 'wagmi';
+import { useAccount, useProvider, useSigner } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
 import { portfolioDataURL } from 'src/config/URLs';
 
@@ -16,9 +16,10 @@ const PortfolioComponent = () => {
   const { userCustomTokenBalance } = useWalletContext();
   const { address } = useAccount();
   const { data: signer } = useSigner();
+  const provider = useProvider();
 
   const getPortfolioJSON = async (URL) => {
-    const rateContract = getRatingFactory({ signer });
+    const rateContract = getRatingFactory({ provider });
     let resp = await fetch(URL);
     resp = await resp.json();
     console.log(
@@ -37,8 +38,8 @@ const PortfolioComponent = () => {
   };
 
   useEffect(() => {
-    signer && getPortfolioJSON(portfolioDataURL);
-  }, [signer]);
+    provider && getPortfolioJSON(portfolioDataURL);
+  }, [provider]);
 
   const getTokensAction = () => {
     router.push('/tokens');
