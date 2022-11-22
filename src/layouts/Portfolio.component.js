@@ -18,8 +18,16 @@ const PortfolioComponent = () => {
   const { data: signer } = useSigner();
 
   const getPortfolioJSON = async (URL) => {
-    const resp = await fetch(URL);
-    setPortfolioDataSet(await resp.json());
+    const rateContract = getRatingFactory({ signer });
+    let resp = await fetch(URL);
+    resp = await resp.json();
+    const newObject = await Promise.all(
+      resp.map(async (elem) => {
+        const isRated = await rateContract.isRatedProject(elem.id);
+        return { ...elem, isRated };
+      })
+    );
+    setPortfolioDataSet(newObject);
   };
 
   useEffect(() => {
@@ -38,10 +46,6 @@ const PortfolioComponent = () => {
     );
     setPortfolioDataSet(newObject);
   };
-
-  useEffect(() => {
-    signer && portfolioDataSet && getPortfolioData(portfolioDataSet);
-  }, [signer]);
 
   const getTokensAction = () => {
     router.push('/tokens');
