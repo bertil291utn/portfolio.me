@@ -8,20 +8,17 @@ import { useWalletContext } from '@context/WalletProvider';
 import { useEffect, useState } from 'react';
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
-import { portfolioDataURL } from 'src/config/URLs';
 
-const PortfolioComponent = () => {
+function PortfolioComponent({ projectsData }) {
   const router = useRouter();
-  const [portfolioDataSet, setPortfolioDataSet] = useState();
+  const [portfolioDataSet, setPortfolioDataSet] = useState(projectsData);
   const { userCustomTokenBalance } = useWalletContext();
   const provider = useProvider();
 
-  const getPortfolioJSON = async (URL) => {
+  const getPortfolioJSON = async (projects) => {
     const rateContract = getRatingFactory({ provider });
-    let resp = await fetch(URL);
-    resp = await resp.json();
     const newObject = await Promise.all(
-      resp.map(async (elem) => {
+      projects?.map(async (elem) => {
         return {
           ...elem,
           isRated: await rateContract.isRatedProject(elem.id),
@@ -32,14 +29,14 @@ const PortfolioComponent = () => {
   };
 
   useEffect(() => {
-    provider && getPortfolioJSON(portfolioDataURL);
+    provider && getPortfolioJSON(projectsData);
   }, [provider]);
 
   const getTokensAction = () => {
     router.push('/tokens');
   };
 
-  return portfolioDataSet ? (
+  return (
     <div className={styles['portfolio']}>
       {portfolioDataSet?.map((data) => (
         <PortfolioCard
@@ -62,7 +59,7 @@ const PortfolioComponent = () => {
         />
       )}
     </div>
-  ) : null;
-};
+  );
+}
 
 export default PortfolioComponent;

@@ -3,8 +3,9 @@ import ModalComponent from '@components/common/Modal.component';
 import PortfolioComponent from '@layouts/Portfolio.component';
 import { newUserModalLabels } from '@placeholders/modal.placeholders';
 import { localStorageKeys } from '@keys/localStorage';
+import { portfolioDataURL } from 'src/config/URLs';
 
-function HomeContent() {
+function HomeContent({ projects }) {
   const [show, setShow] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState();
   useEffect(() => {
@@ -26,7 +27,7 @@ function HomeContent() {
 
   return (
     <>
-      <PortfolioComponent />
+      <PortfolioComponent projectsData={projects} />
       {isFirstTime && (
         <ModalComponent
           show={show}
@@ -43,6 +44,17 @@ function HomeContent() {
       )}
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(portfolioDataURL);
+  const projects = await res.json();
+
+  return {
+    props: {
+      projects,
+    },
+  };
 }
 
 export default HomeContent;
