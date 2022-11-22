@@ -94,13 +94,13 @@ const TokensComponent = () => {
       setToastVariant('error');
     }
   };
-  // todo-wip: check transition page between tokens and nft page
+
   return (
     <>
       <div className={styles['content']}>
         {!activeTknClaimHash && !activeNFTHash ? (
           <>
-            {userCustomTokenBalance?.toString() <= 0 && (
+            {(!isConnected || userCustomTokenBalance?.toString() <= 0) && (
               <>
                 <span className={styles['title']}>{tokenPageLabel.title}</span>
                 <p
@@ -132,7 +132,7 @@ const TokensComponent = () => {
                 </div>
               </>
             )}
-            {userCustomTokenBalance?.toString() > 0 && (
+            {isConnected && userCustomTokenBalance?.toString() > 0 && (
               <>
                 <span className={styles['title']}>{NFTPage.title}</span>
                 <p className={styles['description']}>
