@@ -13,10 +13,10 @@ function PortfolioComponent({ projectsData }) {
   const router = useRouter();
   const [portfolioDataSet, setPortfolioDataSet] = useState(projectsData);
   const { userCustomTokenBalance } = useWalletContext();
-  const provider = useProvider();
+  const { data: signer } = useSigner();
 
   const getPortfolioJSON = async (projects) => {
-    const rateContract = getRatingFactory({ provider });
+    const rateContract = getRatingFactory({ signer });
     const newObject = await Promise.all(
       projects?.map(async (elem) => {
         return {
@@ -29,8 +29,8 @@ function PortfolioComponent({ projectsData }) {
   };
 
   useEffect(() => {
-    provider && getPortfolioJSON(projectsData);
-  }, [provider]);
+    signer && getPortfolioJSON(projectsData);
+  }, [signer]);
 
   const getTokensAction = () => {
     router.push('/tokens');
