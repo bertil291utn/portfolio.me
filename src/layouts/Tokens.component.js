@@ -109,7 +109,7 @@ const TokensComponent = () => {
                   dangerouslySetInnerHTML={{
                     __html: tokenPageLabel.description(tokenSymbol),
                   }}
-                ></p>
+                />
                 <div className={styles['button']}>
                   <div className={styles['user-connected-btn']}>
                     <ConnectButton showBalance={false} />
@@ -139,7 +139,6 @@ const TokensComponent = () => {
                 <p className={styles['description']}>
                   {NFTPage.description(tokenSymbol)}
                 </p>
-                <NFTContent />
               </>
             )}
           </>
@@ -153,6 +152,14 @@ const TokensComponent = () => {
           />
         )}
       </div>
+      {isConnected &&
+        userCustomTokenBalance?.toString() > 0 &&
+        !activeTknClaimHash &&
+        !activeNFTHash && (
+          <>
+            <NFTContent />
+          </>
+        )}
       <ToastComponent
         variant={toastVariant}
         show={showToast}
