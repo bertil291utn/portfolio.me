@@ -12,6 +12,8 @@ import { chainProv, client } from '@utils/web3';
 import WalletProvider from 'src/context/WalletProvider';
 import '../css/global.scss';
 
+// todo-wip: make ssr rendering page, to avoid to add spinner or loading component and improve SEO
+
 export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     window.localStorage.removeItem('theme');
