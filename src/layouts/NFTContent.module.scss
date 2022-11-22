@@ -1,8 +1,11 @@
 .container {
   margin: 4rem 0;
-  .card {
+  .cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
+  }
+  .card-item {
+    margin-bottom: 2rem;
   }
 }
