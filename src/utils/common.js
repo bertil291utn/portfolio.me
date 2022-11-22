@@ -10,7 +10,7 @@ export const isTokenCheckPassed = ({
     return true;
   }
 
-  if (userCustomTokenBalance?.toString() == 0) {
+  if (!userCustomTokenBalance || userCustomTokenBalance?.toString() == 0) {
     setClaimTokensModal(true);
     return false;
   }

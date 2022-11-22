@@ -11,6 +11,7 @@ import ModalComponent from '@components/common/Modal.component';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { useRouter } from 'next/router';
 import { navbarElements } from '@placeholders/navbar.placeholders';
+import { IdContent } from '@placeholders/profile.placeholder';
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
