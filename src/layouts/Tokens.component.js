@@ -24,7 +24,7 @@ import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
 
 // TODO-WIP:add nfts section
-//enable nft section after claimed tokens
+//TODO: I might have to build in a different project for claiming and nft tokens
 const TokensComponent = () => {
   const [activeTknClaimHash, setActiveTknClaimHash] = useState();
   const [activeNFTHash, setActiveNFTHash] = useState();

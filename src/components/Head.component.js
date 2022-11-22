@@ -21,6 +21,10 @@ const HeadComponent = ({
       <link rel='canonical' href={canonicalURL} />
       <meta name='author' content={author} />
       <link rel='manifest' href={manifest} />
+      <link
+        href='https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=optional'
+        rel='stylesheet'
+      />
       <meta name='theme-color' content={themeColor} />
       <meta name='title' content={metaTitle} />
       <meta name='description' content={description} />
