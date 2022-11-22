@@ -32,10 +32,11 @@ const TokensComponent = () => {
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const [ethUserBalance, setEthUserBalance] = useState();
+  const [isConnected, setIsConnected] = useState();
   const { data: signer } = useSigner();
   const { userCustomTokenBalance, tokenSymbol } = useWalletContext();
   const provider = useProvider();
-  const { address, isConnected } = useAccount();
+  const { address, isConnected: _isConnected } = useAccount();
 
   const getBalance = async ({ provider, address }) => {
     const userBalance = await provider.getBalance(address);
@@ -46,6 +47,10 @@ const TokensComponent = () => {
   useEffect(() => {
     isConnected && getBalance({ provider, address });
   }, [address]);
+
+  useEffect(() => {
+    setIsConnected(_isConnected);
+  }, [_isConnected]);
 
   const router = useRouter();
 
