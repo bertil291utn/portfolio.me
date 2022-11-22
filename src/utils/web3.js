@@ -64,7 +64,7 @@ const configProvProd = [
     priority: 0,
   }),
   infuraProvider({
-    apiKey: process.env.NEXT_PUBLIC_GOERLI_API_KEY,
+    apiKey: process.env.NEXT_PUBLIC_INFURA_GOERLI_API_KEY,
     priority: 1,
   }),
 ];
