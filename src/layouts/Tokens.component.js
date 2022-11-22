@@ -22,6 +22,7 @@ import { navbarElements } from '@placeholders/navbar.placeholders';
 import styles from './Token.module.scss';
 import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
+import NFTContent from '@layouts/NFTContent.component';
 
 // TODO-WIP:add nfts section
 //TODO: I might have to build in a different project for claiming and nft tokens
@@ -138,6 +139,7 @@ const TokensComponent = () => {
                 <p className={styles['description']}>
                   {NFTPage.description(tokenSymbol)}
                 </p>
+                <NFTContent />
               </>
             )}
           </>
