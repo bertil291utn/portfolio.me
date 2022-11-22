@@ -11,12 +11,10 @@ import ModalComponent from '@components/common/Modal.component';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { useRouter } from 'next/router';
 import { navbarElements } from '@placeholders/navbar.placeholders';
-import { resumeDataURL } from 'src/config/URLs';
 
-const ResumeComponent = () => {
+const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
-  const [resumeDataSet, setResumeDataSet] = useState();
   const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
     useWalletContext();
   const [isStakeHolder, setIsStakeHolder] = useState(false);
@@ -25,15 +23,6 @@ const ResumeComponent = () => {
   useEffect(() => {
     setIsStakeHolder(userStakedAmount?.toString() > 0);
   }, [userStakedAmount]);
-
-  const getResumeJSON = async (URL) => {
-    const resp = await fetch(URL);
-    setResumeDataSet(await resp.json());
-  };
-
-  useEffect(() => {
-    getResumeJSON(resumeDataURL);
-  }, []);
 
   const ICON = {
     linkedin: <BsLinkedin />,
