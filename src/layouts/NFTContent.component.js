@@ -17,6 +17,7 @@ const NFTContent = () => {
             name={'Clay friends'}
             price={`0.100 ${tokenSymbol}`}
             rarity={`Gold`}
+            isFree={index % 2 == 0}
           />
         ))}
       </div>
