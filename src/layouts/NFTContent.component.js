@@ -15,7 +15,7 @@ const NFTContent = () => {
               'https://i.seadn.io/gae/VNvGxgfw5j1oMl5UOOv82xrXZdkrbWn1-KV7jSLFTijQ4f7wGE2DsLEdV46PnqRzY-KAZ8_lo5Yu9lsCIl0q2zKUlz882OUZO5GdXFU?auto=format&w=750'
             }
             name={'Clay friends'}
-            price={`0.100 ${tokenSymbol}`}
+            price={`${index % 2 == 0 ? 0 : 0.1} ${tokenSymbol}`}
             rarity={`Gold`}
             isFree={index % 2 == 0}
           />

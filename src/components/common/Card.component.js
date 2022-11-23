@@ -1,9 +1,18 @@
+import { cardLabel } from '@placeholders/nft-cards.placeholder';
 import styles from './Card.module.scss';
 
-const Card = ({ srcImage, name, price, rarity, className, isFree }) => {
+const Card = ({
+  srcImage,
+  name,
+  price,
+  rarity,
+  className,
+  isFree,
+  onClick,
+}) => {
   return (
     <div className={`${className || ''} ${styles['container']}`}>
-      {isFree && <span className={styles['free']}>{`Free`}</span>}
+      {isFree && <span className={styles['free']}>{cardLabel.free}</span>}
       <img src={srcImage} alt={`${name}`} />
       <footer>
         <div className={styles['container']}>
@@ -16,7 +25,9 @@ const Card = ({ srcImage, name, price, rarity, className, isFree }) => {
           </div>
         </div>
         <div className={styles['empty-button']}>&nbsp;</div>
-        <div className={styles['button']}>Buy now</div>
+        <div className={styles['button']} onClick={onClick}>
+          {isFree ? cardLabel.claim : cardLabel.buyNow}
+        </div>
       </footer>
     </div>
   );
