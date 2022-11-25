@@ -70,7 +70,7 @@
     "name": "Bitcoin ",
     "description": "A neon floated bitcoin logo 3",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc1_xcn1z5.jpg",
-    "free": false,
+    "free": true,
     "price": 5,
 
     "attributes": [
@@ -86,7 +86,7 @@
     "name": "Bitcoin 2",
     "description": "A neon floated bitcoin logo 2",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc3_k2et3x.jpg",
-    "free": false,
+    "free": true,
     "price": 5,
 
     "attributes": [
@@ -167,7 +167,7 @@
     "name": "Ethereum logo",
     "description": "Ethereum logo grayed background ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_lhue6p.jpg",
-    "free": false,
+    "free": true,
     "price": 2,
 
     "attributes": [
@@ -200,7 +200,7 @@
     "name": "Bitcoin logo",
     "description": "Grayed background Neon Bitcoin logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245491/portofolio.me/actual-nfts/btc_nuaitn.jpg",
-    "free": false,
+    "free": true,
     "price": 1,
 
     "attributes": [
