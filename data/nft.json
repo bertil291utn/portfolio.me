@@ -120,7 +120,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/btc4_mojw44.jpg",
     "free": false,
     "price": 5,
-    "rairty": "Super Rare",
+    "rarity": "Super Rare",
 
     "attributes": [
       {

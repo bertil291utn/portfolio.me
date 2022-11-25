@@ -23,9 +23,11 @@ import styles from './Token.module.scss';
 import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
 import NFTContent from '@layouts/NFTContent.component';
+import { useTokenContext } from '@context/TokenProvider';
 
 //TODO: I might have to build in a different project for claiming and nft tokens
-const TokensComponent = () => {
+const TokensComponent = ({ NFTData }) => {
+  const { setNFTData } = useTokenContext();
   const [activeTknClaimHash, setActiveTknClaimHash] = useState();
   const [activeNFTHash, setActiveNFTHash] = useState();
   const [showToast, setShowToast] = useState();
@@ -43,8 +45,19 @@ const TokensComponent = () => {
     setEthUserBalance((+_balance).toFixed(4));
   };
 
+  const setNFTsMetadata = async (nfts) => {
+    //const NFTContract = getNFTFactory({ signer });
+    const resp = await Promise.all(
+      nfts.map(async (elem) => {
+        return { ...elem, minted: false };
+      })
+    );
+    setNFTData(resp);
+  };
+
   useEffect(() => {
     address && getBalance({ provider, address });
+    setNFTsMetadata(NFTData);
   }, [address]);
 
   useEffect(() => {
