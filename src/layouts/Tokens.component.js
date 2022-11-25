@@ -46,6 +46,7 @@ const TokensComponent = ({ NFTData }) => {
   };
 
   const setNFTsMetadata = async (nfts) => {
+    //test deploy
     //const NFTContract = getNFTFactory({ signer });
     const resp = await Promise.all(
       nfts.map(async (elem) => {
