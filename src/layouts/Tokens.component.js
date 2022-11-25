@@ -24,7 +24,6 @@ import { ethers } from 'ethers';
 import LoadingComponent from '@components/common/Loading.component';
 import NFTContent from '@layouts/NFTContent.component';
 
-// TODO-WIP:add nfts section
 //TODO: I might have to build in a different project for claiming and nft tokens
 const TokensComponent = () => {
   const [activeTknClaimHash, setActiveTknClaimHash] = useState();
@@ -45,7 +44,7 @@ const TokensComponent = () => {
   };
 
   useEffect(() => {
-    isConnected && getBalance({ provider, address });
+    address && getBalance({ provider, address });
   }, [address]);
 
   useEffect(() => {
@@ -119,7 +118,7 @@ const TokensComponent = () => {
                   <div className={styles['user-connected-btn']}>
                     <ConnectButton showBalance={false} />
                   </div>
-                  {isConnected && ethUserBalance > 0 && (
+                  {ethUserBalance > 0 && (
                     <ButtonComponent
                       className={styles['button__content']}
                       buttonType='primary'
@@ -127,7 +126,7 @@ const TokensComponent = () => {
                       onClick={getTokensAction}
                     />
                   )}
-                  {isConnected && ethUserBalance <= 0.005 && (
+                  {ethUserBalance <= 0.005 && (
                     <ButtonComponent
                       className={styles['get-eth']}
                       buttonType='tertiary'
