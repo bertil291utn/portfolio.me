@@ -38,7 +38,7 @@
     "description": "A neon floated ethereum logo 3",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth3_xv9pm0.jpg",
     "free": false,
-    "price": 5,
+    "price": 8,
     "rarity": "Super Rare",
 
     "attributes": [
@@ -55,7 +55,7 @@
     "description": "A neon floated ethereum logo 4",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth4_k6adbn.jpg",
     "free": false,
-    "price": 5,
+    "price": 6,
 
     "attributes": [
       {
@@ -119,7 +119,7 @@
     "description": "A neon floated bitcoin logo 4",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/btc4_mojw44.jpg",
     "free": false,
-    "price": 5,
+    "price": 9,
     "rarity": "Super Rare",
 
     "attributes": [
@@ -184,7 +184,7 @@
     "description": "Neon Ethereum logo degradation background ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_rnj9ck.jpg",
     "free": false,
-    "price": 4,
+    "price": 10,
     "rarity": "Super rare",
 
     "attributes": [
@@ -233,7 +233,7 @@
     "description": "Purple background yellow Neon Bitcoin logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/btc_esvr1o.jpg",
     "free": false,
-    "price": 2,
+    "price": 6,
 
     "attributes": [
       {
