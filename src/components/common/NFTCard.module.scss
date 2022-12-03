@@ -3,7 +3,7 @@
 .container {
   position: relative;
 
-  .free {
+  .chip {
     position: absolute;
     top: 2%;
     right: 2%;
@@ -12,7 +12,8 @@
     border: 1px solid $gray;
     padding: 0.25rem 0.5rem;
     border-radius: 25px;
-    color: $gray;
+    background-color: $light-bg;
+    color: $dark-bg;
   }
   span {
     display: block;
@@ -43,6 +44,12 @@
         margin-top: 1rem;
       }
     }
+  }
+  .diamond-rare {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
   }
 }
 

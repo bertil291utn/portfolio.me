@@ -39,7 +39,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth3_xv9pm0.jpg",
     "free": false,
     "price": 8,
-    "rarity": "Super Rare",
+    "superRare": true,
 
     "attributes": [
       {
@@ -120,7 +120,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/btc4_mojw44.jpg",
     "free": false,
     "price": 9,
-    "rarity": "Super Rare",
+    "superRare": true,
 
     "attributes": [
       {
@@ -185,7 +185,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_rnj9ck.jpg",
     "free": false,
     "price": 10,
-    "rarity": "Super rare",
+    "superRare": true,
 
     "attributes": [
       {

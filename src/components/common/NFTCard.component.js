@@ -1,18 +1,26 @@
 import { cardLabel } from '@placeholders/nft-cards.placeholder';
+import { IoDiamond } from 'react-icons/io5';
 import styles from './NFTCard.module.scss';
 
 const NFTCard = ({
   srcImage,
   name,
   price,
-  rarity,
+  superRare,
   className,
   isFree,
   onClick,
 }) => {
   return (
     <div className={`${className || ''} ${styles['container']}`}>
-      {isFree && <span className={styles['free']}>{cardLabel.free}</span>}
+      {isFree && <span className={styles['chip']}>{cardLabel.free}</span>}
+      {superRare && (
+        <div className={styles['chip']}>
+          <section className={styles['diamond-rare']}>
+            <IoDiamond />
+          </section>
+        </div>
+      )}
       <img src={srcImage} alt={`${name}`} />
       <footer>
         <div className={styles['container']}>
@@ -21,7 +29,7 @@ const NFTCard = ({
             <span className={styles['price']}>{price}</span>
           </div>
           <div>
-            <section className={styles['rarity-chip']}>{rarity}</section>
+            <span>{`#1`}</span>
           </div>
         </div>
         <div className={styles['empty-button']}>&nbsp;</div>

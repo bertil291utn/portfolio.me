@@ -14,14 +14,14 @@ const NFTContent = () => {
     <div className={styles['container']}>
       <div className={styles['cards']}>
         {NFTData.map((elem, index) => {
-          return !elem.minted ? (
+          return !elem.allMinted ? (
             <NFTCard
               className={styles['card-item']}
               key={`card-${++index}`}
               srcImage={elem.image}
               name={elem.name}
               price={`${elem.free ? 0 : elem.price} ${tokenSymbol}`}
-              rarity={elem.rarity}
+              superRare={elem.superRare}
               isFree={elem.free}
               onClick={getToken(elem.free)}
             />
