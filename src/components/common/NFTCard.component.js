@@ -1,7 +1,7 @@
 import { cardLabel } from '@placeholders/nft-cards.placeholder';
-import styles from './Card.module.scss';
+import styles from './NFTCard.module.scss';
 
-const Card = ({
+const NFTCard = ({
   srcImage,
   name,
   price,
@@ -33,4 +33,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default NFTCard;

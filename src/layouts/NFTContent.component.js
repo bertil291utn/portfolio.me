@@ -1,7 +1,6 @@
-import Card from '@components/common/Card.component';
+import NFTCard from '@components/common/NFTCard.component';
 import { useTokenContext } from '@context/TokenProvider';
 import { useWalletContext } from '@context/WalletProvider';
-import { getTokenFactory } from '@utils/web3';
 import styles from './NFTContent.module.scss';
 
 const NFTContent = () => {
@@ -16,7 +15,7 @@ const NFTContent = () => {
       <div className={styles['cards']}>
         {NFTData.map((elem, index) => {
           return !elem.minted ? (
-            <Card
+            <NFTCard
               className={styles['card-item']}
               key={`card-${++index}`}
               srcImage={elem.image}
