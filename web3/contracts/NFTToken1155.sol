@@ -6,6 +6,10 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract MultipleEdition is ERC1155, Ownable {
+    string private _uri;
+
+    //"https://gateway.pinata.cloud/ipfs/QmaUh13Q6PXUxD6xwS449dfWcXaS9hmL5wZQGVS68iGoT2/";
+
     constructor() ERC1155("") {}
 
     function ownerMint(
@@ -17,15 +21,17 @@ contract MultipleEdition is ERC1155, Ownable {
         setApprovalForAll(claimableAddress, true);
     }
 
-    function getUri(uint256 _tokenId) public view returns (string memory) {
-        require(balanceOf(msg.sender, _tokenId) > 0, "NFT does not exist");
-        return
-            string(
-                abi.encodePacked(uri(0), Strings.toString(_tokenId), ".json")
-            );
+    function setURI(string calldata newuri) public onlyOwner {
+        _uri = newuri;
     }
 
-    function setURI(string calldata newuri) public onlyOwner {
-        _setURI(newuri);
+    function uri(
+        uint256 _tokenId
+    ) public view override returns (string memory) {
+        bytes memory uriBytes = bytes(_uri);
+        if (balanceOf(msg.sender, _tokenId) == 0 || uriBytes.length == 0)
+            return "";
+        return
+            string(abi.encodePacked(_uri, Strings.toString(_tokenId), ".json"));
     }
 }
