@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum",
     "description": "A neon floated ethereum logo",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth1_hgdcq1.jpg",
@@ -17,7 +17,7 @@
   },
   {
     "id": 2,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum 2",
     "description": "A neon floated ethereum logo 2",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth2_iqjvpj.jpg",
@@ -33,7 +33,7 @@
   },
   {
     "id": 3,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum 3",
     "description": "A neon floated ethereum logo 3",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth3_xv9pm0.jpg",
@@ -50,7 +50,7 @@
   },
   {
     "id": 4,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum 4",
     "description": "A neon floated ethereum logo 4",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth4_k6adbn.jpg",
@@ -66,7 +66,7 @@
   },
   {
     "id": 5,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin ",
     "description": "A neon floated bitcoin logo 3",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc1_xcn1z5.jpg",
@@ -82,7 +82,7 @@
   },
   {
     "id": 6,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin 2",
     "description": "A neon floated bitcoin logo 2",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc3_k2et3x.jpg",
@@ -98,7 +98,7 @@
   },
   {
     "id": 7,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin 3",
     "description": "A neon floated bitcoin logo 3",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc2_uerwz6.jpg",
@@ -114,7 +114,7 @@
   },
   {
     "id": 8,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin 4",
     "description": "A neon floated bitcoin logo 4",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/btc4_mojw44.jpg",
@@ -131,7 +131,7 @@
   },
   {
     "id": 9,
-    "minted": false,
+    "allMinted": false,
     "name": "Shiba Inu coin",
     "description": "Shiba inu nickeled coin ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/shib3_y3ec3d.jpg",
@@ -147,7 +147,7 @@
   },
   {
     "id": 10,
-    "minted": false,
+    "allMinted": false,
     "name": "Shiba Inu logo",
     "description": "Shiba inu logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/shib2_pnxmlt.jpg",
@@ -163,7 +163,7 @@
   },
   {
     "id": 11,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum logo",
     "description": "Ethereum logo grayed background ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_lhue6p.jpg",
@@ -179,7 +179,7 @@
   },
   {
     "id": 12,
-    "minted": false,
+    "allMinted": false,
     "name": "Ethereum logo",
     "description": "Neon Ethereum logo degradation background ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_rnj9ck.jpg",
@@ -196,7 +196,7 @@
   },
   {
     "id": 13,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin logo",
     "description": "Grayed background Neon Bitcoin logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245491/portofolio.me/actual-nfts/btc_nuaitn.jpg",
@@ -212,7 +212,7 @@
   },
   {
     "id": 14,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin logo2",
     "description": "Grayed background green Neon Bitcoin logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245491/portofolio.me/actual-nfts/btc_ftgh5l.jpg",
@@ -228,7 +228,7 @@
   },
   {
     "id": 15,
-    "minted": false,
+    "allMinted": false,
     "name": "Bitcoin logo3",
     "description": "Purple background yellow Neon Bitcoin logo ",
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/btc_esvr1o.jpg",
