@@ -29,7 +29,10 @@ const NFTCard = ({
             <span className={styles['price']}>{price}</span>
           </div>
           <div>
-            <span>{`#1`}</span>
+            {/* TODO:owners balanceOf and token id less total amount from id= current available amount  */}
+            {isFree && (
+              <span className={styles['quantity-tokens']}>{`3 of 10`}</span>
+            )}
           </div>
         </div>
         <div className={styles['empty-button']}>&nbsp;</div>
