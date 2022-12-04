@@ -1,21 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity 0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract UniqueEdition is ERC721, ERC721URIStorage {
-    using Counters for Counters.Counter;
-
-    Counters.Counter private _tokenIdCounter;
-
     constructor() ERC721("BATANUNIQUE", "BATLA") {}
 
-    function safeMint(address to, string memory uri) public {
-        _tokenIdCounter.increment();
-        uint256 tokenId = _tokenIdCounter.current();
-        _safeMint(to, tokenId);
+    function safeMint(uint256 tokenId, string memory uri) public {
+        _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, uri);
     }
 
