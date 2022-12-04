@@ -22,6 +22,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import ClaimableABI from '@web3/ABI/Claimable.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
 import RateABI from '@web3/ABI/Rate.json';
+import ERC721ABI from '@web3/ABI/ERC721.json';
 import ERC1155ABI from '@web3/ABI/ERC1155.json';
 import ERC1155ClaimableABI from '@web3/ABI/ERC1155Claimable.json';
 
@@ -64,7 +65,7 @@ export const getRatingFactory = ({ provider, signer }) => {
 export const getNFTUniqueFactory = ({ provider, signer }) => {
   return getContractFactory({
     address: NFTUniqueContractAdd,
-    ABI: erc721ABI,
+    ABI: ERC721ABI,
     signer: signer || provider,
   });
 };

@@ -8,12 +8,11 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract UniqueEdition is ERC721, ERC721URIStorage {
     constructor() ERC721("BATANUNIQUE", "BATLA") {}
 
+    //todo-wip: make payable safemint when auser buys a nft token
     function safeMint(uint256 tokenId, string memory uri) public {
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, uri);
     }
-
-    // The following functions are overrides required by Solidity.
 
     function _burn(
         uint256 tokenId
