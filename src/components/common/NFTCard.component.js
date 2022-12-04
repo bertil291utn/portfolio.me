@@ -10,6 +10,9 @@ const NFTCard = ({
   className,
   isFree,
   onClick,
+  quantityLeft,
+  totalSupply,
+  erc1155,
 }) => {
   return (
     <div className={`${className || ''} ${styles['container']}`}>
@@ -29,9 +32,10 @@ const NFTCard = ({
             <span className={styles['price']}>{price}</span>
           </div>
           <div>
-            {/* TODO:owners balanceOf and token id less total amount from id= current available amount  */}
-            {isFree && (
-              <span className={styles['quantity-tokens']}>{`3 of 10`}</span>
+            {erc1155 && (
+              <span
+                className={styles['quantity-tokens']}
+              >{`${quantityLeft} of ${totalSupply}`}</span>
             )}
           </div>
         </div>

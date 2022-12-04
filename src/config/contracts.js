@@ -7,3 +7,4 @@ export const NFTEditionContractAdd =
   process.env.NEXT_PUBLIC_NFT_EDITION_ADDRESS;
 export const NFTEditionClaimableContractAdd =
   process.env.NEXT_PUBLIC_NFT_EDITION_CLAIMABLE_ADDRESS;
+export const OwnerAddress = process.env.NEXT_PUBLIC_OWNER_ADDRESS;

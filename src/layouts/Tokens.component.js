@@ -11,9 +11,15 @@ import { useAccount, useBalance, useSigner } from 'wagmi';
 import {
   ClaimableContractAdd,
   ERC20TokenContractAdd,
+  OwnerAddress,
 } from 'src/config/contracts';
 import ToastComponent from '@components/common/Toast.component';
-import { getClaimableFactory, getTokenFactory } from '@utils/web3';
+import {
+  getClaimableFactory,
+  getNFTEditionFactory,
+  getNFTUniqueFactory,
+  getTokenFactory,
+} from '@utils/web3';
 import { localStorageKeys } from '@keys/localStorage';
 import { useRouter } from 'next/router';
 import { useProvider } from 'wagmi';
@@ -46,11 +52,30 @@ const TokensComponent = ({ NFTData }) => {
   };
 
   const setNFTsMetadata = async (nfts) => {
-    //test deploy
-    //const NFTContract = getNFTFactory({ signer });
+    const NFTDropContract = getNFTUniqueFactory({ provider });
+    const NFTEditionContract = getNFTEditionFactory({ provider });
     const resp = await Promise.all(
       nfts.map(async (elem) => {
-        return { ...elem, minted: false };
+        let quantityLeft = 0;
+        let totalSupply = 0;
+        let allMinted = false;
+        if (elem.erc721) {
+          try {
+            const ownerAddress = await NFTDropContract.ownerOf(elem.id);
+            allMinted = !!ownerAddress;
+          } catch (_) {}
+        } else {
+          const ownerBalance = await NFTEditionContract.balanceOf(
+            OwnerAddress,
+            elem.id
+          );
+          totalSupply = (
+            await NFTEditionContract.totalSupply(elem.id)
+          ).toString();
+          quantityLeft = ownerBalance.toString();
+          allMinted = ownerBalance.toString() == 0;
+        }
+        return { ...elem, allMinted, quantityLeft, totalSupply };
       })
     );
     setNFTData(resp);

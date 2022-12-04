@@ -7,6 +7,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth1_hgdcq1.jpg",
     "free": false,
     "price": 5,
+    "erc721": true,
 
     "attributes": [
       {
@@ -23,6 +24,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth2_iqjvpj.jpg",
     "free": false,
     "price": 5,
+    "erc721": true,
 
     "attributes": [
       {
@@ -40,6 +42,7 @@
     "free": false,
     "price": 8,
     "superRare": true,
+    "erc721": true,
 
     "attributes": [
       {
@@ -56,6 +59,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/eth4_k6adbn.jpg",
     "free": false,
     "price": 6,
+    "erc721": true,
 
     "attributes": [
       {
@@ -72,6 +76,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc1_xcn1z5.jpg",
     "free": true,
     "price": 5,
+    "erc721": false,
 
     "attributes": [
       {
@@ -88,6 +93,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc3_k2et3x.jpg",
     "free": true,
     "price": 5,
+    "erc721": false,
 
     "attributes": [
       {
@@ -104,6 +110,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308726/portofolio.me/actual-nfts/btc2_uerwz6.jpg",
     "free": false,
     "price": 5,
+    "erc721": true,
 
     "attributes": [
       {
@@ -121,6 +128,7 @@
     "free": false,
     "price": 9,
     "superRare": true,
+    "erc721": true,
 
     "attributes": [
       {
@@ -137,6 +145,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/shib3_y3ec3d.jpg",
     "free": false,
     "price": 2,
+    "erc721": true,
 
     "attributes": [
       {
@@ -153,6 +162,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669308725/portofolio.me/actual-nfts/shib2_pnxmlt.jpg",
     "free": false,
     "price": 2,
+    "erc721": true,
 
     "attributes": [
       {
@@ -169,6 +179,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/ethereum_lhue6p.jpg",
     "free": true,
     "price": 2,
+    "erc721": false,
 
     "attributes": [
       {
@@ -186,6 +197,7 @@
     "free": false,
     "price": 10,
     "superRare": true,
+    "erc721": true,
 
     "attributes": [
       {
@@ -202,6 +214,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245491/portofolio.me/actual-nfts/btc_nuaitn.jpg",
     "free": true,
     "price": 1,
+    "erc721": false,
 
     "attributes": [
       {
@@ -218,6 +231,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245491/portofolio.me/actual-nfts/btc_ftgh5l.jpg",
     "free": false,
     "price": 2,
+    "erc721": true,
 
     "attributes": [
       {
@@ -234,6 +248,7 @@
     "image": "https://res.cloudinary.com/btandayamo/image/upload/v1669245492/portofolio.me/actual-nfts/btc_esvr1o.jpg",
     "free": false,
     "price": 6,
+    "erc721": true,
 
     "attributes": [
       {
