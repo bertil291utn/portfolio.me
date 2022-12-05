@@ -202,6 +202,16 @@
         "internalType": "string",
         "name": "uri",
         "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_tokenAddress",
+        "type": "address"
       }
     ],
     "name": "safeMint",
