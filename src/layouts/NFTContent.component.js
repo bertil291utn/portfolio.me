@@ -14,22 +14,12 @@ const NFTContent = () => {
   const { NFTData: _NFTData } = useTokenContext();
   const provider = useProvider();
 
-  const claimERC115Token = () => {
+  const claimToken = () => {
     const NFTEditionContract = getNFTEditionFactory({ provider });
   };
 
-  const mintERC721Token = async ({ tokenId, price }) => {
-    // const NFTDropContract = getNFTUniqueFactory({ provider });
-  };
-
   const getToken = (isFree) => () => {
-    if (isFree) {
-      console.log('claim token');
-      claimERC115Token();
-    } else {
-      mintERC721Token({ fileURL });
-      console.log('buy token');
-    }
+    claimERC115Token();
   };
 
   useEffect(() => {

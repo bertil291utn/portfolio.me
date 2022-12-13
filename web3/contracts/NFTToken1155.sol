@@ -8,17 +8,30 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract MultipleEdition is ERC1155, ERC1155Supply, Ownable {
     string private _uri;
-
-    //"https://gateway.pinata.cloud/ipfs/QmaUh13Q6PXUxD6xwS449dfWcXaS9hmL5wZQGVS68iGoT2/";
+    mapping(uint256 => uint256) private tokenPrice;
 
     constructor() ERC1155("") {}
+
+    //GETTERS
+
+    function getTokenPrice(uint256 _tokenId) public view returns (uint256) {
+        return tokenPrice[_tokenId];
+    }
+
+    function setTokenPrice(uint256 _tokenId, uint256 _price) private onlyOwner {
+        tokenPrice[_tokenId] = _price;
+    }
 
     function ownerMint(
         uint256[] calldata ids,
         uint256[] calldata amounts,
+        uint256[] calldata prices,
         address claimableAddress
     ) public onlyOwner {
         _mintBatch(msg.sender, ids, amounts, "");
+        for (uint256 i = 0; i < prices.length; i++) {
+            setTokenPrice(ids[i], prices[i]);
+        }
         setApprovalForAll(claimableAddress, true);
     }
 
@@ -30,7 +43,7 @@ contract MultipleEdition is ERC1155, ERC1155Supply, Ownable {
         uint256 _tokenId
     ) public view override returns (string memory) {
         bytes memory uriBytes = bytes(_uri);
-        if (balanceOf(msg.sender, _tokenId) == 0 || uriBytes.length == 0)
+        if (balanceOf(owner(), _tokenId) == 0 || uriBytes.length == 0)
             return "";
         return
             string(abi.encodePacked(_uri, Strings.toString(_tokenId), ".json"));
