@@ -58,23 +58,15 @@ const TokensComponent = ({ NFTData }) => {
       nfts.map(async (elem) => {
         let quantityLeft = 0;
         let totalSupply = 0;
-        let allMinted = false;
-        if (elem.erc721) {
-          try {
-            const ownerAddress = await NFTDropContract.ownerOf(elem.id);
-            allMinted = !!ownerAddress;
-          } catch (_) {}
-        } else {
-          const ownerBalance = await NFTEditionContract.balanceOf(
-            OwnerAddress,
-            elem.id
-          );
-          totalSupply = (
-            await NFTEditionContract.totalSupply(elem.id)
-          ).toString();
-          quantityLeft = ownerBalance.toString();
-          allMinted = ownerBalance.toString() == 0;
-        }
+        const ownerBalance = await NFTEditionContract.balanceOf(
+          OwnerAddress,
+          elem.id
+        );
+        totalSupply = (
+          await NFTEditionContract.totalSupply(elem.id)
+        ).toString();
+        quantityLeft = ownerBalance.toString();
+        const allMinted = ownerBalance.toString() == 0;
         return { ...elem, allMinted, quantityLeft, totalSupply };
       })
     );
