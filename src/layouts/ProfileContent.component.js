@@ -31,6 +31,7 @@ import LoadingComponent from '@components/common/Loading.component';
 import { localStorageKeys } from '@keys/localStorage';
 import ToastComponent from '@components/common/Toast.component';
 import { getAllNFTs } from '@utils/NFT';
+import NFTProfileCard from '@components/common/NFTProfileCard.component';
 
 const ProfileContent = () => {
   const router = useRouter();
@@ -94,17 +95,21 @@ const ProfileContent = () => {
   const _getNFTs = async (ownerAddress) => {
     const NFTTokenContract = getNFTEditionFactory({ provider });
     let resp = await getAllNFTs(ownerAddress);
+    console.log(
+      '🚀 ~ file: ProfileContent.component.js:98 ~ const_getNFTs= ~ resp',
+      resp
+    );
     resp = resp.ownedNfts.filter(
       (elem) =>
-        elem.contract.address.toLocaleLowerCase() ==
-        NFTEditionContractAdd.toLocaleLowerCase()
+        elem.contract.address.toLowerCase() ===
+        NFTEditionContractAdd.toLowerCase()
     );
     const _tokenCards = [];
     resp.forEach(async (element) => {
       const tokenURI = await NFTTokenContract.uri(+element.tokenId);
       const res = await fetch(tokenURI);
       const tokenURIResp = await res.json();
-      _tokenCards.push(tokenURIResp);
+      _tokenCards.push({ ...tokenURIResp, tokenId: +element.tokenId });
     });
     setTokenCards(_tokenCards);
   };
@@ -282,7 +287,16 @@ const ProfileContent = () => {
             title={ProfileSections.NFTInfoTitle}
             subtitle={ProfileSections.NFTInfoSubtitle}
           >
-            my cards
+            <div className={styles['cards']}>
+              {[...tokenCards, ...tokenCards].map((elem) => (
+                <NFTProfileCard
+                  tokenId={elem.tokenId}
+                  srcImage={elem.image}
+                  name={elem.name}
+                  superRare={elem.attributes[0].value > 70}
+                />
+              ))}
+            </div>
           </SectionPanel>
         )}
 

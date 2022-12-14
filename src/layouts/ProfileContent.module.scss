@@ -4,6 +4,19 @@
   > div {
     padding: 2rem 0;
   }
+
+  .cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    @media screen and (min-width: 425px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
   span {
     display: block;
     margin: 0.5rem 0;

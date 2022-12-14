@@ -191,7 +191,7 @@ const NFTContent = () => {
           />
         )}
         {activeClaimingHash && (
-          <LoadingComponent title={NFTTokensLoading.claiming} />
+          <LoadingComponent title={NFTTokensLoading.claiming} fullHeight />
         )}
       </>
       <ToastComponent
