@@ -19,17 +19,87 @@ import {
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import { NFTPage, NFTTokensLoading } from '@placeholders/tokens.placeholder';
 import styles from './NFTContent.module.scss';
+import ToastComponent from '@components/common/Toast.component';
+import { localStorageKeys } from '@keys/localStorage';
+import { useRouter } from 'next/router';
+import { navbarElements } from '@placeholders/navbar.placeholders';
 
 const NFTContent = () => {
+  const router = useRouter();
   const [activeApprovingHash, setActiveApprovingHash] = useState();
+  const [activeClaimingHash, setActiveClaimingHash] = useState();
+  const [showToast, setShowToast] = useState();
+  const [toastVariant, setToastVariant] = useState();
   const { data: signer } = useSigner();
   const { address } = useAccount();
   const [NFTData, setNFTData] = useState();
   const { tokenSymbol } = useWalletContext();
   const { NFTData: _NFTData } = useTokenContext();
   const provider = useProvider();
-  //TODO-WIP: add tx hashes and messages and listeners and local storage vars
-  //test with more than edition tokens
+
+  const listenEvents = ({ provider }) => {
+    const NFTEditionContract = getNFTEditionFactory({
+      provider,
+    });
+    const tokenContract = getTokenFactory({ provider });
+
+    tokenContract.on('Approval', async (owner, spender) => {
+      if (owner == address && spender == NFTEditionClaimableContractAdd) {
+        await finishTx({
+          txHashKeyName: localStorageKeys.approveClaimingNFTTokenTxHash,
+          path: navbarElements.tokens.label,
+        });
+      }
+    });
+
+    NFTEditionContract.on('TransferSingle', async (_, from, to) => {
+      if (from == OwnerAddress && to == address) {
+        await finishTx({
+          txHashKeyName: localStorageKeys.claimingNFTTokenTxHash,
+          path: navbarElements.tokens.label,
+          reload: true,
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    setActiveApprovingHash(
+      !!window.localStorage.getItem(
+        localStorageKeys.approveClaimingNFTTokenTxHash
+      )
+    );
+    setActiveClaimingHash(
+      !!window.localStorage.getItem(localStorageKeys.claimingNFTTokenTxHash)
+    );
+
+    listenEvents({ provider });
+  }, []);
+
+  const finishTx = async ({ txHashKeyName, path, reload = false }) => {
+    removeLocalStorageItem(txHashKeyName);
+    setCurrentTxState[txHashKeyName]();
+    router.push(`/${path}`);
+    await new Promise((r) => setTimeout(r, 2000));
+    reload && window.location.reload();
+  };
+
+  const removeLocalStorageItem = (txHashKeyName) => {
+    window.localStorage.removeItem(txHashKeyName);
+  };
+
+  const setCurrentTxState = {
+    [localStorageKeys.approveClaimingNFTTokenTxHash]: setActiveApprovingHash,
+    [localStorageKeys.claimingNFTTokenTxHash]: setActiveClaimingHash,
+  };
+
+  const handleError = ({ error, txHashKeyName }) => {
+    removeLocalStorageItem(txHashKeyName);
+    setShowToast(error.reason?.replace('execution reverted:', ''));
+    setToastVariant('error');
+    setCurrentTxState[txHashKeyName]();
+  };
+
   const getToken = (tokenId) => async () => {
     const NFTEditionContract = getNFTEditionFactory({ provider });
     const NFTClaimableEditionContract = getNFTEditionClaimableFactory({
@@ -51,6 +121,11 @@ const NFTContent = () => {
           NFTEditionClaimableContractAdd,
           ethers.utils.parseEther(defaultStakingAmount.toString())
         );
+        window.localStorage.setItem(
+          localStorageKeys.approveClaimingNFTTokenTxHash,
+          tx.hash
+        );
+        setActiveApprovingHash(tx.hash);
         await tx.wait();
       }
       tx = await NFTClaimableEditionContract.mintUser(
@@ -59,12 +134,17 @@ const NFTContent = () => {
         ERC20TokenContractAdd,
         OwnerAddress
       );
+      window.localStorage.setItem(
+        localStorageKeys.claimingNFTTokenTxHash,
+        tx.hash
+      );
+      setActiveClaimingHash(tx.hash);
       await tx.wait();
     } catch (error) {
-      console.log(
-        '🚀 ~ file: NFTContent.component.js:37 ~ getToken ~ error',
-        error.reason
-      );
+      handleError({
+        error,
+        txHashKeyName: localStorageKeys.claimingNFTTokenTxHash,
+      });
     }
   };
 
@@ -74,7 +154,7 @@ const NFTContent = () => {
 
   return (
     <>
-      {!activeApprovingHash && (
+      {!activeApprovingHash && !activeClaimingHash && (
         <div className={styles['container']}>
           <div className={styles['header']}>
             <span className={styles['title']}>{NFTPage.title}</span>
@@ -110,7 +190,17 @@ const NFTContent = () => {
             fullHeight
           />
         )}
+        {activeClaimingHash && (
+          <LoadingComponent title={NFTTokensLoading.claiming} />
+        )}
       </>
+      <ToastComponent
+        variant={toastVariant}
+        show={showToast}
+        setShow={setShowToast}
+      >
+        {showToast}
+      </ToastComponent>
     </>
   );
 };
