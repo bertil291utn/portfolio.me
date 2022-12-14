@@ -87,13 +87,15 @@ const configProvDev = [
   publicProvider({ priority: 0, stallTimeout: 2_000 }),
 ];
 const configProvProd = [
-  alchemyProvider({
-    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-    priority: 0,
-  }),
+  //TODO: check alchemy provider urls
+  // it gives post error many times like an loop
+  // alchemyProvider({
+  //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID,
+  //   priority: 1,
+  // }),
   infuraProvider({
     apiKey: process.env.NEXT_PUBLIC_INFURA_GOERLI_API_KEY,
-    priority: 1,
+    priority: 0,
   }),
 ];
 const { chains, provider } = configureChains(
