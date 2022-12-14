@@ -19,7 +19,9 @@ contract MultipleEdition is ERC1155, ERC1155Supply, Ownable {
     }
 
     function setTokenPrice(uint256 _tokenId, uint256 _price) private onlyOwner {
-        tokenPrice[_tokenId] = _price;
+        if (_price != 0) {
+            tokenPrice[_tokenId] = _price;
+        }
     }
 
     function ownerMint(

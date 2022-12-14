@@ -52,20 +52,17 @@ const TokensComponent = ({ NFTData }) => {
   };
 
   const setNFTsMetadata = async (nfts) => {
-    const NFTDropContract = getNFTUniqueFactory({ provider });
     const NFTEditionContract = getNFTEditionFactory({ provider });
     const resp = await Promise.all(
       nfts.map(async (elem) => {
-        let quantityLeft = 0;
-        let totalSupply = 0;
         const ownerBalance = await NFTEditionContract.balanceOf(
           OwnerAddress,
           elem.id
         );
-        totalSupply = (
+        const totalSupply = (
           await NFTEditionContract.totalSupply(elem.id)
         ).toString();
-        quantityLeft = ownerBalance.toString();
+        const quantityLeft = ownerBalance.toString();
         const allMinted = ownerBalance.toString() == 0;
         return { ...elem, allMinted, quantityLeft, totalSupply };
       })
