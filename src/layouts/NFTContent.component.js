@@ -1,3 +1,4 @@
+import LoadingComponent from '@components/common/Loading.component';
 import NFTCard from '@components/common/NFTCard.component';
 import { defaultStakingAmount } from '@constants/common';
 import { useTokenContext } from '@context/TokenProvider';
@@ -16,9 +17,11 @@ import {
   OwnerAddress,
 } from 'src/config/contracts';
 import { useAccount, useProvider, useSigner } from 'wagmi';
+import { NFTPage, NFTTokensLoading } from '@placeholders/tokens.placeholder';
 import styles from './NFTContent.module.scss';
 
 const NFTContent = () => {
+  const [activeApprovingHash, setActiveApprovingHash] = useState();
   const { data: signer } = useSigner();
   const { address } = useAccount();
   const [NFTData, setNFTData] = useState();
@@ -69,28 +72,47 @@ const NFTContent = () => {
     setNFTData(_NFTData);
   }, [_NFTData]);
 
-  return NFTData ? (
-    <div className={styles['container']}>
-      <div className={styles['cards']}>
-        {NFTData.map((elem, index) => {
-          return !elem.allMinted ? (
-            <NFTCard
-              className={styles['card-item']}
-              key={`card-${++index}`}
-              srcImage={elem.image}
-              name={elem.name}
-              price={`${elem.free ? 0 : elem.price} ${tokenSymbol}`}
-              superRare={elem.superRare}
-              isFree={elem.free}
-              onClick={getToken(elem.id)}
-              quantityLeft={elem.quantityLeft}
-              totalSupply={elem.totalSupply}
-            />
-          ) : null;
-        })}
-      </div>
-    </div>
-  ) : null;
+  return (
+    <>
+      {!activeApprovingHash && (
+        <div className={styles['container']}>
+          <div className={styles['header']}>
+            <span className={styles['title']}>{NFTPage.title}</span>
+            <p className={styles['description']}>
+              {NFTPage.description(tokenSymbol)}
+            </p>
+          </div>
+          <div className={styles['cards']}>
+            {NFTData?.map((elem, index) => {
+              return !elem.allMinted ? (
+                <NFTCard
+                  className={styles['card-item']}
+                  key={`card-${++index}`}
+                  srcImage={elem.image}
+                  name={elem.name}
+                  price={`${elem.free ? 0 : elem.price} ${tokenSymbol}`}
+                  superRare={elem.superRare}
+                  isFree={elem.free}
+                  onClick={getToken(elem.id)}
+                  quantityLeft={elem.quantityLeft}
+                  totalSupply={elem.totalSupply}
+                />
+              ) : null;
+            })}
+          </div>
+        </div>
+      )}
+      <>
+        {activeApprovingHash && (
+          <LoadingComponent
+            title={NFTTokensLoading.approving}
+            description={NFTTokensLoading.approvingDescription}
+            fullHeight
+          />
+        )}
+      </>
+    </>
+  );
 };
 
 export default NFTContent;

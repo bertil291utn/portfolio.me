@@ -165,14 +165,6 @@ const TokensComponent = ({ NFTData }) => {
                 </div>
               </>
             )}
-            {isConnected && userCustomTokenBalance?.toString() > 0 && (
-              <>
-                <span className={styles['title']}>{NFTPage.title}</span>
-                <p className={styles['description']}>
-                  {NFTPage.description(tokenSymbol)}
-                </p>
-              </>
-            )}
           </>
         ) : (
           <LoadingComponent

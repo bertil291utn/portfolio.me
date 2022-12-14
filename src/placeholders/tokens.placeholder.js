@@ -21,3 +21,9 @@ export const NFTPage = {
     `Grab a free one or buy with $${tokenSymbol} coins. You'll able to rank, view repos and get in touch with Bertil 😂. Furthermore with these tokens you're going to participate in our DAO.`,
   transferringNFT: 'Transferring NFT ...',
 };
+
+export const NFTTokensLoading = {
+  approving: 'Approving ...',
+  approvingDescription:
+    'This transaction needs to be approved, wait until wallet pops up again to finalize claiming transaction',
+};
