@@ -50,7 +50,7 @@ const TokensComponent = ({ NFTData }) => {
     const _balance = ethers.utils.formatEther(userBalance?.toString());
     setEthUserBalance((+_balance).toFixed(4));
   };
-
+  //todo-wip split up in an new project for tokens ,claims, nfts and dao core
   const setNFTsMetadata = async (nfts) => {
     const NFTEditionContract = getNFTEditionFactory({ provider });
     const resp = await Promise.all(
