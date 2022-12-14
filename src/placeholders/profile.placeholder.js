@@ -5,11 +5,14 @@ export const ProfileLabel = {
 };
 
 export const IdContent = {
+  nfts: 'nfts',
   walletInfo: 'wallet-info',
   staking: 'staking',
 };
 
 export const ProfileSections = {
+  NFTInfoTitle: 'My NFTs',
+  NFTInfoSubtitle: 'My collected NFTs',
   walletInfoTitle: 'Wallet info',
   walletInfoSubtitle: 'Connection button and available tokens',
   stakingSectionTitle: 'Staking',

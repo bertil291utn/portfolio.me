@@ -276,6 +276,16 @@ const ProfileContent = () => {
           )}
         </SectionPanel>
 
+        {tokenCards && (
+          <SectionPanel
+            id={IdContent.nfts}
+            title={ProfileSections.NFTInfoTitle}
+            subtitle={ProfileSections.NFTInfoSubtitle}
+          >
+            my cards
+          </SectionPanel>
+        )}
+
         {userCustomTokenBalance?.toString() > 0 && (
           <SectionPanel
             id={IdContent.staking}
