@@ -1,15 +1,32 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.7;
-import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./IERC20.sol";
+import "./IERC1155.sol";
 
-contract MultipleEditionClaimable {
-    //TODO: make payable mintUser when auser buys a nft token when erc 1155 is not free anymore
-    //take in mind when is free how to disable require (msg.value>0) condition
-    //Send tokens to original erc155 smart contract
-    //example:  _tokenAddress.transferFrom(msg.sender, address(this), price);
-    //params: IERC20 _tokenAddress
+contract MultipleEditionClaimable is ReentrancyGuard, Ownable {
+    function mintUser(
+        uint256 id,
+        IERC1155 tokenERC1155Address,
+        IERC20 _tokenERC20Address,
+        address owner
+    ) public {
+        if (tokenERC1155Address.getTokenPrice(id) > 0) {
+            //approve for this contract address to transfer funds
+            _tokenERC20Address.transferFrom(
+                msg.sender,
+                address(this),
+                tokenERC1155Address.getTokenPrice(id)
+            );
+        }
+        tokenERC1155Address.safeTransferFrom(owner, msg.sender, id, 1, "");
+    }
 
-    function mintUser(uint256 id, IERC1155 tokenAddress, address owner) public {
-        tokenAddress.safeTransferFrom(owner, msg.sender, id, 1, "");
+    function withdraw() public onlyOwner nonReentrant {
+        (bool success, ) = address(msg.sender).call{
+            value: address(this).balance
+        }("");
+        require(success, "withdraw failed to send");
     }
 }

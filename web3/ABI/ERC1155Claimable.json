@@ -8,7 +8,12 @@
       },
       {
         "internalType": "contract IERC1155",
-        "name": "tokenAddress",
+        "name": "tokenERC1155Address",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_tokenERC20Address",
         "type": "address"
       },
       {
