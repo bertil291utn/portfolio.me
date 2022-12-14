@@ -17,7 +17,7 @@ const NFTProfileCard = ({ tokenId, srcImage, name, superRare, className }) => {
             <span className={styles['name']}>{name}</span>
           </div>
           <div>
-            <span className={styles['token-id']}>{`${tokenId}`}</span>
+            <span className={styles['token-id']}>{`#${tokenId}`}</span>
           </div>
         </div>
       </footer>

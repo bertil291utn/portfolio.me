@@ -18,7 +18,6 @@ import { defaultStakingAmount, minStakingAmount } from '@constants/common';
 import InputComponent from '@components/common/Input.component';
 import {
   getNFTEditionFactory,
-  getNFTUniqueFactory,
   getStakingFactory,
   getTokenFactory,
 } from '@utils/web3';
@@ -95,23 +94,24 @@ const ProfileContent = () => {
   const _getNFTs = async (ownerAddress) => {
     const NFTTokenContract = getNFTEditionFactory({ provider });
     let resp = await getAllNFTs(ownerAddress);
-    console.log(
-      '🚀 ~ file: ProfileContent.component.js:98 ~ const_getNFTs= ~ resp',
-      resp
-    );
     resp = resp.ownedNfts.filter(
       (elem) =>
         elem.contract.address.toLowerCase() ===
         NFTEditionContractAdd.toLowerCase()
     );
-    const _tokenCards = [];
-    resp.forEach(async (element) => {
-      const tokenURI = await NFTTokenContract.uri(+element.tokenId);
-      const res = await fetch(tokenURI);
-      const tokenURIResp = await res.json();
-      _tokenCards.push({ ...tokenURIResp, tokenId: +element.tokenId });
-    });
-    setTokenCards(_tokenCards);
+    if (resp.length) {
+      const tokenIdsArr = resp.map((elem) => elem.tokenId);
+      const _tokenCards = await Promise.all(
+        tokenIdsArr.map(async (tokenId) => {
+          const tokenURI = await NFTTokenContract.uri(+tokenId);
+          if (!tokenURI) return null;
+          const res = await fetch(tokenURI);
+          const tokenURIResp = await res.json();
+          return { ...tokenURIResp, tokenId };
+        })
+      );
+      setTokenCards(_tokenCards.filter((elem) => elem));
+    }
   };
 
   useEffect(() => {
@@ -281,15 +281,16 @@ const ProfileContent = () => {
           )}
         </SectionPanel>
 
-        {tokenCards && (
+        {tokenCards?.length > 0 && (
           <SectionPanel
             id={IdContent.nfts}
             title={ProfileSections.NFTInfoTitle}
             subtitle={ProfileSections.NFTInfoSubtitle}
           >
             <div className={styles['cards']}>
-              {[...tokenCards, ...tokenCards].map((elem) => (
+              {tokenCards.map((elem) => (
                 <NFTProfileCard
+                  key={`card-${elem.tokenId}`}
                   tokenId={elem.tokenId}
                   srcImage={elem.image}
                   name={elem.name}
