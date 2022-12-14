@@ -50,7 +50,7 @@ const ProfileContent = () => {
     const stakingContract = getStakingFactory({ provider });
     const tokenContract = getTokenFactory({ provider });
     //LISTENERS
-
+    //TODO-WIP: display here all user collected nfts
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Approval', async (owner, spender) => {
       if (owner == address && spender == StakingContractAdd) {

@@ -25,7 +25,8 @@ const NFTContent = () => {
   const { tokenSymbol } = useWalletContext();
   const { NFTData: _NFTData } = useTokenContext();
   const provider = useProvider();
-
+  //TODO-WIP: add tx hashes and messages and listeners and local storage vars
+  //test with more than edition tokens
   const getToken = (tokenId) => async () => {
     const NFTEditionContract = getNFTEditionFactory({ provider });
     const NFTClaimableEditionContract = getNFTEditionClaimableFactory({
