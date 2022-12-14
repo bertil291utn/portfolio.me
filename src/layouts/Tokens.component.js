@@ -64,7 +64,16 @@ const TokensComponent = ({ NFTData }) => {
         ).toString();
         const quantityLeft = ownerBalance.toString();
         const allMinted = ownerBalance.toString() == 0;
-        return { ...elem, allMinted, quantityLeft, totalSupply };
+        let price = await NFTEditionContract.getTokenPrice(elem.id);
+        price = ethers.utils.formatEther(price).toString();
+        return {
+          ...elem,
+          allMinted,
+          quantityLeft,
+          totalSupply,
+          price,
+          free: price <= 0,
+        };
       })
     );
     setNFTData(resp);

@@ -8,4 +8,6 @@ export const localStorageKeys = {
   unStakingTxHash: 'unStakingTxHash',
   ratingTxHash: 'ratingTxHash',
   unRatingTxHash: 'unRatingTxHash',
+  claimingNFTTokenTxHash: 'claimingNFTTokenTxHash',
+  approveClaimingNFTTokenTxHash: 'approveClaimingNFTTokenTxHash',
 };

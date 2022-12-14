@@ -24,6 +24,7 @@ export const NFTPage = {
 
 export const NFTTokensLoading = {
   approving: 'Approving ...',
+  claiming: 'Claiming ...',
   approvingDescription:
     'This transaction needs to be approved, wait until wallet pops up again to finalize claiming transaction',
 };
