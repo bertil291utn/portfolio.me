@@ -62,14 +62,6 @@ export const getRatingFactory = ({ provider, signer }) => {
   });
 };
 
-export const getNFTUniqueFactory = ({ provider, signer }) => {
-  return getContractFactory({
-    address: NFTUniqueContractAdd,
-    ABI: ERC721ABI,
-    signer: signer || provider,
-  });
-};
-
 export const getNFTEditionFactory = ({ provider, signer }) => {
   return getContractFactory({
     address: NFTEditionContractAdd,

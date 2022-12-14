@@ -16,18 +16,26 @@ import styles from './ProfileContent.module.scss';
 import SectionPanel from '@components/common/SectionPanel.component';
 import { defaultStakingAmount, minStakingAmount } from '@constants/common';
 import InputComponent from '@components/common/Input.component';
-import { getStakingFactory, getTokenFactory } from '@utils/web3';
+import {
+  getNFTEditionFactory,
+  getNFTUniqueFactory,
+  getStakingFactory,
+  getTokenFactory,
+} from '@utils/web3';
 import {
   ERC20TokenContractAdd,
+  NFTEditionContractAdd,
   StakingContractAdd,
 } from 'src/config/contracts';
 import LoadingComponent from '@components/common/Loading.component';
 import { localStorageKeys } from '@keys/localStorage';
 import ToastComponent from '@components/common/Toast.component';
+import { getAllNFTs } from '@utils/NFT';
 
 const ProfileContent = () => {
   const router = useRouter();
   const [isWalletConnected, setIsWalletConnected] = useState();
+  const [tokenCards, setTokenCards] = useState();
   const [showToast, setShowToast] = useState();
   const [toastVariant, setToastVariant] = useState();
   const [activeApprovingHash, setActiveApprovingHash] = useState();
@@ -50,7 +58,6 @@ const ProfileContent = () => {
     const stakingContract = getStakingFactory({ provider });
     const tokenContract = getTokenFactory({ provider });
     //LISTENERS
-    //TODO-WIP: display here all user collected nfts
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Approval', async (owner, spender) => {
       if (owner == address && spender == StakingContractAdd) {
@@ -83,6 +90,25 @@ const ProfileContent = () => {
   };
   //TODO: add link to display tokens on metamask
   //https://ethereum.stackexchange.com/questions/99343/how-to-automatically-add-a-custom-token-to-metamask-with-ethers-js
+
+  const _getNFTs = async (ownerAddress) => {
+    const NFTTokenContract = getNFTEditionFactory({ provider });
+    let resp = await getAllNFTs(ownerAddress);
+    resp = resp.ownedNfts.filter(
+      (elem) =>
+        elem.contract.address.toLocaleLowerCase() ==
+        NFTEditionContractAdd.toLocaleLowerCase()
+    );
+    const _tokenCards = [];
+    resp.forEach(async (element) => {
+      const tokenURI = await NFTTokenContract.uri(+element.tokenId);
+      const res = await fetch(tokenURI);
+      const tokenURIResp = await res.json();
+      _tokenCards.push(tokenURIResp);
+    });
+    setTokenCards(_tokenCards);
+  };
+
   useEffect(() => {
     setActiveApprovingHash(
       !!window.localStorage.getItem(localStorageKeys.approveStakingTxHash)
@@ -108,6 +134,7 @@ const ProfileContent = () => {
 
   useEffect(() => {
     setIsWalletConnected(isConnected);
+    _getNFTs(address);
   }, [address]);
 
   const isFormValid = ({ stakingAmount }) => {

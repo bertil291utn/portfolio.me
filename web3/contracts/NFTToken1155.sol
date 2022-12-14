@@ -45,8 +45,7 @@ contract MultipleEdition is ERC1155, ERC1155Supply, Ownable {
         uint256 _tokenId
     ) public view override returns (string memory) {
         bytes memory uriBytes = bytes(_uri);
-        if (balanceOf(owner(), _tokenId) == 0 || uriBytes.length == 0)
-            return "";
+        if (!exists(_tokenId) || uriBytes.length == 0) return "";
         return
             string(abi.encodePacked(_uri, Strings.toString(_tokenId), ".json"));
     }
