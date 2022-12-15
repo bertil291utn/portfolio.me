@@ -44,10 +44,6 @@ const TokensComponent = ({ NFTData }) => {
   const { userCustomTokenBalance, tokenSymbol } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected: _isConnected } = useAccount();
-  console.log(
-    '🚀 ~ file: Tokens.component.js:47 ~ TokensComponent ~ address',
-    address
-  );
 
   const getBalance = async ({ provider, address }) => {
     const userBalance = await provider.getBalance(address);
@@ -86,6 +82,7 @@ const TokensComponent = ({ NFTData }) => {
   useEffect(() => {
     address && getBalance({ provider, address });
     setNFTsMetadata(NFTData);
+    isFinishedTransferTx({ provider, address });
   }, [address]);
 
   useEffect(() => {
@@ -95,6 +92,10 @@ const TokensComponent = ({ NFTData }) => {
   const router = useRouter();
 
   const isFinishedTransferTx = async ({ provider, address }) => {
+    console.log(
+      '🚀 ~ file: Tokens.component.js:98 ~ isFinishedTransferTx ~ address',
+      address
+    );
     const tokenContract = getTokenFactory({ provider });
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Transfer', async (from, to) => {
@@ -116,7 +117,6 @@ const TokensComponent = ({ NFTData }) => {
     setActiveTknClaimHash(
       !!window.localStorage.getItem(localStorageKeys.claimingTxHash)
     );
-    isFinishedTransferTx({ provider, address });
   }, []);
 
   const setCloseCurrentTx = () => {
