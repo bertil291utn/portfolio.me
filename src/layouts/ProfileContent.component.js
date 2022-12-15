@@ -54,21 +54,16 @@ const ProfileContent = () => {
     [localStorageKeys.unStakingTxHash]: setActiveUnStakingHash,
   };
 
-  const listenEvents = ({ provider }) => {
+  const listenEvents = ({ provider, address }) => {
     const stakingContract = getStakingFactory({ provider });
     const tokenContract = getTokenFactory({ provider });
     //LISTENERS
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Approval', async (owner, spender) => {
-      console.log(
-        '🚀 ~ file: ProfileContent.component.js:63 ~ tokenContract.on ~ spender',
-        spender
-      );
-      console.log(
-        '🚀 ~ file: ProfileContent.component.js:63 ~ tokenContract.on ~ owner',
-        owner
-      );
-      if (owner == address && spender == StakingContractAdd) {
+      if (
+        owner?.toLowerCase() == address?.toLowerCase() &&
+        spender?.toLowerCase() == StakingContractAdd?.toLowerCase()
+      ) {
         await finishTx({
           txHashKeyName: localStorageKeys.approveStakingTxHash,
           path: navbarElements.profile.label,
@@ -77,11 +72,7 @@ const ProfileContent = () => {
     });
 
     stakingContract.on('Staked', async (user) => {
-      console.log(
-        '🚀 ~ file: ProfileContent.component.js:74 ~ stakingContract.on ~ user',
-        user
-      );
-      if (user == address) {
+      if (user?.toLowerCase() == address?.toLowerCase()) {
         await finishTx({
           txHashKeyName: localStorageKeys.stakingTxHash,
           path: navbarElements.profile.label,
@@ -91,11 +82,7 @@ const ProfileContent = () => {
     });
 
     stakingContract.on('Unstake', async (user) => {
-      console.log(
-        '🚀 ~ file: ProfileContent.component.js:85 ~ stakingContract.on ~ user',
-        user
-      );
-      if (user == address) {
+      if (user?.toLowerCase() == address?.toLowerCase()) {
         await finishTx({
           txHashKeyName: localStorageKeys.unStakingTxHash,
           path: navbarElements.profile.label,
@@ -140,8 +127,6 @@ const ProfileContent = () => {
     setActiveUnStakingHash(
       !!window.localStorage.getItem(localStorageKeys.unStakingTxHash)
     );
-
-    listenEvents({ provider });
   }, []);
 
   useEffect(() => {
@@ -156,6 +141,7 @@ const ProfileContent = () => {
   useEffect(() => {
     setIsWalletConnected(isConnected);
     _getNFTs(address);
+    listenEvents({ provider, address });
   }, [address]);
 
   const isFormValid = ({ stakingAmount }) => {

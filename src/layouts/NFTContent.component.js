@@ -37,22 +37,17 @@ const NFTContent = () => {
   const { NFTData: _NFTData } = useTokenContext();
   const provider = useProvider();
 
-  const listenEvents = ({ provider }) => {
+  const listenEvents = ({ provider, address }) => {
     const NFTEditionContract = getNFTEditionFactory({
       provider,
     });
     const tokenContract = getTokenFactory({ provider });
 
     tokenContract.on('Approval', async (owner, spender) => {
-      console.log(
-        '🚀 ~ file: NFTContent.component.js:47 ~ tokenContract.on ~ spender',
-        spender
-      );
-      console.log(
-        '🚀 ~ file: NFTContent.component.js:47 ~ tokenContract.on ~ owner',
-        owner
-      );
-      if (owner == address && spender == NFTEditionClaimableContractAdd) {
+      if (
+        owner?.toLowerCase() == address?.toLowerCase() &&
+        spender?.toLowerCase() == NFTEditionClaimableContractAdd?.toLowerCase()
+      ) {
         await finishTx({
           txHashKeyName: localStorageKeys.approveClaimingNFTTokenTxHash,
           path: navbarElements.tokens.label,
@@ -61,15 +56,10 @@ const NFTContent = () => {
     });
 
     NFTEditionContract.on('TransferSingle', async (_, from, to) => {
-      console.log(
-        '🚀 ~ file: NFTContent.component.js:58 ~ NFTEditionContract.on ~ to',
-        to
-      );
-      console.log(
-        '🚀 ~ file: NFTContent.component.js:58 ~ NFTEditionContract.on ~ from',
-        from
-      );
-      if (from == OwnerAddress && to == address) {
+      if (
+        from?.toLowerCase() == OwnerAddress?.toLowerCase() &&
+        to?.toLowerCase() == address?.toLowerCase()
+      ) {
         await finishTx({
           txHashKeyName: localStorageKeys.claimingNFTTokenTxHash,
           path: navbarElements.tokens.label,
@@ -88,9 +78,11 @@ const NFTContent = () => {
     setActiveClaimingHash(
       !!window.localStorage.getItem(localStorageKeys.claimingNFTTokenTxHash)
     );
-
-    listenEvents({ provider });
   }, []);
+
+  useEffect(() => {
+    listenEvents({ provider, address });
+  }, [address]);
 
   const finishTx = async ({ txHashKeyName, path, reload = false }) => {
     removeLocalStorageItem(txHashKeyName);

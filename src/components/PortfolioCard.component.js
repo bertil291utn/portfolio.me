@@ -45,19 +45,11 @@ const PortfolioCard = ({
   const router = useRouter();
   const { address } = useAccount();
 
-  const listenEvents = ({ provider }) => {
+  const listenEvents = ({ provider, address }) => {
     const ratingContract = getRatingFactory({ provider });
     //TODO: listen transfer event not just in rating component, but also all over the app _app file
     ratingContract.on('RatedProject', async (from, rated) => {
-      console.log(
-        '🚀 ~ file: PortfolioCard.component.js:52 ~ ratingContract.on ~ rated',
-        rated
-      );
-      console.log(
-        '🚀 ~ file: PortfolioCard.component.js:52 ~ ratingContract.on ~ from',
-        from
-      );
-      if (from == address) {
+      if (from?.toLowerCase() == address?.toLowerCase()) {
         await finishTx({
           txHashKeyName: rated
             ? localStorageKeys.ratingTxHash
@@ -93,8 +85,11 @@ const PortfolioCard = ({
       setActiveUnRatingHash(
         !!window.localStorage.getItem(localStorageKeys.unRatingTxHash)
       );
-    listenEvents({ provider });
   }, []);
+
+  useEffect(() => {
+    listenEvents({ provider, address });
+  }, [address]);
 
   useEffect(() => {
     setIsStakeHolder(userStakedAmount?.toString() > 0);

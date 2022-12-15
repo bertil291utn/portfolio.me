@@ -92,17 +92,9 @@ const TokensComponent = ({ NFTData }) => {
   const router = useRouter();
 
   const isFinishedTransferTx = async ({ provider, address }) => {
-    console.log(
-      '🚀 ~ file: Tokens.component.js:98 ~ isFinishedTransferTx ~ address',
-      address
-    );
     const tokenContract = getTokenFactory({ provider });
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Transfer', async (from, to) => {
-      console.log(
-        '🚀 ~ file: Tokens.component.js:136 ~ tokenContract.on ~ address',
-        address
-      );
       if (
         from?.toLowerCase() == ClaimableContractAdd?.toLowerCase() &&
         to?.toLowerCase() == address?.toLowerCase()
