@@ -94,42 +94,10 @@ const TokensComponent = ({ NFTData }) => {
 
   const router = useRouter();
 
-  const isFinishedTransferTx = async ({ provider }) => {
+  const isFinishedTransferTx = async ({ provider, address }) => {
     const tokenContract = getTokenFactory({ provider });
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Transfer', async (from, to) => {
-      console.log(
-        '🚀 ~ file: Tokens.component.js:97 ~ tokenContract.on ~ from',
-        from
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:106 ~ tokenContract.on ~ to',
-        to
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:107 ~ tokenContract.on ~ from?.toLowerCase() == ClaimableContractAdd?.toLowerCase()',
-        from?.toLowerCase() == ClaimableContractAdd?.toLowerCase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:109 ~ tokenContract.on ~ to?.toLowerCase() == address?.toLowerCase()',
-        to?.toLowerCase() == address?.toLowerCase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:115 ~ tokenContract.on ~ from?.toLowerCase()',
-        from?.toLowerCase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:117 ~ tokenContract.on ~ to?.toLowerCase()',
-        to?.toLowerCase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:117 ~ tokenContract.on ~ ClaimableContractAdd?.toLowerCase()',
-        ClaimableContractAdd?.toLowerCase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:119 ~ tokenContract.on ~ address?.toLowerCase()',
-        address?.toLowerCase()
-      );
       console.log(
         '🚀 ~ file: Tokens.component.js:136 ~ tokenContract.on ~ address',
         address
@@ -148,7 +116,7 @@ const TokensComponent = ({ NFTData }) => {
     setActiveTknClaimHash(
       !!window.localStorage.getItem(localStorageKeys.claimingTxHash)
     );
-    isFinishedTransferTx({ provider });
+    isFinishedTransferTx({ provider, address });
   }, []);
 
   const setCloseCurrentTx = () => {
