@@ -1,6 +1,7 @@
 @import 'src/css/variables.scss';
 
 .container {
+  position: relative;
   .chip {
     position: absolute;
     top: 2%;
