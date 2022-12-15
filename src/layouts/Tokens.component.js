@@ -130,6 +130,10 @@ const TokensComponent = ({ NFTData }) => {
         '🚀 ~ file: Tokens.component.js:119 ~ tokenContract.on ~ address?.toLowerCase()',
         address?.toLowerCase()
       );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:136 ~ tokenContract.on ~ address',
+        address
+      );
       if (
         from?.toLowerCase() == ClaimableContractAdd?.toLowerCase() &&
         to?.toLowerCase() == address?.toLowerCase()
