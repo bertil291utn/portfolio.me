@@ -44,6 +44,10 @@ const TokensComponent = ({ NFTData }) => {
   const { userCustomTokenBalance, tokenSymbol } = useWalletContext();
   const provider = useProvider();
   const { address, isConnected: _isConnected } = useAccount();
+  console.log(
+    '🚀 ~ file: Tokens.component.js:47 ~ TokensComponent ~ address',
+    address
+  );
 
   const getBalance = async ({ provider, address }) => {
     const userBalance = await provider.getBalance(address);
