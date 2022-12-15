@@ -102,7 +102,18 @@ const TokensComponent = ({ NFTData }) => {
         '🚀 ~ file: Tokens.component.js:104 ~ tokenContract.on ~ to',
         to
       );
-      if (from == ClaimableContractAdd && to == address) {
+      console.log(
+        '🚀 ~ file: Tokens.component.js:107 ~ tokenContract.on ~ from.toLowercase() == ClaimableContractAdd.toLowercase()',
+        from.toLowercase() == ClaimableContractAdd.toLowercase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:109 ~ tokenContract.on ~ to.toLowercase() == address.toLowercase()',
+        to.toLowercase() == address.toLowercase()
+      );
+      if (
+        from.toLowercase() == ClaimableContractAdd.toLowercase() &&
+        to.toLowercase() == address.toLowercase()
+      ) {
         window.localStorage.setItem(localStorageKeys.isWeb3User, true);
         await finishTx();
       }
