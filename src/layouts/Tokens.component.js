@@ -102,6 +102,30 @@ const TokensComponent = ({ NFTData }) => {
         '🚀 ~ file: Tokens.component.js:106 ~ tokenContract.on ~ to',
         to
       );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:107 ~ tokenContract.on ~ from?.toLowerCase() == ClaimableContractAdd?.toLowerCase()',
+        from?.toLowerCase() == ClaimableContractAdd?.toLowerCase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:109 ~ tokenContract.on ~ to?.toLowerCase() == address?.toLowerCase()',
+        to?.toLowerCase() == address?.toLowerCase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:115 ~ tokenContract.on ~ from?.toLowerCase()',
+        from?.toLowerCase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:117 ~ tokenContract.on ~ to?.toLowerCase()',
+        to?.toLowerCase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:117 ~ tokenContract.on ~ ClaimableContractAdd?.toLowerCase()',
+        ClaimableContractAdd?.toLowerCase()
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:119 ~ tokenContract.on ~ address?.toLowerCase()',
+        address?.toLowerCase()
+      );
       if (
         from?.toLowerCase() == ClaimableContractAdd?.toLowerCase() &&
         to?.toLowerCase() == address?.toLowerCase()
