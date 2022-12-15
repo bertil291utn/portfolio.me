@@ -99,25 +99,25 @@ const TokensComponent = ({ NFTData }) => {
         from
       );
       console.log(
-        '🚀 ~ file: Tokens.component.js:104 ~ tokenContract.on ~ to',
-        to
+        '🚀 ~ file: Tokens.component.js:102 ~ tokenContract.on ~ to.toLowerCase() == address.toLowerCase()',
+        to.toLowerCase() == address.toLowerCase()
       );
       console.log(
-        '🚀 ~ file: Tokens.component.js:107 ~ tokenContract.on ~ from.toLowercase() == ClaimableContractAdd.toLowercase()',
-        from.toLowercase() == ClaimableContractAdd.toLowercase()
-      );
-      console.log(
-        '🚀 ~ file: Tokens.component.js:109 ~ tokenContract.on ~ to.toLowercase() == address.toLowercase()',
-        to.toLowercase() == address.toLowercase()
+        '🚀 ~ file: Tokens.component.js:100 ~ tokenContract.on ~ from.toLowerCase() == ClaimableContractAdd.toLowerCase()',
+        from.toLowerCase() == ClaimableContractAdd.toLowerCase()
       );
       if (
-        from.toLowercase() == ClaimableContractAdd.toLowercase() &&
-        to.toLowercase() == address.toLowercase()
+        from.toLowerCase() == ClaimableContractAdd.toLowerCase() &&
+        to.toLowerCase() == address.toLowerCase()
       ) {
         window.localStorage.setItem(localStorageKeys.isWeb3User, true);
         await finishTx();
       }
     });
+    console.log(
+      '🚀 ~ file: Tokens.component.js:106 ~ tokenContract.on ~ to',
+      to
+    );
   };
 
   useEffect(() => {
