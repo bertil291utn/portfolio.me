@@ -49,6 +49,14 @@ const PortfolioCard = ({
     const ratingContract = getRatingFactory({ provider });
     //TODO: listen transfer event not just in rating component, but also all over the app _app file
     ratingContract.on('RatedProject', async (from, rated) => {
+      console.log(
+        '🚀 ~ file: PortfolioCard.component.js:52 ~ ratingContract.on ~ rated',
+        rated
+      );
+      console.log(
+        '🚀 ~ file: PortfolioCard.component.js:52 ~ ratingContract.on ~ from',
+        from
+      );
       if (from == address) {
         await finishTx({
           txHashKeyName: rated

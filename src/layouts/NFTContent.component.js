@@ -44,6 +44,14 @@ const NFTContent = () => {
     const tokenContract = getTokenFactory({ provider });
 
     tokenContract.on('Approval', async (owner, spender) => {
+      console.log(
+        '🚀 ~ file: NFTContent.component.js:47 ~ tokenContract.on ~ spender',
+        spender
+      );
+      console.log(
+        '🚀 ~ file: NFTContent.component.js:47 ~ tokenContract.on ~ owner',
+        owner
+      );
       if (owner == address && spender == NFTEditionClaimableContractAdd) {
         await finishTx({
           txHashKeyName: localStorageKeys.approveClaimingNFTTokenTxHash,
@@ -53,6 +61,14 @@ const NFTContent = () => {
     });
 
     NFTEditionContract.on('TransferSingle', async (_, from, to) => {
+      console.log(
+        '🚀 ~ file: NFTContent.component.js:58 ~ NFTEditionContract.on ~ to',
+        to
+      );
+      console.log(
+        '🚀 ~ file: NFTContent.component.js:58 ~ NFTEditionContract.on ~ from',
+        from
+      );
       if (from == OwnerAddress && to == address) {
         await finishTx({
           txHashKeyName: localStorageKeys.claimingNFTTokenTxHash,

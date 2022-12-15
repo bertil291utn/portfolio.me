@@ -60,6 +60,14 @@ const ProfileContent = () => {
     //LISTENERS
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Approval', async (owner, spender) => {
+      console.log(
+        '🚀 ~ file: ProfileContent.component.js:63 ~ tokenContract.on ~ spender',
+        spender
+      );
+      console.log(
+        '🚀 ~ file: ProfileContent.component.js:63 ~ tokenContract.on ~ owner',
+        owner
+      );
       if (owner == address && spender == StakingContractAdd) {
         await finishTx({
           txHashKeyName: localStorageKeys.approveStakingTxHash,
@@ -69,6 +77,10 @@ const ProfileContent = () => {
     });
 
     stakingContract.on('Staked', async (user) => {
+      console.log(
+        '🚀 ~ file: ProfileContent.component.js:74 ~ stakingContract.on ~ user',
+        user
+      );
       if (user == address) {
         await finishTx({
           txHashKeyName: localStorageKeys.stakingTxHash,
@@ -79,6 +91,10 @@ const ProfileContent = () => {
     });
 
     stakingContract.on('Unstake', async (user) => {
+      console.log(
+        '🚀 ~ file: ProfileContent.component.js:85 ~ stakingContract.on ~ user',
+        user
+      );
       if (user == address) {
         await finishTx({
           txHashKeyName: localStorageKeys.unStakingTxHash,

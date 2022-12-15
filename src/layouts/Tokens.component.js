@@ -94,6 +94,14 @@ const TokensComponent = ({ NFTData }) => {
     const tokenContract = getTokenFactory({ provider });
     //TODO: listen transfer event not just in token component, but also all over the app _app file
     tokenContract.on('Transfer', async (from, to) => {
+      console.log(
+        '🚀 ~ file: Tokens.component.js:97 ~ tokenContract.on ~ from',
+        from
+      );
+      console.log(
+        '🚀 ~ file: Tokens.component.js:104 ~ tokenContract.on ~ to',
+        to
+      );
       if (from == ClaimableContractAdd && to == address) {
         window.localStorage.setItem(localStorageKeys.isWeb3User, true);
         await finishTx();
