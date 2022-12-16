@@ -50,10 +50,7 @@ const TokensComponent = ({ NFTData }) => {
     const _balance = ethers.utils.formatEther(userBalance?.toString());
     setEthUserBalance((+_balance).toFixed(4));
   };
-  //todo-wip: redirect from claim button to new project
-  // add as env new project url
-  // todo-wip: remove starts from portfolio cards
-  // redirect claim mkodal butons to new project by href target _blank
+
   const setNFTsMetadata = async (nfts) => {
     const NFTEditionContract = getNFTEditionFactory({ provider });
     const resp = await Promise.all(
@@ -120,7 +117,6 @@ const TokensComponent = ({ NFTData }) => {
 
   const finishTx = async () => {
     setCloseCurrentTx();
-    //todo-wip: redirect to staking page
     
     router.push(`/${navbarElements.profile.label}`);
     await new Promise((r) => setTimeout(r, 2000));
