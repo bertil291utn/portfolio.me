@@ -120,6 +120,8 @@ const TokensComponent = ({ NFTData }) => {
 
   const finishTx = async () => {
     setCloseCurrentTx();
+    //todo-wip: redirect to staking page
+    
     router.push(`/${navbarElements.profile.label}`);
     await new Promise((r) => setTimeout(r, 2000));
     window.location.reload(true);

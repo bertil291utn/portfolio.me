@@ -155,6 +155,7 @@ const PortfolioCard = ({
   };
 
   const stakeAcceptBtnAction = () => {
+    //todo-wip: redirect to staking page
     router.push(`/${navbarElements.profile.label}#${IdContent.staking}`);
   };
 
