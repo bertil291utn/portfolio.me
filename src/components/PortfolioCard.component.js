@@ -1,6 +1,6 @@
 import styles from './PortfolioCard.module.scss';
 import { TbWorld } from 'react-icons/tb';
-import { AiFillGithub, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { localStorageKeys } from '@keys/localStorage';
@@ -13,14 +13,13 @@ import {
   PortfolioLabel,
 } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
-import { useAccount, useProvider, useSigner } from 'wagmi';
+import { useAccount, useProvider } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
 import ToastComponent from '@components/common/Toast.component';
 import LoadingComponent from '@components/common/Loading.component';
 import { isTokenCheckPassed } from '@utils/common';
 
 const PortfolioCard = ({
-  projectId,
   type,
   description,
   projectName,
@@ -39,7 +38,6 @@ const PortfolioCard = ({
   const [activeUnRatingHash, setActiveUnRatingHash] = useState();
 
   const { resolvedTheme } = useTheme();
-  const { data: signer } = useSigner();
   const provider = useProvider();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
@@ -109,47 +107,6 @@ const PortfolioCard = ({
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
-  const handleError = ({ error, txHashKeyName }) => {
-    removeLocalStorageItem(txHashKeyName);
-    setShowToast(error.reason?.replace('execution reverted:', ''));
-    setToastVariant('error');
-    !isRated && setActiveRatingHash();
-    isRated && setActiveUnRatingHash();
-  };
-
-  const rateProject = async () => {
-    if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
-      setClaimTokensModal(true);
-      return;
-    }
-    const rateContract = getRatingFactory({ signer });
-    let tx;
-    const _isTokenCheckPassed = isTokenCheckPassed({
-      setClaimTokensModal,
-      setStakeTokensModal,
-      userCustomTokenBalance,
-      isStakeHolder,
-    });
-    if (_isTokenCheckPassed) {
-      try {
-        tx = await rateContract.rateProject(projectId, !isRated);
-        !isRated && setActiveRatingHash(tx.hash);
-        isRated && setActiveUnRatingHash(tx.hash);
-        !isRated &&
-          window.localStorage.setItem(localStorageKeys.ratingTxHash, tx.hash);
-        isRated &&
-          window.localStorage.setItem(localStorageKeys.unRatingTxHash, tx.hash);
-
-        await tx.wait();
-      } catch (error) {
-        handleError({
-          error,
-          txHashKeyName: localStorageKeys.ratingTxHash,
-        });
-      }
-    }
-  };
-
   const claimAcceptBtnAction = () => {
     router.push(`/${navbarElements.tokens.label}`);
   };
@@ -193,18 +150,6 @@ const PortfolioCard = ({
                   onClick={openURL(github)}
                 />
               )}
-
-              <AiFillStar
-                className={`${styles['icon-size']} ${
-                  isRated ? styles['rated-star'] : ''
-                }`}
-                title={
-                  isRated
-                    ? PortfolioLabel.unStarProjectTitle
-                    : PortfolioLabel.rateProjectTitle
-                }
-                onClick={rateProject}
-              />
             </div>
           </>
         )}
