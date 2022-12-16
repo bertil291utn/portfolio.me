@@ -49,7 +49,7 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   };
 
   const stakeAcceptBtnAction = () => {
-    window.open(`${web3Website}#${IdContent.staking}`, '_tab');
+    window.open(`${web3Website}/profile#${IdContent.staking}`, '_tab');
     
   };
 

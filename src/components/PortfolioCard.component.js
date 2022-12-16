@@ -18,6 +18,7 @@ import { getRatingFactory } from '@utils/web3';
 import ToastComponent from '@components/common/Toast.component';
 import LoadingComponent from '@components/common/Loading.component';
 import { isTokenCheckPassed } from '@utils/common';
+import { web3Website } from 'src/config/URLs';
 
 const PortfolioCard = ({
   type,
@@ -112,7 +113,7 @@ const PortfolioCard = ({
   };
 
   const stakeAcceptBtnAction = () => {
-    window.open(`${web3Website}#${IdContent.staking}`, '_tab');
+    window.open(`${web3Website}/profile#${IdContent.staking}`, '_tab');
   };
 
   return (
