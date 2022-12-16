@@ -108,12 +108,11 @@ const PortfolioCard = ({
   };
 
   const claimAcceptBtnAction = () => {
-    router.push(`/${navbarElements.tokens.label}`);
+    window.open(`${web3Website}`, '_tab');
   };
 
   const stakeAcceptBtnAction = () => {
-    //todo-wip: redirect to staking page
-    router.push(`/${navbarElements.profile.label}#${IdContent.staking}`);
+    window.open(`${web3Website}#${IdContent.staking}`, '_tab');
   };
 
   return (

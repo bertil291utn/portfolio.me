@@ -12,6 +12,7 @@ import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { useRouter } from 'next/router';
 import { navbarElements } from '@placeholders/navbar.placeholders';
 import { IdContent } from '@placeholders/profile.placeholder';
+import { web3Website } from 'src/config/URLs';
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
@@ -44,13 +45,12 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   };
 
   const claimAcceptBtnAction = () => {
-    router.push(`/${navbarElements.tokens.label}`);
+     window.open(`${web3Website}`, '_tab');
   };
 
   const stakeAcceptBtnAction = () => {
-    //todo-wip: redirect to staking page
+    window.open(`${web3Website}#${IdContent.staking}`, '_tab');
     
-    router.push(`/${navbarElements.profile.label}#${IdContent.staking}`);
   };
 
   return resumeDataSet ? (

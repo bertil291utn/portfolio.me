@@ -8,6 +8,7 @@ import { useWalletContext } from '@context/WalletProvider';
 import { useEffect, useState } from 'react';
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import { getRatingFactory } from '@utils/web3';
+import { web3Website } from 'src/config/URLs';
 
 function PortfolioComponent({ projectsData }) {
   const router = useRouter();
@@ -33,7 +34,7 @@ function PortfolioComponent({ projectsData }) {
   }, [signer]);
 
   const getTokensAction = () => {
-    router.push('/tokens');
+    window.open(web3Website, '_tab');
   };
 
   return (
