@@ -1,6 +1,8 @@
 import BlogComponent from '@layouts/Blog.component';
 import { gql } from '@utils/common';
-import { hashnodeURL } from 'src/config/URLs';
+import { hashnodeURL, substackURL } from 'src/config/URLs';
+const Parser = require('rss-parser');
+const parser = new Parser();
 
 const Blog = () => {
   return (
@@ -27,9 +29,11 @@ export async function getStaticProps() {
 `;
   const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES, variables: { page: 0 } });
   const { posts } = response.data.user.publication;
+  console.log("🚀 ~ file: blog.js:32 ~ getStaticProps ~ posts", posts)
   //get from substack
-  console.log("🚀 ~ file: blog.js:29 ~ getStaticProps ~ posts", posts)
 
+  const feed = await parser.parseURL(substackURL);
+  console.log(feed);
   return {
     props: {
       posts,
