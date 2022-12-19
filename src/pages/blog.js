@@ -1,5 +1,6 @@
 import BlogComponent from '@layouts/Blog.component';
 import { gql } from '@utils/common';
+import { hashnodeURL } from 'src/config/URLs';
 
 const Blog = () => {
   return (
@@ -24,7 +25,7 @@ export async function getStaticProps() {
         }
     }
 `;
-  const response = await gql(GET_USER_ARTICLES, { page: 0 });
+  const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES, variables: { page: 0 } });
   const { posts } = response.data.user.publication;
   //get from substack
   console.log("🚀 ~ file: blog.js:29 ~ getStaticProps ~ posts", posts)

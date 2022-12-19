@@ -22,8 +22,8 @@ export const isTokenCheckPassed = ({
 };
 
 
-export async function gql(query, variables = {}) {
-  const data = await fetch('https://api.hashnode.com/', {
+export async function gql({URL,query, variables = {}}) {
+  const data = await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
