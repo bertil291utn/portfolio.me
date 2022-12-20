@@ -31,7 +31,6 @@ import LoadingComponent from '@components/common/Loading.component';
 import NFTContent from '@layouts/NFTContent.component';
 import { useTokenContext } from '@context/TokenProvider';
 
-//TODO: I might have to build in a different project for claiming and nft tokens
 const TokensComponent = ({ NFTData }) => {
   const { setNFTData } = useTokenContext();
   const [activeTknClaimHash, setActiveTknClaimHash] = useState();

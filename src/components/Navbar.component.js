@@ -4,7 +4,6 @@ import { useWalletContext } from '@context/WalletProvider';
 import { ethers } from 'ethers';
 import styles from './Navbar.module.scss';
 
-// todo-wip: add blog with a scrapper or json file from medium hashnode and any other
 
 const NavbarComponent = ({ navbarElements }) => {
   const router = useRouter();
