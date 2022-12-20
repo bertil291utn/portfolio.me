@@ -1,0 +1,23 @@
+@import 'src/css/variables.scss';
+
+.card-content {
+  span {
+    display: block;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid $card-bg-color;
+  &__dark {
+    background-color: $card-bg-color;
+    border: unset;
+  }
+  padding: 2rem;
+  border-radius: 3px;
+  
+}
+
+.icon-size {
+  cursor: pointer;
+  font-size: 1.5rem;
+}

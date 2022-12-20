@@ -24,7 +24,6 @@ const PortfolioCard = ({
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
-  const [showToast, setShowToast] = useState();
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
