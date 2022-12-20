@@ -4,9 +4,9 @@ import { hashnodeURL, substackURL } from 'src/config/URLs';
 const Parser = require('rss-parser');
 const parser = new Parser();
 
-const Blog = () => {
+const Blog = ({posts}) => {
   return (
-    <BlogComponent />
+    <BlogComponent posts={posts}/>
   );
 };
 
@@ -29,14 +29,12 @@ export async function getStaticProps() {
 `;
   const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES, variables: { page: 0 } });
   const { posts } = response.data.user.publication;
-  console.log("🚀 ~ file: blog.js:32 ~ getStaticProps ~ posts", posts)
-  //get from substack
 
-  const feed = await parser.parseURL(substackURL);
-  console.log(feed);
+  const { items } = await parser.parseURL(substackURL);
+  const _substack = items.map(elem => ({ title: elem.title, brief: elem.content, URL: elem.link }))
   return {
     props: {
-      posts,
+      posts: [...posts, ..._substack],
     },
   };
 }
