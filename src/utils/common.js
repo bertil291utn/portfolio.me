@@ -36,3 +36,7 @@ export async function gql({URL,query, variables = {}}) {
 
   return data.json();
 }
+
+export function removeUrl(str) {
+  return str.replace(/https?:\/\/[^\s]+/g, '');
+}

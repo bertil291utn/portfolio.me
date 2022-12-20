@@ -1,5 +1,5 @@
 import { BlogCards } from '@components/BlogCards.component';
-import styles from './Blog.module.scss';
+import { removeUrl } from '@utils/common';
 
 const BlogComponent = ({ posts }) => {
   return (<div>
@@ -9,7 +9,7 @@ const BlogComponent = ({ posts }) => {
         key={`blog-card-${index++}`}
         URL={elem.URL || `https://blog.bertiltandayamo.me/${elem.slug}`}
         title={elem.title}
-        brief={elem.brief}
+        brief={removeUrl(elem.brief)}
       />
     ))}
   </div>);
