@@ -7,12 +7,8 @@ import { useWalletContext } from '@context/WalletProvider';
 import { web3Website } from 'src/config/URLs';
 
 function PortfolioComponent({ projectsData }) {
-  const { userCustomTokenBalance } = useWalletContext();
 
 
-  const getTokensAction = () => {
-    window.open(web3Website, '_tab');
-  };
 
   return (
     <div className={styles['portfolio']}>
@@ -27,14 +23,7 @@ function PortfolioComponent({ projectsData }) {
           github={data.github}
         />
       ))}
-      {(!userCustomTokenBalance || userCustomTokenBalance.toString() <= 0) && (
-        <ButtonComponent
-          buttonType='fab-button'
-          onClick={getTokensAction}
-          leftIcon={BsCoin}
-          title={PortfolioLabel.freeTokensBtn}
-        />
-      )}
+      
     </div>
   );
 }

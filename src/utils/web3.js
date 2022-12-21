@@ -117,3 +117,9 @@ export const client = createClient({
   connectors,
   provider,
 });
+
+
+export const getUserCustomTokenBalance = async ({ provider, address }) => {
+  const tokenContract = getTokenFactory({ provider });
+  return tokenContract.balanceOf(address);
+};

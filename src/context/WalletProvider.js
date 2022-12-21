@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { useProvider, useAccount } from 'wagmi';
-import { getStakingFactory, getTokenFactory } from '@utils/web3';
+import { getStakingFactory, getTokenFactory, getUserCustomTokenBalance } from '@utils/web3';
 import { DEFAULT_TOKEN_NAME } from '@constants/common';
 
 const WalletContext = createContext();
@@ -13,9 +13,8 @@ export default function WalletProvider({ children }) {
   const { address, isConnected } = useAccount();
   const provider = useProvider();
 
-  const getUserCustomTokenBalance = async ({ provider, address }) => {
-    const tokenContract = getTokenFactory({ provider });
-    const userTokenAmount = await tokenContract.balanceOf(address);
+  const _getUserCustomTokenBalance = async ({ provider, address }) => {
+    const userTokenAmount = await getUserCustomTokenBalance({ provider, address })
     setUserCustomTokenBalance(userTokenAmount);
   };
 
@@ -32,7 +31,7 @@ export default function WalletProvider({ children }) {
   };
 
   useEffect(() => {
-    isConnected && getUserCustomTokenBalance({ provider, address });
+    isConnected && _getUserCustomTokenBalance({ provider, address });
     isConnected && getUserStakedAmount({ provider, address });
     getTokenSymbol({ provider });
   }, [address]);
