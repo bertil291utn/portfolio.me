@@ -1,13 +1,5 @@
 .portfolio {
   display: grid;
   gap: 1.75rem;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-  grid-template-columns: 1fr 1fr;
-
-  &__title {
-    @media screen and (max-width: 768px) {
-    }
-  }
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
