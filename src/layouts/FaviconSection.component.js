@@ -25,8 +25,8 @@ export function FavIconSection() {
     setTokenBalance(userTokenAmount)
   }
   useEffect(() => {
-    _getUserCustomTokenBalance({ provider, address })
-  }, [])
+    address && _getUserCustomTokenBalance({ provider, address })
+  }, [address])
 
   return (
     <>
