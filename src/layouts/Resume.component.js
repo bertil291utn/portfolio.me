@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
-import { useTheme } from 'next-themes';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
 import { PageLabel } from '@placeholders/resume.placeholder';
 import { isTokenCheckPassed } from '@utils/common';
@@ -9,8 +8,6 @@ import { useEffect, useState } from 'react';
 import { useWalletContext } from '@context/WalletProvider';
 import ModalComponent from '@components/common/Modal.component';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
-import { useRouter } from 'next/router';
-import { navbarElements } from '@placeholders/navbar.placeholders';
 import { IdContent } from '@placeholders/profile.placeholder';
 import { web3Website } from 'src/config/URLs';
 
@@ -20,7 +17,6 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
     useWalletContext();
   const [isStakeHolder, setIsStakeHolder] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setIsStakeHolder(userStakedAmount?.toString() > 0);
@@ -32,7 +28,6 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
     telegram: <BsTelegram />,
   };
 
-  const { resolvedTheme } = useTheme();
 
   const openURL = (URL) => () => {
     const _isTokenCheckPassed = isTokenCheckPassed({

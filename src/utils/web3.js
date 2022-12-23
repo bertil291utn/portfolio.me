@@ -1,11 +1,6 @@
 import { ethers } from 'ethers';
 import {
-  ClaimableContractAdd,
   ERC20TokenContractAdd,
-  NFTEditionClaimableContractAdd,
-  NFTEditionContractAdd,
-  NFTUniqueContractAdd,
-  RateContractAdd,
   StakingContractAdd,
 } from 'src/config/contracts';
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
@@ -14,17 +9,11 @@ import {
   configureChains,
   createClient,
   erc20ABI,
-  erc721ABI,
 } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
-import ClaimableABI from '@web3/ABI/Claimable.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
-import RateABI from '@web3/ABI/Rate.json';
-import ERC721ABI from '@web3/ABI/ERC721.json';
-import ERC1155ABI from '@web3/ABI/ERC1155.json';
-import ERC1155ClaimableABI from '@web3/ABI/ERC1155Claimable.json';
 
 export const getContractFactory = ({ address, ABI, signer }) => {
   return new ethers.Contract(address, ABI, signer);
@@ -38,13 +27,6 @@ export const getTokenFactory = ({ provider, signer }) => {
   });
 };
 
-export const getClaimableFactory = ({ provider, signer }) => {
-  return getContractFactory({
-    address: ClaimableContractAdd,
-    ABI: ClaimableABI,
-    signer: signer || provider,
-  });
-};
 
 export const getStakingFactory = ({ provider, signer }) => {
   return getContractFactory({
@@ -54,29 +36,8 @@ export const getStakingFactory = ({ provider, signer }) => {
   });
 };
 
-export const getRatingFactory = ({ provider, signer }) => {
-  return getContractFactory({
-    address: RateContractAdd,
-    ABI: RateABI,
-    signer: signer || provider,
-  });
-};
 
-export const getNFTEditionFactory = ({ provider, signer }) => {
-  return getContractFactory({
-    address: NFTEditionContractAdd,
-    ABI: ERC1155ABI,
-    signer: signer || provider,
-  });
-};
 
-export const getNFTEditionClaimableFactory = ({ provider, signer }) => {
-  return getContractFactory({
-    address: NFTEditionClaimableContractAdd,
-    ABI: ERC1155ClaimableABI,
-    signer: signer || provider,
-  });
-};
 
 const configProvDev = [
   alchemyProvider({

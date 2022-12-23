@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function useOutsideElement(ref) {
   const [IsOutsideElement, setIsOutsideElement] = useState();
