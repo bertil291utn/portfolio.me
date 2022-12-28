@@ -6,6 +6,8 @@ export const isTokenCheckPassed = ({
   userCustomTokenBalance,
   isStakeHolder,
 }) => {
+    //TODO-WIP: replace this set localstorage
+        // check with ip address from firebase cloud firestore
   if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
     return true;
   }

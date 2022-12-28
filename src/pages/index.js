@@ -18,6 +18,13 @@ function HomeContent({ projects }) {
 
   const acceptBtnAction = () => {
     setFirstTimeFalse();
+    // const checking = async () => {
+
+    //   const usersCollection = await getIPTable(address ?? '');
+    //   console.log("🚀 ~ file: Tokens.component.tsx:115 ~ checking ~ usersCollection", usersCollection?.data())
+    // }
+    //TODO-WIP: replace this set localstorage
+        // set ip address on firebase cloud firestore
     window.localStorage.setItem(localStorageKeys.isWeb3User, true);
   };
 
