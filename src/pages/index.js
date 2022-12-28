@@ -4,10 +4,14 @@ import PortfolioComponent from '@layouts/Portfolio.component';
 import { newUserModalLabels } from '@placeholders/modal.placeholders';
 import { localStorageKeys } from '@keys/localStorage';
 import { portfolioDataURL } from 'src/config/URLs';
+import { addNewDevice } from '@utils/firebaseFunctions';
+import { useAccount } from 'wagmi';
 
 function HomeContent({ projects }) {
   const [show, setShow] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState();
+  const { address } = useAccount();
+
   useEffect(() => {
     setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
   }, []);
@@ -16,16 +20,15 @@ function HomeContent({ projects }) {
     window.localStorage.setItem(localStorageKeys.isFirstTime, false);
   };
 
+
   const acceptBtnAction = () => {
     setFirstTimeFalse();
-    // const checking = async () => {
+    try {
+      addNewDevice(address, { isWeb3User: true })
 
-    //   const usersCollection = await getIPTable(address ?? '');
-    //   console.log("🚀 ~ file: Tokens.component.tsx:115 ~ checking ~ usersCollection", usersCollection?.data())
-    // }
-    //TODO-WIP: replace this set localstorage
-        // set ip address on firebase cloud firestore
-    window.localStorage.setItem(localStorageKeys.isWeb3User, true);
+    } catch (error) {
+      console.log(error.message)
+    }
   };
 
   const cancelBtnAction = () => {
