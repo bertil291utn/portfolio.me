@@ -2,9 +2,6 @@ import PortfolioCard from '@components/PortfolioCard.component';
 import styles from './Portfolio.module.scss';
 
 function PortfolioComponent({ projectsData }) {
-
-
-
   return (
     <div className={styles['portfolio']}>
       {projectsData?.map((data) => (
@@ -18,7 +15,7 @@ function PortfolioComponent({ projectsData }) {
           github={data.github}
         />
       ))}
-      
+
     </div>
   );
 }

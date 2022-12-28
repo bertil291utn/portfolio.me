@@ -10,17 +10,34 @@ import ModalComponent from '@components/common/Modal.component';
 import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
 import { web3Website } from 'src/config/URLs';
+import { getWeb3User } from '@utils/firebaseFunctions';
+import { useAccount } from 'wagmi';
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
+  const [isWeb3User, setIsWeb3User] = useState(false);
   const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
     useWalletContext();
   const [isStakeHolder, setIsStakeHolder] = useState(false);
+  const { address } = useAccount();
 
   useEffect(() => {
     setIsStakeHolder(userStakedAmount?.toString() > 0);
   }, [userStakedAmount]);
+
+  const _getWeb3User = async (address) => {
+    let resp = await getWeb3User(address);
+    resp = resp?.data() ? resp.data().isWeb3User : resp
+    setIsWeb3User(resp)
+  }
+
+  useEffect(() => {
+    address && _getWeb3User(address)
+  }, [address])
+
+
+
 
   const ICON = {
     linkedin: <BsLinkedin />,
@@ -35,17 +52,18 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
       setStakeTokensModal,
       userCustomTokenBalance,
       isStakeHolder,
+      isWeb3User
     });
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
 
   const claimAcceptBtnAction = () => {
-     window.open(`${web3Website}`, '_tab');
+    window.open(`${web3Website}`, '_tab');
   };
 
   const stakeAcceptBtnAction = () => {
     window.open(`${web3Website}/profile#${IdContent.staking}`, '_tab');
-    
+
   };
 
   return resumeDataSet ? (

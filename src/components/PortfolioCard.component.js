@@ -11,6 +11,8 @@ import {
 import { IdContent } from '@placeholders/profile.placeholder';
 import { isTokenCheckPassed } from '@utils/common';
 import { web3Website } from 'src/config/URLs';
+import { useAccount } from 'wagmi';
+import {  getWeb3User } from '@utils/firebaseFunctions';
 
 const PortfolioCard = ({
   type,
@@ -24,6 +26,8 @@ const PortfolioCard = ({
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
+  const [isWeb3User, setIsWeb3User] = useState(false);
+  const { address } = useAccount();
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -40,9 +44,21 @@ const PortfolioCard = ({
     setIsStakeHolder(userStakedAmount?.toString() > 0);
   }, [userStakedAmount]);
 
+  const _getweb3User = async (address) => {
+    let resp = await getWeb3User(address);
+    resp = resp?.data() ? resp.data().isWeb3User : resp
+    setIsWeb3User(resp)
+  }
+
+  useEffect(() => {
+    address && _getweb3User(address)
+  }, [address])
+
   if (!mounted) {
     return null;
   }
+
+ 
 
   const openURL = (URL) => () => {
     const _isTokenCheckPassed = isTokenCheckPassed({
@@ -50,6 +66,7 @@ const PortfolioCard = ({
       setStakeTokensModal,
       userCustomTokenBalance,
       isStakeHolder,
+      isWeb3User
     });
     _isTokenCheckPassed && window.open(URL, '_blank');
   };
@@ -65,9 +82,8 @@ const PortfolioCard = ({
   return (
     <>
       <div
-        className={`${styles['card-content']} ${
-          resolvedTheme === 'dark' ? styles['card-content__dark'] : ''
-        }`}
+        className={`${styles['card-content']} ${resolvedTheme === 'dark' ? styles['card-content__dark'] : ''
+          }`}
       >
         <>
           <div>

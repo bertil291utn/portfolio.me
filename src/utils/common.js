@@ -1,14 +1,13 @@
-import { localStorageKeys } from '@keys/localStorage';
 
 export const isTokenCheckPassed = ({
   setClaimTokensModal,
   setStakeTokensModal,
   userCustomTokenBalance,
   isStakeHolder,
+  isWeb3User
 }) => {
-    //TODO-WIP: replace this set localstorage
-        // check with ip address from firebase cloud firestore
-  if (!window.localStorage.getItem(localStorageKeys.isWeb3User)) {
+
+  if (!isWeb3User) {
     return true;
   }
 
@@ -24,7 +23,7 @@ export const isTokenCheckPassed = ({
 };
 
 
-export async function gql({URL,query, variables = {}}) {
+export async function gql({ URL, query, variables = {} }) {
   const data = await fetch(URL, {
     method: 'POST',
     headers: {
