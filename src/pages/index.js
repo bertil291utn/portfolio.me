@@ -5,11 +5,13 @@ import { newUserModalLabels } from '@placeholders/modal.placeholders';
 import { localStorageKeys } from '@keys/localStorage';
 import { addNewDevice, getPortfolio } from '@utils/firebaseFunctions';
 import { useAccount } from 'wagmi';
+import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 function HomeContent({ projects }) {
   const [show, setShow] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState();
   const { address } = useAccount();
+  const { openConnectModal } = useConnectModal();
 
   useEffect(() => {
     setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
@@ -22,7 +24,9 @@ function HomeContent({ projects }) {
 
   const acceptBtnAction = () => {
     setFirstTimeFalse();
+    
     try {
+      openConnectModal();
       addNewDevice(address, { isWeb3User: true })
 
     } catch (error) {
