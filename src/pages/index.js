@@ -22,9 +22,8 @@ function HomeContent({ projects }) {
   };
 
   const _addnewDevice = () => {
-    console.log('connected is ',isConnected)
     try {
-      isConnected && addNewDevice(address, { isWeb3User: true })
+      isConnected && isFirstTime && addNewDevice(address, { isWeb3User: true })
 
     } catch (error) {
       console.log(error.message)

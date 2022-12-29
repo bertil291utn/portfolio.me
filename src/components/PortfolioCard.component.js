@@ -45,9 +45,8 @@ const PortfolioCard = ({
   }, [userStakedAmount]);
 
   const _getweb3User = async (address) => {
-    let resp = await getWeb3User(address);
-    resp = resp?.data() ? resp.data().isWeb3User : resp
-    setIsWeb3User(resp)
+    const resp = await getWeb3User(address);
+    setIsWeb3User(resp?.data()?.isWeb3User)
   }
 
   useEffect(() => {
