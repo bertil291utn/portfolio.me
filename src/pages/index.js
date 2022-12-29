@@ -22,12 +22,12 @@ function HomeContent({ projects }) {
   };
 
 
-  const acceptBtnAction = () => {
+  const acceptBtnAction = async () => {
     setFirstTimeFalse();
-    
+
     try {
-      openConnectModal();
-      addNewDevice(address, { isWeb3User: true })
+      await openConnectModal();
+      await addNewDevice(address, { isWeb3User: true })
 
     } catch (error) {
       console.log(error.message)
