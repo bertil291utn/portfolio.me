@@ -9,6 +9,14 @@ export const getWeb3User = (walletAddress) => {
   return db.collection(collections.wallets).doc(walletAddress).get();
 }
 
+export const getResume = () => {
+  return db.collection(collections.resume).doc('1').get();
+}
+
+export const getPortfolio = () => {
+  return db.collection(collections.portfolio).get();
+}
+
 export const addNewDevice = (walletAddresID, body) => {
   if (!walletAddresID) {
     throw new Error("Can't be empty wallet address")

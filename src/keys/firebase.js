@@ -1,3 +1,5 @@
 export const collections = {
-  wallets: 'wallets'
+  wallets: 'wallets',
+  resume: 'resume',
+  portfolio: 'portfolio',
 }
