@@ -3,8 +3,7 @@ import ModalComponent from '@components/common/Modal.component';
 import PortfolioComponent from '@layouts/Portfolio.component';
 import { newUserModalLabels } from '@placeholders/modal.placeholders';
 import { localStorageKeys } from '@keys/localStorage';
-import { portfolioDataURL } from 'src/config/URLs';
-import { addNewDevice } from '@utils/firebaseFunctions';
+import { addNewDevice, getPortfolio } from '@utils/firebaseFunctions';
 import { useAccount } from 'wagmi';
 
 function HomeContent({ projects }) {
@@ -57,8 +56,8 @@ function HomeContent({ projects }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(portfolioDataURL);
-  const projects = await res.json();
+  const resp = await getPortfolio();
+  const projects = resp.docs.map((doc) => doc.data())
 
   return {
     props: {

@@ -1,17 +1,16 @@
 import ResumeComponent from '@layouts/Resume.component';
-import { resumeDataURL } from 'src/config/URLs';
+import { getResume } from '@utils/firebaseFunctions';
 
 const ResumePage = ({ resume }) => {
   return <ResumeComponent resumeData={resume} />;
 };
 
 export async function getStaticProps() {
-  const res = await fetch(resumeDataURL);
-  const resume = await res.json();
+  const resp = await getResume();
 
   return {
     props: {
-      resume,
+      resume: resp?.data(),
     },
   };
 }
