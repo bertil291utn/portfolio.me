@@ -10,7 +10,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit';
 function HomeContent({ projects }) {
   const [show, setShow] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState();
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
   const { openConnectModal } = useConnectModal();
 
   useEffect(() => {
@@ -21,17 +21,23 @@ function HomeContent({ projects }) {
     window.localStorage.setItem(localStorageKeys.isFirstTime, false);
   };
 
-
-  const acceptBtnAction = async () => {
-    setFirstTimeFalse();
-
+  const _addnewDevice = () => {
+    console.log('connected is ',isConnected)
     try {
-      await openConnectModal();
-      await addNewDevice(address, { isWeb3User: true })
+      isConnected && addNewDevice(address, { isWeb3User: true })
 
     } catch (error) {
       console.log(error.message)
     }
+  }
+
+  useEffect(() => {
+    _addnewDevice()
+  }, [isConnected])
+
+  const acceptBtnAction = async () => {
+    setFirstTimeFalse();
+    openConnectModal();
   };
 
   const cancelBtnAction = () => {
