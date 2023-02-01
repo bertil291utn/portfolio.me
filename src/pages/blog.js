@@ -36,6 +36,7 @@ export async function getStaticProps() {
     props: {
       posts: [...posts, ..._substack],
     },
+    revalidate: 86_400
   };
 }
 export default Blog;

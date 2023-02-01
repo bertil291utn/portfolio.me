@@ -12,6 +12,7 @@ export async function getStaticProps() {
     props: {
       resume: resp?.data(),
     },
+    revalidate: 10
   };
 }
 
