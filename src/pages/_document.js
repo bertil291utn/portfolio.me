@@ -61,7 +61,7 @@ Document.defaultProps = {
   author,
   manifest: '/assets/manifest.json',
   metaTitle: 'Web3 Developer',
-  metaImage: '/assets/images/og_imageok.png',
+  metaImage: 'https://res.cloudinary.com/btandayamo/image/upload/v1675372137/portofolio.me/og_imageok_quf0ho.png',
   description: 'Tech nerdy, music enthusiast conquering the world',
   keywords:
     'bertil, bertil alberto tandayamo lanchimba, bertil alberto tandayamo, Bertil, BERTIL, TANDAYAMO, Tandayamo, tandayamo, Bertil Tandayamo, BERTIL TANDAYAMO,bertil tandayamo, Full Stack Developer Ecuador, Ecuador developer, cayambe developer, CAYAMBE desarrollador',
