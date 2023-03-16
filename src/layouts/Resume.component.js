@@ -3,7 +3,6 @@ import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
 import { PageLabel } from '@placeholders/resume.placeholder';
-import { isTokenCheckPassed } from '@utils/common';
 import { useEffect, useState } from 'react';
 import { useWalletContext } from '@context/WalletProvider';
 import ModalComponent from '@components/common/Modal.component';
@@ -11,12 +10,17 @@ import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
 import { web3Website } from 'src/config/URLs';
 import { getWeb3User } from '@utils/firebaseFunctions';
-import { useAccount } from 'wagmi';
+import { useAccount, useProvider } from 'wagmi';
+import { getNFT1155Factory } from '@utils/web3';
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const [claimTokensModal, setClaimTokensModal] = useState(false);
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isWeb3User, setIsWeb3User] = useState(false);
+  const [NFTBalance, setNFTBalance] = useState();
+  const provider = useProvider();
+
+
   const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
     useWalletContext();
   const [isStakeHolder, setIsStakeHolder] = useState(false);
@@ -25,6 +29,20 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   useEffect(() => {
     setIsStakeHolder(userStakedAmount?.toString() > 0);
   }, [userStakedAmount]);
+
+  const _setNFTBalance = async (ownerAddress, provider) => {
+    const NFT1155Contract = getNFT1155Factory({ provider });
+    const balance = await NFT1155Contract.balanceOfByOwner(ownerAddress);
+    setNFTBalance(Number(balance))
+  }
+
+  useEffect(() => {
+    address && provider && _setNFTBalance(address, provider);
+    return () => {
+      setNFTBalance(undefined);
+    }
+  }, [address, provider]);
+
 
   const _getWeb3User = async (address) => {
     const resp = await getWeb3User(address);
@@ -46,14 +64,12 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
 
 
   const openURL = (URL) => () => {
-    const _isTokenCheckPassed = isTokenCheckPassed({
-      setClaimTokensModal,
-      setStakeTokensModal,
-      userCustomTokenBalance,
-      isStakeHolder,
-      isWeb3User
-    });
-    _isTokenCheckPassed && window.open(URL, '_blank');
+
+    if (isWeb3User && (!NFTBalance || NFTBalance == 0)) {
+      setClaimTokensModal(true)
+      return;
+    }
+    window.open(URL, '_blank');
   };
 
   const claimAcceptBtnAction = () => {
@@ -166,18 +182,10 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
       <ModalComponent
         show={claimTokensModal}
         setShow={setClaimTokensModal}
-        acceptLabel={PortfolioLabel.freeTokensBtn}
+        acceptLabel={PortfolioLabel.mintTokensBtn}
         acceptBtnAction={claimAcceptBtnAction}
       >
-        {PortfolioLabel.modalClaimDesc(tokenSymbol)}
-      </ModalComponent>
-      <ModalComponent
-        show={stakeTokensModal}
-        setShow={setStakeTokensModal}
-        acceptLabel={PortfolioLabel.stakeTokensBtn}
-        acceptBtnAction={stakeAcceptBtnAction}
-      >
-        {PortfolioLabel.modalStakeDesc(tokenSymbol)}
+        {PortfolioLabel.modalClaimNFTDesc}
       </ModalComponent>
     </div>
   ) : null;

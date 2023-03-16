@@ -9,10 +9,10 @@ import {
   PortfolioLabel,
 } from '@placeholders/portfolio.placeholder';
 import { IdContent } from '@placeholders/profile.placeholder';
-import { isTokenCheckPassed } from '@utils/common';
 import { web3Website } from 'src/config/URLs';
-import { useAccount } from 'wagmi';
-import {  getWeb3User } from '@utils/firebaseFunctions';
+import { useAccount, useProvider } from 'wagmi';
+import { getWeb3User } from '@utils/firebaseFunctions';
+import { getNFT1155Factory } from '@utils/web3';
 
 const PortfolioCard = ({
   type,
@@ -27,12 +27,26 @@ const PortfolioCard = ({
   const [stakeTokensModal, setStakeTokensModal] = useState(false);
   const [isStakeHolder, setIsStakeHolder] = useState(false);
   const [isWeb3User, setIsWeb3User] = useState(false);
+  const [NFTBalance, setNFTBalance] = useState();
+  const provider = useProvider();
+
   const { address } = useAccount();
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  const _setNFTBalance = async (ownerAddress, provider) => {
+    const NFT1155Contract = getNFT1155Factory({ provider });
+    const balance = await NFT1155Contract.balanceOfByOwner(ownerAddress);
+    setNFTBalance(Number(balance))
+  }
 
+  useEffect(() => {
+    address && provider && _setNFTBalance(address, provider);
+    return () => {
+      setNFTBalance(undefined);
+    }
+  }, [address, provider]);
 
 
   useEffect(() => {
@@ -57,17 +71,15 @@ const PortfolioCard = ({
     return null;
   }
 
- 
+
 
   const openURL = (URL) => () => {
-    const _isTokenCheckPassed = isTokenCheckPassed({
-      setClaimTokensModal,
-      setStakeTokensModal,
-      userCustomTokenBalance,
-      isStakeHolder,
-      isWeb3User
-    });
-    _isTokenCheckPassed && window.open(URL, '_blank');
+
+    if (isWeb3User && (!NFTBalance || NFTBalance == 0)) {
+      setClaimTokensModal(true)
+      return;
+    }
+    window.open(URL, '_blank');
   };
 
   const claimAcceptBtnAction = () => {
@@ -116,18 +128,10 @@ const PortfolioCard = ({
       <ModalComponent
         show={claimTokensModal}
         setShow={setClaimTokensModal}
-        acceptLabel={PortfolioLabel.freeTokensBtn}
+        acceptLabel={PortfolioLabel.mintTokensBtn}
         acceptBtnAction={claimAcceptBtnAction}
       >
-        {PortfolioLabel.modalClaimDesc(tokenSymbol)}
-      </ModalComponent>
-      <ModalComponent
-        show={stakeTokensModal}
-        setShow={setStakeTokensModal}
-        acceptLabel={PortfolioLabel.stakeTokensBtn}
-        acceptBtnAction={stakeAcceptBtnAction}
-      >
-        {PortfolioLabel.modalStakeDesc(tokenSymbol)}
+        {PortfolioLabel.modalClaimNFTDesc}
       </ModalComponent>
     </>
   );

@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import {
+  ERC1155ContractAdd,
   ERC20TokenContractAdd,
   StakingContractAdd,
 } from 'src/config/contracts';
@@ -13,6 +14,7 @@ import {
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
+import BATL1155DAOTokenABI from '@web3/ABI/BATL1155DAOToken.json';
 import StakingABI from '@web3/ABI/StakingToken.json';
 
 export const getContractFactory = ({ address, ABI, signer }) => {
@@ -32,6 +34,14 @@ export const getStakingFactory = ({ provider, signer }) => {
   return getContractFactory({
     address: StakingContractAdd,
     ABI: StakingABI,
+    signer: signer || provider,
+  });
+};
+
+export const getNFT1155Factory = ({ provider, signer }) => {
+  return getContractFactory({
+    address: ERC1155ContractAdd,
+    ABI: BATL1155DAOTokenABI,
     signer: signer || provider,
   });
 };
