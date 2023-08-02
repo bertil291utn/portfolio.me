@@ -67,12 +67,12 @@ function HomeContent({ projects }) {
 export async function getStaticProps() {
   const resp = await getPortfolio();
   const projects = resp.docs.map((doc) => doc.data())
-
+  projects.sort((a, b) => a.id - b.id)
   return {
     props: {
       projects,
     },
-    revalidate: 10
+    revalidate: 3600
   };
 }
 
