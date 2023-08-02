@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
-import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
+import { BsLinkedin, BsGithub, BsTelegram,BsTwitter } from 'react-icons/bs';
 import { PageLabel } from '@placeholders/resume.placeholder';
 import { useEffect, useState } from 'react';
 import { useWalletContext } from '@context/WalletProvider';
@@ -60,6 +60,7 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
     linkedin: <BsLinkedin />,
     github: <BsGithub />,
     telegram: <BsTelegram />,
+    twitter: <BsTwitter />,
   };
 
 
