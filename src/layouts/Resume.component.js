@@ -66,10 +66,6 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
 
   const openURL = (URL) => () => {
 
-    if (isWeb3User && (!NFTBalance || NFTBalance == 0)) {
-      setClaimTokensModal(true)
-      return;
-    }
     window.open(URL, '_blank');
   };
 
