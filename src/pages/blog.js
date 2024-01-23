@@ -28,14 +28,12 @@ export async function getStaticProps() {
         }
     }
 `;
-  const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES });
-  const { posts } = response.data.user.publication;
 
   const { items } = await parser.parseURL(substackURL);
   const _substack = items.map(elem => ({ title: elem.title, brief: elem.content, URL: elem.link }))
   return {
     props: {
-      posts: [...posts, ..._substack],
+      posts: [..._substack],
     },
     revalidate: 86_400
   };
