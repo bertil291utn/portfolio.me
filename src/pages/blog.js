@@ -15,19 +15,20 @@ const Blog = ({posts}) => {
 export async function getStaticProps() {
 
   const GET_USER_ARTICLES = `
-    query GetUserArticles($page: Int!) {
+    query GetUserArticles() {
         user(username: "btandayamo") {
-            publication {
-                posts(page: $page) {
-                    title
-                    brief
-                    slug
-                }
+          posts(page:1,pageSize:10){
+            nodes{
+             slug
+             title
+             brief
+             
             }
+          }
         }
     }
 `;
-  const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES, variables: { page: 0 } });
+  const response = await gql({ URL: hashnodeURL, query: GET_USER_ARTICLES });
   const { posts } = response.data.user.publication;
 
   const { items } = await parser.parseURL(substackURL);
