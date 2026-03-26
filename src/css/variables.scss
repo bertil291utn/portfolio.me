@@ -1,33 +1,34 @@
-// Gumroad / neo-brutalist design tokens — also exposed as CSS variables in global.scss
+// Minimal design tokens (p5aholic-inspired) — exposed as CSS variables in global.scss
 
-$max-width: 1040px;
+$max-width: 720px;
+$sidebar-width: min(280px, 32vw);
 $border-width: 1px;
-$radius-sm: 8px;
-$radius-md: 10px;
-$radius-lg: 12px;
-$shadow-hard: 2px 2px 0 #000000;
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$shadow-hard: none;
 
-// Light (default)
-$bg: #fff5f0;
-$bg-alt: #f7f7f7;
+// Light
+$bg: #fafafa;
+$bg-alt: #f4f4f5;
 $surface: #ffffff;
-$text: #000000;
-$muted: #64748b;
-$border: #000000;
-$accent: #e86b43;
-$accent-hover: #d45a35;
-$on-accent: #ffffff;
-$success: #4ade80;
-$error: #f87171;
+$text: #0a0a0a;
+$muted: #737373;
+$border: #e4e4e7;
+$accent: #0a0a0a;
+$accent-hover: #404040;
+$on-accent: #fafafa;
+$success: #22c55e;
+$error: #ef4444;
 
-// Legacy aliases (some modules may still reference)
+// Legacy aliases
 $primary: $accent;
 $gray: $muted;
-$card-bg-color: #131826;
+$card-bg-color: #18181b;
 $light-bg: $bg;
 $light-color-text: $text;
 $dark-bg: #0a0a0a;
-$dark-surface: #1f1f1f;
+$dark-surface: #171717;
 $dark-color-text: #fafafa;
-$dark-muted: #94a3b8;
-$dark-border: #404040;
+$dark-muted: #a3a3a3;
+$dark-border: #262626;

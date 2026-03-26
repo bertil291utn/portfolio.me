@@ -1,10 +1,21 @@
-.container{
+@import 'src/css/variables.scss';
+
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height: 40vh;
-  .button{
-    margin-top: 3rem;
+  min-height: 40vh;
+  padding: 2rem 0;
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    color: var(--color-text);
   }
+}
+
+.button {
+  margin-top: 0;
 }

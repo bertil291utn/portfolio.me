@@ -1,11 +1,8 @@
 @import 'src/css/variables.scss';
 
 .empty {
-  padding: 2rem;
-  border: $border-width solid var(--color-border);
-  border-radius: $radius-md;
-  background: var(--color-surface);
+  padding: 1.5rem 0;
   color: var(--color-muted);
-  line-height: 1.55;
-  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-size: 0.875rem;
 }

@@ -1,20 +1,16 @@
-import { useTheme } from 'next-themes';
 import styles from './BlogCards.module.scss';
 
 export function BlogCards({ URL, title, brief }) {
-
-  const { resolvedTheme } = useTheme();
   return (
-    <div
-      className={`${styles['card-content']} ${resolvedTheme === 'dark' ? styles['card-content__dark'] : ''
-        }`}
-    >
-      <div
-        onClick={() => window.open(URL, '_new')}
+    <article className={styles.card}>
+      <button
+        type="button"
+        className={styles.inner}
+        onClick={() => window.open(URL, '_blank', 'noopener,noreferrer')}
       >
-        <span className={styles['title']}>{title}</span>
-        <span className={styles['content']}>{brief}</span>
-      </div>
-    </div>
-  )
+        <span className={styles.cardTitle}>{title}</span>
+        <span className={styles.cardBrief}>{brief}</span>
+      </button>
+    </article>
+  );
 }

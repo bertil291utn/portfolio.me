@@ -1,6 +1,6 @@
 @import 'src/css/variables.scss';
 
-$card-gap: 1.75rem;
+$card-gap: 1.25rem;
 
 .portfolio-page {
   width: 100%;
@@ -11,22 +11,25 @@ $card-gap: 1.75rem;
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
 }
 
 .section-sub {
   margin: 0 0 1.5rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-muted);
-  line-height: 1.5;
+  line-height: 1.6;
+  max-width: 36rem;
 }
 
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   column-gap: $card-gap;
   row-gap: $card-gap;
   align-content: start;

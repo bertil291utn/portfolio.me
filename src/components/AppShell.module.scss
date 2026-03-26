@@ -1,0 +1,117 @@
+@import 'src/css/variables.scss';
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: $sidebar-width;
+  min-width: 200px;
+  min-height: 100vh;
+  padding: 2rem 1.25rem 2rem 1.5rem;
+  border-right: $border-width solid var(--color-border);
+  flex-shrink: 0;
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    width: 100%;
+    min-height: unset;
+    min-width: unset;
+    border-right: none;
+    border-bottom: $border-width solid var(--color-border);
+    padding: 1.25rem 1rem 1rem;
+  }
+}
+
+.identity {
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.siteTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.siteTagline {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 1.25rem;
+    margin-top: 1rem;
+  }
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toggleBtn {
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--color-border);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.6875rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+}

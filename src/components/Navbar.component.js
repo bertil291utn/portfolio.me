@@ -4,35 +4,31 @@ import styles from './Navbar.module.scss';
 
 const NavbarComponent = ({ navbarElements }) => {
   const router = useRouter();
+  const entries = Object.values(navbarElements) ?? [];
 
   return (
-    <div className={styles['content']}>
-      <ul className={styles['navbar']}>
-        {Object.values(navbarElements)?.map(
-          ({ label, path, icon: Icon }, index) => {
-            return (
-              <li
-                className={`${styles['list']} ${
-                  router.pathname === path ? `${styles['active']}` : ''
-                }`}
-                key={`navbar-${index}`}
-              >
-                <Link href={path}>
-                  <a>
-                    <span className={`${styles['navbar__content']}`}>
-                      {label}
-                    </span>
-                    <span className={`${styles['navbar__icon']}`}>
-                      <Icon />
-                    </span>
-                  </a>
-                </Link>
-              </li>
-            );
-          }
-        )}
-      </ul>
-    </div>
+    <nav className={styles.navWrap} aria-label="Primary">
+      <ol className={styles.navbar}>
+        {entries.map(({ label, path }, index) => {
+          const active = router.pathname === path;
+          return (
+            <li
+              className={`${styles.list} ${active ? styles.active : ''}`}
+              key={path}
+            >
+              <Link href={path}>
+                <a>
+                  <span className={styles.index} aria-hidden="true">
+                    {index + 1}.
+                  </span>
+                  <span className={styles.label}>{label}</span>
+                </a>
+              </Link>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
   );
 };
 

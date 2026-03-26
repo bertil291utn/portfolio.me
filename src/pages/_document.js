@@ -13,10 +13,10 @@ export default function Document({
   themeColor,
 }) {
   return (
-    <Html lang="en">
+    <Html lang="en" suppressHydrationWarning>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
         <meta charSet="UTF-8" />
@@ -46,7 +46,7 @@ export default function Document({
 
         <link rel="icon" type="image/svg+xml" href={favIcon} />
       </Head>
-      <body>
+      <body suppressHydrationWarning>
         <Main />
         <NextScript />
       </body>
@@ -67,5 +67,5 @@ Document.defaultProps = {
     'freelance developer, full stack developer, Next.js, React, Ecuador, Quito, web development, freelance, Bertil Tandayamo, software engineer',
   favIcon: '/assets/icons/favicon.svg',
   twitterUsername: '@btandayamo',
-  themeColor: '#fff5f0',
+  themeColor: '#fafafa',
 };

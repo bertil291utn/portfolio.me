@@ -6,7 +6,22 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
 :root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --color-bg: #{$bg};
   --color-bg-alt: #{$bg-alt};
   --color-surface: #{$surface};
@@ -18,35 +33,36 @@
   --color-on-accent: #{$on-accent};
   --color-success: #{$success};
   --color-error: #{$error};
-  max-width: $max-width;
-  margin: 0 auto;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  @media screen and (max-width: 768px) {
-    padding: 0 12px;
-  }
+}
+
+[data-font='mono'] {
+  --font-sans: var(--font-mono);
 }
 
 [data-theme='dark'] {
   --color-bg: #0a0a0a;
-  --color-bg-alt: #141414;
-  --color-surface: #1f1f1f;
+  --color-bg-alt: #171717;
+  --color-surface: #171717;
   --color-text: #fafafa;
-  --color-muted: #94a3b8;
-  --color-border: #404040;
-  --color-accent: #e86b43;
-  --color-accent-hover: #f08562;
-  --color-on-accent: #ffffff;
-  --color-success: #4ade80;
+  --color-muted: #a3a3a3;
+  --color-border: #262626;
+  --color-accent: #fafafa;
+  --color-accent-hover: #d4d4d4;
+  --color-on-accent: #0a0a0a;
+  --color-success: #22c55e;
   --color-error: #f87171;
-  background: var(--color-bg);
-  color: var(--color-text);
 }
 
 .content {
-  margin: 5rem 0 3rem;
-  min-height: 50vh;
+  flex: 1;
+  min-width: 0;
+  max-width: $max-width;
+  padding: 2rem 1.5rem 4rem;
+  margin: 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 1.5rem 1rem 3rem;
+  }
 }
 
 .hand {
@@ -54,7 +70,19 @@
 }
 
 .subtitle {
-  font-size: 0.85rem;
-  font-weight: bold;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--color-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

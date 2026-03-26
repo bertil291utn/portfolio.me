@@ -1,38 +1,45 @@
 @import 'src/css/variables.scss';
 
-.card-content {
-  cursor: pointer;
-  span {
-    display: block;
-  }
+.card {
+  margin-bottom: 0.75rem;
+}
+
+.inner {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background: var(--color-surface);
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  background: var(--color-bg);
   border: $border-width solid var(--color-border);
-  border-radius: $radius-md;
-  padding: 1.75rem;
-  &:not(:last-child) {
-    margin-bottom: 1rem;
+  border-radius: $radius-sm;
+  padding: 1.15rem 1.25rem;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-muted);
   }
 
-  &__dark {
-    background: var(--color-surface);
-    border-color: var(--color-border);
+  &:focus-visible {
+    outline: 1px solid var(--color-text);
+    outline-offset: 2px;
   }
+}
 
-  .title {
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--color-text);
-  }
+.cardTitle {
+  display: block;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 0.65rem;
+}
 
-  .content {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--color-muted);
-  }
+.cardBrief {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-muted);
 }

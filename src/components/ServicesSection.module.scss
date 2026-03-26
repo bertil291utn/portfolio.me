@@ -1,24 +1,26 @@
 @import 'src/css/variables.scss';
 
-$card-gap: 1.75rem;
+$card-gap: 1.25rem;
 
 .section {
   margin-bottom: 3rem;
 }
 
 .heading {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
 }
 
 .lead {
   margin: 0 0 1.5rem;
-  max-width: 36rem;
-  line-height: 1.55;
+  max-width: 34rem;
+  line-height: 1.6;
   color: var(--color-muted);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
 }
 
 .grid {
@@ -26,28 +28,28 @@ $card-gap: 1.75rem;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
   column-gap: $card-gap;
   row-gap: $card-gap;
   align-content: start;
 }
 
 .card {
-  padding: 1.25rem;
-  background: var(--color-surface);
+  padding: 1.15rem 1.2rem;
   border: $border-width solid var(--color-border);
-  border-radius: $radius-md;
+  border-radius: $radius-sm;
 }
 
 .cardTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
 }
 
 .cardBody {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   color: var(--color-muted);
 }

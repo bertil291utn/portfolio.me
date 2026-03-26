@@ -1,44 +1,42 @@
 @import 'src/css/variables.scss';
 
 .button {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: inherit;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   span {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.875rem;
+    font-weight: 600;
     &::first-letter {
       text-transform: uppercase;
     }
   }
   cursor: pointer;
-  padding: 0.8rem 1.5rem;
-  border-radius: $radius-md;
+  padding: 0.55rem 1.1rem;
+  border-radius: $radius-sm;
   border: $border-width solid var(--color-border);
   &.primary {
     background-color: var(--color-accent);
     color: var(--color-on-accent);
-    box-shadow: $shadow-hard;
     &:hover {
       background-color: var(--color-accent-hover);
     }
   }
   &.tertiary {
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
     color: var(--color-text);
   }
 }
 
 .fab-button {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: inherit;
   cursor: pointer;
   border-radius: 50%;
   padding: 0.5rem;
   background-color: var(--color-accent);
-  box-shadow: $shadow-hard;
   border: $border-width solid var(--color-border);
   .left-icon {
     font-size: 1.5rem;

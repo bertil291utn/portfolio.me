@@ -1,123 +1,139 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
-import { BsLinkedin, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
+import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
 import { PageLabel } from '@placeholders/resume.placeholder';
 
-const ResumeComponent = ({ resumeData: resumeDataSet }) => {
-  const ICON = {
-    linkedin: <BsLinkedin />,
-    github: <BsGithub />,
-    telegram: <BsTelegram />,
-    twitter: <BsTwitter />,
-  };
+const ICON = {
+  linkedin: BsLinkedin,
+  github: BsGithub,
+  telegram: BsTelegram,
+};
 
+const formatTechLine = (str) => {
+  if (!str || typeof str !== 'string') return null;
+  const parts = str
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return parts.length ? parts.join(' · ') : null;
+};
+
+const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const openURL = (URL) => () => {
     window.open(URL, '_blank', 'noopener,noreferrer');
   };
 
-  return resumeDataSet ? (
-    <div className={`${styles['container']}`}>
-      <section className={styles['logo']}>
-        <span className={styles['title']}>
-          {`${resumeDataSet.shortInitials.toUpperCase()}`}
-        </span>
-        <span className={styles['subtitle']}>{resumeDataSet.title}</span>
-      </section>
+  if (!resumeDataSet) return null;
 
-      <aside className={styles['contacts']}>
-        <Link href={`mailto:${resumeDataSet.email}`}>
-          <span className="hand" title="Send email">
-            {resumeDataSet.email}
-          </span>
-        </Link>
-        <span>{resumeDataSet.location}</span>
-        <div className={styles['social-networks']}>
-          {Object.entries(resumeDataSet.socialNetwork).map(
-            ([socialNetwork, URL], index) => (
-              <div
-                key={`social-network-${index}`}
-                title={socialNetwork}
-                className="hand"
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.meta}>
+          <Link href={`mailto:${resumeDataSet.email}`}>
+            <a className={styles.email}>{resumeDataSet.email}</a>
+          </Link>
+          <span className={styles.location}>{resumeDataSet.location}</span>
+        </div>
+        <div className={styles.socials}>
+          {Object.entries(resumeDataSet.socialNetwork).map(([key, URL]) => {
+            const Icon = ICON[key];
+            if (!Icon) return null;
+            return (
+              <button
+                key={key}
+                type="button"
+                className={styles.socialBtn}
+                title={key}
                 onClick={openURL(URL)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') openURL(URL)();
-                }}
+                aria-label={key}
               >
-                {ICON[socialNetwork]}
-              </div>
-            )
-          )}
+                <Icon aria-hidden />
+              </button>
+            );
+          })}
         </div>
-      </aside>
+      </header>
 
-      <section className={styles['description']}>
-        <div className={styles['description__toggle']}>
+      <section className={styles.availability} aria-label="Availability">
+        <div className={styles.availabilityRow}>
           <ToggleComponent available={resumeDataSet.isAvailable} />
-          <span>{PageLabel.available}</span>
+          <span className={styles.availabilityLabel}>{PageLabel.available}</span>
         </div>
       </section>
-      <div className={styles['order-education-work-exp']}>
-        <aside className={styles['education']}>
-          <h2>Education</h2>
-          {resumeDataSet.education.map(
-            ({ title, institution, date, degree }, index) => (
-              <div
-                className={styles['education__content']}
-                key={`education-${index}`}
-              >
-                <span className={styles['work-experience__title']}>
-                  {title}
-                </span>
-                <span>{institution}</span>
-                <span>{`${date[0]} - ${date[1]}`}</span>
-                <span>{degree}</span>
-              </div>
-            )
-          )}
-        </aside>
 
-        <section className={styles['work-experience']}>
-          <h2>Work Experience</h2>
+      <section className={styles.section} aria-labelledby="work-heading">
+        <h2 id="work-heading" className={styles.sectionLabel}>
+          Work experience
+        </h2>
+        <ul className={styles.workList}>
           {resumeDataSet.workExperience.map(
-            ({ date, title, company, location, description }, index) => (
-              <div
-                className={styles['work-experience__content']}
-                key={`work-experience-${index}`}
-              >
-                <span className={styles['work-experience__date']}>
-                  {`${date[0]} - ${date[1]}`}
-                </span>
-                <span className={styles['work-experience__title']}>
-                  {title}
-                </span>
-                <p className={styles['work-experience__place']}>
-                  <span>{company}</span>
-                  <span>{location}</span>
-                </p>
-                <span className={styles['work-experience__description']}>
-                  {description}
-                </span>
-              </div>
-            )
+            (
+              { date, title, company, location, description, technologies },
+              index
+            ) => {
+              const period = `${date[0]} – ${date[1]}`;
+              const techLine = formatTechLine(technologies);
+              return (
+                <li key={`work-${index}`} className={styles.workRow}>
+                  <div className={styles.workPeriod}>{period}</div>
+                  <div className={styles.workMain}>
+                    <h3 className={styles.workTitle}>
+                      {title}{' '}
+                      <span className={styles.workCompany}>– {company}</span>
+                    </h3>
+                    <p className={styles.workDescription}>{description}</p>
+                    {techLine ? (
+                      <p className={styles.workTech}>{techLine}</p>
+                    ) : null}
+                    <p className={styles.workMeta}>{location}</p>
+                  </div>
+                </li>
+              );
+            }
           )}
+        </ul>
+      </section>
+
+      <div className={styles.twoCol}>
+        <section className={styles.section} aria-labelledby="edu-heading">
+          <h2 id="edu-heading" className={styles.sectionLabel}>
+            Education
+          </h2>
+          <ul className={styles.eduList}>
+            {resumeDataSet.education.map(
+              ({ title, institution, date, degree }, index) => (
+                <li key={`edu-${index}`} className={styles.eduItem}>
+                  <span className={styles.eduPeriod}>
+                    {date[0]} – {date[1]}
+                  </span>
+                  <div>
+                    <p className={styles.eduTitle}>{title}</p>
+                    <p className={styles.eduInst}>{institution}</p>
+                    <p className={styles.eduDegree}>{degree}</p>
+                  </div>
+                </li>
+              )
+            )}
+          </ul>
+        </section>
+
+        <section className={styles.section} aria-labelledby="skills-heading">
+          <h2 id="skills-heading" className={styles.sectionLabel}>
+            Skills
+          </h2>
+          <div className={styles.skillsGrid}>
+            {resumeDataSet.skills.map(({ name, items }, index) => (
+              <div key={`skills-${index}`} className={styles.skillBlock}>
+                <span className={styles.skillName}>{name}</span>
+                <span className={styles.skillItems}>{items}</span>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
-      <section className={styles['skills']}>
-        <h2>Skills</h2>
-        <div className={styles['skills__content']}>
-          {resumeDataSet.skills.map(({ name, items }, index) => (
-            <div className={styles['skills__items']} key={`skills-${index}`}>
-              <span className={styles['skills__title']}>{name}</span>
-              <span className={styles['skills__description']}>{items}</span>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
-  ) : null;
+  );
 };
 
 export default ResumeComponent;
