@@ -1,33 +1,75 @@
 @import 'src/css/variables.scss';
 
 .shell {
-  display: flex;
   min-height: 100vh;
   background: var(--color-bg);
   color: var(--color-text);
+
+  @media screen and (min-width: 769px) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+}
+
+.leftColumn {
+  @media screen and (min-width: 769px) {
+    display: flex;
+    flex-direction: column;
+    width: $sidebar-width;
+    min-width: 200px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    min-height: 100vh;
+    max-height: 100vh;
+    border-right: $border-width solid var(--color-border);
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: contents;
+  }
 }
 
 .sidebar {
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
   display: flex;
   flex-direction: column;
-  width: $sidebar-width;
-  min-width: 200px;
-  min-height: 100vh;
-  padding: 2rem 1.25rem 2rem 1.5rem;
-  border-right: $border-width solid var(--color-border);
   flex-shrink: 0;
 
+  @media screen and (min-width: 769px) {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 2rem 1.25rem 0 1.5rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   @media screen and (max-width: 768px) {
-    position: relative;
+    order: 1;
     width: 100%;
-    min-height: unset;
-    min-width: unset;
-    border-right: none;
-    border-bottom: $border-width solid var(--color-border);
+    max-width: 100%;
+    min-width: 0;
     padding: 1.25rem 1rem 1rem;
+    border-bottom: $border-width solid var(--color-border);
+  }
+}
+
+// With .leftColumn { display: contents }, aside/footer are flex children of .shell; reorder for mobile.
+@media screen and (max-width: 768px) {
+  .main {
+    order: 2;
+  }
+
+  .sidebarFooter {
+    order: 3;
   }
 }
 
@@ -57,19 +99,29 @@
 }
 
 .main {
-  flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  flex: 1;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    min-height: 0;
+  }
 }
 
 .sidebarFooter {
-  margin-top: auto;
-  padding-top: 2rem;
+  flex-shrink: 0;
+
+  @media screen and (min-width: 769px) {
+    margin-top: auto;
+    padding: 1.5rem 1.25rem 2rem 1.5rem;
+  }
 
   @media screen and (max-width: 768px) {
-    padding-top: 1.25rem;
-    margin-top: 1rem;
+    margin-top: auto;
+    padding: 1.25rem 1rem 1.5rem;
+    border-top: $border-width solid var(--color-border);
   }
 }
 

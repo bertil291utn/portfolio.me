@@ -47,13 +47,15 @@ export default function AppShell({ resume, children }) {
 
   return (
     <div className={styles.shell}>
-      <aside className={styles.sidebar} aria-label="Site">
-        <div className={styles.identity}>
-          <h1 className={styles.siteTitle}>{name}</h1>
-          {title ? <p className={styles.siteTagline}>{title}</p> : null}
-        </div>
-        <NavbarComponent navbarElements={navbarElements} />
-        <div className={styles.sidebarFooter}>
+      <div className={styles.leftColumn}>
+        <aside className={styles.sidebar} aria-label="Site">
+          <div className={styles.identity}>
+            <h1 className={styles.siteTitle}>{name}</h1>
+            {title ? <p className={styles.siteTagline}>{title}</p> : null}
+          </div>
+          <NavbarComponent navbarElements={navbarElements} />
+        </aside>
+        <footer className={styles.sidebarFooter}>
           <div className={styles.toggles} role="group" aria-label="Display">
             <button
               type="button"
@@ -76,8 +78,8 @@ export default function AppShell({ resume, children }) {
           <p className={styles.copyright}>
             © {new Date().getFullYear()} {name.split(' ')[0]}
           </p>
-        </div>
-      </aside>
+        </footer>
+      </div>
       <main className={styles.main}>{children}</main>
     </div>
   );
