@@ -7,9 +7,7 @@ export default function HomeHero({ resume }) {
 
   return (
     <header className={styles.hero}>
-      <p className={styles.kicker}>Freelance · Full stack · Based in {resume.location}</p>
       <h1 className={styles.name}>{resume.name}</h1>
-      <p className={styles.title}>{resume.title}</p>
       <p className={styles.lead}>{resume.description}</p>
       <div className={styles.actions}>
         <a className={styles.btnPrimary} href={`mailto:${resume.email}`}>

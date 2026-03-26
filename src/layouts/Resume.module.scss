@@ -35,16 +35,7 @@
       display: flex;
       gap: 1.5rem;
       align-items: center;
-      margin: 4rem 0;
-    }
-
-    &__about-me {
-      @media screen and (max-width: 768px) {
-        width: 100%;
-      }
-      width: 65%;
-      line-height: 1.6;
-      color: var(--color-text);
+      margin: 4rem 0 2rem;
     }
   }
 

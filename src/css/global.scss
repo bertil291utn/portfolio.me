@@ -1,5 +1,11 @@
 @import 'src/css/variables.scss';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --color-bg: #{$bg};
   --color-bg-alt: #{$bg-alt};

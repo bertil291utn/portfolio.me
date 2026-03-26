@@ -6,27 +6,11 @@
   border-bottom: $border-width solid var(--color-border);
 }
 
-.kicker {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  margin: 0 0 1rem;
-}
-
 .name {
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
-  color: var(--color-text);
-}
-
-.title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1rem;
   color: var(--color-text);
 }
 

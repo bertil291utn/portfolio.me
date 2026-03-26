@@ -1,5 +1,7 @@
 @import 'src/css/variables.scss';
 
+$card-gap: 1.75rem;
+
 .section {
   margin-bottom: 3rem;
 }
@@ -24,8 +26,10 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  column-gap: $card-gap;
+  row-gap: $card-gap;
+  align-content: start;
 }
 
 .card {

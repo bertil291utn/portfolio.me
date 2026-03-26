@@ -58,9 +58,6 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
           <ToggleComponent available={resumeDataSet.isAvailable} />
           <span>{PageLabel.available}</span>
         </div>
-        <span className={styles['description__about-me']}>
-          {resumeDataSet.description}
-        </span>
       </section>
       <div className={styles['order-education-work-exp']}>
         <aside className={styles['education']}>
