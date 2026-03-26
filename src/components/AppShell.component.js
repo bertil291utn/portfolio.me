@@ -76,7 +76,7 @@ export default function AppShell({ resume, children }) {
             </button>
           </div>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} {name.split(' ')[0]}
+            &copy; {new Date().getFullYear()} {resume.shortInitials}
           </p>
         </footer>
       </div>
