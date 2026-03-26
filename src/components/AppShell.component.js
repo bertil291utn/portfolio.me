@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import NavbarComponent from '@components/Navbar.component';
-import { navbarElements } from '@placeholders/navbar.placeholders';
+import { useSite } from '@context/SiteContext';
 import { useTheme } from 'next-themes';
 import styles from './AppShell.module.scss';
 
 const FONT_KEY = 'portfolio-font';
 
 export default function AppShell({ resume, children }) {
+  const site = useSite();
+  const app = site.ui.appShell;
   const { resolvedTheme, setTheme } = useTheme();
   const [fontMode, setFontMode] = useState('sans');
   const [mounted, setMounted] = useState(false);
@@ -42,37 +44,37 @@ export default function AppShell({ resume, children }) {
     setFontMode((f) => (f === 'sans' ? 'mono' : 'sans'));
   };
 
-  const name = resume?.name ?? 'Portfolio';
+  const name = resume?.name ?? app.identityFallbackName;
   const title = resume?.title ?? '';
 
   return (
     <div className={styles.shell}>
       <div className={styles.leftColumn}>
-        <aside className={styles.sidebar} aria-label="Site">
+        <aside className={styles.sidebar} aria-label={app.siteSidebarAria}>
           <div className={styles.identity}>
             <h1 className={styles.siteTitle}>{name}</h1>
             {title ? <p className={styles.siteTagline}>{title}</p> : null}
           </div>
-          <NavbarComponent navbarElements={navbarElements} />
+          <NavbarComponent navbarElements={site.ui.navbar} />
         </aside>
         <footer className={styles.sidebarFooter}>
-          <div className={styles.toggles} role="group" aria-label="Display">
+          <div className={styles.toggles} role="group" aria-label={app.displayTogglesAria}>
             <button
               type="button"
               className={styles.toggleBtn}
               onClick={toggleTheme}
-              title={resolvedTheme === 'dark' ? 'Light mode' : 'Dark mode'}
+              title={resolvedTheme === 'dark' ? app.themeLightTitle : app.themeDarkTitle}
               disabled={!mounted}
             >
-              {mounted && resolvedTheme === 'dark' ? 'Light' : 'Dark'}
+              {mounted && resolvedTheme === 'dark' ? app.themeLightLabel : app.themeDarkLabel}
             </button>
             <button
               type="button"
               className={styles.toggleBtn}
               onClick={toggleFont}
-              title="Toggle monospaced font"
+              title={app.fontToggleTitle}
             >
-              {fontMode === 'mono' ? 'Sans' : 'Mono'}
+              {fontMode === 'mono' ? app.fontSansLabel : app.fontMonoLabel}
             </button>
           </div>
           <p className={styles.copyright}>

@@ -1,5 +1,6 @@
 import PortfolioComponent from '@layouts/Portfolio.component';
 import { getPortfolio, getResume } from '@utils/firebaseFunctions';
+import { loadSite } from '@utils/siteData';
 import resumeFallback from '../../data/resume.json';
 import portfolioFallback from '../../data/portfolio.json';
 
@@ -29,10 +30,13 @@ export async function getStaticProps() {
     // Firebase unavailable — use local JSON
   }
 
+  const site = await loadSite();
+
   return {
     props: {
       projects,
       resume,
+      site,
     },
     revalidate: 3600,
   };

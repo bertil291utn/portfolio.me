@@ -1,15 +1,18 @@
+import { useSite } from '@context/SiteContext';
 import styles from './ServicesSection.module.scss';
-import { HomeLabel } from '@placeholders/home.placeholder';
 
 export default function ServicesSection() {
+  const site = useSite();
+  const home = site.ui.home;
+
   return (
     <section className={styles.section} aria-labelledby="services-heading">
       <h2 id="services-heading" className={styles.heading}>
-        {HomeLabel.servicesTitle}
+        {home.servicesTitle}
       </h2>
-      <p className={styles.lead}>{HomeLabel.servicesLead}</p>
+      <p className={styles.lead}>{home.servicesLead}</p>
       <ul className={styles.grid}>
-        {HomeLabel.serviceItems.map((item) => (
+        {home.serviceItems.map((item) => (
           <li key={item.title} className={styles.card}>
             <h3 className={styles.cardTitle}>{item.title}</h3>
             <p className={styles.cardBody}>{item.body}</p>

@@ -1,5 +1,6 @@
 import BlogComponent from '@layouts/Blog.component';
 import { substackURL } from 'src/config/URLs';
+import { loadSite } from '@utils/siteData';
 
 const Parser = require('rss-parser');
 const parser = new Parser();
@@ -23,9 +24,12 @@ export async function getStaticProps() {
     // RSS unavailable during build — empty list
   }
 
+  const site = await loadSite();
+
   return {
     props: {
       posts,
+      site,
     },
     revalidate: 86_400,
   };

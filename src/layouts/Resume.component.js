@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
+import { useSite } from '@context/SiteContext';
+import styles from './Resume.module.scss';
 import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
-import { PageLabel } from '@placeholders/resume.placeholder';
 
 const ICON = {
   linkedin: BsLinkedin,
@@ -20,6 +20,9 @@ const formatTechLine = (str) => {
 };
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
+  const site = useSite();
+  const labels = site.ui.resume;
+
   const openURL = (URL) => () => {
     window.open(URL, '_blank', 'noopener,noreferrer');
   };
@@ -55,16 +58,16 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
         </div>
       </header>
 
-      <section className={styles.availability} aria-label="Availability">
+      <section className={styles.availability} aria-label={labels.availabilitySectionAria}>
         <div className={styles.availabilityRow}>
           <ToggleComponent available={resumeDataSet.isAvailable} />
-          <span className={styles.availabilityLabel}>{PageLabel.available}</span>
+          <span className={styles.availabilityLabel}>{labels.availabilityLabel}</span>
         </div>
       </section>
 
       <section className={styles.section} aria-labelledby="work-heading">
         <h2 id="work-heading" className={styles.sectionLabel}>
-          Work experience
+          {labels.workExperienceHeading}
         </h2>
         <ul className={styles.workList}>
           {resumeDataSet.workExperience.map(
@@ -98,7 +101,7 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
       <div className={styles.twoCol}>
         <section className={styles.section} aria-labelledby="edu-heading">
           <h2 id="edu-heading" className={styles.sectionLabel}>
-            Education
+            {labels.educationHeading}
           </h2>
           <ul className={styles.eduList}>
             {resumeDataSet.education.map(
@@ -120,7 +123,7 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
 
         <section className={styles.section} aria-labelledby="skills-heading">
           <h2 id="skills-heading" className={styles.sectionLabel}>
-            Skills
+            {labels.skillsHeading}
           </h2>
           <div className={styles.skillsGrid}>
             {resumeDataSet.skills.map(({ name, items }, index) => (

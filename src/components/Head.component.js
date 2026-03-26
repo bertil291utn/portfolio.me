@@ -1,18 +1,20 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useSite } from '@context/SiteContext';
 
-const defaultTitle = 'Bertil Tandayamo — Full Stack Developer & Freelancer';
+const HeadComponent = () => {
+  const router = useRouter();
+  const site = useSite();
+  const pathname = router?.pathname || '/';
+  const title =
+    site.seo.pageTitles?.[pathname] ?? site.seo.defaultTitle;
 
-const HeadComponent = ({ title }) => {
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{title}</title>
     </Head>
   );
-};
-
-HeadComponent.defaultProps = {
-  title: defaultTitle,
 };
 
 export default HeadComponent;

@@ -1,18 +1,21 @@
+import { useSite } from '@context/SiteContext';
 import styles from './ContactSection.module.scss';
-import { HomeLabel } from '@placeholders/home.placeholder';
 
 export default function ContactSection({ email }) {
+  const site = useSite();
+  const home = site.ui.home;
+
   if (!email) return null;
 
   return (
     <section className={styles.section} aria-labelledby="contact-heading">
       <div className={styles.card}>
         <h2 id="contact-heading" className={styles.heading}>
-          {HomeLabel.contactTitle}
+          {home.contactTitle}
         </h2>
-        <p className={styles.body}>{HomeLabel.contactBody}</p>
+        <p className={styles.body}>{home.contactBody}</p>
         <a className={styles.cta} href={`mailto:${email}`}>
-          {HomeLabel.contactCta}
+          {home.contactCta}
         </a>
       </div>
     </section>

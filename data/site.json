@@ -1,0 +1,100 @@
+{
+  "seo": {
+    "canonicalBaseUrl": "https://www.bertiltandayamo.me",
+    "defaultTitle": "Bertil Tandayamo — Product-focused Engineer",
+    "pageTitles": {
+      "/": "Bertil Tandayamo — Product-focused Engineer",
+      "/resume": "Resume — Bertil Tandayamo",
+      "/blog": "Blog — Bertil Tandayamo"
+    },
+    "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Quito, Ecuador.",
+    "keywords": "freelance developer, full stack developer, Next.js, React, Ecuador, Quito, web development, freelance, Bertil Tandayamo, software engineer",
+    "ogImage": "https://res.cloudinary.com/btandayamo/image/upload/v1675372137/portofolio.me/og_imageok_quf0ho.png",
+    "twitterHandle": "@btandayamo",
+    "twitterCard": "summary_large_image",
+    "themeColor": "#fafafa",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "authorName": "Bertil Tandayamo",
+    "siteName": "Bertil Tandayamo",
+    "favIcon": "/assets/icons/favicon.svg",
+    "manifestPath": "/assets/manifest.json",
+    "sitemapHostname": "https://www.bertiltandayamo.me"
+  },
+  "ui": {
+    "home": {
+      "servicesTitle": "How I work",
+      "servicesLead": "Clear communication, predictable delivery, and code you can build on.",
+      "serviceItems": [
+        {
+          "title": "Web products & MVPs",
+          "body": "Next.js and React apps from idea to production — performance, SEO, and maintainable architecture."
+        },
+        {
+          "title": "Frontend & integrations",
+          "body": "APIs, auth flows, dashboards, and third-party services wired up with solid UX."
+        },
+        {
+          "title": "Blockchain & Web3",
+          "body": "When your product needs it: smart-contract–backed experiences, marketplaces, and wallets — scoped and documented."
+        }
+      ],
+      "projectsTitle": "Selected work",
+      "projectsSubtitle": "Recent builds for clients and products.",
+      "web3Title": "Web3 & blockchain",
+      "web3Subtitle": "Marketplaces and on-chain products — available as a dedicated capability alongside traditional web work.",
+      "contactTitle": "Start a project",
+      "contactBody": "Tell me about your timeline, stack, and goals. I usually reply within one business day.",
+      "contactCta": "Email me",
+      "secondaryCta": "View full resume"
+    },
+    "navbar": {
+      "portfolio": { "label": "portfolio", "path": "/" },
+      "resume": { "label": "resume", "path": "/resume" }
+    },
+    "errorPage": {
+      "title": "An error has ocurred",
+      "btnLabel": "Go to home"
+    },
+    "resume": {
+      "availabilityLabel": "Available",
+      "workExperienceHeading": "Work experience",
+      "educationHeading": "Education",
+      "skillsHeading": "Skills",
+      "availabilitySectionAria": "Availability"
+    },
+    "blog": {
+      "emptyMessage": "No posts could be loaded right now. Please try again later or visit the blog on Substack.",
+      "fallbackPostBaseUrl": "https://blog.bertiltandayamo.me/"
+    },
+    "appShell": {
+      "siteSidebarAria": "Site",
+      "displayTogglesAria": "Display",
+      "primaryNavAria": "Primary",
+      "themeLightTitle": "Light mode",
+      "themeDarkTitle": "Dark mode",
+      "themeLightLabel": "Light",
+      "themeDarkLabel": "Dark",
+      "fontToggleTitle": "Toggle monospaced font",
+      "fontSansLabel": "Sans",
+      "fontMonoLabel": "Mono",
+      "identityFallbackName": "Portfolio"
+    }
+  },
+  "pwa": {
+    "name": "Bertil portfolio",
+    "short_name": "BT portfolio",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff5f0",
+    "theme_color": "#fff5f0",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "/logo-72x72.png",
+        "type": "image/png",
+        "sizes": "72x72"
+      }
+    ]
+  }
+}

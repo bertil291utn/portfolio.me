@@ -1,5 +1,6 @@
 import ResumeComponent from '@layouts/Resume.component';
 import { getResume } from '@utils/firebaseFunctions';
+import { loadSite } from '@utils/siteData';
 import resumeFallback from '../../data/resume.json';
 
 const extractYear = (dateString) => {
@@ -31,9 +32,12 @@ export async function getStaticProps() {
     // Offline build or Firebase misconfiguration — use local JSON
   }
 
+  const site = await loadSite();
+
   return {
     props: {
       resume,
+      site,
     },
     revalidate: 60,
   };

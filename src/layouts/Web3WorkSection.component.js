@@ -1,16 +1,19 @@
 import PortfolioCard from '@components/PortfolioCard.component';
+import { useSite } from '@context/SiteContext';
 import styles from './Web3WorkSection.module.scss';
-import { HomeLabel } from '@placeholders/home.placeholder';
 
 export default function Web3WorkSection({ projects }) {
+  const site = useSite();
+  const home = site.ui.home;
+
   if (!projects?.length) return null;
 
   return (
     <section className={styles.section} aria-labelledby="web3-heading">
       <h2 id="web3-heading" className={styles.heading}>
-        {HomeLabel.web3Title}
+        {home.web3Title}
       </h2>
-      <p className={styles.subtitle}>{HomeLabel.web3Subtitle}</p>
+      <p className={styles.subtitle}>{home.web3Subtitle}</p>
       <div className={styles.grid}>
         {projects.map((data) => (
           <PortfolioCard

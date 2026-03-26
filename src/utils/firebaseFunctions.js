@@ -11,7 +11,11 @@ export const getWeb3User = (walletAddress) => {
 
 export const getResume = () => {
   return db.collection(collections.resume).doc('1').get();
-}
+};
+
+export const getSite = () => {
+  return db.collection(collections.site).doc('1').get();
+};
 
 export const getPortfolio = () => {
   return db.collection(collections.portfolio).get();

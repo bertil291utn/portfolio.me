@@ -3,11 +3,13 @@ import HomeHero from '@components/HomeHero.component';
 import ServicesSection from '@components/ServicesSection.component';
 import ContactSection from '@components/ContactSection.component';
 import Web3WorkSection from '@layouts/Web3WorkSection.component';
+import { useSite } from '@context/SiteContext';
 import { isWeb3Project } from '@utils/portfolio';
-import { HomeLabel } from '@placeholders/home.placeholder';
 import styles from './Portfolio.module.scss';
 
 function PortfolioComponent({ projectsData, resume }) {
+  const site = useSite();
+  const home = site.ui.home;
   const projects = projectsData || [];
   const web3Projects = projects.filter(isWeb3Project);
   const web2Projects = projects.filter((p) => !isWeb3Project(p));
@@ -18,9 +20,9 @@ function PortfolioComponent({ projectsData, resume }) {
       <ServicesSection />
       <section className={styles['section']} aria-labelledby="work-heading">
         <h2 id="work-heading" className={styles['section-title']}>
-          {HomeLabel.projectsTitle}
+          {home.projectsTitle}
         </h2>
-        <p className={styles['section-sub']}>{HomeLabel.projectsSubtitle}</p>
+        <p className={styles['section-sub']}>{home.projectsSubtitle}</p>
         <div className={styles['portfolio']}>
           {web2Projects.map((data) => (
             <PortfolioCard

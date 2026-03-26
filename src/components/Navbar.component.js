@@ -1,13 +1,15 @@
 import Link from 'next/link';
+import { useSite } from '@context/SiteContext';
 import { useRouter } from 'next/router';
 import styles from './Navbar.module.scss';
 
 const NavbarComponent = ({ navbarElements }) => {
+  const site = useSite();
   const router = useRouter();
   const entries = Object.values(navbarElements) ?? [];
 
   return (
-    <nav className={styles.navWrap} aria-label="Primary">
+    <nav className={styles.navWrap} aria-label={site.ui.appShell.primaryNavAria}>
       <ol className={styles.navbar}>
         {entries.map(({ label, path }, index) => {
           const active = router.pathname === path;

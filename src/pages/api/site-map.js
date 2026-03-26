@@ -1,15 +1,17 @@
-const { SitemapStream, streamToPromise } = require("sitemap");
-const { Readable } = require("stream");
+const { SitemapStream, streamToPromise } = require('sitemap');
+const { Readable } = require('stream');
+const site = require('../../../data/site.json');
 
 export default async (req, res) => {
-  const links = [
-    { url: "/", changefreq: "weekly", priority: 1 },
-  ]
+  const hostname =
+    site.seo?.sitemapHostname || `https://${req.headers.host}`;
 
-  const stream = new SitemapStream({ hostname: `https://${req.headers.host}` });
+  const links = [{ url: '/', changefreq: 'weekly', priority: 1 }];
+
+  const stream = new SitemapStream({ hostname });
 
   res.writeHead(200, {
-    "Content-Type": "application/xml",
+    'Content-Type': 'application/xml',
   });
 
   const xmlString = await streamToPromise(
