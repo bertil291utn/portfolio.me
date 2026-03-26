@@ -1,5 +1,29 @@
+@import 'src/css/variables.scss';
+
+.portfolio-page {
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+}
+
+.section-sub {
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
 .portfolio {
   display: grid;
-  gap: 1.75rem;
+  gap: 1.25rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }

@@ -1,38 +1,54 @@
 @import 'src/css/variables.scss';
 
-
-@font-face {
-  font-family: 'Just Sunday';
-  src: url('/fonts/Just-Sunday.ttf');
-  font-weight: 500;
-  font-style: normal;
-}
-
 :root {
+  --color-bg: #{$bg};
+  --color-bg-alt: #{$bg-alt};
+  --color-surface: #{$surface};
+  --color-text: #{$text};
+  --color-muted: #{$muted};
+  --color-border: #{$border};
+  --color-accent: #{$accent};
+  --color-accent-hover: #{$accent-hover};
+  --color-on-accent: #{$on-accent};
+  --color-success: #{$success};
+  --color-error: #{$error};
   max-width: $max-width;
   margin: 0 auto;
-  font-family: 'Mulish', sans-serif;
-  background-color: $light-bg;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   @media screen and (max-width: 768px) {
-    padding: 0 10px;
+    padding: 0 12px;
   }
 }
 
+[data-theme='dark'] {
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #141414;
+  --color-surface: #1f1f1f;
+  --color-text: #fafafa;
+  --color-muted: #94a3b8;
+  --color-border: #404040;
+  --color-accent: #e86b43;
+  --color-accent-hover: #f08562;
+  --color-on-accent: #ffffff;
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 .content {
-  margin: 5rem 0;
+  margin: 5rem 0 3rem;
+  min-height: 50vh;
 }
 
 .hand {
   cursor: pointer;
 }
 
-[data-theme='dark'] {
-  background: $dark-bg;
-  color: $dark-color-text;
-}
-
 .subtitle {
   font-size: 0.85rem;
   font-weight: bold;
-  color: $gray;
+  color: var(--color-muted);
 }

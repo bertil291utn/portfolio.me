@@ -1,61 +1,10 @@
 import Link from 'next/link';
 import styles from './Resume.module.scss';
 import ToggleComponent from '@components/common/Toggle.component';
-import { BsLinkedin, BsGithub, BsTelegram,BsTwitter } from 'react-icons/bs';
+import { BsLinkedin, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
 import { PageLabel } from '@placeholders/resume.placeholder';
-import { useEffect, useState } from 'react';
-import { useWalletContext } from '@context/WalletProvider';
-import ModalComponent from '@components/common/Modal.component';
-import { PortfolioLabel } from '@placeholders/portfolio.placeholder';
-import { IdContent } from '@placeholders/profile.placeholder';
-import { web3Website } from 'src/config/URLs';
-import { getWeb3User } from '@utils/firebaseFunctions';
-import { useAccount, useProvider } from 'wagmi';
-import { getNFT1155Factory } from '@utils/web3';
 
 const ResumeComponent = ({ resumeData: resumeDataSet }) => {
-  const [claimTokensModal, setClaimTokensModal] = useState(false);
-  const [stakeTokensModal, setStakeTokensModal] = useState(false);
-  const [isWeb3User, setIsWeb3User] = useState(false);
-  const [NFTBalance, setNFTBalance] = useState();
-  const provider = useProvider();
-
-
-  const { userCustomTokenBalance, userStakedAmount, tokenSymbol } =
-    useWalletContext();
-  const [isStakeHolder, setIsStakeHolder] = useState(false);
-  const { address } = useAccount();
-
-  useEffect(() => {
-    setIsStakeHolder(userStakedAmount?.toString() > 0);
-  }, [userStakedAmount]);
-
-  const _setNFTBalance = async (ownerAddress, provider) => {
-    const NFT1155Contract = getNFT1155Factory({ provider });
-    const balance = await NFT1155Contract.balanceOfByOwner(ownerAddress);
-    setNFTBalance(Number(balance))
-  }
-
-  useEffect(() => {
-    address && provider && _setNFTBalance(address, provider);
-    return () => {
-      setNFTBalance(undefined);
-    }
-  }, [address, provider]);
-
-
-  const _getWeb3User = async (address) => {
-    const resp = await getWeb3User(address);
-    setIsWeb3User(resp.data()?.isWeb3User)
-  }
-
-  useEffect(() => {
-    address && _getWeb3User(address)
-  }, [address])
-
-
-
-
   const ICON = {
     linkedin: <BsLinkedin />,
     github: <BsGithub />,
@@ -63,19 +12,8 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
     twitter: <BsTwitter />,
   };
 
-
   const openURL = (URL) => () => {
-
-    window.open(URL, '_blank');
-  };
-
-  const claimAcceptBtnAction = () => {
-    window.open(`${web3Website}`, '_tab');
-  };
-
-  const stakeAcceptBtnAction = () => {
-    window.open(`${web3Website}/profile#${IdContent.staking}`, '_tab');
-
+    window.open(URL, '_blank', 'noopener,noreferrer');
   };
 
   return resumeDataSet ? (
@@ -89,7 +27,7 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
 
       <aside className={styles['contacts']}>
         <Link href={`mailto:${resumeDataSet.email}`}>
-          <span className='hand' title='Send email'>
+          <span className="hand" title="Send email">
             {resumeDataSet.email}
           </span>
         </Link>
@@ -100,8 +38,13 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
               <div
                 key={`social-network-${index}`}
                 title={socialNetwork}
-                className={`hand`}
+                className="hand"
                 onClick={openURL(URL)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') openURL(URL)();
+                }}
               >
                 {ICON[socialNetwork]}
               </div>
@@ -176,14 +119,6 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
           ))}
         </div>
       </section>
-      <ModalComponent
-        show={claimTokensModal}
-        setShow={setClaimTokensModal}
-        acceptLabel={PortfolioLabel.mintTokensBtn}
-        acceptBtnAction={claimAcceptBtnAction}
-      >
-        {PortfolioLabel.modalClaimNFTDesc}
-      </ModalComponent>
     </div>
   ) : null;
 };

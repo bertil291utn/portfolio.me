@@ -1,0 +1,28 @@
+@import 'src/css/variables.scss';
+
+.section {
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+  border-top: $border-width solid var(--color-border);
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem;
+  max-width: 40rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}

@@ -1,18 +1,33 @@
-$primary: #fcded1;
-$gray: #828282;
+// Gumroad / neo-brutalist design tokens — also exposed as CSS variables in global.scss
+
+$max-width: 1040px;
+$border-width: 1px;
+$radius-sm: 8px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$shadow-hard: 2px 2px 0 #000000;
+
+// Light (default)
+$bg: #fff5f0;
+$bg-alt: #f7f7f7;
+$surface: #ffffff;
+$text: #000000;
+$muted: #64748b;
+$border: #000000;
+$accent: #e86b43;
+$accent-hover: #d45a35;
+$on-accent: #ffffff;
+$success: #4ade80;
+$error: #f87171;
+
+// Legacy aliases (some modules may still reference)
+$primary: $accent;
+$gray: $muted;
 $card-bg-color: #131826;
-
-// dark mode
-$dark-bg: #252e48;
-$dark-color-text: #f6f9f9;
-
-//light mode
-$light-bg: $dark-color-text;
-$light-color-text: $card-bg-color;
-
-$max-width: 900px;
-
-//variant colors
-$success: #37a169;
-$warning: #dd6a1f;
-$error: #e53e3e;
+$light-bg: $bg;
+$light-color-text: $text;
+$dark-bg: #0a0a0a;
+$dark-surface: #1f1f1f;
+$dark-color-text: #fafafa;
+$dark-muted: #94a3b8;
+$dark-border: #404040;

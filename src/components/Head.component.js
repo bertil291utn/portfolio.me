@@ -1,20 +1,18 @@
 import Head from 'next/head';
-const author = 'Bertil Tandayamo';
 
-const HeadComponent = ({
-  title,
-}) => {
+const defaultTitle = 'Bertil Tandayamo — Full Stack Developer & Freelancer';
+
+const HeadComponent = ({ title }) => {
   return (
     <Head>
-      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{title}</title>
     </Head>
   );
 };
 
 HeadComponent.defaultProps = {
-  title: author,
+  title: defaultTitle,
 };
 
 export default HeadComponent;

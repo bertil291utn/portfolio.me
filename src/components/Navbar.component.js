@@ -1,8 +1,6 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Navbar.module.scss';
-
 
 const NavbarComponent = ({ navbarElements }) => {
   const router = useRouter();
@@ -14,13 +12,13 @@ const NavbarComponent = ({ navbarElements }) => {
           ({ label, path, icon: Icon }, index) => {
             return (
               <li
-                className={`${styles['list']} ${router.pathname == path ? `${styles['active']}` : ''
-                  }`}
+                className={`${styles['list']} ${
+                  router.pathname === path ? `${styles['active']}` : ''
+                }`}
                 key={`navbar-${index}`}
               >
                 <Link href={path}>
-                  <a
-                  >
+                  <a>
                     <span className={`${styles['navbar__content']}`}>
                       {label}
                     </span>
@@ -34,7 +32,6 @@ const NavbarComponent = ({ navbarElements }) => {
           }
         )}
       </ul>
-      <ConnectButton showBalance={false} />
     </div>
   );
 };

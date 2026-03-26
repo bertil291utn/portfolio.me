@@ -1,8 +1,8 @@
 export const PortfolioLabel = {
   freeTokensBtn: 'Claim free tokens',
   mintTokensBtn: 'Mint tokens',
-  onlineVersionTitle: 'Online version',
-  githubRepoTitle: 'Github repository',
+  onlineVersionTitle: 'Live demo',
+  githubRepoTitle: 'Source on GitHub',
   rateProjectTitle: 'Star project',
   unStarProjectTitle: 'Unstar project',
   modalClaimDesc: (tokenSymbol) =>

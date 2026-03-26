@@ -1,11 +1,11 @@
 import ResumeComponent from '@layouts/Resume.component';
 import { getResume } from '@utils/firebaseFunctions';
+import resumeFallback from '../../data/resume.json';
 
 const extractYear = (dateString) => {
-  const [_, year] = dateString.split(' ');
+  const [, year] = dateString.split(' ');
   return year;
 };
-
 
 const sortWorkExperienceDate = (resumeData) => {
   resumeData.workExperience.sort((a, b) => {
@@ -14,8 +14,7 @@ const sortWorkExperienceDate = (resumeData) => {
 
     return yearB - yearA;
   });
-}
-
+};
 
 const ResumePage = ({ resume }) => {
   sortWorkExperienceDate(resume);
@@ -23,13 +22,20 @@ const ResumePage = ({ resume }) => {
 };
 
 export async function getStaticProps() {
-  const resp = await getResume();
+  let resume = resumeFallback;
+  try {
+    const resp = await getResume();
+    const data = resp?.data();
+    if (data) resume = data;
+  } catch {
+    // Offline build or Firebase misconfiguration — use local JSON
+  }
 
   return {
     props: {
-      resume: resp?.data(),
+      resume,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 }
 

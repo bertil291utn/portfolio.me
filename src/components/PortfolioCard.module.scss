@@ -7,48 +7,75 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid $card-bg-color;
-  &__dark {
-    background-color: $card-bg-color;
-    border: unset;
+  background: var(--color-surface);
+  border: $border-width solid var(--color-border);
+  border-radius: $radius-md;
+  padding: 1.75rem;
+  min-height: 100%;
+  transition: transform 0.12s ease;
+
+  &:hover {
+    transform: translateY(-2px);
   }
-  padding: 2rem;
-  border-radius: 3px;
+
+  &__dark {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+  }
+
   &__tech {
-    letter-spacing: 2px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-muted);
   }
 
   &__project {
-    letter-spacing: 2px;
-    margin-top: 1.2rem;
+    letter-spacing: -0.02em;
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text);
   }
 
   &__description {
-    letter-spacing: 1.25px;
-    font-size: 0.85rem;
-    color: $gray;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-muted);
   }
+
   &__icons {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-top: 1.25rem;
-    a {
-      color: unset;
-    }
+    align-items: center;
+  }
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  background: transparent;
+  border: $border-width solid var(--color-border);
+  border-radius: $radius-sm;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--color-bg-alt);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 }
 
 .icon-size {
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-.rated-star {
-  color: $success;
+  font-size: 1.35rem;
 }

@@ -3,14 +3,34 @@
 .footer {
   padding: 2rem 0;
   text-align: center;
-  border-top: 1px solid $card-bg-color;
+  border-top: $border-width solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .switch-button {
-  background-color: unset;
-  border: 1px solid $card-bg-color;
+  background: var(--color-surface);
+  border: $border-width solid var(--color-border);
   cursor: pointer;
-  border-radius: 3px;
-  float: left;
-  padding: 0.25rem 0.5rem;
+  border-radius: $radius-sm;
+  padding: 0.4rem 0.65rem;
+  color: var(--color-text);
+  box-shadow: $shadow-hard;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-bg-alt);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }

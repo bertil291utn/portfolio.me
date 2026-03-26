@@ -1,7 +1,7 @@
 @import 'src/css/variables.scss';
 
 .button {
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -9,37 +9,41 @@
   gap: 1rem;
   span {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 700;
     &::first-letter {
       text-transform: uppercase;
     }
   }
   cursor: pointer;
   padding: 0.8rem 1.5rem;
-  border: unset;
-  border-radius: 0.5rem;
+  border-radius: $radius-md;
+  border: $border-width solid var(--color-border);
   &.primary {
-    background-color: $primary;
-    color: $card-bg-color;
-    box-shadow: 5px 4px 8px 0px $card-bg-color;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    box-shadow: $shadow-hard;
+    &:hover {
+      background-color: var(--color-accent-hover);
+    }
   }
   &.tertiary {
-    background-color: unset;
+    background-color: var(--color-surface);
+    color: var(--color-text);
   }
 }
 
 .fab-button {
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   cursor: pointer;
   border-radius: 50%;
   padding: 0.5rem;
-  background-color: $primary;
-  box-shadow: 5px 4px 8px 0px $card-bg-color;
-  border: none;
+  background-color: var(--color-accent);
+  box-shadow: $shadow-hard;
+  border: $border-width solid var(--color-border);
   .left-icon {
     font-size: 1.5rem;
   }
-  color: $card-bg-color;
+  color: var(--color-on-accent);
 
   position: fixed;
   width: 50px;

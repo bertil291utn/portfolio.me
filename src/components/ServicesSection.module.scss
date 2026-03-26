@@ -1,0 +1,49 @@
+@import 'src/css/variables.scss';
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.lead {
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: $border-width solid var(--color-border);
+  border-radius: $radius-md;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}

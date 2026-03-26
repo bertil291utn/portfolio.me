@@ -1,78 +1,40 @@
-import { useEffect, useState } from 'react';
-import ModalComponent from '@components/common/Modal.component';
 import PortfolioComponent from '@layouts/Portfolio.component';
-import { newUserModalLabels } from '@placeholders/modal.placeholders';
-import { localStorageKeys } from '@keys/localStorage';
-import { addNewDevice, getPortfolio } from '@utils/firebaseFunctions';
-import { useAccount } from 'wagmi';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
+import { getPortfolio, getResume } from '@utils/firebaseFunctions';
+import resumeFallback from '../../data/resume.json';
+import portfolioFallback from '../../data/portfolio.json';
 
-function HomeContent({ projects }) {
-  const [show, setShow] = useState(true);
-  const [isFirstTime, setIsFirstTime] = useState();
-  const { address, isConnected } = useAccount();
-  const { openConnectModal } = useConnectModal();
-
-  useEffect(() => {
-    setIsFirstTime(!window.localStorage.getItem(localStorageKeys.isFirstTime));
-  }, []);
-
-  const setFirstTimeFalse = () => {
-    window.localStorage.setItem(localStorageKeys.isFirstTime, false);
-  };
-
-  const _addnewDevice = () => {
-    try {
-      isConnected && isFirstTime && addNewDevice(address, { isWeb3User: true })
-
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-
-  useEffect(() => {
-    _addnewDevice()
-  }, [isConnected])
-
-  const acceptBtnAction = async () => {
-    setFirstTimeFalse();
-    openConnectModal();
-  };
-
-  const cancelBtnAction = () => {
-    setFirstTimeFalse();
-  };
-
-  return (
-    <>
-      <PortfolioComponent projectsData={projects} />
-      {isFirstTime && (
-        <ModalComponent
-          show={show}
-          setShow={setShow}
-          acceptLabel={newUserModalLabels.acceptLabel}
-          cancelLabel={newUserModalLabels.cancelLabel}
-          backButton={false}
-          closeButton={false}
-          acceptBtnAction={acceptBtnAction}
-          cancelBtnAction={cancelBtnAction}
-        >
-          {newUserModalLabels.description}
-        </ModalComponent>
-      )}
-    </>
-  );
+function HomeContent({ projects, resume }) {
+  return <PortfolioComponent projectsData={projects} resume={resume} />;
 }
 
 export async function getStaticProps() {
-  const resp = await getPortfolio();
-  const projects = resp.docs.map((doc) => doc.data())
-  projects.sort((a, b) => a.id - b.id)
+  let projects = portfolioFallback;
+  try {
+    const resp = await getPortfolio();
+    const fromDb = resp.docs.map((doc) => doc.data());
+    if (fromDb.length) {
+      projects = fromDb;
+      projects.sort((a, b) => a.id - b.id);
+    }
+  } catch {
+    // Firestore offline — use static JSON
+  }
+
+  let resume = resumeFallback;
+  try {
+    const resumeResp = await getResume();
+    const data = resumeResp?.data();
+    if (data) resume = data;
+  } catch {
+    // Firebase unavailable — use local JSON
+  }
+
   return {
     props: {
       projects,
+      resume,
     },
-    revalidate: 3600
+    revalidate: 3600,
   };
 }
 

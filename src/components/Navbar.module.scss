@@ -4,8 +4,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 5rem;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 600px) {
     flex-direction: column;
@@ -17,17 +18,32 @@ ul {
   &.navbar {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 0.5rem;
     justify-content: flex-end;
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    flex-wrap: wrap;
 
     a {
-      color: unset;
+      color: var(--color-text);
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: $border-width solid transparent;
+      transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+
+      &:hover {
+        border-color: var(--color-border);
+        background: var(--color-bg-alt);
+      }
     }
 
-    &>* {
+    & > * {
       cursor: pointer;
     }
   }
@@ -57,22 +73,12 @@ ul {
 
 li {
   &.list {
-    padding-bottom: 0.5rem;
+    padding-bottom: 0;
   }
 
-  &.active {
-    position: relative;
-
-    &::before {
-      transform: translateX(-50%);
-      border-radius: 100%;
-      position: absolute;
-      background: $primary;
-      bottom: -10px;
-      height: 8px;
-      content: '';
-      width: 8px;
-      left: 50%;
-    }
+  &.active a {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+    box-shadow: $shadow-hard;
   }
 }
