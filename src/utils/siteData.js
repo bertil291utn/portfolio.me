@@ -1,5 +1,5 @@
-import siteFallbackRaw from '../../data/site.json';
-import personData from '../../data/person.json';
+import siteFallbackRaw from '@data/site.json';
+import personData from '@data/person.json';
 import { getSite } from '@utils/firebaseFunctions';
 
 function mergePerson(site, person) {

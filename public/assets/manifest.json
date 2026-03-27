@@ -1,5 +1,4 @@
 {
-  "name": "Bertil portfolio",
   "short_name": "BT portfolio",
   "start_url": "/",
   "display": "standalone",
@@ -12,5 +11,6 @@
       "type": "image/png",
       "sizes": "72x72"
     }
-  ]
+  ],
+  "name": "Bertil Tandayamo portfolio"
 }

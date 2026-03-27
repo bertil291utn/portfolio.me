@@ -1,6 +1,6 @@
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { Readable } = require('stream');
-const site = require('../../../data/site.json');
+const site = require('@data/site.json');
 
 export default async (req, res) => {
   const hostname =
