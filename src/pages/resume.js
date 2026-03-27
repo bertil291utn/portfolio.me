@@ -1,7 +1,7 @@
 import ResumeComponent from '@layouts/Resume.component';
 import { getResume } from '@utils/firebaseFunctions';
 import { loadSite } from '@utils/siteData';
-import resumeFallback from '../../data/resume.json';
+import { resumeFallback } from '@utils/resumeData';
 
 const extractYear = (dateString) => {
   const [, year] = dateString.split(' ');

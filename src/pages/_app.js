@@ -3,7 +3,7 @@ import AppShell from '@components/AppShell.component';
 import ScriptComponent from '@components/Script.component';
 import { SiteProvider } from '@context/SiteContext';
 import { ThemeProvider } from 'next-themes';
-import resumeFallback from '../../data/resume.json';
+import { resumeFallback } from '@utils/resumeData';
 import '../css/global.scss';
 
 export default function MyApp({ Component, pageProps }) {

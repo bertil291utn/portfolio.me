@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import site from '../../data/site.json';
+import { siteFallback as site } from '@utils/siteData';
 
 export default function Document() {
   const { seo } = site;

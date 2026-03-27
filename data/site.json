@@ -1,22 +1,17 @@
 {
   "seo": {
     "canonicalBaseUrl": "https://www.bertiltandayamo.me",
-    "defaultTitle": "Bertil Tandayamo — Product-focused Engineer",
     "pageTitles": {
-      "/": "Bertil Tandayamo — Product-focused Engineer",
       "/resume": "Resume — Bertil Tandayamo",
       "/blog": "Blog — Bertil Tandayamo"
     },
-    "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Quito, Ecuador.",
-    "keywords": "freelance developer, full stack developer, Next.js, React, Ecuador, Quito, web development, freelance, Bertil Tandayamo, software engineer",
+    "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
+    "keywords": "freelance developer, full stack developer, Next.js, React, Ecuador, Cayambe, web development, freelance, Bertil Tandayamo, software engineer",
     "ogImage": "https://res.cloudinary.com/btandayamo/image/upload/v1675372137/portofolio.me/og_imageok_quf0ho.png",
-    "twitterHandle": "@btandayamo",
     "twitterCard": "summary_large_image",
     "themeColor": "#fafafa",
     "htmlLang": "en",
     "ogLocale": "en_US",
-    "authorName": "Bertil Tandayamo",
-    "siteName": "Bertil Tandayamo",
     "favIcon": "/assets/icons/favicon.svg",
     "manifestPath": "/assets/manifest.json",
     "sitemapHostname": "https://www.bertiltandayamo.me"
@@ -82,7 +77,6 @@
     }
   },
   "pwa": {
-    "name": "Bertil portfolio",
     "short_name": "BT portfolio",
     "start_url": "/",
     "display": "standalone",

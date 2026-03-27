@@ -1,7 +1,7 @@
 import PortfolioComponent from '@layouts/Portfolio.component';
 import { getPortfolio, getResume } from '@utils/firebaseFunctions';
 import { loadSite } from '@utils/siteData';
-import resumeFallback from '../../data/resume.json';
+import { resumeFallback } from '@utils/resumeData';
 import portfolioFallback from '../../data/portfolio.json';
 
 function HomeContent({ projects, resume }) {

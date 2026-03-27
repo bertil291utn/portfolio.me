@@ -1,24 +1,12 @@
 {
-  "name": "Bertil Tandayamo",
-  "nickname": "Bertilo",
-  "initials": "batl",
-  "shortInitials": "bt",
-  "title": "Product-focused Engineer",
   "isAvailable": true,
   "description": "I help teams and founders ship web products: MVPs, marketing sites, dashboards, and integrations. Several years building production apps — including NFT marketplaces and B2B platforms when the roadmap calls for blockchain. Clear communication, sensible architecture, and code you can hand off.",
-  "email": "bertilt4@gmail.com",
-  "location": "Cayambe, Ecuador",
-  "socialNetwork": {
-    "linkedin": "https://www.linkedin.com/in/bertiltandayamo/",
-    "github": "https://github.com/bertil291utn",
-    "telegram": "https://t.me/btandayamo"
-  },
   "workExperience": [
     {
       "date": ["May 2021", "present"],
       "title": "Fullstack Developer",
       "company": "Garage Soft",
-      "location": "Quito, Ecuador",
+      "location": "Cayambe, Ecuador",
       "description": "Built an NFT marketplace MVP for independent artists: product features, beta feedback loop with users, and iteration in production.",
       "technologies": "Next.js, React, TypeScript, Solidity, Ethers.js"
     },
@@ -44,7 +32,7 @@
       "title": "Computer Science",
       "institution": "Tecnica del Norte University",
       "date": ["2013", "2019"],
-      "degree": "Bachelor’s degree"
+      "degree": "Bachelor's degree"
     },
     {
       "title": "Leadership Development Program",

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import siteFallback from '@data/site.json';
+import { siteFallback } from '@utils/siteData';
 
 const SiteContext = createContext(siteFallback);
 
