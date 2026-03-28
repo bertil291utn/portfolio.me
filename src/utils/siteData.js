@@ -1,6 +1,5 @@
 import siteFallbackRaw from '@data/site.json';
 import personData from '@data/person.json';
-import { getSite } from '@utils/firebaseFunctions';
 
 function mergePerson(site, person) {
   return {
@@ -21,15 +20,3 @@ function mergePerson(site, person) {
 }
 
 export const siteFallback = mergePerson(siteFallbackRaw, personData);
-
-export async function loadSite() {
-  let site = siteFallback;
-  try {
-    const snap = await getSite();
-    const data = snap?.data();
-    if (data) site = data;
-  } catch {
-    // Firestore offline — use static JSON
-  }
-  return site;
-}
