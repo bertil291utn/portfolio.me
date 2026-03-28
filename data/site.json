@@ -1,6 +1,6 @@
 {
   "seo": {
-    "canonicalBaseUrl": "https://www.bertiltandayamo.me",
+    "canonicalBaseUrl": "https://www.bertiltandayamo.dev",
     "pageTitles": {
       "/resume": "Bertil Tandayamo - Product-focused Engineer",
       "/blog": "Bertil Tandayamo - Product-focused Engineer"
@@ -14,7 +14,7 @@
     "ogLocale": "en_US",
     "favIcon": "/assets/icons/favicon.svg",
     "manifestPath": "/assets/manifest.json",
-    "sitemapHostname": "https://www.bertiltandayamo.me"
+    "sitemapHostname": "https://www.bertiltandayamo.dev"
   },
   "ui": {
     "home": {
@@ -60,7 +60,7 @@
     },
     "blog": {
       "emptyMessage": "No posts could be loaded right now. Please try again later or visit the blog on Substack.",
-      "fallbackPostBaseUrl": "https://blog.bertiltandayamo.me/"
+      "fallbackPostBaseUrl": "https://blog.bertiltandayamo.dev/"
     },
     "appShell": {
       "siteSidebarAria": "Site",
