@@ -3,34 +3,48 @@
   "description": "I help teams and founders ship web products: MVPs, marketing sites, dashboards, and integrations. Several years building production apps — including NFT marketplaces and B2B platforms when the roadmap calls for blockchain. Clear communication, sensible architecture, and code you can hand off.",
   "workExperience": [
     {
-      "date": ["May 2021", "present"],
-      "title": "Fullstack Developer",
-      "company": "Garage Soft",
+      "date": ["Jan 2024", "present"],
+      "title": "Full Stack Developer",
+      "company": "GarageSoft",
       "location": "Cayambe, Ecuador",
-      "description": "Built an NFT marketplace MVP for independent artists: product features, beta feedback loop with users, and iteration in production.",
-      "technologies": "Next.js, React, TypeScript, Solidity, Ethers.js"
+      "description": "Built Florvis, a smart dashboard app for rose farmers that provides real-time data on production, profits, and costs through intuitive visuals. Currently helping 25+ clients make informed decisions, optimize performance, and reduce manual effort across their farms.",
+      "technologies": "React, Next.js, Tailwind CSS, Node.js, PostgreSQL, MongoDB, TypeScript"
+    },
+    {
+      "date": ["Apr 2023", "Nov 2023"],
+      "title": "Full Stack Developer",
+      "company": "Crowdmuse",
+      "location": "Remote",
+      "description": "Worked on a phygital marketplace empowering creators with blockchain technology. Reduced unused provider requests by 84.64%, improving system scalability. Refactored smart contracts to cut gas fees to $100.",
+      "technologies": "Next.js, TypeScript, Tailwind CSS, Firebase"
     },
     {
       "date": ["Jul 2021", "Sept 2022"],
-      "title": "Fullstack Developer",
+      "title": "Full Stack Developer",
       "company": "Way Too Digital",
       "location": "Remote, Argentina",
-      "description": "Delivered a white-label NFT marketplace for B2B clients with primary and secondary markets, tailored deployments, and ongoing feature work.",
-      "technologies": "Next.js, JavaScript, Solidity, Polygon, Web3"
+      "description": "Developed a full-stack e-commerce platform, achieving 80% customer satisfaction, which led to a second version request thanks to its clean UX.",
+      "technologies": "Next.js, MongoDB, Node.js"
     },
     {
-      "date": ["Dec 2020", "July 2021"],
-      "title": "Front End Developer",
-      "company": "Rumzer.com",
+      "date": ["Dec 2020", "Jul 2021"],
+      "title": "Frontend Developer",
+      "company": "Lumenance LLC",
       "location": "Remote, Ohio",
-      "description": "Improved marketing site SEO by ~90% using SSR. Built SMTP-based communication flows in a compliance product and reduced response latency substantially.",
-      "technologies": "Gatsby, React, JavaScript, Node.js"
+      "description": "Led full-stack efforts to improve UX and performance. Boosted SEO by 90%, increased organic traffic, and reduced app response times by 80%. Introduced an AI-powered chatbot for automating routine tasks.",
+      "technologies": "Gatsby, Angular 2, JavaScript, Sass, HTML"
     }
   ],
   "education": [
     {
+      "title": "Master's in Data Analytics & AI",
+      "institution": "La Rioja Universidad (UNIR)",
+      "date": ["2025", "in progress"],
+      "degree": "Master's degree"
+    },
+    {
       "title": "Computer Science",
-      "institution": "Tecnica del Norte University",
+      "institution": "Universidad Técnica del Norte",
       "date": ["2013", "2019"],
       "degree": "Bachelor's degree"
     },
@@ -38,25 +52,25 @@
       "title": "Leadership Development Program",
       "institution": "Compassion International",
       "date": ["2013", "2017"],
-      "degree": "Diploma"
+      "degree": "Certificate"
     }
   ],
   "skills": [
     {
-      "name": "Programming Languages",
-      "items": "JavaScript, TypeScript, HTML, CSS, Solidity, Java, Ruby"
+      "name": "Frontend",
+      "items": "React.js, Next.js, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS"
     },
     {
-      "name": "Frameworks & Libraries",
-      "items": "Next.js, React, Angular, Styled Components, Tailwind CSS, Bootstrap"
-    },
-    {
-      "name": "Databases",
-      "items": "MongoDB, PostgreSQL, MySQL, Oracle DB, SQL Server"
+      "name": "Backend & Databases",
+      "items": "Node.js, Firebase, PostgreSQL, MongoDB"
     },
     {
       "name": "Web3 & Blockchain",
-      "items": "Hardhat, Ethers.js, Ethereum, EVM, Alchemy, Infura, MetaMask"
+      "items": "Solidity, Hardhat, Ethers.js, Ethereum, EVM, Polygon, Alchemy, Infura, MetaMask"
+    },
+    {
+      "name": "DevOps & Tools",
+      "items": "Git, Heroku, Jest"
     },
     {
       "name": "Languages",

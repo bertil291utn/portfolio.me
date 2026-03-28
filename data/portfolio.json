@@ -1,13 +1,20 @@
 [
   {
     "id": 1,
+    "type": "React, Next.js, Tailwind CSS, Node.js, PostgreSQL, MongoDB, TypeScript",
+    "description": "Smart dashboard app for rose farmers providing real-time data on production, profits, and costs through intuitive visuals. Currently helping 25+ clients make informed decisions and reduce manual effort.",
+    "projectName": "Florvis",
+    "overview": "https://florvis.vercel.app/"
+  },
+  {
+    "id": 2,
     "type": "Next js, javascript, solidity",
     "description": "White label NFT marketplace with primary & secondary market offer as B2B",
     "projectName": "White-label NFT marketplace",
     "overview": "https://nft-marketplace-dev.waytoodigital.com/"
   },
   {
-    "id": 2,
+    "id": 3,
     "type": "next js, javascript, solidity, polygon",
     "description": "An NFT marketplace for independent artist. This is an MVP therefore is in beta, getting customers feedback",
     "projectName": "DistroFank",
@@ -15,14 +22,14 @@
     "github": "https://github.com/bertil291utn/digital-marketplace"
   },
   {
-    "id": 3,
+    "id": 4,
     "type": "Gatsby, React js",
     "description": "Landing  marketing website SEO by 90% using SSR technology",
     "projectName": "Rumzer Landing page",
     "overview": "https://www.rumzer.com/"
   },
   {
-    "id": 4,
+    "id": 5,
     "type": "Angular, javascript",
     "description": "An e-commerce web application that allows Muebleria Hogar customers to buy any home appliances product. Built with Angular 6 and Ruby on Rails",
     "projectName": "Muebleria Hogar",

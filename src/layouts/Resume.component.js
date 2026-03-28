@@ -58,12 +58,12 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
         </div>
       </header>
 
-      <section className={styles.availability} aria-label={labels.availabilitySectionAria}>
+      {/* <section className={styles.availability} aria-label={labels.availabilitySectionAria}>
         <div className={styles.availabilityRow}>
           <ToggleComponent available={resumeDataSet.isAvailable} />
           <span className={styles.availabilityLabel}>{labels.availabilityLabel}</span>
         </div>
-      </section>
+      </section> */}
 
       <section className={styles.section} aria-labelledby="work-heading">
         <h2 id="work-heading" className={styles.sectionLabel}>
