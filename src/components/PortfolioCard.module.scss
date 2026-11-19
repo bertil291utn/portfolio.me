@@ -85,3 +85,15 @@
 .iconSize {
   font-size: 1.15rem;
 }
+
+.caseLink {
+  margin-right: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

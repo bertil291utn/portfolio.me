@@ -1,0 +1,84 @@
+@import 'src/css/variables.scss';
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
+}
+
+.definition {
+  max-width: 40rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 1.25rem;
+}
+
+.step {
+  padding-top: 0.85rem;
+  border-top: $border-width solid var(--color-border);
+}
+
+.stepNumber {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 0.35rem;
+}
+
+.stepTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.stepBody {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.faq {
+  margin: 0;
+  max-width: 40rem;
+}
+
+.faqItem {
+  padding: 1rem 0;
+  border-bottom: $border-width solid var(--color-border);
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.question {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+.answer {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}

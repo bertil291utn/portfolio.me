@@ -1,6 +1,8 @@
 // Builds schema.org JSON-LD from data/person.json + data/resume.json so the
 // markup never drifts from what the page shows.
 
+import caseStudies from '@data/caseStudies.json';
+
 // ISO 3166-1 alpha-2 codes for countries that appear in data/person.json.
 const COUNTRY_CODES = { ecuador: 'EC' };
 
@@ -66,7 +68,7 @@ export function buildPersonNode(resume, seo, services = []) {
       })),
     }),
     sameAs: [
-      ...Object.values(resume.socialNetwork || {}),
+      ...Object.values(resume.socialNetwork || {}).filter(Boolean),
       ...(seo.twitterUrl ? [seo.twitterUrl] : []),
     ],
   };
@@ -75,9 +77,20 @@ export function buildPersonNode(resume, seo, services = []) {
 const lastModified = (seo, pathname) =>
   (seo.sitemapPages || []).find((page) => page.url === pathname)?.lastmod;
 
-export function buildStructuredData(pathname, resume, seo, pageTitle, services) {
+const breadcrumb = (url, items) => ({
+  '@type': 'BreadcrumbList',
+  '@id': `${url}#breadcrumb`,
+  itemListElement: items.map(([name, item], i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name,
+    item,
+  })),
+});
+
+export function buildStructuredData(pathname, resume, seo, pageTitle, home = {}) {
   const base = seo.canonicalBaseUrl;
-  const person = buildPersonNode(resume, seo, services);
+  const person = buildPersonNode(resume, seo, home.serviceItems || []);
   const website = {
     '@type': 'WebSite',
     '@id': `${base}/#website`,
@@ -88,7 +101,64 @@ export function buildStructuredData(pathname, resume, seo, pageTitle, services) 
   };
 
   if (pathname === '/') {
-    return { '@context': 'https://schema.org', '@graph': [website, person] };
+    const faq = (home.faqItems || []).length
+      ? [
+          {
+            '@type': 'FAQPage',
+            '@id': `${base}/#faq`,
+            mainEntity: home.faqItems.map(({ question, answer }) => ({
+              '@type': 'Question',
+              name: question,
+              acceptedAnswer: { '@type': 'Answer', text: answer },
+            })),
+          },
+        ]
+      : [];
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [website, person, ...faq],
+    };
+  }
+
+  const caseStudy = caseStudies.find(
+    (cs) => pathname === `/case-studies/${cs.slug}`
+  );
+  if (caseStudy) {
+    const url = `${base}${pathname}`;
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          '@id': `${url}#article`,
+          url,
+          headline: caseStudy.title,
+          description: caseStudy.metaDescription,
+          inLanguage: seo.htmlLang,
+          ...(lastModified(seo, pathname) && {
+            dateModified: lastModified(seo, pathname),
+          }),
+          author: { '@id': person['@id'] },
+          publisher: { '@id': person['@id'] },
+          image: seo.ogImage,
+          keywords: (caseStudy.keywords || []).join(', '),
+          about: {
+            '@type': 'SoftwareApplication',
+            name: caseStudy.shortTitle,
+            applicationCategory: 'BusinessApplication',
+            ...(caseStudy.liveUrl && { url: caseStudy.liveUrl }),
+          },
+          isPartOf: { '@id': website['@id'] },
+          breadcrumb: { '@id': `${url}#breadcrumb` },
+        },
+        breadcrumb(url, [
+          ['Home', `${base}/`],
+          [caseStudy.shortTitle, url],
+        ]),
+        website,
+        person,
+      ],
+    };
   }
 
   if (pathname === '/resume') {
@@ -112,14 +182,10 @@ export function buildStructuredData(pathname, resume, seo, pageTitle, services) 
           mainEntity: { '@id': person['@id'] },
           breadcrumb: { '@id': `${url}#breadcrumb` },
         },
-        {
-          '@type': 'BreadcrumbList',
-          '@id': `${url}#breadcrumb`,
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-            { '@type': 'ListItem', position: 2, name: 'Resume', item: url },
-          ],
-        },
+        breadcrumb(url, [
+          ['Home', `${base}/`],
+          ['Resume', url],
+        ]),
         website,
         person,
       ],

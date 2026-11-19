@@ -1,10 +1,26 @@
 # Bertil Tandayamo
 
-> Forward Deployed Engineer based in Cayambe, Ecuador (UTC−5). Builds web products, MVPs, dashboards and integrations with Next.js, React, Node.js and TypeScript, plus smart-contract work (Solidity, Polygon) when a product needs it. Building production web apps since 2020. Languages: English (advanced), Spanish (native).
+> Forward Deployed Engineer based in Ecuador (UTC−5), working remotely with startups and companies in the US and Europe. Full Stack engineering and rapid production deployments: Rapid MVP Development, Enterprise API Integration and Production AI Deployment (Gemini API, LLM document extraction). Stack: Next.js, React, Node.js, TypeScript, PostgreSQL, MongoDB, plus Solidity/Polygon when a product needs Web3. Shipping production software since 2020. Languages: English (advanced), Spanish (native).
+
+## What is a Forward Deployed Engineer?
+
+A Forward Deployed Engineer (FDE) is a senior software engineer who embeds directly with a client's team to turn a specific business problem into working software in production. Unlike a contractor who waits for a finished spec, an FDE scopes the problem with stakeholders, builds full stack and ships — owning the business outcome.
+
+## Services
+
+- Rapid MVP Development: idea to production MVP in weeks (Next.js, React, Node.js, TypeScript)
+- Production AI Deployment: Gemini/LLM features such as invoice, report and image extraction that remove manual data entry
+- Enterprise API Integration: CRMs, ERPs, payment providers and internal systems
+- Full Stack Web Applications: dashboards, SaaS platforms, internal tools, Web3 marketplaces
+
+## Case studies
+
+- [Florvis](https://www.bertiltandayamo.dev/case-studies/florvis): full stack SaaS for rose farms with Gemini API document and image extraction; used by 25+ farms
+- [Crowdmuse](https://www.bertiltandayamo.dev/case-studies/crowdmuse): phygital creator marketplace; unused third-party provider requests reduced by 84.64% and smart-contract gas fees cut
 
 ## Pages
 
-- [Portfolio](https://www.bertiltandayamo.dev/): services and selected client projects
+- [Home](https://www.bertiltandayamo.dev/): services, FDE definition, FAQ, case studies and selected work
 - [Resume](https://www.bertiltandayamo.dev/resume): work experience, education and skills
 
 ## Profiles

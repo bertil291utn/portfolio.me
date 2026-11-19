@@ -1,17 +1,23 @@
 {
   "isAvailable": true,
-  "description": "I'm Bertil Tandayamo, a Forward Deployed Engineer based in Cayambe, Ecuador (UTC−5). Since 2020 I've built production web apps with Next.js, React and Node.js — MVPs, marketing sites, dashboards and API integrations for founders and teams, plus NFT marketplaces and smart-contract work when the roadmap calls for Web3.",
+  "description": "I'm Bertil Tandayamo, a Forward Deployed Engineer based in Ecuador (UTC−5) working with startups and companies in the US and Europe. I embed with your team, turn a business problem into working software and ship it to production fast — full stack web apps with Next.js, React, Node.js and TypeScript, enterprise API integrations and production AI features with Gemini. Since 2020 I've delivered MVPs, SaaS dashboards and marketplaces used by real customers.",
   "workExperience": [
     {
-      "date": ["Jan 2024", "present"],
-      "title": "Full Stack Developer",
+      "date": [
+        "Jan 2024",
+        "present"
+      ],
+      "title": "Forward Deployed Engineer · Full Stack",
       "company": "GarageSoft",
       "location": "Cayambe, Ecuador",
-      "description": "Built Florvis, a smart dashboard app for rose farmers that provides real-time data on production, profits, and costs through intuitive visuals. Currently helping 25+ clients make informed decisions, optimize performance, and reduce manual effort across their farms.",
-      "technologies": "React, Next.js, Tailwind CSS, Node.js, PostgreSQL, MongoDB, TypeScript"
+      "description": "Built Florvis, a smart dashboard app for rose farmers that provides real-time data on production, profits, and costs through intuitive visuals. Integrated the Gemini API to read invoices, reports and images and turn them into structured data, removing manual data entry. Currently helping 25+ clients make informed decisions, optimize performance, and reduce manual effort across their farms.",
+      "technologies": "React, Next.js, Tailwind CSS, Node.js, PostgreSQL, MongoDB, TypeScript, Gemini API"
     },
     {
-      "date": ["Apr 2023", "Nov 2023"],
+      "date": [
+        "Apr 2023",
+        "Nov 2023"
+      ],
       "title": "Full Stack Developer",
       "company": "Crowdmuse",
       "location": "Remote",
@@ -19,7 +25,10 @@
       "technologies": "Next.js, TypeScript, Tailwind CSS, Firebase"
     },
     {
-      "date": ["Jul 2021", "Sept 2022"],
+      "date": [
+        "Jul 2021",
+        "Sept 2022"
+      ],
       "title": "Full Stack Developer",
       "company": "Way Too Digital",
       "location": "Remote, Argentina",
@@ -27,7 +36,10 @@
       "technologies": "Next.js, MongoDB, Node.js"
     },
     {
-      "date": ["Dec 2020", "Jul 2021"],
+      "date": [
+        "Dec 2020",
+        "Jul 2021"
+      ],
       "title": "Frontend Developer",
       "company": "Lumenance LLC",
       "location": "Remote, Ohio",
@@ -39,19 +51,28 @@
     {
       "title": "Master's in Data Analytics & AI",
       "institution": "La Rioja Universidad (UNIR)",
-      "date": ["2025", "in progress"],
+      "date": [
+        "2025",
+        "in progress"
+      ],
       "degree": "Master's degree"
     },
     {
       "title": "Computer Science",
       "institution": "Universidad Técnica del Norte",
-      "date": ["2013", "2019"],
+      "date": [
+        "2013",
+        "2019"
+      ],
       "degree": "Bachelor's degree"
     },
     {
       "title": "Leadership Development Program",
       "institution": "Compassion International",
-      "date": ["2013", "2017"],
+      "date": [
+        "2013",
+        "2017"
+      ],
       "degree": "Certificate"
     }
   ],
@@ -63,6 +84,10 @@
     {
       "name": "Backend & Databases",
       "items": "Node.js, Firebase, PostgreSQL, MongoDB"
+    },
+    {
+      "name": "AI & Integrations",
+      "items": "Gemini API, LLM document extraction, REST APIs, Third-party API integration"
     },
     {
       "name": "Web3 & Blockchain",

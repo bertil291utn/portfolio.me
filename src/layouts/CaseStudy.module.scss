@@ -1,0 +1,200 @@
+@import 'src/css/variables.scss';
+
+.container {
+  width: 100%;
+  max-width: 44rem;
+}
+
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+
+  a {
+    color: var(--color-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: $border-width solid var(--color-border);
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 0.75rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.summary {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 1.25rem;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin: 0;
+  font-size: 0.8125rem;
+
+  dt {
+    color: var(--color-muted);
+    margin-bottom: 0.15rem;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
+}
+
+.paragraph {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  gap: 1rem;
+}
+
+.result {
+  padding: 1rem 1.1rem;
+  border: $border-width solid var(--color-border);
+  border-radius: $radius-sm;
+}
+
+.resultValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.resultLabel {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.stack {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  li {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border: $border-width solid var(--color-border);
+    border-radius: $radius-sm;
+    color: var(--color-muted);
+  }
+}
+
+.liveLink {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cta {
+  padding-top: 1.75rem;
+  border-top: $border-width solid var(--color-border);
+  margin-bottom: 2rem;
+}
+
+.ctaTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.ctaBody {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+%btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: $radius-sm;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
+  }
+}
+
+.btnPrimary {
+  @extend %btn;
+  color: var(--color-bg);
+  background: var(--color-text);
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.btnOutline {
+  @extend %btn;
+  color: var(--color-text);
+  border: $border-width solid var(--color-border);
+
+  &:hover {
+    border-color: var(--color-muted);
+  }
+}

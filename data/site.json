@@ -2,11 +2,11 @@
   "seo": {
     "canonicalBaseUrl": "https://www.bertiltandayamo.dev",
     "pageTitles": {
-      "/": "Freelance Full-Stack Developer (Next.js, React) — Bertil Tandayamo",
+      "/": "Forward Deployed Engineer — Full Stack & AI Integrations | Bertil Tandayamo",
       "/resume": "Resume — Bertil Tandayamo, Forward Deployed Engineer",
       "/blog": "Blog — Bertil Tandayamo"
     },
-    "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
+    "metaDescription": "Forward Deployed Engineer for startups and companies in the US and Europe. Full stack engineering, enterprise API integrations, production AI deployments and rapid MVP development — shipped to production in weeks.",
     "ogImage": "https://www.bertiltandayamo.dev/assets/images/og-bertil-tandayamo.jpg",
     "twitterCard": "summary_large_image",
     "themeColor": "#fafafa",
@@ -16,13 +16,15 @@
     "manifestPath": "/assets/manifest.json",
     "sitemapHostname": "https://www.bertiltandayamo.dev",
     "pageDescriptions": {
-      "/": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
-      "/resume": "Resume of Bertil Tandayamo, building production web apps since 2020 with Next.js, React, Node.js and Solidity. Experience at GarageSoft, Crowdmuse, Way Too Digital and Lumenance.",
+      "/": "Forward Deployed Engineer for startups and companies in the US and Europe. Full stack engineering, enterprise API integrations, production AI deployments and rapid MVP development — shipped to production in weeks.",
+      "/resume": "Resume of Bertil Tandayamo, Forward Deployed Engineer shipping production web apps since 2020 with Next.js, React, Node.js, TypeScript and Gemini AI integrations. Experience at GarageSoft, Crowdmuse, Way Too Digital and Lumenance.",
       "/blog": "Articles by Bertil Tandayamo on web development, Next.js and Web3."
     },
     "indexablePaths": [
       "/",
-      "/resume"
+      "/resume",
+      "/case-studies/florvis",
+      "/case-studies/crowdmuse"
     ],
     "sitemapPages": [
       {
@@ -31,6 +33,14 @@
       },
       {
         "url": "/resume",
+        "lastmod": "2026-11-19"
+      },
+      {
+        "url": "/case-studies/florvis",
+        "lastmod": "2026-11-19"
+      },
+      {
+        "url": "/case-studies/crowdmuse",
         "lastmod": "2026-11-19"
       }
     ],
@@ -41,32 +51,75 @@
   },
   "ui": {
     "home": {
-      "servicesTitle": "How I work",
-      "servicesLead": "Clear communication, predictable delivery, and code you can build on.",
+      "servicesTitle": "What I deliver",
+      "servicesLead": "Business problems turned into working software in production — not slide decks, not endless sprints.",
       "serviceItems": [
         {
-          "title": "Web products & MVPs",
-          "body": "Next.js and React apps from idea to production — performance, SEO, and maintainable architecture."
+          "title": "Rapid MVP Development",
+          "body": "From validated idea to a production MVP in weeks with Next.js, React, Node.js and TypeScript — built to scale, not to be rewritten."
         },
         {
-          "title": "Frontend & integrations",
-          "body": "APIs, auth flows, dashboards, and third-party services wired up with solid UX."
+          "title": "Production AI Deployment",
+          "body": "LLM features that ship: document and image extraction with Gemini, automated data entry and AI-assisted workflows embedded in your product."
         },
         {
-          "title": "Blockchain & Web3",
-          "body": "When your product needs it: smart-contract–backed experiences, marketplaces, and wallets — scoped and documented."
+          "title": "Enterprise API Integration",
+          "body": "Connect your CRM, ERP, payment providers and internal systems through reliable APIs, auth flows and data pipelines."
+        },
+        {
+          "title": "Full Stack Web Applications",
+          "body": "Dashboards, SaaS platforms and internal tools with PostgreSQL or MongoDB — plus smart-contract work (Solidity, Polygon) when the roadmap calls for Web3."
         }
       ],
       "projectsTitle": "Selected work",
-      "projectsSubtitle": "Recent builds for clients and products.",
-      "web3Title": "Web3 & blockchain",
-      "web3Subtitle": "Marketplaces and on-chain products — available as a dedicated capability alongside traditional web work.",
+      "projectsSubtitle": "Recent builds for clients and products, including Web3 marketplaces.",
       "contactTitle": "Start a project",
-      "contactBody": "Tell me about your timeline, stack, and goals. I usually reply within one business day.",
+      "contactBody": "Tell me about the business problem, your timeline and your stack. I usually reply within one business day.",
       "contactCta": "Email me",
       "secondaryCta": "View full resume",
-      "heroTitle": "Freelance full-stack developer for web products, MVPs and integrations",
-      "heroMeta": "Based in {location} (UTC−5) · Building production web apps since 2020"
+      "heroTitle": "Forward Deployed Engineer",
+      "heroMeta": "Based in {location} (UTC−5) · Working with teams in the US and Europe · Shipping production software since 2020",
+      "heroSubtitle": "Full Stack Engineering & Rapid Production Deployments",
+      "upworkCta": "Hire me on Upwork",
+      "emailCta": "Email me",
+      "fdeTitle": "What is a Forward Deployed Engineer?",
+      "fdeDefinition": "A Forward Deployed Engineer (FDE) is a senior software engineer who embeds directly with a client's team to turn a specific business problem into working software in production. Unlike a traditional contractor who waits for a finished spec, an FDE works alongside stakeholders, scopes the problem, builds full stack and ships — owning the outcome, not just the ticket.",
+      "fdeSteps": [
+        {
+          "title": "Embed",
+          "body": "I join your Slack, standups and calls to understand the business problem, the users and the constraints."
+        },
+        {
+          "title": "Prototype",
+          "body": "A working prototype on real data within days, so decisions are made on software — not assumptions."
+        },
+        {
+          "title": "Deploy",
+          "body": "Hardened, documented code shipped to production, with handoff to your team or ongoing support."
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqItems": [
+        {
+          "question": "What does a Forward Deployed Engineer do?",
+          "answer": "A Forward Deployed Engineer works directly with a client to understand a business problem and deliver a production-ready software solution — combining full stack development, integrations and AI deployment with close stakeholder communication."
+        },
+        {
+          "question": "How is a Forward Deployed Engineer different from a freelance full stack developer?",
+          "answer": "A freelance developer typically executes a predefined task list. A Forward Deployed Engineer owns the business outcome: scoping the problem, choosing the right technical approach and shipping to production, with full stack engineering as the core skill."
+        },
+        {
+          "question": "How fast can you deploy an MVP or integration to production?",
+          "answer": "Most MVPs and integrations reach production in 2 to 8 weeks, depending on scope. A working prototype on real data is usually available within the first week."
+        },
+        {
+          "question": "Do you work with clients in the US and Europe?",
+          "answer": "Yes. I'm based in Ecuador (UTC−5), which overlaps the full US workday and the afternoon in Europe. I work remotely, in English, through Upwork or direct contract."
+        }
+      ],
+      "caseStudiesTitle": "Case studies",
+      "caseStudiesSubtitle": "Business problems, the solution shipped and the measurable result.",
+      "caseStudyLinkLabel": "Read case study"
     },
     "navbar": {
       "portfolio": {
@@ -108,6 +161,16 @@
       "fontMonoLabel": "Mono",
       "identityFallbackName": "Portfolio",
       "profilesAria": "Profiles"
+    },
+    "caseStudy": {
+      "problemHeading": "The problem",
+      "solutionHeading": "The solution",
+      "resultsHeading": "Results",
+      "stackHeading": "Stack",
+      "ctaTitle": "Have a similar problem?",
+      "ctaBody": "I can help you scope it and ship a production solution in weeks.",
+      "backLabel": "All case studies",
+      "liveLabel": "Visit live product"
     }
   },
   "pwa": {

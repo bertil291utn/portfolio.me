@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './PortfolioCard.module.scss';
 import { TbWorld } from 'react-icons/tb';
 import { AiFillGithub } from 'react-icons/ai';
@@ -9,6 +10,8 @@ const PortfolioCard = ({
   projectName,
   overview,
   github,
+  caseStudySlug,
+  caseStudyLabel,
 }) => {
   return (
     <article className={styles.card}>
@@ -18,6 +21,11 @@ const PortfolioCard = ({
         <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.actions}>
+        {caseStudySlug && (
+          <Link href={`/case-studies/${caseStudySlug}`}>
+            <a className={styles.caseLink}>{caseStudyLabel} →</a>
+          </Link>
+        )}
         {overview && (
           <a
             className={styles.iconBtn}

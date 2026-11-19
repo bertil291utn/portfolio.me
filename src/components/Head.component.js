@@ -7,14 +7,16 @@ import { buildStructuredData } from '@utils/structuredData';
 const HeadComponent = () => {
   const router = useRouter();
   const { seo, ui } = useSite();
-  const pathname = router?.pathname || '/';
+  // asPath resolves dynamic routes (e.g. /case-studies/florvis); drop query/hash.
+  const pathname = (router?.asPath || '/').split(/[?#]/)[0] || '/';
+  const isCaseStudy = pathname.startsWith('/case-studies/');
 
   const indexable = (seo.indexablePaths || []).includes(pathname);
   const title = seo.pageTitles?.[pathname] ?? seo.defaultTitle;
   const description = seo.pageDescriptions?.[pathname] ?? seo.metaDescription;
   const canonical = `${seo.canonicalBaseUrl}${pathname === '/' ? '/' : pathname}`;
   const jsonLd = indexable
-    ? buildStructuredData(pathname, resumeFallback, seo, title, ui?.home?.serviceItems)
+    ? buildStructuredData(pathname, resumeFallback, seo, title, ui?.home)
     : null;
 
   return (
@@ -30,7 +32,9 @@ const HeadComponent = () => {
       )}
 
       <meta property="og:locale" content={seo.ogLocale} />
-      <meta property="og:type" content={pathname === '/resume' ? 'profile' : 'website'} />
+      <meta property="og:type" content={
+          pathname === '/resume' ? 'profile' : isCaseStudy ? 'article' : 'website'
+        } />
       <meta property="og:site_name" content={seo.siteName} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

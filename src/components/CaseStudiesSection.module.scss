@@ -1,0 +1,108 @@
+@import 'src/css/variables.scss';
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
+}
+
+.lead {
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.35rem;
+  border: $border-width solid var(--color-border);
+  border-radius: $radius-sm;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-muted);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+}
+
+.industry {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+// Stretched link: the whole card is clickable.
+.titleLink {
+  color: var(--color-text);
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.summary {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  flex: 1;
+}
+
+.metric {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+}
+
+.more {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}

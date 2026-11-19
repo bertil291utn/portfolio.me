@@ -2,9 +2,16 @@ import PortfolioComponent from '@layouts/Portfolio.component';
 import { siteFallback } from '@utils/siteData';
 import { resumeFallback } from '@utils/resumeData';
 import portfolioFallback from '@data/portfolio.json';
+import caseStudies from '@data/caseStudies.json';
 
-function HomeContent({ projects, resume }) {
-  return <PortfolioComponent projectsData={projects} resume={resume} />;
+function HomeContent({ projects, caseStudies, resume }) {
+  return (
+    <PortfolioComponent
+      projectsData={projects}
+      caseStudies={caseStudies}
+      resume={resume}
+    />
+  );
 }
 
 export async function getStaticProps() {
@@ -13,6 +20,7 @@ export async function getStaticProps() {
   return {
     props: {
       projects,
+      caseStudies,
       resume: resumeFallback,
       site: siteFallback,
     },

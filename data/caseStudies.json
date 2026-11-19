@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "florvis",
+    "projectId": 1,
+    "title": "Florvis: AI-powered data extraction and real-time dashboards for rose farms",
+    "shortTitle": "Florvis",
+    "client": "GarageSoft",
+    "industry": "Agriculture / Floriculture",
+    "role": "Forward Deployed Engineer · Full Stack",
+    "period": "2024 – present",
+    "summary": "Rose farms were running production, costs and profits on paper and spreadsheets. I built Florvis, a full stack SaaS with a Gemini-powered pipeline that turns invoices, reports and photos into structured data — now used by 25+ farms.",
+    "metaTitle": "Florvis Case Study: Production AI Deployment with Gemini — Bertil Tandayamo",
+    "metaDescription": "How a Forward Deployed Engineer shipped Florvis: a full stack SaaS for rose farms with Gemini API document and image extraction that removes manual data entry. Used by 25+ clients.",
+    "keywords": [
+      "Production AI Deployment",
+      "Gemini API integration",
+      "AI document extraction",
+      "Full stack SaaS dashboard"
+    ],
+    "problem": [
+      "Rose farm owners had no reliable, real-time view of production, costs and profitability. Data lived in paper invoices, PDF reports and spreadsheets spread across the farm.",
+      "Getting that data into any system meant someone typing it in by hand — slow, error-prone and the main reason farms gave up on digital tools."
+    ],
+    "solution": [
+      "Worked directly with farm owners to map how data actually flows on a farm, then designed Florvis as a multi-tenant web app with Next.js, React, Node.js and TypeScript on PostgreSQL and MongoDB.",
+      "Integrated the Gemini API to read invoices, reports, files and images and convert them into structured text and records, so users upload a document instead of typing it.",
+      "Built real-time dashboards for production, profits and costs with clear visuals designed for non-technical users."
+    ],
+    "results": [
+      {
+        "value": "25+",
+        "label": "farms using Florvis in production"
+      },
+      {
+        "value": "Automated",
+        "label": "data entry from invoices, reports and images via the Gemini API"
+      },
+      {
+        "value": "Real-time",
+        "label": "visibility into production, profits and costs"
+      }
+    ],
+    "stack": "Next.js, React, TypeScript, Node.js, PostgreSQL, MongoDB, Tailwind CSS, Gemini API",
+    "liveUrl": "https://florvis.vercel.app/"
+  },
+  {
+    "slug": "crowdmuse",
+    "title": "Crowdmuse: scaling a phygital creator marketplace and cutting infrastructure waste",
+    "shortTitle": "Crowdmuse",
+    "client": "Crowdmuse",
+    "industry": "Creator economy / Web3 commerce",
+    "role": "Full Stack Engineer",
+    "period": "Apr 2023 – Nov 2023",
+    "summary": "A phygital marketplace for creators was wasting provider requests and paying high gas fees. I optimized the integration layer and refactored the smart contracts — cutting unused provider requests by 84.64%.",
+    "metaTitle": "Crowdmuse Case Study: API Integration & Scalability — Bertil Tandayamo",
+    "metaDescription": "How a Forward Deployed Engineer reduced unused third-party provider requests by 84.64% and cut smart-contract gas fees for Crowdmuse, a phygital creator marketplace.",
+    "keywords": [
+      "API integration optimization",
+      "Scalability",
+      "Smart contract gas optimization",
+      "Next.js marketplace"
+    ],
+    "problem": [
+      "Crowdmuse lets creators sell physical products backed by blockchain technology. As usage grew, the app was sending large volumes of unnecessary requests to third-party providers, driving up cost and limiting scalability.",
+      "On-chain operations were also expensive: gas fees made transactions costly for the business and its creators."
+    ],
+    "solution": [
+      "Audited how the Next.js and Firebase application talked to external providers and removed redundant and unused calls, restructuring data fetching around what each screen actually needed.",
+      "Refactored the smart contracts to reduce the cost of on-chain operations without changing the product experience."
+    ],
+    "results": [
+      {
+        "value": "−84.64%",
+        "label": "unused provider requests, improving scalability"
+      },
+      {
+        "value": "$100",
+        "label": "gas fees after smart-contract refactor"
+      }
+    ],
+    "stack": "Next.js, TypeScript, Tailwind CSS, Firebase, Solidity"
+  }
+]

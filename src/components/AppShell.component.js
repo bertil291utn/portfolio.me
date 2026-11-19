@@ -3,9 +3,11 @@ import NavbarComponent from '@components/Navbar.component';
 import { useSite } from '@context/SiteContext';
 import { useTheme } from 'next-themes';
 import { BsLinkedin, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
+import { SiUpwork } from 'react-icons/si';
 import styles from './AppShell.module.scss';
 
 const PROFILE_ICONS = {
+  upwork: { Icon: SiUpwork, label: 'Upwork' },
   linkedin: { Icon: BsLinkedin, label: 'LinkedIn' },
   github: { Icon: BsGithub, label: 'GitHub' },
   telegram: { Icon: BsTelegram, label: 'Telegram' },
@@ -57,7 +59,7 @@ export default function AppShell({ resume, children }) {
   const profiles = [
     ...Object.entries(resume?.socialNetwork || {}),
     ...(site.seo.twitterUrl ? [['twitter', site.seo.twitterUrl]] : []),
-  ].filter(([key]) => PROFILE_ICONS[key]);
+  ].filter(([key, url]) => url && PROFILE_ICONS[key]);
 
   return (
     <div className={styles.shell}>
