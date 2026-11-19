@@ -49,7 +49,7 @@
   ],
   "education": [
     {
-      "title": "Master's in Data Analytics & AI",
+      "title": "Data Analytics & AI",
       "institution": "La Rioja Universidad (UNIR)",
       "date": [
         "2025",
@@ -82,8 +82,12 @@
       "items": "React.js, Next.js, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS"
     },
     {
-      "name": "Backend & Databases",
-      "items": "Node.js, Firebase, PostgreSQL, MongoDB"
+      "name": "Backend",
+      "items": "Node.js, Firebase"
+    },
+    {
+      "name": "Database",
+      "items": "PostgreSQL, MongoDB"
     },
     {
       "name": "AI & Integrations",
