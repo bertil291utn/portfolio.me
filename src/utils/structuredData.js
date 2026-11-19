@@ -1,12 +1,16 @@
 // Builds schema.org JSON-LD from data/person.json + data/resume.json so the
 // markup never drifts from what the page shows.
 
+// ISO 3166-1 alpha-2 codes for countries that appear in data/person.json.
+const COUNTRY_CODES = { ecuador: 'EC' };
+
 const parseLocation = (location = '') => {
   const [locality, country] = location.split(',').map((s) => s.trim());
+  const countryCode = country && (COUNTRY_CODES[country.toLowerCase()] || country);
   return {
     '@type': 'PostalAddress',
     ...(locality && { addressLocality: locality }),
-    ...(country && { addressCountry: country }),
+    ...(countryCode && { addressCountry: countryCode }),
   };
 };
 
@@ -16,7 +20,7 @@ const splitList = (str = '') =>
     .map((s) => s.trim())
     .filter(Boolean);
 
-export function buildPersonNode(resume, seo) {
+export function buildPersonNode(resume, seo, services = []) {
   const base = seo.canonicalBaseUrl;
   const current = resume.workExperience?.find(
     (job) => job.date?.[1]?.toLowerCase() === 'present'
@@ -35,6 +39,8 @@ export function buildPersonNode(resume, seo) {
     ...(resume.nickname && { alternateName: resume.nickname }),
     url: `${base}/`,
     jobTitle: resume.title,
+    ...(resume.image && { image: `${base}${resume.image}` }),
+    ...(resume.description && { description: resume.description }),
     ...(resume.email && { email: `mailto:${resume.email}` }),
     ...(resume.location && { address: parseLocation(resume.location) }),
     ...(current && {
@@ -47,6 +53,18 @@ export function buildPersonNode(resume, seo) {
       })),
     }),
     knowsAbout,
+    ...(services.length && {
+      makesOffer: services.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.body,
+          provider: { '@id': `${base}/#person` },
+          areaServed: 'Worldwide',
+        },
+      })),
+    }),
     sameAs: [
       ...Object.values(resume.socialNetwork || {}),
       ...(seo.twitterUrl ? [seo.twitterUrl] : []),
@@ -54,9 +72,12 @@ export function buildPersonNode(resume, seo) {
   };
 }
 
-export function buildStructuredData(pathname, resume, seo, pageTitle) {
+const lastModified = (seo, pathname) =>
+  (seo.sitemapPages || []).find((page) => page.url === pathname)?.lastmod;
+
+export function buildStructuredData(pathname, resume, seo, pageTitle, services) {
   const base = seo.canonicalBaseUrl;
-  const person = buildPersonNode(resume, seo);
+  const person = buildPersonNode(resume, seo, services);
   const website = {
     '@type': 'WebSite',
     '@id': `${base}/#website`,
@@ -80,6 +101,13 @@ export function buildStructuredData(pathname, resume, seo, pageTitle) {
           '@id': `${url}#webpage`,
           url,
           name: pageTitle,
+          ...(seo.pageDescriptions?.[pathname] && {
+            description: seo.pageDescriptions[pathname],
+          }),
+          inLanguage: seo.htmlLang,
+          ...(lastModified(seo, pathname) && {
+            dateModified: lastModified(seo, pathname),
+          }),
           isPartOf: { '@id': website['@id'] },
           mainEntity: { '@id': person['@id'] },
           breadcrumb: { '@id': `${url}#breadcrumb` },

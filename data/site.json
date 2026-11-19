@@ -3,11 +3,11 @@
     "canonicalBaseUrl": "https://www.bertiltandayamo.dev",
     "pageTitles": {
       "/": "Freelance Full-Stack Developer (Next.js, React) — Bertil Tandayamo",
-      "/resume": "Bertil Tandayamo, Full-Stack Developer",
+      "/resume": "Resume — Bertil Tandayamo, Forward Deployed Engineer",
       "/blog": "Blog — Bertil Tandayamo"
     },
     "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
-    "ogImage": "https://res.cloudinary.com/btandayamo/image/upload/v1675372137/portofolio.me/og_imageok_quf0ho.png",
+    "ogImage": "https://www.bertiltandayamo.dev/assets/images/og-bertil-tandayamo.jpg",
     "twitterCard": "summary_large_image",
     "themeColor": "#fafafa",
     "htmlLang": "en",
@@ -27,16 +27,16 @@
     "sitemapPages": [
       {
         "url": "/",
-        "lastmod": "2026-11-18"
+        "lastmod": "2026-11-19"
       },
       {
         "url": "/resume",
-        "lastmod": "2026-11-18"
+        "lastmod": "2026-11-19"
       }
     ],
     "ogImageWidth": 1200,
-    "ogImageHeight": 628,
-    "ogImageAlt": "Bertil Tandayamo — freelance full-stack developer portfolio",
+    "ogImageHeight": 630,
+    "ogImageAlt": "Bertil Tandayamo, Forward Deployed Engineer",
     "twitterUrl": "https://x.com/btandayamo"
   },
   "ui": {

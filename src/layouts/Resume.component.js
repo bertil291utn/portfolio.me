@@ -2,13 +2,6 @@ import Link from 'next/link';
 import ToggleComponent from '@components/common/Toggle.component';
 import { useSite } from '@context/SiteContext';
 import styles from './Resume.module.scss';
-import { BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
-
-const ICON = {
-  linkedin: BsLinkedin,
-  github: BsGithub,
-  telegram: BsTelegram,
-};
 
 const formatTechLine = (str) => {
   if (!str || typeof str !== 'string') return null;

@@ -6,7 +6,7 @@ import { buildStructuredData } from '@utils/structuredData';
 
 const HeadComponent = () => {
   const router = useRouter();
-  const { seo } = useSite();
+  const { seo, ui } = useSite();
   const pathname = router?.pathname || '/';
 
   const indexable = (seo.indexablePaths || []).includes(pathname);
@@ -14,7 +14,7 @@ const HeadComponent = () => {
   const description = seo.pageDescriptions?.[pathname] ?? seo.metaDescription;
   const canonical = `${seo.canonicalBaseUrl}${pathname === '/' ? '/' : pathname}`;
   const jsonLd = indexable
-    ? buildStructuredData(pathname, resumeFallback, seo, title)
+    ? buildStructuredData(pathname, resumeFallback, seo, title, ui?.home?.serviceItems)
     : null;
 
   return (
