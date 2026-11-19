@@ -44,8 +44,19 @@
   gap: 0.5rem;
 }
 
+.pageTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
 .socialBtn {
   display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
   align-items: center;
   justify-content: center;
   padding: 0.4rem;

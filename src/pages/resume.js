@@ -27,7 +27,7 @@ export async function getStaticProps() {
       resume: resumeFallback,
       site: siteFallback,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 }
 

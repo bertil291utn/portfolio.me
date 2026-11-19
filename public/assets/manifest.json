@@ -7,9 +7,19 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/logo-72x72.png",
+      "src": "/assets/icons/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
       "type": "image/png",
-      "sizes": "72x72"
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "name": "Bertil Tandayamo portfolio"

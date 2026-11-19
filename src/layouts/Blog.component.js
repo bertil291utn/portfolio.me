@@ -13,6 +13,7 @@ const BlogComponent = ({ posts }) => {
 
   return (
     <div>
+      <h1 className={styles.pageTitle}>{blog.pageHeading}</h1>
       {posts.map((elem, index) => (
         <BlogCards
           key={`blog-card-${elem.slug || index}`}

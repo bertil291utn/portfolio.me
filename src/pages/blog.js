@@ -24,6 +24,11 @@ export async function getStaticProps() {
     // RSS unavailable during build — empty list
   }
 
+  // Don't publish an empty placeholder page; ISR retries on the next revalidate.
+  if (!posts.length) {
+    return { notFound: true, revalidate: 86_400 };
+  }
+
   return {
     props: {
       posts,

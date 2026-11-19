@@ -66,6 +66,9 @@
   cursor: pointer;
   color: var(--color-muted);
   border-radius: $radius-sm;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
   transition: color 0.15s ease, background 0.15s ease;
 
   &:hover {

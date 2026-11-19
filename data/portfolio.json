@@ -8,30 +8,30 @@
   },
   {
     "id": 2,
-    "type": "Next js, javascript, solidity",
-    "description": "White label NFT marketplace with primary & secondary market offer as B2B",
+    "type": "Next.js, JavaScript, Solidity",
+    "description": "White-label NFT marketplace offered to businesses (B2B), with primary and secondary market sales.",
     "projectName": "White-label NFT marketplace",
     "overview": "https://nft-marketplace-dev.waytoodigital.com/"
   },
   {
     "id": 3,
-    "type": "next js, javascript, solidity, polygon",
-    "description": "An NFT marketplace for independent artist. This is an MVP therefore is in beta, getting customers feedback",
+    "type": "Next.js, JavaScript, Solidity, Polygon",
+    "description": "An NFT marketplace for independent artists. Currently an MVP in beta, gathering customer feedback.",
     "projectName": "DistroFank",
     "overview": "https://digital-marketplace-inky.vercel.app/",
     "github": "https://github.com/bertil291utn/digital-marketplace"
   },
   {
     "id": 4,
-    "type": "Gatsby, React js",
-    "description": "Landing  marketing website SEO by 90% using SSR technology",
+    "type": "Gatsby, React",
+    "description": "Marketing landing page; improved SEO by 90% using server-side rendering (SSR).",
     "projectName": "Rumzer Landing page",
     "overview": "https://www.rumzer.com/"
   },
   {
     "id": 5,
-    "type": "Angular, javascript",
-    "description": "An e-commerce web application that allows Muebleria Hogar customers to buy any home appliances product. Built with Angular 6 and Ruby on Rails",
+    "type": "Angular, JavaScript, Ruby on Rails",
+    "description": "An e-commerce web app where Muebleria Hogar customers can buy home appliances. Built with Angular 6 and Ruby on Rails.",
     "projectName": "Muebleria Hogar",
     "overview": "https://muebleriahogar.netlify.app/",
     "github": "https://github.com/bertil291utn/mb-hogar"

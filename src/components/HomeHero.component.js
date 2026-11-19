@@ -10,6 +10,12 @@ export default function HomeHero({ resume }) {
 
   return (
     <header className={styles.hero}>
+      <h1 className={styles.title}>{home.heroTitle}</h1>
+      {resume.location && (
+        <p className={styles.meta}>
+          {home.heroMeta.replace('{location}', resume.location)}
+        </p>
+      )}
       <p className={styles.lead}>{resume.description}</p>
       <div className={styles.actions}>
         <a className={styles.linkPrimary} href={`mailto:${resume.email}`}>

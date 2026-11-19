@@ -2,11 +2,11 @@
   "seo": {
     "canonicalBaseUrl": "https://www.bertiltandayamo.dev",
     "pageTitles": {
-      "/resume": "Bertil Tandayamo - Product-focused Engineer",
-      "/blog": "Bertil Tandayamo - Product-focused Engineer"
+      "/": "Freelance Full-Stack Developer (Next.js, React) — Bertil Tandayamo",
+      "/resume": "Bertil Tandayamo, Full-Stack Developer",
+      "/blog": "Blog — Bertil Tandayamo"
     },
     "metaDescription": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
-    "keywords": "freelance developer, full stack developer, Next.js, React, Ecuador, Cayambe, web development, freelance, Bertil Tandayamo, software engineer",
     "ogImage": "https://res.cloudinary.com/btandayamo/image/upload/v1675372137/portofolio.me/og_imageok_quf0ho.png",
     "twitterCard": "summary_large_image",
     "themeColor": "#fafafa",
@@ -14,7 +14,30 @@
     "ogLocale": "en_US",
     "favIcon": "/assets/icons/favicon.svg",
     "manifestPath": "/assets/manifest.json",
-    "sitemapHostname": "https://www.bertiltandayamo.dev"
+    "sitemapHostname": "https://www.bertiltandayamo.dev",
+    "pageDescriptions": {
+      "/": "Full stack developer for hire. I build web products, MVPs, and integrations — with Web3 experience when your roadmap needs it. Based in Cayambe, Ecuador.",
+      "/resume": "Resume of Bertil Tandayamo, building production web apps since 2020 with Next.js, React, Node.js and Solidity. Experience at GarageSoft, Crowdmuse, Way Too Digital and Lumenance.",
+      "/blog": "Articles by Bertil Tandayamo on web development, Next.js and Web3."
+    },
+    "indexablePaths": [
+      "/",
+      "/resume"
+    ],
+    "sitemapPages": [
+      {
+        "url": "/",
+        "lastmod": "2026-11-18"
+      },
+      {
+        "url": "/resume",
+        "lastmod": "2026-11-18"
+      }
+    ],
+    "ogImageWidth": 1200,
+    "ogImageHeight": 628,
+    "ogImageAlt": "Bertil Tandayamo — freelance full-stack developer portfolio",
+    "twitterUrl": "https://x.com/btandayamo"
   },
   "ui": {
     "home": {
@@ -41,14 +64,22 @@
       "contactTitle": "Start a project",
       "contactBody": "Tell me about your timeline, stack, and goals. I usually reply within one business day.",
       "contactCta": "Email me",
-      "secondaryCta": "View full resume"
+      "secondaryCta": "View full resume",
+      "heroTitle": "Freelance full-stack developer for web products, MVPs and integrations",
+      "heroMeta": "Based in {location} (UTC−5) · Building production web apps since 2020"
     },
     "navbar": {
-      "portfolio": { "label": "portfolio", "path": "/" },
-      "resume": { "label": "resume", "path": "/resume" }
+      "portfolio": {
+        "label": "portfolio",
+        "path": "/"
+      },
+      "resume": {
+        "label": "resume",
+        "path": "/resume"
+      }
     },
     "errorPage": {
-      "title": "An error has ocurred",
+      "title": "An error has occurred",
       "btnLabel": "Go to home"
     },
     "resume": {
@@ -56,11 +87,13 @@
       "workExperienceHeading": "Work experience",
       "educationHeading": "Education",
       "skillsHeading": "Skills",
-      "availabilitySectionAria": "Availability"
+      "availabilitySectionAria": "Availability",
+      "pageHeading": "Resume"
     },
     "blog": {
       "emptyMessage": "No posts could be loaded right now. Please try again later or visit the blog on Substack.",
-      "fallbackPostBaseUrl": "https://blog.bertiltandayamo.dev/"
+      "fallbackPostBaseUrl": "https://blog.bertiltandayamo.dev/",
+      "pageHeading": "Blog"
     },
     "appShell": {
       "siteSidebarAria": "Site",
@@ -73,7 +106,8 @@
       "fontToggleTitle": "Toggle monospaced font",
       "fontSansLabel": "Sans",
       "fontMonoLabel": "Mono",
-      "identityFallbackName": "Portfolio"
+      "identityFallbackName": "Portfolio",
+      "profilesAria": "Profiles"
     }
   },
   "pwa": {
@@ -85,9 +119,19 @@
     "orientation": "portrait-primary",
     "icons": [
       {
-        "src": "/logo-72x72.png",
+        "src": "/assets/icons/favicon.svg",
+        "type": "image/svg+xml",
+        "sizes": "any"
+      },
+      {
+        "src": "/assets/icons/icon-192.png",
         "type": "image/png",
-        "sizes": "72x72"
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/icons/icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
       }
     ]
   }

@@ -1,0 +1,17 @@
+# Bertil Tandayamo
+
+> Freelance full-stack developer based in Cayambe, Ecuador (UTC−5). Builds web products, MVPs, dashboards and integrations with Next.js, React, Node.js and TypeScript, plus smart-contract work (Solidity, Polygon) when a product needs it. Building production web apps since 2020. Languages: English (advanced), Spanish (native).
+
+## Pages
+
+- [Portfolio](https://www.bertiltandayamo.dev/): services and selected client projects
+- [Resume](https://www.bertiltandayamo.dev/resume): work experience, education and skills
+
+## Profiles
+
+- [GitHub](https://github.com/bertil291utn)
+- [LinkedIn](https://www.linkedin.com/in/bertiltandayamo/)
+
+## Contact
+
+- Email: hi@bertiltandayamo.dev

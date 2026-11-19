@@ -23,39 +23,21 @@ const ResumeComponent = ({ resumeData: resumeDataSet }) => {
   const site = useSite();
   const labels = site.ui.resume;
 
-  const openURL = (URL) => () => {
-    window.open(URL, '_blank', 'noopener,noreferrer');
-  };
-
   if (!resumeDataSet) return null;
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.meta}>
+          <h1 className={styles.pageTitle}>
+            {resumeDataSet.name} — {labels.pageHeading}
+          </h1>
           <Link href={`mailto:${resumeDataSet.email}`}>
             <a className={styles.email}>{resumeDataSet.email}</a>
           </Link>
           <span className={styles.location}>{resumeDataSet.location}</span>
         </div>
-        <div className={styles.socials}>
-          {Object.entries(resumeDataSet.socialNetwork).map(([key, URL]) => {
-            const Icon = ICON[key];
-            if (!Icon) return null;
-            return (
-              <button
-                key={key}
-                type="button"
-                className={styles.socialBtn}
-                title={key}
-                onClick={openURL(URL)}
-                aria-label={key}
-              >
-                <Icon aria-hidden />
-              </button>
-            );
-          })}
-        </div>
+       
       </header>
 
       {/* <section className={styles.availability} aria-label={labels.availabilitySectionAria}>
