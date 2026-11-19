@@ -101,11 +101,36 @@ export function buildStructuredData(pathname, resume, seo, pageTitle, home = {})
   };
 
   if (pathname === '/') {
+    const url = `${base}/`;
+    const webpage = {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: pageTitle,
+      ...(seo.pageDescriptions?.[pathname] && {
+        description: seo.pageDescriptions[pathname],
+      }),
+      inLanguage: seo.htmlLang,
+      ...(lastModified(seo, pathname) && {
+        dateModified: lastModified(seo, pathname),
+      }),
+      isPartOf: { '@id': website['@id'] },
+      about: { '@id': person['@id'] },
+      ...(seo.ogImage && {
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: seo.ogImage,
+          ...(seo.ogImageWidth && { width: seo.ogImageWidth }),
+          ...(seo.ogImageHeight && { height: seo.ogImageHeight }),
+        },
+      }),
+    };
     const faq = (home.faqItems || []).length
       ? [
           {
             '@type': 'FAQPage',
             '@id': `${base}/#faq`,
+            isPartOf: { '@id': webpage['@id'] },
             mainEntity: home.faqItems.map(({ question, answer }) => ({
               '@type': 'Question',
               name: question,
@@ -116,7 +141,12 @@ export function buildStructuredData(pathname, resume, seo, pageTitle, home = {})
       : [];
     return {
       '@context': 'https://schema.org',
-      '@graph': [website, person, ...faq],
+      '@graph': [
+        webpage,
+        website,
+        { ...person, mainEntityOfPage: { '@id': webpage['@id'] } },
+        ...faq,
+      ],
     };
   }
 
